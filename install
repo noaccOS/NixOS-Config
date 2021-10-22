@@ -1,0 +1,153 @@
+#!/usr/bin/env sh
+
+errormsg="Usage: $0 HOSTNAME [ACTION [PATH]]"
+basedir=$(dirname $(readlink -f "$0"))
+
+help() {
+    echo $errormsg
+    echo ""
+    echo "Installs config file located in ./hosts/<hostname>/"
+    echo "WARNING: The old path is deleted before installing the new files"
+    echo ""
+    echo "Actions: install, copy, symlink, update"
+    echo "--install -i [PATH] Install files in /mnt/etc/nixos/ (or PATH) and run nixos-install"
+    echo "--copy    -c [PATH] Copy the files in /etc/nixos/ (or PATH)"
+    echo "--symlink -l [PATH] Like copy but just symlinks"
+    echo "--update  -u [PATH] Symlink the files in /etc/nixos/ (or PATH) and run nixos-rebuild switch --upgrade"
+    exit 0
+}
+
+except() {
+    echo $errormsg
+    exit 1
+}
+
+test_action(){
+    return $(test $1 != "")
+}
+
+check_write_permission(){
+    if [ ! -d $1 ]; then
+       return $(check_write_permission $(dirname $1))
+    else
+	   return $([ -w $1 ])
+    fi
+}
+
+baseaction="update"
+basehostname=$(hostname)
+action=""
+hostname=""
+while test $# -gt 0; do
+    case $1 in
+	-i | --install)
+	    current="install"
+	    if test_action $current; then
+		action=$current
+		path="/mnt/etc/nixos"
+		shift
+		if (test hostname != "" && test $# -gt 0) || (test $# -gt 1); then
+		    path=$1
+		    shift
+		fi
+	    else
+		except
+	    fi
+	    ;;
+	-c | --copy)
+	    current="copy"
+	    if test_action $current; then
+		action=$current
+		path="/etc/nixos"
+		shift
+		if (test hostname != "" && test $# -gt 0) || (test $# -gt 1); then
+		    path=$1
+		    shift
+		fi
+	    else
+		except
+	    fi
+	    ;;
+	-l | --symlink)
+	    current="symlink"
+	    if test_action $current; then
+		action=$current
+		path="/etc/nixos"
+		shift
+		if (test hostname != "" && test $# -gt 0) || (test $# -gt 1); then
+		    path=$1
+		    shift
+		fi
+	    else
+		except
+	    fi
+	    ;;
+	-u | --update)
+	    current="update"
+	    if test_action $current; then
+		action=$current
+		path="/etc/nixos"
+		shift
+		if (test hostname != "" && test $# -gt 1) || (test $# -gt 2); then
+		    path=$1
+		    shift
+		fi
+	    else
+		except
+	    fi
+	    ;;
+	-h | --help)
+	    help
+	    ;;
+	*)
+	    if test $hostname==""; then
+		hostname=$1
+		shift
+	    else
+		except
+	    fi
+	    ;;
+    esac
+done
+
+[ $action=="" ] && action=$baseaction && path="/etc/nixos"
+[ $hostname=="" ] && hostname=$basehostname
+
+if check_write_permission $path; then
+    find $basedir/hosts/ -type l -exec rm {} \;
+    mkdir -p $(dirname $path)
+    $([ -d $path ] || [ -f $path ] || [ -h $path ]) && rm -r $path
+    case $action in
+	install)
+	    cp -r hosts/$hostname $path
+	    cp -r modules         $path
+	    cp -r packages        $path
+	    nixos-install --system $path/configuration.nix
+	    ;;
+	copy)
+	    cp -r hosts/$hostname $path
+	    cp -r modules         $path
+	    cp -r packages        $path
+	    ;;
+	symlink)
+	    ln -s $basedir/hosts/$hostname $path
+	    ln -s $basedir/modules         $path
+	    ln -s $basedir/packages        $path
+	    ;;
+	update)
+	    ln -s $basedir/hosts/$hostname $path
+    	    ln -s $basedir/modules         $path
+	    ln -s $basedir/packages        $path
+
+	    NIXOS_CONFIG=$path/configuration.nix nixos-rebuild switch --upgrade
+	    ;;
+	*)
+	    echo "ERROR: Unidentified option $action"
+	    exit 1
+	    ;;
+    esac
+    exit 0
+else
+    "Your user doesn't have write permissions on $path. You might need to run this as root"
+    exit 1
+fi  
