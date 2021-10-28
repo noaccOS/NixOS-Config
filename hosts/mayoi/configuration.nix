@@ -4,11 +4,11 @@
 
 { config, pkgs, ... }:
 
-let modules = [ "desktop" "gaming" "gnome" "nvidia" "virtualization" ];
+let modules = [ "desktop" "gaming" "gnome" "nvidia" "virtualization" ];#"tmp" ];
 in
 {
   imports =
-    (map ( m: ./modules + "/${m}.nix" ) modules) ++
+    (map ( m: ../../modules + "/${m}.nix" ) modules) ++
     [ 
       ./hardware-configuration.nix
     ];
@@ -22,7 +22,7 @@ in
       prefixLength = 24;
     }];
     defaultGateway = "192.168.1.1";
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ];
   };
 }
 

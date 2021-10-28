@@ -1,6 +1,6 @@
 {pkgs, ...}:
 {
-  imports = [ ./base.nix ];
+  imports = [ ./base.nix ../services/theming.nix ];
   
   boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
@@ -15,13 +15,10 @@
       tdesktop
       discord
       mpv
-
-      libsForQt5.qtstyleplugin-kvantum
     ];
 
     variables = {
       XCURSOR_THEME = "breeze_cursors";
-      QT_STYLE_OVERRIDE = "kvantum";
       _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
     };
   };
@@ -46,14 +43,21 @@
     };
   };
 
-  nixpkgs.config.joypixels.acceptLicense = true;
+  nixpkgs = {
+    config.joypixels.acceptLicense = true;
+    overlays = [
+      (import ../packages)
+      (import (builtins.fetchTarball {
+        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";    
+      }))
+    ];
+  };
   
   programs = {
     adb.enable  = true;
     java.enable = true;
+    xwayland.enable = true;
   };
-
-  qt5.enable = false;
   
   hardware.pulseaudio.enable = false;
   services = {
@@ -72,6 +76,20 @@
       enable       = true;
       alsa.enable  = true;
       pulse.enable = true;
+    };
+
+    theming = {
+      enable        = true;
+      theme = {
+        defaultTheme = "dracula";
+        installAll = true;
+      };
+      icons = {
+        defaultTheme = "numix";
+        installAll = true;
+      };
+      users         = [ "root" "noaccos" ];
+      manualTheming = true;
     };
   };
 }

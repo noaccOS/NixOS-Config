@@ -114,30 +114,32 @@ done
 [ $hostname=="" ] && hostname=$basehostname
 
 if check_write_permission $path; then
-    find $basedir/hosts/ -type l -exec rm {} \;
-    mkdir -p $(dirname $path)
-    $([ -d $path ] || [ -f $path ] || [ -h $path ]) && rm -r $path
+    mkdir -p $path
     case $action in
 	install)
-	    cp -r hosts/$hostname $path
-	    cp -r modules         $path
-	    cp -r packages        $path
+	    cp -r hosts/$hostname/* $path
+	    cp -r modules           $path
+	    cp -r packages          $path
+	    cp -r services          $path
 	    nixos-install --system $path/configuration.nix
 	    ;;
 	copy)
-	    cp -r hosts/$hostname $path
-	    cp -r modules         $path
-	    cp -r packages        $path
+	    cp -r hosts/$hostname/* $path
+	    cp -r modules           $path
+	    cp -r packages          $path
+	    cp -r services          $path
 	    ;;
 	symlink)
-	    ln -s $basedir/hosts/$hostname $path
-	    ln -s $basedir/modules         $path
-	    ln -s $basedir/packages        $path
+	    ln -s $basedir/hosts/$hostname/* $path
+	    ln -s $basedir/modules           $path
+	    ln -s $basedir/packages          $path
+	    ln -s $basedir/services          $path
 	    ;;
 	update)
-	    ln -s $basedir/hosts/$hostname $path
-    	    ln -s $basedir/modules         $path
-	    ln -s $basedir/packages        $path
+	    ln -s $basedir/hosts/$hostname/* $path
+    	    # ln -s $basedir/modules           $path
+	    # ln -s $basedir/packages          $path
+	    # ln -s $basedir/services          $path
 
 	    NIXOS_CONFIG=$path/configuration.nix nixos-rebuild switch --upgrade
 	    ;;

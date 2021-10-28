@@ -1,5 +1,8 @@
 {pkgs, ...}:
 {
+  boot.extraModulePackages = with pkgs.linuxKernel.packages.linux_xanmod;
+    [ hid-nintendo xpadneo ];
+  
   environment.systemPackages = with pkgs; [
     wineWowPackages.staging
     (winetricks.override { wine = wineWowPackages.staging; })
@@ -8,7 +11,7 @@
     mangohud
     
     multimc
-    lutris
+    lutris-unwrapped
     yuzu-ea
   ];
   
