@@ -68,18 +68,8 @@ in
         '';
       };
     };
-
-    users = mkOption {
-      type = with types; listOf str;
-      default = [ "root" ];
-      description = ''
-        The users to apply the themes to.
-        If no user is specified, manualTheming packages will be installed
-      '';
-      example = [ ''[ "root" "noaccos" ]'' ];
-    };
-
-    manualTheming = mkOption {
+    
+    themingTools = mkOption {
       type = types.bool;
       default = true;
       description = ''
@@ -89,19 +79,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = []
-      ++ optionals (cfg.manualTheming || cfg.users == []) [
+    environment.systemPackages =
+      themingPackages.${cfg.theme.defaultTheme}
+      ++ iconPackages.${cfg.icons.defaultTheme}
+
+      ++ optionals cfg.theme.installAll themingPackages.all
+      ++ optionals cfg.icons.installAll    iconPackages.all
+        
+      ++ optionals cfg.themingTools [
         pkgs.themechanger
         pkgs.libsForQt5.qtstyleplugin-kvantum # just testing
-      ]
-      ++ optionals cfg.theme.installAll                  themingPackages.all
-      ++ optionals (cfg.theme.defaultTheme == "dracula") themingPackages.dracula
-      ++ optionals (cfg.theme.defaultTheme == "nord")    themingPackages.nord
-
-      ++ optionals cfg.icons.installAll                  iconPackages.all
-      ++ optionals (cfg.icons.defaultTheme == "papirus") iconPackages.papirus
-      ++ optionals (cfg.icons.defaultTheme == "numix")   iconPackages.numix
-      ++ optionals (cfg.icons.defaultTheme == "zafiro")  iconPackages.zafiro;
+      ];
 
     environment.variables.QT_STYLE_OVERRIDE = "kvantum";
     

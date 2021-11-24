@@ -1,11 +1,11 @@
 {pkgs, ...}:
 {
   boot.extraModulePackages = with pkgs.linuxKernel.packages.linux_xanmod;
-    [ hid-nintendo xpadneo ];
+    [ xpadneo ];
   
   environment.systemPackages = with pkgs; [
     wineWowPackages.staging
-    (winetricks.override { wine = wineWowPackages.staging; })
+    winetricks
     
     gamemode
     mangohud
@@ -17,4 +17,6 @@
   
   nixpkgs.config.steam  = pkgs.steam.override { nativeOnly = true; };
   programs.steam.enable = true;
+
+  services.joycond.enable = true;
 }

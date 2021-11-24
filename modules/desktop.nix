@@ -15,6 +15,8 @@
       tdesktop
       discord
       mpv
+
+      spotify-adblock
     ];
 
     variables = {
@@ -32,6 +34,8 @@
       jetbrains-mono
       symbola
       emacs-all-the-icons-fonts
+
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
 
     fontconfig = {
@@ -88,8 +92,6 @@
         defaultTheme = "numix";
         installAll = true;
       };
-      users         = [ "root" "noaccos" ];
-      manualTheming = true;
     };
   };
 }

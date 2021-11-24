@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 
-let modules = [ "desktop" "gaming" "gnome" "nvidia" "virtualization" ];#"tmp" ];
+let modules = [ "desktop" "gaming" "gnome" "nvidia" "sway" "virtualization" "tmp" ];
 in
 {
   imports =
@@ -24,5 +24,7 @@ in
     defaultGateway = "192.168.1.1";
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ];
   };
+
+  swapDevices = [ { device = "/var/swap"; size = 8192; } ];
 }
 
