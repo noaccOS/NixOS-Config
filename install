@@ -1,19 +1,26 @@
 #!/usr/bin/env sh
 
-errormsg="Usage: $0 HOSTNAME [ACTION [PATH]]"
+errormsg="Usage: $0 HOSTNAME ACTION [FLAG [PATH]]"
 basedir=$(dirname $(readlink -f "$0"))
 
 help() {
-    echo $errormsg
-    echo ""
-    echo "Installs config file located in ./hosts/<hostname>/"
-    echo "WARNING: The old path is deleted before installing the new files"
-    echo ""
-    echo "Actions: install, copy, symlink, update"
-    echo "--install -i [PATH] Install files in /mnt/etc/nixos/ (or PATH) and run nixos-install"
-    echo "--copy    -c [PATH] Copy the files in /etc/nixos/ (or PATH)"
-    echo "--symlink -l [PATH] Like copy but just symlinks"
-    echo "--update  -u [PATH] Symlink the files in /etc/nixos/ (or PATH) and run nixos-rebuild switch --upgrade"
+    echo "$errormsg
+
+    Installs NixOS from config file located in ./hosts/<hostname>/
+    or install home-manager
+    
+    WARNING: The old path is deleted before installing the new files
+    
+    Actions: system, home
+
+    Flags: (system)
+    --install -i [PATH] Install files in /mnt/etc/nixos/ (or PATH) and run nixos-install
+    --copy    -c [PATH] Copy the files in /etc/nixos/ (or PATH)
+    --symlink -l [PATH] Like copy but just symlinks
+    --update  -u [PATH] Symlink the files in /etc/nixos/ (or PATH) and run nixos-rebuild switch --upgrade
+
+    Flags: (home)
+    --install-nix -n Also install nix (single-user only)"
     exit 0
 }
 
@@ -22,7 +29,7 @@ except() {
     exit 1
 }
 
-test_action(){
+test_flag(){
     return $(test $1 != "")
 }
 
@@ -34,16 +41,45 @@ check_write_permission(){
     fi
 }
 
-baseaction="update"
+install_nix(){
+    sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+    curl -L https://nixos.org/nix/install | sh
+}
+
+distro=$(cat /etc/os-release | head -n 1 | sed 's/NAME=//')
+isNixOS=$([ $distro == "NixOS" ])
+baseflag="update"
 basehostname=$(hostname)
 action=""
+flag=""
 hostname=""
 while test $# -gt 0; do
     case $1 in
+	home)
+	    [ -n $action ] && except
+	    action="home"
+	    path="~/.config/nixpkgs"
+	    shift
+	    ;;
+	system)
+	    [ -n $action ] && except
+	    action="system"
+	    shift
+	    ;;
+	-n | --install-nix)
+	    current="install-nix"
+	    if test_flag $curent
+	    then
+		flag=$current
+		shift
+	    else
+		except
+	    fi
+	    ;;
 	-i | --install)
 	    current="install"
-	    if test_action $current; then
-		action=$current
+	    if test_flag $current; then
+		flag=$current
 		path="/mnt/etc/nixos"
 		shift
 		if (test hostname != "" && test $# -gt 0) || (test $# -gt 1); then
@@ -56,8 +92,8 @@ while test $# -gt 0; do
 	    ;;
 	-c | --copy)
 	    current="copy"
-	    if test_action $current; then
-		action=$current
+	    if test_flag $current; then
+		flag=$current
 		path="/etc/nixos"
 		shift
 		if (test hostname != "" && test $# -gt 0) || (test $# -gt 1); then
@@ -70,8 +106,8 @@ while test $# -gt 0; do
 	    ;;
 	-l | --symlink)
 	    current="symlink"
-	    if test_action $current; then
-		action=$current
+	    if test_flag $current; then
+		flag=$current
 		path="/etc/nixos"
 		shift
 		if (test hostname != "" && test $# -gt 0) || (test $# -gt 1); then
@@ -84,8 +120,8 @@ while test $# -gt 0; do
 	    ;;
 	-u | --update)
 	    current="update"
-	    if test_action $current; then
-		action=$current
+	    if test_flag $current; then
+		flag=$current
 		path="/etc/nixos"
 		shift
 		if (test hostname != "" && test $# -gt 1) || (test $# -gt 2); then
@@ -110,44 +146,57 @@ while test $# -gt 0; do
     esac
 done
 
-[ $action=="" ] && action=$baseaction && path="/etc/nixos"
+[ $flag=="" ] && flag=$baseflag && path="/etc/nixos"
 [ $hostname=="" ] && hostname=$basehostname
 
 if check_write_permission $path; then
     mkdir -p $path
     case $action in
-	install)
-	    cp -r hosts/$hostname/* $path
-	    cp -r modules           $path
-	    cp -r packages          $path
-	    cp -r services          $path
-	    nixos-install --system $path/configuration.nix
-	    ;;
-	copy)
-	    cp -r hosts/$hostname/* $path
-	    cp -r modules           $path
-	    cp -r packages          $path
-	    cp -r services          $path
-	    ;;
-	symlink)
-	    ln -s $basedir/hosts/$hostname/* $path
-	    ln -s $basedir/modules           $path
-	    ln -s $basedir/packages          $path
-	    ln -s $basedir/services          $path
-	    ;;
-	update)
-	    ln -s $basedir/hosts/$hostname/* $path
-    	    # ln -s $basedir/modules           $path
-	    # ln -s $basedir/packages          $path
-	    # ln -s $basedir/services          $path
+	home)
+	    ln -s $basedir/home/"home$($isNixOS || echo '-not-nixos').nix" \
+	       $path/home.nix
 
-	    NIXOS_CONFIG=$path/configuration.nix nixos-rebuild switch --upgrade
+	    [ $flag == 'install-nix' ] && install_nix
+
+	    nix-channel --add \
+			https://github.com/nix-community/home-manager/archive/master.tar.gz \
+			home-manager
+	    nix-channel --update
+	    export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+	    nix-shell '<home-manager>' -A install
+	    source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+	    home-manager switch
 	    ;;
-	*)
-	    echo "ERROR: Unidentified option $action"
-	    exit 1
+	system)
+	    case $flag in
+		install)
+		    cp -r hosts/$hostname/* $path
+		    cp -r modules           $path
+		    cp -r packages          $path
+		    cp -r services          $path
+		    nixos-install --system $path/configuration.nix
+		    ;;
+		copy)
+		    cp -r hosts/$hostname/* $path
+		    cp -r modules           $path
+		    cp -r packages          $path
+		    cp -r services          $path
+		    ;;
+		symlink)
+		    ln -s $basedir/hosts/$hostname/configuration.nix $path/configuration.nix
+		    ;;
+		update)
+		    ln -s $basedir/hosts/$hostname/configuration.nix $path/configuration.nix
+		    NIXOS_CONFIG=$path/configuration.nix nixos-rebuild switch --upgrade
+		    ;;
+		*)
+		    echo "ERROR: Unidentified option $flag"
+		    exit 1
+		    ;;
+	    esac
 	    ;;
     esac
+    
     exit 0
 else
     "Your user doesn't have write permissions on $path. You might need to run this as root"
