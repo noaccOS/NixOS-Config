@@ -47,7 +47,7 @@ install_nix(){
 }
 
 distro=$(cat /etc/os-release | head -n 1 | sed 's/NAME=//')
-isNixOS=$([ $distro == "NixOS" ])
+isNixOS=$($distro == "NixOS")
 baseflag="update"
 basehostname=$(hostname)
 action=""
