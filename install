@@ -47,7 +47,6 @@ install_nix(){
 }
 
 distro=$(cat /etc/os-release | head -n 1 | sed 's/NAME=//')
-isNixOS=$("$distro" == "NixOS")
 baseflag="update"
 basehostname=$(hostname)
 action=""
@@ -153,7 +152,7 @@ if check_write_permission $path; then
     mkdir -p $path
     case $action in
 	home)
-	    ln -s $basedir/home/"home$($isNixOS || echo '-not-nixos').nix" \
+	    ln -s $basedir/home/"home$([ $distro == 'NixOS' ] || echo '-not-nixos').nix" \
 	       $path/home.nix
 
 	    [ $flag == 'install-nix' ] && install_nix
