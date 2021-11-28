@@ -14,6 +14,11 @@ let
 in
 
 {
+  home.packages = [
+    pkgs.ripgrep
+    pkgs.neofetch
+  ];
+  
   programs = {
     bat = {
       enable = true;

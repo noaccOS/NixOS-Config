@@ -13,6 +13,6 @@
       }
     ];
     
-    loginShellInit = "fenv source ~/.nix-profile/etc/profile.d/nix.sh";
+    shellInit = "fenv source ~/.nix-profile/etc/profile.d/nix.sh";
   };
 }
