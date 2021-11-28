@@ -4,7 +4,7 @@
     plugins = [
       {
         name = "fenv";
-        src = pkgs.fetchFromGithub {
+        src = pkgs.fetchFromGitHub {
           owner = "oh-my-fish";
           repo = "plugin-foreign-env";
           rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
