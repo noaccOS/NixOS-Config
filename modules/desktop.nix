@@ -1,7 +1,6 @@
 {pkgs, ...}:
 {
   imports = [ ./base.nix ../services/theming.nix ];
-  
   boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   environment = {
@@ -64,7 +63,9 @@
   };
   
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
   services = {
+    blueman.enable = true;
     xserver = {
       enable       = true;
       layout       = "us";
@@ -89,7 +90,7 @@
         installAll = true;
       };
       icons = {
-        defaultTheme = "numix";
+        defaultTheme = "tela";
         installAll = true;
       };
     };

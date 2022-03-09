@@ -4,11 +4,11 @@ let
 
   allThemes = {
     bat     = { dracula = "Dracula";     nord = "Nord"; };
-    wezterm = { dracula = "TrueDracula"; nord = "nord"; };
+    wezterm = { dracula = "TrueDracula"; nord = "nord"; catppuccin = "Catppuccin"; };
   };
 
   # themes = map (x: x.${currentTheme}) allThemes;
-  themes = { bat = "Dracula"; wezterm = "TrueDracula"; };
+  themes = { bat = "Dracula"; wezterm = "Catppuccin"; };
   
 in {
   programs = {

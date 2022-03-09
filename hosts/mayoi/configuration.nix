@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 
-let modules = [ "desktop" "gaming" "gnome" "nvidia" "sway" "virtualization" "tmp" ];
+let modules = [ "desktop" "gaming" "plasma" "xmonad" "development" "nvidia" "sway" "virtualization" "tmp" ];
 in
 {
   imports =
@@ -26,5 +26,35 @@ in
   };
 
   swapDevices = [ { device = "/var/swap"; size = 8192; } ];
+
+  services.openssh = {
+    enable = true;
+    ports = [ 26554 ];
+  };
+
+  services.xserver = {
+    exportConfiguration = true;
+    monitorSection = ''
+    VendorName     "Unknown"
+    ModelName      "HPN OMEN by HP 35"
+    HorizSync       73.0 - 151.0
+    VertRefresh     30.0 - 100.0
+    Option         "DPMS"
+'';
+screenSection = ''
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "nvidiaXineramaInfoOrder" "DFP-6"
+    Option         "metamodes" "DP-4: 3440x1440_100 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, HDMI-0: 1920x1080_60 +0+360 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+  '';
+  };
+  virtualisation = {
+    podman.enable = true;
+    podman.enableNvidia = true;
+  };
+  services.flatpak.enable = true;
 }
 

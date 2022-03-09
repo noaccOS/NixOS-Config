@@ -3,7 +3,6 @@
   nixpkgs.overlays = [ (import (builtins.fetchTarball {
         url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";    
   }))
-               (import ../overlays/idemacs.nix)
              ];
   
   programs = {
@@ -21,7 +20,7 @@
       };
       closePromptEnable = false;
       tabBarEnable = false;
-
+      waylandEnable = false;
       padding = {
         left = 20;
         right = 20;
@@ -65,16 +64,18 @@
 
     emacs = {
       enable = true;
-      package = pkgs.IDEmacs;
+      package = pkgs.emacsPgtkGcc;
       extraPackages = epkgs: with epkgs; [
         doom-themes
         doom-modeline
 
         rainbow-delimiters
+        multiple-cursors
         avy
         undo-tree
         which-key
         ace-window
+        wrap-region
         magit
         ace-popup-menu
         diff-hl

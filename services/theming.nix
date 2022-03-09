@@ -5,6 +5,16 @@ with lib;
 
 let
   cfg = config.services.theming;
+  tela-circle = pkgs.tela-icon-theme.overrideAttrs(old: {
+    pname = "tela-circle";
+    version = "git";
+    src = pkgs.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo  = "Tela-circle-icon-theme";
+      rev   = "53dcdf047849309d4811994bbe5474a494c67b54";
+      sha256 = "0l60k79gjgl8q7j670ky84zwf26q2vc33wbzzw0g0k77sgz330zg";
+    };
+  });
   
   themingPackages = with pkgs; {
       all     = [ dracula-theme nordic ];
@@ -17,11 +27,13 @@ let
       papirus-icon-theme
       numix-icon-theme
       zafiro-icons
+      tela-circle
     ];
     
     papirus = [ papirus-icon-theme ];
     numix   = [ numix-icon-theme ];
     zafiro  = [ zafiro-icons ];
+    tela    = [ tela-circle ];
   };
 in
 {
@@ -54,7 +66,7 @@ in
 
     icons = {
       defaultTheme = mkOption {
-        type = types.enum [ "papirus" "numix" "zafiro" "simple" ];
+        type = types.enum [ "papirus" "numix" "zafiro" "simple" "tela" ];
         default = "papirus";
         description = ''
           Default icon theme to use
@@ -102,6 +114,7 @@ in
           papirus = "Papirus-Dark";
           numix   = "Numix-Circle";
           zafiro  = "Zafiro-icons";
+          tela    = "Tela-circle-purple-dark";
         };
 
         defGtk = gtk-themes.${cfg.theme.defaultTheme};

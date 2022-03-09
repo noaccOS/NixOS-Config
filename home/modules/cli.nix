@@ -38,6 +38,18 @@ in
       enable = true;
       shellAliases = aliases.exa;
 
+      plugins = [
+        {
+          name = "catppuccin";
+          src = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "fish";
+            rev = "0b228f65728631bdc815c0f74a4d5134802e092d";
+            sha256 = "1pxl1mp42ks5zq7al6dig4w5cgwsb3zs9pckjc88wd5wdq8ph4pj";
+          };
+        }
+      ];
+
       interactiveShellInit = ''
         set term (basename "/"(ps -f -p (cat /proc/(echo %self)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //'))
 

@@ -1,7 +1,10 @@
-{pkgs, ...}:
+{ config, pkgs, ...}:
+let kp = config.boot.kernelPackages;
+in
 {
-  boot.extraModulePackages = with pkgs.linuxKernel.packages.linux_xanmod;
+  boot.extraModulePackages = with kp;
     [ xpadneo ];
+  # boot.kernelModules = ["hid_nintendo"];
   
   environment.systemPackages = with pkgs; [
     wineWowPackages.staging
@@ -10,12 +13,28 @@
     gamemode
     mangohud
     
-    multimc
+    polymc
     lutris-unwrapped
-    yuzu-ea
+    (yuzu-mainline.override {
+      version = "905";
+      src = fetchFromGitHub {
+        owner = "yuzu-emu";
+        repo = "yuzu-mainline";
+        rev = "mainline-0-905";
+        sha256 = "2OYkeR1SbffVKUEHUlaYGFdumhhfK0VZtuh8Lbenb2M=";
+        fetchSubmodules = true;
+      };
+    })
+
+  #  kp.hid-nintendo
   ];
   
-  nixpkgs.config.steam  = pkgs.steam.override { nativeOnly = true; };
+  # nixpkgs.config.steam  = pkgs.steam.override { nativeOnly = true; };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   steam = pkgs.steam.override {
+  #     nativeOnly = true; 
+  #   };
+  # };
   programs.steam.enable = true;
 
   services.joycond.enable = true;

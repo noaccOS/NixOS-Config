@@ -50,17 +50,17 @@ in
       teams
       # lightcord
   
-      discord
+      # discord
       
       # wine-ge
       # xmonad-git
       # xmonad-contrib-git
 
-      myPython
-      lutris-unwrapped
-      legendary-gl
-      yuzu-ea
-      dolphinEmuMaster
+      # myPython
+      # lutris-unwrapped
+      # legendary-gl
+      # yuzu-ea
+      # dolphinEmuMaster
     ];
   
     # This value determines the Home Manager release that your

@@ -25,14 +25,19 @@
     git
   ];
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      enabled = "ibus";
+    };
+  };
 
   nix = {
     extraOptions = ''
       keep-outputs     = true
       keep-derivations = true
     '';
-    trustedUsers = [ "root" "noaccos" ];
+    settings.trusted-users = [ "root" "noaccos" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -61,9 +66,13 @@
 
     users.noaccos = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "audio" "video" "adbusers" ];
+      extraGroups = [ "wheel" "audio" "video" "adbusers" "libvirtd" "plugdev" ];
     };
   };
 
+  environment.variables = rec {
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE  = "ibus";
+  };
   system.stateVersion = "21.05";
 }

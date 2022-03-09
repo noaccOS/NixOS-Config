@@ -54,6 +54,12 @@
        :config (column-number-mode)
        :hook (after-init . doom-modeline-mode))
    #+end_src
+*** Proportional font
+For some reason emacs 29 defaults to proportional fonts on the modeline
+#+begin_src elisp
+      (set-face-attribute 'mode-line-active nil :inherit 'mode-line)
+      (set-face-attribute 'mode-line-inactive nil :inherit 'mode-line)
+#+end_src
 ** Scrolling options
    Make the scrolling feel better
    #+begin_src elisp
@@ -264,13 +270,22 @@
    #+end_src
 * Useful extensions
 ** Rainbow delimiters
-   Matching parens have same color
+Matching parens have same color
    #+begin_src elisp
      (use-package rainbow-delimiters
        :config
        (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
    #+end_src
-   Extensios that 
+Extensios that 
+** Multiple cursors
+Allows spawning multiple cursors
+#+begin_src elisp
+  (use-package multiple-cursors
+    :bind (
+      ("C->" . mc/mark-next-like-this)
+      ("C-<" . mc/mark-previous-like-this)
+    ))
+#+end_src
 ** Avy
 Fast place cursor in page
 
@@ -365,6 +380,12 @@ Fast place cursor in page
        :config
        (setq aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s)))
    #+end_src
+** Wrap region
+Adds delimiters to selection
+#+begin_src elisp
+  (use-package wrap-region
+    :config (wrap-region-mode t))
+#+end_src
 ** Magit
    git gui for emacs
    #+begin_src elisp
@@ -623,10 +644,15 @@ Fast place cursor in page
    #+begin_src elisp
      (use-package tree-sitter
        :config (require 'tree-sitter)
-               (global-tree-sitter-mode)
+       (global-tree-sitter-mode 1)
        :hook (tree-sitter-after-on-hook . tree-sitter-hl-mode))
+
      (use-package tree-sitter-langs
        :config (require 'tree-sitter-langs))
+
+     (use-package tree-sitter-indent
+       :hook (rust-mode-hook . tree-sitter-indent-mode)
+
    #+end_src
 * Extensions modules
 ** Org
@@ -642,7 +668,7 @@ Fast place cursor in page
       Inserted by installing 'org-mode' or when a release is made."
 	(require 'git)
 	(let ((git-repo (expand-file-name
-			 "straight/repos/org/" user-emacs-directory)))q
+			 "straight/repos/org/" user-emacs-directory)))
 	  (string-trim
 	   (git-run "describe"
 		    "--match=release\*"
@@ -820,6 +846,13 @@ Fast place cursor in page
 	  (add-hook-to-modes modes '(lambda () (require 'dap-lldb)))
 	  ))
     #+end_src
+** C#
+#+begin_src elisp
+  (use-package csharp-mode
+    :after tree-sitter
+    :config
+    (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
+#+end_src
 ** Java
 *** LSP
    #+begin_src elisp

@@ -1,14 +1,30 @@
 { pkgs, config, lib, ... }:
 {
   # Useful only until xmonad gets updated to 0.17
-  # nixpkgs.config.packageOverrides = super: {
-  #   haskellPackages.xmonad = super.haskellPackages.xmonad_0_17_0;
-  # };
+  nixpkgs.overlays = [
+    (self: super: {
+      haskellPackages = super.haskellPackages.override {
+        overrides = hself: hsuper: {
+          xmonad = hsuper.xmonad_0_17_0;
+          xmonad-contrib = hsuper.xmonad-contrib_0_17_0;
+          xmonad-extras = hsuper.xmonad-extras_0_17_0;
+        };};
+    })
+  ];
+
+  environment.systemPackages = with pkgs; [
+    feh
+    rofi
+    taffybar
+    xmobar
+    flameshot
+    blueman
+  ];
   
   services = {
     dbus = {
       enable = true;
-      packages = [ pkgs.gnome3.dconf ];
+      packages = [ pkgs.dconf ];
     };
 
     xserver = {
@@ -18,7 +34,7 @@
       displayManager.defaultSession = "none+xmonad";
       windowManager.xmonad = {
         enable = true;
-        extraPackages = haskellPackages: [ haskellPackages.xmonad-contrib ];
+        enableContribAndExtras = true;
       };
     };
   };
