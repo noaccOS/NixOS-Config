@@ -39,28 +39,17 @@ in
     imports = [ ./modules/local-theming.nix ./modules/cli.nix ./modules/wezterm.nix ./modules/gui.nix ];
     
     home.packages = with pkgs; [
-      deadd-notification-center
-      nyxt
-      taffybar
       deluge
       element-desktop
-      jellyfin-media-player
 
       libsForQt5.breeze-qt5
-      teams
       # lightcord
   
-      # discord
-      
       # wine-ge
       # xmonad-git
       # xmonad-contrib-git
 
-      # myPython
-      # lutris-unwrapped
-      # legendary-gl
-      # yuzu-ea
-      # dolphinEmuMaster
+      myPython
     ];
   
     # This value determines the Home Manager release that your
