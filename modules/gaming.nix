@@ -15,18 +15,29 @@ in
     
     polymc
     lutris-unwrapped
-    (yuzu-mainline.override {
-      version = "905";
-      src = fetchFromGitHub {
-        owner = "yuzu-emu";
-        repo = "yuzu-mainline";
-        rev = "mainline-0-905";
-        sha256 = "2OYkeR1SbffVKUEHUlaYGFdumhhfK0VZtuh8Lbenb2M=";
-        fetchSubmodules = true;
-      };
-    })
-
-  #  kp.hid-nintendo
+    # (yuzu-ea.overrideAttrs (old: {
+    #   version = "2693";
+    #   src = fetchFromGitHub {
+    #     owner = "pineappleEA";
+    #     repo  = "pineapple-src";
+    #     rev = "EA-2693";
+    #     sha256 = "lExMAHJRj2/3qMEA9pSrrgH7v3fLmA9DaHJXKMCVFG0=";
+    #     fetchSubmodules = true;
+    #   };
+    
+    # }))
+    yuzu-mainline
+    ryujinx
+    # (yuzu-mainline.override {
+    #   version = "905";
+    #   src = fetchFromGitHub {
+    #     owner = "yuzu-emu";
+    #     repo = "yuzu-mainline";
+    #     rev = "mainline-0-905";
+    #     sha256 = "2OYkeR1SbffVKUEHUlaYGFdumhhfK0VZtuh8Lbenb2M=";
+    #     fetchSubmodules = true;
+    #   };
+    # })
   ];
   
   # nixpkgs.config.steam  = pkgs.steam.override { nativeOnly = true; };

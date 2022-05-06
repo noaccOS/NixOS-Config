@@ -3,6 +3,7 @@
   nixpkgs.overlays = [ (import (builtins.fetchTarball {
         url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";    
   }))
+                       (import ../../packages)
              ];
   
   programs = {
@@ -64,7 +65,7 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacsPgtkGcc;
+      package = pkgs.emacsPgtkNativeComp;
       extraPackages = epkgs: with epkgs; [
         doom-themes
         doom-modeline

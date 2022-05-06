@@ -1,7 +1,7 @@
 {pkgs, ...}:
 {
   imports = [ ./base.nix ../services/theming.nix ];
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   environment = {
     defaultPackages = with pkgs; [
@@ -12,8 +12,9 @@
       xorg.xmodmap
       pavucontrol
       tdesktop
-      discord
+      discord-canary
       mpv
+      ffmpeg_5
 
       spotify-adblock
     ];
@@ -60,6 +61,7 @@
     adb.enable  = true;
     java.enable = true;
     xwayland.enable = true;
+    kdeconnect.enable = true;
   };
   
   hardware.pulseaudio.enable = false;

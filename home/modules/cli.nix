@@ -75,4 +75,6 @@ in
       enableFishIntegration = true;
     };
   };
+  
+  xdg.configFile."fish/functions/reencode.fish".source = ../../config/fish/functions/reencode.fish;
 }

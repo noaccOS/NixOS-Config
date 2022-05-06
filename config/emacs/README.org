@@ -57,8 +57,9 @@
 *** Proportional font
 For some reason emacs 29 defaults to proportional fonts on the modeline
 #+begin_src elisp
-      (set-face-attribute 'mode-line-active nil :inherit 'mode-line)
-      (set-face-attribute 'mode-line-inactive nil :inherit 'mode-line)
+  (when (version<= "29" emacs-version)
+    (set-face-attribute 'mode-line-active nil :inherit 'mode-line)
+    (set-face-attribute 'mode-line-inactive nil :inherit 'mode-line))
 #+end_src
 ** Scrolling options
    Make the scrolling feel better
@@ -651,7 +652,7 @@ Adds delimiters to selection
        :config (require 'tree-sitter-langs))
 
      (use-package tree-sitter-indent
-       :hook (rust-mode-hook . tree-sitter-indent-mode)
+       :hook (rust-mode-hook . tree-sitter-indent-mode))
 
    #+end_src
 * Extensions modules
@@ -812,6 +813,10 @@ Adds delimiters to selection
       (add-hook 'python-mode-hook '(lambda () (require 'dap-python)))
     #+end_src
 ** Haskell
+*** Haskell-mode
+#+begin_src elisp
+(use-package haskell-mode)
+#+end_src
 *** LSP
     #+begin_src elisp
       (use-package lsp-haskell
@@ -819,7 +824,7 @@ Adds delimiters to selection
 	       (haskell-literate-mode-hook . lsp)))
     #+end_src
 *** Indent
-    Hindent is used to indent haskell code
+Hindent is used to indent haskell code
     #+begin_src elisp
       (use-package hindent
 	:hook (haskell-mode-hook . hindent-mode))
