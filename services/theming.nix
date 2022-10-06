@@ -17,10 +17,25 @@ let
   });
   
   themingPackages = with pkgs; {
-      all     = [ dracula-theme nordic ];
-      dracula = [ dracula-theme ];
-      nord    = [ nordic ];
+      all        = [ dracula-theme nordic ];
+      dracula    = [ dracula-theme ];
+      nord       = [ nordic ];
+      catppuccin = [ ];
   };
+
+  overlays = [
+    (self: super:
+      {
+        papirus-folders = super.papirus-folders.overrideAttrs (old: {
+          src = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo  = "papirus-folders";
+            rev   = "7aefd7a20c63a5e167745d5bd6d297c5f7ce747d";
+            sha256 = "0pma0yzjb5m4m22f329b74nws50ij1c5pz19a6cgb9p2f3k1dmmi";
+          };
+        });
+      })
+  ];
 
   iconPackages = with pkgs; {
     all = [
@@ -48,8 +63,8 @@ in
 
     theme = {
       defaultTheme = mkOption {
-        type = types.enum [ "dracula" "nord" ];
-        default = "dracula";
+        type = types.enum [ "dracula" "nord" "catppuccin" ];
+        default = "catppuccin";
         description = ''
           Default theme to set
         '';
@@ -109,16 +124,31 @@ in
     
     environment.etc =
       let
-        gtk-themes  = { dracula = "Dracula"; nord = "Nordic-darker"; };
+        gtk-themes  = { dracula = "Dracula"; nord = "Nordic-darker"; catppuccin = "Catppuccin"; };
         icon-themes = {
           papirus = "Papirus-Dark";
           numix   = "Numix-Circle";
           zafiro  = "Zafiro-icons";
           tela    = "Tela-circle-purple-dark";
         };
+        gtk4css = {
+          dracula = fetchurl{
+            url = "https://raw.githubusercontent.com/dracula/gtk/58b8cf7f5d4099a644df322942549b26474faa04/gtk-4.0/gtk.css";
+            sha256 = "1ivnsz342iql4rbl995wzgniqk403vxwjjssvspdbd8qn3lnmlwn";
+          };
+          nord = fetchurl {
+            url = "https://raw.githubusercontent.com/EliverLara/Nordic/1ec58be81b2e472abaf1894753439af6884e48b4/gtk-4.0/gtk-dark.css";
+            sha256 = "https://raw.githubusercontent.com/EliverLara/Nordic/1ec58be81b2e472abaf1894753439af6884e48b4/gtk-4.0/gtk-dark.css";
+          };
+          catppuccin = fetchurl {
+            url = "https://raw.githubusercontent.com/catppuccin/gtk/7bfea1f0d569010998302c8242bb857ed8a83058/src/main/gtk-4.0/gtk-dark.css";
+            sha256 = "077pihczqj5w7bhj0jzlf9mrvw1yd3d3dry0vlccjnmkrjm57vi1";
+          };
+        };
 
         defGtk = gtk-themes.${cfg.theme.defaultTheme};
         defIcn = icon-themes.${cfg.icons.defaultTheme};
+        defCss = gtk4css.${cfg.theme.defaultTheme};
       in
       {
       "gtk-2.0/gtkrc".text = ''
@@ -169,6 +199,7 @@ in
         gtk-xft-dpi=98304
         gtk-overlay-scrolling=true
       '';
+      "gtk-4.0/gtk.css".source = defCss;
     };
   };  
 }

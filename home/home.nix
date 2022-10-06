@@ -39,9 +39,6 @@ in
     imports = [ ./modules/local-theming.nix ./modules/cli.nix ./modules/wezterm.nix ./modules/gui.nix ];
     
     home.packages = with pkgs; [
-      deluge
-      element-desktop
-
       libsForQt5.breeze-qt5
       # lightcord
   

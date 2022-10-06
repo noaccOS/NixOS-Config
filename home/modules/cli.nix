@@ -10,6 +10,10 @@ let
       ll = "${aliases.defaults.exa} -l";
       lt = "${aliases.defaults.exa} --tree";
     };
+
+    fd = {
+      fd = "${pkgs.fd}/bin/fd -H";
+    };
   };
 in
 
@@ -36,7 +40,7 @@ in
 
     fish = {
       enable = true;
-      shellAliases = aliases.exa;
+      shellAliases = aliases.exa // aliases.fd;
 
       plugins = [
         {
@@ -51,16 +55,18 @@ in
       ];
 
       interactiveShellInit = ''
-        set term (basename "/"(ps -f -p (cat /proc/(echo %self)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //'))
+set term (basename "/"(ps -f -p (cat /proc/(echo %self)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //'))
 
-        switch $term
-          case kitty
-            neofetch --config ~/.config/neofetch/config-kitty.conf
-	        case wezterm-gui
-	          neofetch --config ~/.config/neofetch/config-wezterm.conf
-	        case '*'
-            neofetch --config ~/.config/neofetch/config-others.conf
-        end
+switch $term
+  case kitty
+    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-kitty.conf
+  case wezterm-gui
+    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-wezterm.conf
+  case foot
+    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-foot.conf
+  case '*'
+    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-others.conf
+end
       '';
     };
 
@@ -75,6 +81,4 @@ in
       enableFishIntegration = true;
     };
   };
-  
-  xdg.configFile."fish/functions/reencode.fish".source = ../../config/fish/functions/reencode.fish;
 }

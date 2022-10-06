@@ -13,6 +13,6 @@ let
 in {
   programs = {
     bat.config.theme = themes.bat;
-    wezterm.theme = themes.wezterm;
+    noaccos-wezterm.theme = themes.wezterm;
   };
 }

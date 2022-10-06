@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
+let
+  nixgl-repo = import (fetchTarball https://github.com/guibou/nixGL/archive/main.tar.gz) {};
+in
 {
+  home.packages = [
+    nixgl-repo.auto.nixGLDefault
+  ];
+  
   programs.fish = {
     plugins = [
       {

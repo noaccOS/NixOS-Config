@@ -4,14 +4,14 @@ with builtins;
 with lib;
 
 let
-  cfg = config.programs.wezterm;
+  cfg = config.programs.noaccos-wezterm;
   catppuccinColors = fetchurl {
     url = "https://raw.githubusercontent.com/catppuccin/wezterm/74b23a608d02e6b132d91bb2dcf9cb37de89f466/wezterm.lua";
     sha256 = "0zi5nzkk4y0fd3zffmyj4pl56yma735dmwn13ngk1r92v1zv63gp";
   };
 in
 {
-  options.programs.wezterm = {
+  options.programs.noaccos-wezterm = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -120,6 +120,7 @@ in
             top = ${toString cfg.padding.top},
             bottom = ${toString cfg.padding.bottom},
           },
+          use_ime = false,
         }
       '';
 

@@ -1,13 +1,57 @@
+
 { config, pkgs, ... }:
+let
+  # emacsOverlay = pkgs.fetchFromGitHub {
+  #   owner  = "nix-community";
+  #   repo   = "emacs-overlay";
+  #   rev    = "e6787f627285bf1963ad582c7d635c97efea524d";
+  #   sha256 = "18hwhs3f2yccymq6h2y2f5amizkfcvy3jzgn3xnfzq09z9adahs0";
+  # };
+  emacsOverlay = builtins.fetchTarball {
+    url = "https://github.com/nix-community/emacs-overlay/archive/f0fff2e0952e97a9ad733ef96e6fa7d4f3b9fafe.tar.gz";
+    sha256 = "1gvrvxrl1z13rkaxvxlbqd3y3cqqs8h86r68gm52z2hzwz8vqrzv";
+  };
+in
 {
-  nixpkgs.overlays = [ (import (builtins.fetchTarball {
-        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";    
-  }))
-                       (import ../../packages)
-             ];
+  nixpkgs.overlays = [
+    (import emacsOverlay)
+    (import ../../packages)
+  ];
   
   programs = {
-    wezterm = {
+    foot = {
+      enable = true;
+      settings = {
+        main = {
+          font = "JetBrainsMono Nerd Font:size=11";
+          pad = "20x20";
+        };
+        colors = {
+          foreground = "cdd6f4"; # Text
+          background = "1e1e2e"; # Base
+          regular0   = "45475a"; # Surface 1
+          regular1   = "f38ba8"; # red
+          regular2   = "a6e3a1"; # green
+          regular3   = "f9e2af"; # yellow
+          regular4   = "89b4fa"; # blue
+          regular5   = "f5c2e7"; # pink
+          regular6   = "94e2d5"; # teal
+          regular7   = "bac2de"; # Subtext 1
+          bright0    = "585b70"; # Surface 2
+          bright1    = "f38ba8"; # red
+          bright2    = "a6e3a1"; # green
+          bright3    = "f9e2af"; # yellow
+          bright4    = "89b4fa"; # blue
+          bright5    = "f5c2e7"; # pink
+          bright6    = "94e2d5"; # teal
+          bright7    = "a6adc8"; # Subtext 0
+        };
+        csd = {
+          preferred = "client";
+        };
+      };
+    };
+    noaccos-wezterm = {
       enable = true;
       font = {
         family = [

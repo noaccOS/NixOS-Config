@@ -1,15 +1,23 @@
 { pkgs, ... }:
+let
+  myPython = pkgs.python3.withPackages (py: [
+    py.requests
+    py.pygobject3
+    py.gst-python
+  ]);
+in
 {
   environment.systemPackages = with pkgs; [
     tree-sitter
     
     # Haskell
     ghc                       # Compiler
+    stack                     # CLI tool
     haskell-language-server   # LSP
     haskellPackages.hindent   # Indent
 
     # Python
-    python3                   # Compiler
+    myPython                  # Compiler
     nodePackages.pyright      # LSP
 
     # C/C++
@@ -19,11 +27,14 @@
 
     # C#
     dotnet-sdk                # Compiler
+    dotnet-runtime            # Runner
     mono                      # Runner
     omnisharp-roslyn          # LSP
 
     # LaTeX
-    texlab                    # LSP
+    texlab                       # LSP
+    python3Packages.pygments     # Minted support
+    texlive.combined.scheme-full # Compiler and libraries
 
     # Lua
     lua                       # Compiler
@@ -39,5 +50,7 @@
     jdk                       # Compiler
     # Not yet in the repos
     # jdtls                     # LSP
+
+    (aspellWithDicts (ps: with ps; [ en it ]))
   ];
 }

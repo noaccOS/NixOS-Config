@@ -1,0 +1,4 @@
+{ pkgs, ... }:
+{
+  imports = [ ./desktop.nix ];
+}

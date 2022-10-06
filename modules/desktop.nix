@@ -6,17 +6,15 @@
   environment = {
     defaultPackages = with pkgs; [
       # emacs
+      libsForQt5.breeze-qt5
       ungoogled-chromium
       wezterm
       xorg.xhost
       xorg.xmodmap
       pavucontrol
-      tdesktop
-      discord-canary
       mpv
-      ffmpeg_5
-
-      spotify-adblock
+      pandoc
+      imagemagick
     ];
 
     variables = {
@@ -52,7 +50,8 @@
     overlays = [
       (import ../packages)
       (import (builtins.fetchTarball {
-        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";    
+        url = "https://github.com/nix-community/emacs-overlay/archive/f0fff2e0952e97a9ad733ef96e6fa7d4f3b9fafe.tar.gz";
+        sha256 = "1gvrvxrl1z13rkaxvxlbqd3y3cqqs8h86r68gm52z2hzwz8vqrzv";
       }))
     ];
   };
@@ -60,6 +59,7 @@
   programs = {
     adb.enable  = true;
     java.enable = true;
+    dconf.enable = true;
     xwayland.enable = true;
     kdeconnect.enable = true;
   };
@@ -68,6 +68,9 @@
   hardware.bluetooth.enable = true;
   services = {
     blueman.enable = true;
+    deluge.enable  = true;
+    flatpak.enable = true;
+    
     xserver = {
       enable       = true;
       layout       = "us";
@@ -76,7 +79,7 @@
     
     printing = {
       enable  = true;
-      drivers = [ pkgs.cnijfilter2 ];
+      # drivers = [ pkgs.cnijfilter2 ];
     };
 
     pipewire = {
@@ -86,15 +89,17 @@
     };
 
     theming = {
-      enable        = true;
+      enable = true;
       theme = {
-        defaultTheme = "dracula";
+        defaultTheme = "catppuccin";
         installAll = true;
       };
       icons = {
-        defaultTheme = "tela";
+        defaultTheme = "papirus";
         installAll = true;
       };
     };
   };
+
+  users.users.noaccos.extraGroups = [ "adbusers" "audio" "video" ];
 }

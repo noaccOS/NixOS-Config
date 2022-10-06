@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 
-let modules = [ "desktop" "gaming" "gnome" "xmonad" "development" "nvidia" "sway" "virtualization" "tmp" ];
+let modules = [ "personal" "gaming" "gnome" "xmonad" "development" "nvidia" "virtualization" "logitech" "tmp" ];
 in
 {
   imports =
@@ -15,21 +15,8 @@ in
 
   networking = {
     hostName = "mayoi";
-    useDHCP  = false;
-    useNetworkd = true;
-    interfaces.enp39s0.ipv4.addresses = [{
-      address = "192.168.1.10";
-      prefixLength = 24;
-    }];
     defaultGateway = "192.168.1.1";
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ];
-  };
-
-  swapDevices = [ { device = "/var/swap"; size = 8192; } ];
-
-  services.openssh = {
-    enable = true;
-    ports = [ 26554 ];
   };
 
   services.xserver = {
@@ -55,22 +42,4 @@ screenSection = ''
     podman.enable = true;
     podman.enableNvidia = true;
   };
-  services.flatpak.enable = true;
-
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_14;
-    enableTCPIP = true;
-    authentication = pkgs.lib.mkOverride 10 ''
-      local all all trust
-      host all all 127.0.0.1/32 trust
-      host all all ::1/128 trust
-    '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
-      CREATE DATABASE nixcloud;
-      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
-    '';
-  };
 }
-

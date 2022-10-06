@@ -14,18 +14,24 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/83f05a44-9780-4a86-80ae-cdce25338773";
+    { device = "/dev/disk/by-uuid/95a1ff68-cdcb-4ebf-9c1a-19b62f54dbf4";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F46D-E101";
+    { device = "/dev/disk/by-uuid/29C3-C347";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/9c50037a-c4d0-4c5e-9c8d-90f5d5ee7ec8";
       fsType = "ext4";
+    };
+
+  fileSystems."/home/noaccos/Games/Genshin Impact" =
+    { device = "/dev/disk/by-uuid/849be182-2083-4002-9a55-38e3546a4ca4";
+      fsType = "btrfs";
+      depends = [ "/home" ];
     };
 
   swapDevices = [ ];

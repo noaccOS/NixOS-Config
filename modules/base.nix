@@ -17,18 +17,21 @@
     wget
     neofetch
     htop
-    fd       #find
-    ripgrep  #rg (grep)
-    exa      #ls
-    bat      #cat
-    tealdeer #tldr
+    fd       # find
+    ripgrep  # rg (grep)
+    exa      # ls
+    bat      # cat
+    tealdeer # tldr
+    unzip
     git
+    ffmpeg_5
   ];
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
       enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ mozc uniemoji ];
     };
   };
 
@@ -67,7 +70,7 @@
 
     users.noaccos = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "audio" "video" "adbusers" "libvirtd" "plugdev" ];
+      extraGroups = [ "wheel" "plugdev" ];
     };
   };
 
@@ -75,5 +78,5 @@
     GTK_IM_MODULE = "ibus";
     QT_IM_MODULE  = "ibus";
   };
-  system.stateVersion = "21.05";
+  system.stateVersion = "22.05";
 }
