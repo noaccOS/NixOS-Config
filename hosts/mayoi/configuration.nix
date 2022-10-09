@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 
-let modules = [ "personal" "gaming" "gnome" "xmonad" "development" "nvidia" "virtualization" "logitech" "tmp" ];
+let modules = [ "personal" "gaming" "gnome" "xmonad" "development" "nvidia" "virtualization" "logitech" "canon" "tmp" ];
 in
 {
   imports =
