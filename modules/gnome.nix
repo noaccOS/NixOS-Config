@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   environment.systemPackages = [
     pkgs.gnome.gnome-tweaks
@@ -13,10 +13,7 @@
 
     desktopManager.gnome = {
       enable = true;
-      extraGSettingsOverrides = ''
-        [org.gnome.desktop.wm.preferences]
-        resize-with-right-button=true
-      '';
+      extraGSettingsOverrides = builtins.readFile ./gnome/gsettings;
     };
   };
 }
