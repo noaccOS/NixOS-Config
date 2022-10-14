@@ -5,22 +5,13 @@ with lib;
 
 let
   cfg = config.services.theming;
-  tela-circle = pkgs.tela-icon-theme.overrideAttrs(old: {
-    pname = "tela-circle";
-    version = "git";
-    src = pkgs.fetchFromGitHub {
-      owner = "vinceliuice";
-      repo  = "Tela-circle-icon-theme";
-      rev   = "53dcdf047849309d4811994bbe5474a494c67b54";
-      sha256 = "0l60k79gjgl8q7j670ky84zwf26q2vc33wbzzw0g0k77sgz330zg";
-    };
-  });
+  usegradience = cfg.theme.useGradience;
   
   themingPackages = with pkgs; {
-      all        = [ dracula-theme nordic ];
+      all        = [ dracula-theme nordic catppuccin-gtk ];
       dracula    = [ dracula-theme ];
       nord       = [ nordic ];
-      catppuccin = [ ];
+      catppuccin = [ catppuccin-gtk ];
   };
 
   overlays = [
@@ -42,13 +33,13 @@ let
       papirus-icon-theme
       numix-icon-theme
       zafiro-icons
-      tela-circle
+      tela-circle-icon-theme
     ];
     
     papirus = [ papirus-icon-theme ];
     numix   = [ numix-icon-theme ];
     zafiro  = [ zafiro-icons ];
-    tela    = [ tela-circle ];
+    tela    = [ tela-circle-icon-theme ];
   };
 in
 {
@@ -57,7 +48,7 @@ in
       type = types.bool;
       default = false;
       description = ''
-        Wether to enable noaccOS' theming engine for nixos
+        Whether to enable noaccOS' theming engine for NixOS
       '';
     };
 
@@ -76,6 +67,12 @@ in
         description = ''
           Install all themes, not just the default one
         '';
+      };
+
+      useGradience = mkOption {
+        type = types.bool;
+        default = config.services.xserver.desktopManager.gnome.enable;
+        description = "Use adw3-gtk with gradience instead";
       };
     };
 
@@ -107,7 +104,12 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages =
-      themingPackages.${cfg.theme.defaultTheme}
+      if cfg.theme.useGradience then
+        [ # pkgs.gradience ## wait for https://github.com/NixOS/nixpkgs/pull/189542
+          pkgs.adw-gtk3
+        ]
+      else
+        themingPackages.${cfg.theme.defaultTheme}
       ++ iconPackages.${cfg.icons.defaultTheme}
 
       ++ optionals cfg.theme.installAll themingPackages.all
@@ -138,7 +140,7 @@ in
           };
           nord = fetchurl {
             url = "https://raw.githubusercontent.com/EliverLara/Nordic/1ec58be81b2e472abaf1894753439af6884e48b4/gtk-4.0/gtk-dark.css";
-            sha256 = "https://raw.githubusercontent.com/EliverLara/Nordic/1ec58be81b2e472abaf1894753439af6884e48b4/gtk-4.0/gtk-dark.css";
+            sha256 = "1irsx0y55gvlk8hdqc5v35czg6hq2v8mcck00fpkzpgr3ccpf40x";
           };
           catppuccin = fetchurl {
             url = "https://raw.githubusercontent.com/catppuccin/gtk/7bfea1f0d569010998302c8242bb857ed8a83058/src/main/gtk-4.0/gtk-dark.css";
@@ -146,7 +148,9 @@ in
           };
         };
 
-        defGtk = gtk-themes.${cfg.theme.defaultTheme};
+        defGtk = if cfg.theme.useGradience
+                 then "adw-gtk3-dark"
+                 else gtk-themes.${cfg.theme.defaultTheme};
         defIcn = icon-themes.${cfg.icons.defaultTheme};
         defCss = gtk4css.${cfg.theme.defaultTheme};
       in
