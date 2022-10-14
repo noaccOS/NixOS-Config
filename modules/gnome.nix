@@ -4,7 +4,7 @@
     pkgs.gnome.gnome-tweaks
     pkgs.celluloid
     pkgs.gnome.nautilus-python
-    pkgs.gnomeExtensions.dash-to-dock-for-cosmic
+    pkgs.gnomeExtensions.dash-to-dock
   ];
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
   services.gvfs.enable = true;  
