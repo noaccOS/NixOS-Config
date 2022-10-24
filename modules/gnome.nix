@@ -1,9 +1,12 @@
 { pkgs, ... }:
 {
   environment.systemPackages = [
-    pkgs.gnome.gnome-tweaks
+    pkgs.blackbox-terminal
     pkgs.celluloid
+
+    pkgs.gnome.gnome-tweaks
     pkgs.gnome.nautilus-python
+    
     pkgs.gnomeExtensions.dash-to-dock
   ];
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;

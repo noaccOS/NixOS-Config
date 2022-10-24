@@ -11,7 +11,8 @@ in
     gamemode
     mangohud
     
-    polymc
+    # polymc
+    # prismlauncher
     lutris
     heroic
     yuzu-mainline
