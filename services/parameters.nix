@@ -15,4 +15,5 @@ in
         Default user account for installation
       '';
     };
+  };
 }
