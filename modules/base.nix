@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let defaultUser = config.services.parameters.defaultUser;
+in
 {
-  imports = [ ./cachix.nix ];
+  imports = [ ./cachix.nix ../services/parameters.nix ];
   
   boot.loader = {
     systemd-boot.enable = true;
@@ -54,7 +56,7 @@
       options = "--delete-older-than 7d";
     };
     
-    settings.trusted-users = [ "root" "noaccos" ];
+    settings.trusted-users = [ "root" defaultUser ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -71,7 +73,7 @@
       enable  = true;
       extraRules = [
         { groups = [ "wheel" ];          keepEnv = true; }
-        { users  = [ "noaccos" "root" ]; keepEnv = true; noPass = true; }
+        { users  = [ defaultUser "root" ]; keepEnv = true; noPass = true; }
       ];
     };
   };
@@ -81,7 +83,7 @@
   users = {
     defaultUserShell = pkgs.fish;
 
-    users.noaccos = {
+    users.${defaultUser} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "plugdev" ];
     };

@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 {
   imports = [ ./base.nix ../services/theming.nix ];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -101,5 +101,5 @@
     };
   };
 
-  users.users.noaccos.extraGroups = [ "adbusers" "audio" "video" ];
+  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "adbusers" "audio" "video" ];
 }

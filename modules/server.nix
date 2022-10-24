@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services = {
     openssh = {
@@ -9,5 +9,5 @@
     jellyfin.enable = true;
   };
   
-  users.users.noaccos.extraGroups = [ "jellyfin" ];
+  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "jellyfin" ];
 }

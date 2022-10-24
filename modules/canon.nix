@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   hardware.sane.enable = true;
   hardware.sane.netConf = "192.168.1.2";
-  users.users.noaccos.extraGroups = [ "scanner" "lp" "avahi" ];
+  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "scanner" "lp" "avahi" ];
   services.avahi = {
     enable = true;
     nssmdns = true;
