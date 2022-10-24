@@ -9,7 +9,7 @@ in
 {
   options.services.parameters = {
       defaultUser = mkOption {
-      type = types.string;
+      type = types.str;
       default = "noaccos";
       description = ''
         Default user account for installation
