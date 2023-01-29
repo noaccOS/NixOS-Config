@@ -1,7 +1,10 @@
 { pkgs, config, ... }:
 {
-  hardware.sane.enable = true;
-  hardware.sane.netConf = "192.168.1.2";
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.sane-airscan ];
+    openFirewall = true;
+  };
   users.users.${config.services.parameters.defaultUser}.extraGroups = [ "scanner" "lp" "avahi" ];
   services.avahi = {
     enable = true;
