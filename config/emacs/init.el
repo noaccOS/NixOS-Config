@@ -30,6 +30,11 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
+(use-package org
+  :mode (("\\.org$" . org-mode))
+  :bind
+    ("C-c l" . org-store-link)
+    ("C-c a" . org-agenda))
 
 (when (file-readable-p "~/.emacs.d/README.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/README.org")))
