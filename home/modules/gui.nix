@@ -8,8 +8,7 @@ let
   #   sha256 = "18hwhs3f2yccymq6h2y2f5amizkfcvy3jzgn3xnfzq09z9adahs0";
   # };
   emacsOverlay = builtins.fetchTarball {
-    url = "https://github.com/nix-community/emacs-overlay/archive/f0fff2e0952e97a9ad733ef96e6fa7d4f3b9fafe.tar.gz";
-    sha256 = "1gvrvxrl1z13rkaxvxlbqd3y3cqqs8h86r68gm52z2hzwz8vqrzv";
+    url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
   };
 in
 {
@@ -109,7 +108,7 @@ in
 
     emacs = {
       enable = true;
-      package = pkgs.emacsPgtkNativeComp;
+      package = pkgs.emacsPgtk;
       extraPackages = epkgs: with epkgs; [
         doom-themes
         doom-modeline
@@ -149,6 +148,7 @@ in
         nix-mode
         nixos-options
         company-nixos-options
+        rustic
 
         tree-sitter
         tree-sitter-langs

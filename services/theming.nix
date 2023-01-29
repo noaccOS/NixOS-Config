@@ -122,7 +122,7 @@ in
 
     environment.variables.QT_STYLE_OVERRIDE = "kvantum";
     
-    qt5.enable = false;
+    qt.enable = false;
     
     environment.etc =
       let

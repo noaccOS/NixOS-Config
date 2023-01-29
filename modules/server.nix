@@ -8,6 +8,9 @@
   
     jellyfin.enable = true;
   };
-  
-  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "jellyfin" ];
+
+  virtualisation = {
+    podman.enable = true;
+  };
+  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "jellyfin" "podman" ];
 }

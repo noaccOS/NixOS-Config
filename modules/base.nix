@@ -60,6 +60,7 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
+  networking.resolvconf.enable = false;
   
   programs.fish = {
     enable = true;
@@ -76,6 +77,11 @@ in
         { users  = [ defaultUser "root" ]; keepEnv = true; noPass = true; }
       ];
     };
+  };
+  
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
   };
 
   time.timeZone = "Europe/Rome";

@@ -38,8 +38,4 @@ screenSection = ''
     Option         "BaseMosaic" "off"
   '';
   };
-  virtualisation = {
-    podman.enable = true;
-    podman.enableNvidia = true;
-  };
 }

@@ -62,10 +62,19 @@
     dconf.enable = true;
     xwayland.enable = true;
     kdeconnect.enable = true;
+    ssh.startAgent = false;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
-  
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
+
+  hardware = {
+    bluetooth.enable  = true;
+    nitrokey.enable   = true;
+    pulseaudio.enable = false;
+  };
+
   services = {
     blueman.enable = true;
     deluge.enable  = true;
@@ -99,6 +108,8 @@
         installAll = true;
       };
     };
+
+    udev.packages = [ pkgs.nitrokey-udev-rules ];
   };
 
   users.users.${config.services.parameters.defaultUser}.extraGroups = [ "adbusers" "audio" "video" ];

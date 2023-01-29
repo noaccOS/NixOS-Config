@@ -42,6 +42,7 @@ in
     # Rust
     rustc
     cargo
+    rust-analyzer             # LSP
 
     # Racket
     racket                    # Compiler
