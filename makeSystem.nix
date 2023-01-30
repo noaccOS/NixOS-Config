@@ -1,6 +1,11 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-name: { nixpkgs, home-manager, system, user, overlays, localModules }:
+name: { nixpkgs
+      , system
+      , user ? "noaccos"
+      , overlays ? []
+      , localModules ? []
+      }:
 
 nixpkgs.lib.nixosSystem rec {
   inherit system;
@@ -10,9 +15,7 @@ nixpkgs.lib.nixosSystem rec {
 
     ./hosts/${name}.nix
 
-    {
-      networking.hostName = name;
-    }
+    { networking.hostName = name; }
 
     {
       config._module.args = {

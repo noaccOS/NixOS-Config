@@ -3,25 +3,26 @@
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
   outputs =
+    { self, nixpkgs }:
     let
       makeSystem = import ./makeSystem.nix;
-    in
-    { self, nixpkgs }: {
-    nixosConfigurations = {
-      mayoi = makeSystem "mayoi" {
-        system = "x86_64-linux";
-        localModules = [
-          "personal"
-          "gaming"
-          "gnome"
-          "xmonad"
-          "development"
-          "nvidia"
-          "virtualization"
-          "logitech"
-          "canon"
-        ];
+    in {
+      nixosConfigurations = {
+        mayoi = makeSystem "mayoi" {
+          inherit nixpkgs;
+          system = "x86_64-linux";
+          localModules = [
+            "personal"
+            "gaming"
+            "gnome"
+            "xmonad"
+            "development"
+            "nvidia"
+            "virtualization"
+            "logitech"
+            "canon"
+          ];
+        };
       };
     };
-  };
 }
