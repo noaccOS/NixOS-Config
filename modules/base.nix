@@ -1,6 +1,4 @@
-{ pkgs, config, ... }:
-let defaultUser = config.services.parameters.defaultUser;
-in
+{ pkgs, user, ... }:
 {
   imports = [ ./cachix.nix ../services/parameters.nix ];
   
@@ -56,7 +54,7 @@ in
       options = "--delete-older-than 7d";
     };
     
-    settings.trusted-users = [ "root" defaultUser ];
+    settings.trusted-users = [ "root" user ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -73,15 +71,25 @@ in
     doas = {
       enable  = true;
       extraRules = [
-        { groups = [ "wheel" ];          keepEnv = true; }
-        { users  = [ defaultUser "root" ]; keepEnv = true; noPass = true; }
+        { groups = [ "wheel" ];     keepEnv = true;                }
+        { users  = [ user "root" ]; keepEnv = true; noPass = true; }
       ];
     };
   };
   
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
+  services = {
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
+    openssh = {
+      enable = true;
+      knownHosts = {
+        mayoi.publicKeyFile   = ../config/ssh-keys/mayoi.pub;
+        shinobu.publicKeyFile = ../config/ssh-keys/shinobu.pub;
+        yotsugi.publicKeyFile = ../config/ssh-keys/yotsugi.pub;
+      };
+    };
   };
 
   time.timeZone = "Europe/Rome";
@@ -89,7 +97,7 @@ in
   users = {
     defaultUserShell = pkgs.fish;
 
-    users.${defaultUser} = {
+    users.${user} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "plugdev" ];
     };

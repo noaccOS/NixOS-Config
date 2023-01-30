@@ -49,8 +49,7 @@ in
       
     # Java
     jdk                       # Compiler
-    # Not yet in the repos
-    # jdtls                     # LSP
+    jdt-language-server       # LSP
 
     (aspellWithDicts (ps: with ps; [ en it ]))
   ];

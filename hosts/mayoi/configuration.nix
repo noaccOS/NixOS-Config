@@ -18,24 +18,4 @@ in
     defaultGateway = "192.168.1.1";
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ];
   };
-
-  services.xserver = {
-    exportConfiguration = true;
-    monitorSection = ''
-    VendorName     "Unknown"
-    ModelName      "HPN OMEN by HP 35"
-    HorizSync       73.0 - 151.0
-    VertRefresh     30.0 - 100.0
-    Option         "DPMS"
-'';
-screenSection = ''
-    DefaultDepth    24
-    Option         "Stereo" "0"
-    Option         "nvidiaXineramaInfoOrder" "DFP-6"
-    Option         "metamodes" "DP-4: 3440x1440_100 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, HDMI-0: 1920x1080_60 +0+360 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-    Option         "SLI" "Off"
-    Option         "MultiGPU" "Off"
-    Option         "BaseMosaic" "off"
-  '';
-  };
 }

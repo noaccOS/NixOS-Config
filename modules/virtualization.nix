@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, user, ... }:
 {
   environment.systemPackages = [ pkgs.virt-manager ];
   
@@ -6,7 +6,7 @@
   
   services.udev.packages = [ pkgs.qmk-udev-rules ];
 
-  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "libvirtd" ];
+  users.users.${user}.extraGroups = [ "libvirtd" ];
   
   virtualisation = {
     libvirtd.enable = true;

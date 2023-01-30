@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{pkgs, user, ...}:
 {
   imports = [ ./base.nix ../services/theming.nix ];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -29,7 +29,6 @@
       noto-fonts-cjk # Chinese, Japanese, Korean
       roboto
       joypixels
-      jetbrains-mono
       symbola
       emacs-all-the-icons-fonts
 
@@ -40,7 +39,7 @@
       defaultFonts = {
         serif     = [ "Noto Sans" ];
 	      sansSerif = [ "Noto Sans" ];
-	      monospace = [ "JetBrains Mono" ];
+	      monospace = [ "JetBrainsMono Nerd Font" ];
       };
     };
   };
@@ -112,5 +111,5 @@
     udev.packages = [ pkgs.nitrokey-udev-rules ];
   };
 
-  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "adbusers" "audio" "video" ];
+  users.users.${user}.extraGroups = [ "adbusers" "audio" "video" ];
 }

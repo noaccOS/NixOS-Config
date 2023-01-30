@@ -1,15 +1,11 @@
-{ pkgs, config, ... }:
+{ pkgs, user, ... }:
 {
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
     openFirewall = true;
   };
-  users.users.${config.services.parameters.defaultUser}.extraGroups = [ "scanner" "lp" "avahi" ];
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
+  users.users.${user}.extraGroups = [ "scanner" "lp" "avahi" ];
   services.printing = {
     enable = true;
     drivers = [ pkgs.cnijfilter2 ];
