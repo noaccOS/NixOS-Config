@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, currentUser, ... }:
 {
   imports = [ ./cachix.nix ../services/parameters.nix ];
   
@@ -54,7 +54,7 @@
       options = "--delete-older-than 7d";
     };
     
-    settings.trusted-users = [ "root" user ];
+    settings.trusted-users = [ "root" currentUser ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -71,8 +71,8 @@
     doas = {
       enable  = true;
       extraRules = [
-        { groups = [ "wheel" ];     keepEnv = true;                }
-        { users  = [ user "root" ]; keepEnv = true; noPass = true; }
+        { groups = [ "wheel" ];            keepEnv = true;                }
+        { users  = [ currentUser "root" ]; keepEnv = true; noPass = true; }
       ];
     };
   };
@@ -97,7 +97,7 @@
   users = {
     defaultUserShell = pkgs.fish;
 
-    users.${user} = {
+    users.${currentUser} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "plugdev" ];
     };

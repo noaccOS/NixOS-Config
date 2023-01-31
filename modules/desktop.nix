@@ -1,4 +1,4 @@
-{pkgs, user, ...}:
+{pkgs, currentUser, ...}:
 {
   imports = [ ./base.nix ../services/theming.nix ];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -111,5 +111,5 @@
     udev.packages = [ pkgs.nitrokey-udev-rules ];
   };
 
-  users.users.${user}.extraGroups = [ "adbusers" "audio" "video" ];
+  users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
 }

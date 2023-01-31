@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, currentUser, ... }:
 {
   services = {
     jellyfin.enable = true;
@@ -7,5 +7,5 @@
   virtualisation = {
     podman.enable = true;
   };
-  users.users.${user}.extraGroups = [ "jellyfin" "podman" ];
+  users.users.${currentUser}.extraGroups = [ "jellyfin" "podman" ];
 }
