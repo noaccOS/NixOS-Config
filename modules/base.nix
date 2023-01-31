@@ -94,12 +94,22 @@
 
   time.timeZone = "Europe/Rome";
 
-  users = {
+  users =
+    let
+      allowedKeys = [
+        ../config/ssh-keys/mayoi.pub
+        ../config/ssh-keys/shinobu.pub
+        ../config/ssh-keys/yotsugi.pub
+      ];
+    in
+    {
     defaultUserShell = pkgs.fish;
 
+    users.root.openssh.authorizedKeys.keyFiles = allowedKeys;
     users.${currentUser} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "plugdev" ];
+      openssh.authorizedKeys.keyFiles = allowedKeys;
     };
   };
 
