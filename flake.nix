@@ -32,18 +32,18 @@
             "canon"
           ];
         };
-      };
 
-      hitagi = makeSystem "hitagi" {
-        inherit nixpkgs;
-        system = "aarch64-linux";
-        extraModules = [
-          rock5.nixosModules.kernel
-          rock5.nixosModules.fan-control
-        ];
-        localModules = [
-          "server"
-        ];
+        hitagi = makeSystem "hitagi" {
+          inherit nixpkgs;
+          system = "aarch64-linux";
+          extraModules = [
+            rock5.nixosModules.kernel
+            rock5.nixosModules.fan-control
+          ];
+          localModules = [
+            "server"
+          ];
+        };
       };
     };
 }
