@@ -86,7 +86,11 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "rock5": "rock5"
+        "rock5": "rock5",
+        "rock5nixpkgs": [
+          "rock5",
+          "nixpkgs"
+        ]
       }
     }
   },

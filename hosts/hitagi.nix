@@ -10,8 +10,6 @@
   boot.kernelModules = [];
   boot.extraModulePackages = [];
 
-  system.stateVersion = lib.traceSeq config.boot.initrd.availableKernelModules "23.05";
-  
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXOS_ROOTFS";
     fsType = "ext4";
