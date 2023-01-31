@@ -1,17 +1,12 @@
 { pkgs, currentUser, ... }:
 {
   imports = [ ./cachix.nix ../services/parameters.nix ];
-  
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-  
+
   console  = {
     font   = "Lat2-Terminus16";
     keyMap = "us";
   };
-  
+
   environment.systemPackages = with pkgs; [
     neovim
     wget

@@ -1,7 +1,12 @@
-{pkgs, currentUser, ...}:
+{ pkgs, lib, currentUser, currentSystem, ... }:
 {
   imports = [ ./base.nix ../services/theming.nix ];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+  boot.loader = lib.mkIf (currentSystem == "x86_64-linux") {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   environment = {
     defaultPackages = with pkgs; [
