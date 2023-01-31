@@ -34,7 +34,7 @@
         };
       };
 
-      shinobu = makeSystem "shinobu" {
+      hitagi = makeSystem "hitagi" {
         inherit nixpkgs;
         system = "aarch64-linux";
         extraModules = [
