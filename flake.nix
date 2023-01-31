@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     rock5.url = "github:aciceri/rock5b-nixos";
+    rock5nixpkgs = "rock5/nixpkgs";
   };
 
   # rock5 cachix
@@ -12,7 +13,7 @@
   };
 
   outputs =
-    { self, nixpkgs, rock5 }:
+    { self, nixpkgs, rock5, rock5nixpkgs }:
     let
       makeSystem = import ./lib/makeSystem.nix;
     in {
@@ -34,7 +35,7 @@
         };
 
         hitagi = makeSystem "hitagi" {
-          inherit nixpkgs;
+          nixpkgs = rock5nixpkgs;
           system = "aarch64-linux";
           extraModules = [
             rock5.nixosModules.kernel
