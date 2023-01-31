@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     rock5.url = "github:aciceri/rock5b-nixos";
-    rock5nixpkgs.url = "rock5/nixpkgs";
+    rock5nixpkgs.follows = "rock5/nixpkgs";
   };
 
   # rock5 cachix
