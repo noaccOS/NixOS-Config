@@ -117,5 +117,5 @@
     GTK_IM_MODULE = "ibus";
     QT_IM_MODULE  = "ibus";
   };
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 }
