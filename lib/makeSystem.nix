@@ -5,15 +5,16 @@ name: { nixpkgs
       , user ? "noaccos"
       , overlays ? []
       , localModules ? []
+      , extraModules ? []
       }:
 
 nixpkgs.lib.nixosSystem rec {
   inherit system;
 
-  modules = (map (m: ./modules + "/${m}.nix") localModules) ++ [
+  modules = (map (m: ../modules + "/${m}.nix") localModules) ++ extraModules ++ [
     { nixpkgs.overlays = overlays; }
 
-    ./hosts/${name}.nix
+    ../hosts/${name}.nix
 
     { networking.hostName = name; }
 
