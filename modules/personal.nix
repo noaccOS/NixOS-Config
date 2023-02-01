@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, currentUser, ... }:
 {
   imports = [ ./desktop.nix ];
 
@@ -7,5 +7,9 @@
   environment.defaultPackages = with pkgs; [
     tdesktop
     discord-canary
+  ];
+
+  security.doas.extraRules = [
+        { users  = [ currentUser ];  keepEnv = true; noPass = true; }
   ];
 }
