@@ -12,7 +12,7 @@
   };
 
   outputs =
-    { self, nixpkgs, rock5, rock5nixpkgs }:
+    { self, nixpkgs, rock5 }:
     let
       makeSystem = import ./lib/makeSystem.nix;
     in {
