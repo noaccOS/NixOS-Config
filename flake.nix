@@ -3,7 +3,6 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     rock5.url = "github:aciceri/rock5b-nixos";
-    rock5nixpkgs.follows = "rock5/nixpkgs";
   };
 
   # rock5 cachix
@@ -35,7 +34,7 @@
         };
 
         hitagi = makeSystem "hitagi" {
-          nixpkgs = rock5nixpkgs;
+          inherit nixpkgs;
           system = "aarch64-linux";
           extraModules = [
             rock5.nixosModules.kernel
