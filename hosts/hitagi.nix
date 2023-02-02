@@ -14,6 +14,10 @@
     device = "/dev/disk/by-label/NIXOS_ROOTFS";
     fsType = "ext4";
   };
+  fileSystems."/data" = {
+    device = "/dev/disk/by-label/DATA";
+    fsType = "ext4";
+  };
   swapDevices = [];
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }
