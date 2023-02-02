@@ -6,6 +6,11 @@
   #   acceptTerms = true;
   #   defaults.email = "francesco.noacco2000@gmail.com";
   # };
+
+  networking.firewall = {
+    allowedTCPPorts = [ 80 443 ];
+    allowedUDPPorts = [ 80 443 ];
+  };
   
   services = {
     jellyfin.enable = true;
