@@ -19,6 +19,7 @@
       enable = true;
       home = "/data";
       hostName = "noaccos.ovh";
+      adminpassFile = "/var/ncAdminPass";
     };
 
     nginx = {
