@@ -29,7 +29,6 @@
     nextcloud = {
       enable = true;
       package = pkgs.nextcloud25;
-      home = "/data";
       hostName = "nextcloud.noaccos.ovh";
       config = {
         adminpassFile = "/var/ncAdminPass";
