@@ -18,6 +18,7 @@
     nextcloud = {
       enable = true;
       home = "/data";
+      hostName = "noaccos.ovh";
     };
 
     nginx = {
