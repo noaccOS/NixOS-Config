@@ -21,6 +21,7 @@
       home = "/data";
       hostName = "nextcloud.noaccos.ovh";
       config.adminpassFile = "/var/ncAdminPass";
+      config.dbType = "pgsql";
     };
 
     nginx = {
