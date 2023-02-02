@@ -29,7 +29,7 @@
     nextcloud = {
       enable = true;
       package = pkgs.nextcloud25;
-      hostName = "nextcloud.noaccos.ovh";
+      hostName = "nextcloud.localhost";
       config = {
         adminpassFile = "/var/ncAdminPass";
         dbtype = "pgsql";
@@ -47,7 +47,7 @@
       recommendedProxySettings = true;
 
       virtualHosts = {
-        "jellyfin.noaccos.ovh" = {
+        "jellyfin.localhost" = {
           # addSSL = true;
           # enableACME = true;
           locations = {
