@@ -15,6 +15,11 @@
   services = {
     jellyfin.enable = true;
 
+    nextcloud = {
+      enable = true;
+      home = "/data";
+    };
+
     nginx = {
       enable = true;
 
