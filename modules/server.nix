@@ -22,6 +22,7 @@
       hostName = "nextcloud.noaccos.ovh";
       config.adminpassFile = "/var/ncAdminPass";
       config.dbtype = "pgsql";
+      config.dbhost = "/run/postgresql";
     };
 
     nginx = {
