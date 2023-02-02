@@ -18,7 +18,7 @@
     nextcloud = {
       enable = true;
       home = "/data";
-      hostName = "noaccos.ovh";
+      hostName = "nextcloud.noaccos.ovh";
       config.adminpassFile = "/var/ncAdminPass";
     };
 
