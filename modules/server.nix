@@ -15,14 +15,28 @@
   services = {
     jellyfin.enable = true;
 
+    postgresql = {
+      enable = true;
+      ensureDatabases = ["nextcloud"];
+      ensureUsers = [
+        {
+          name = "nextcloud";
+          ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
+        }
+      ];
+    };
+
     nextcloud = {
       enable = true;
       package = pkgs.nextcloud25;
       home = "/data";
       hostName = "nextcloud.noaccos.ovh";
-      config.adminpassFile = "/var/ncAdminPass";
-      config.dbtype = "pgsql";
-      config.dbhost = "/run/postgresql";
+      config = {
+        adminpassFile = "/var/ncAdminPass";
+        dbtype = "pgsql";
+        dbhost = "/run/postgresql";
+        adminuser = "root";
+      };
     };
 
     nginx = {
@@ -67,6 +81,12 @@
         };
       };
     };
+  };
+
+  # ensure that postgres is running *before* running the setup
+  systemd.services."nextcloud-setup" = {
+    requires = ["postgresql.service"];
+    after = ["postgresql.service"];
   };
 
   virtualisation = {
