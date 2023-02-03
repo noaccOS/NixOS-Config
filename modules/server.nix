@@ -2,7 +2,7 @@
 {
   imports = [ ./base.nix ];
 
-  secutrity.acme = {
+  security.acme = {
     acceptTerms = true;
     defaults.email = "francesco.noacco2000@gmail.com";
     certs.${currentDomainName} = {
