@@ -1,4 +1,4 @@
-{ pkgs, currentUser, currentDomainName, ... }:
+{ pkgs, config, currentUser, currentDomainName, ... }:
 {
   imports = [ ./base.nix ];
 
