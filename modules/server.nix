@@ -1,11 +1,16 @@
-{ pkgs, currentUser, ... }:
+{ pkgs, currentUser, currentDomainName, ... }:
 {
   imports = [ ./base.nix ];
 
-  # secutrity.acme = {
-  #   acceptTerms = true;
-  #   defaults.email = "francesco.noacco2000@gmail.com";
-  # };
+  secutrity.acme = {
+    acceptTerms = true;
+    defaults.email = "francesco.noacco2000@gmail.com";
+    certs.${currentDomainName} = {
+      webroot = "/var/lib/acme/.challenges";
+      group = "nginx";
+      extraDomainNames = [ "jellyfin.${currentDomainName}" "nextcloud.${currentDomainName}" ];
+    };
+  };
 
   networking.firewall = {
     allowedTCPPorts = [ 80 443 ];
@@ -28,8 +33,9 @@
 
     nextcloud = {
       enable = true;
+      https = true;
       package = pkgs.nextcloud25;
-      hostName = "nextcloud.noaccos.ovh";
+      hostName = "nextcloud.${currentDomainName}";
       config = {
         adminpassFile = "/var/ncAdminPass";
         dbtype = "pgsql";
@@ -47,11 +53,28 @@
       recommendedProxySettings = true;
 
       virtualHosts = {
-        "jellyfin.noaccos.ovh" = {
-          # addSSL = true;
-          # enableACME = true;
+        "acmechallange.${currentDomainName}" = {
+          # Catchall vhost, will redirect users to HTTPS for all vhosts
+          serverAliases = [ "*.${currentDomainName}" ];
+          locations."/.well-known/acme-challenge" = {
+            root = "/var/lib/acme/.challenges";
+          };
+          locations."/" = {
+            return = "301 https://$host$request_uri";
+          };
+        };
+
+        # add SSL to nextcloud's virtualHost
+        ${config.services.nextcloud.hostName} = {
+          forceSSL = true;
+          enableACME = true;
+        };
+
+        "jellyfin.${currentDomainName}" = {
+          forceSSL = true;
+          enableACME = true;
           locations = {
-            "= /".return = "302 http://$host/web/";
+            "= /".return = "302 https://$host/web/";
             "/" = {
               proxyPass = "http://127.0.0.1:8096";
               extraConfig = ''
@@ -92,5 +115,11 @@
     podman.enable = true;
   };
 
-  users.users.${currentUser}.extraGroups = [ "jellyfin" "podman" ];
+  users.users = {
+    nginx.extraGroups     = [ "homeservices" "acme" ];
+    jellyfin.extraGroups  = [ "homeservices" ];
+    nextcloud.extraGroups = [ "homeservices" ];
+  };
+
+  users.users.${currentUser}.extraGroups = [ "homeservices" "jellyfin" "podman" ];
 }

@@ -36,6 +36,7 @@
         hitagi = makeSystem "hitagi" {
           inherit nixpkgs;
           system = "aarch64-linux";
+          wan = "noaccos.ovh";
           extraModules = [
             rock5.nixosModules.kernel
             rock5.nixosModules.fan-control
