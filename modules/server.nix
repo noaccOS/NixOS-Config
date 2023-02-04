@@ -56,6 +56,7 @@
       https = true;
       package = pkgs.nextcloud25;
       hostName = "nextcloud.${currentDomainName}";
+      home = "/data/nextcloud";
       config = {
         adminpassFile = "/var/ncAdminPass";
         dbtype = "pgsql";
