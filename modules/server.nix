@@ -59,6 +59,7 @@
       package = pkgs.nextcloud25;
       hostName = "nextcloud.${currentDomainName}";
       home = "/data/nextcloud";
+      maxUploadSize = "4T";
       config = {
         adminpassFile = "/var/ncAdminPass";
         dbtype = "pgsql";
