@@ -15,10 +15,12 @@
   networking.firewall = {
     allowedTCPPorts = [ 80 443 ]     # NGINX
                       ++ [ 53 4000 ] # Blocky
-                      ++ [ 8096 ];   # Jellyfin
+                      ++ [ 8096 ]    # Jellyfin
+                      ++ [ 5201 ];   # iperf
     allowedUDPPorts = [ 80 443 ]     # NGINX
                       ++ [ 53 4000 ] # Blocky
-                      ++ [ 8096 ];   # Jellyfin
+                      ++ [ 8096 ]    # Jellyfin
+                      ++ [ 5201 ];   # iperf
   };
   
   services = {
