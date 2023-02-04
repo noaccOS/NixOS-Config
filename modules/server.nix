@@ -1,14 +1,21 @@
-{ pkgs, config, currentUser, currentDomainName, ... }:
+{ lib, pkgs, config, currentUser, primaryDomain, extraDomains, ... }:
 {
   imports = [ ./base.nix ];
 
   security.acme = {
     acceptTerms = true;
     defaults.email = "francesco.noacco2000@gmail.com";
-    certs.${currentDomainName} = {
+    certs.${primaryDomain} = {
       webroot = "/var/lib/acme/.challenges";
       group = "nginx";
-      extraDomainNames = [ "jellyfin.${currentDomainName}" "nextcloud.${currentDomainName}" ];
+      extraDomainNames =
+        let
+          subdomains = [ "jellyfin" "nextcloud" ];
+          subdomainsFor = domain: map (sub: "${sub}.${domain}") subdomains;
+        in
+          subdomainsFor primaryDomain
+          ++ builtins.concatLists (map subdomainsFor extraDomains)
+          ++ extraDomains;
     };
   };
 
@@ -22,7 +29,7 @@
 
     postgresql = {
       enable = true;
-      ensureDatabases = ["nextcloud"];
+      ensureDatabases = [ "nextcloud" ];
       ensureUsers = [
         {
           name = "nextcloud";
@@ -35,7 +42,7 @@
       enable = true;
       https = true;
       package = pkgs.nextcloud25;
-      hostName = "nextcloud.${currentDomainName}";
+      hostName = "nextcloud.${primaryDomain}";
       config = {
         adminpassFile = "/var/ncAdminPass";
         dbtype = "pgsql";
@@ -53,9 +60,9 @@
       recommendedProxySettings = true;
 
       virtualHosts = {
-        "acmechallange.${currentDomainName}" = {
+        "acmechallange.${primaryDomain}" = {
           # Catchall vhost, will redirect users to HTTPS for all vhosts
-          serverAliases = [ "*.${currentDomainName}" ];
+          serverAliases = [ "*.${primaryDomain}" ] ++ map (x: "*.${x}") extraDomains;
           locations."/.well-known/acme-challenge" = {
             root = "/var/lib/acme/.challenges";
           };
@@ -68,11 +75,13 @@
         ${config.services.nextcloud.hostName} = {
           forceSSL = true;
           enableACME = true;
+          serverAliases = map (x: "nextcloud.${x}") extraDomains;
         };
 
-        "jellyfin.${currentDomainName}" = {
+        "jellyfin.${primaryDomain}" = {
           forceSSL = true;
           enableACME = true;
+          serverAliases = map (x: "jellyfin.${x}") extraDomains;
           locations = {
             "= /".return = "302 https://$host/web/";
             "/" = {
@@ -121,5 +130,5 @@
     nextcloud.extraGroups = [ "homeservices" ];
   };
 
-  users.users.${currentUser}.extraGroups = [ "homeservices" "jellyfin" "podman" ];
+  users.users.${currentUser}.extraGroups = [ "homeservices" "nextcloud" "jellyfin" "podman" ];
 }

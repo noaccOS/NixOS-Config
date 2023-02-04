@@ -4,6 +4,7 @@ name: { nixpkgs
       , system
       , user ? "noaccos"
       , wan ? "${name}.local"
+      , extraWan ? []
       , overlays ? []
       , localModules ? []
       , extraModules ? []
@@ -22,9 +23,11 @@ nixpkgs.lib.nixosSystem rec {
     {
       config._module.args = {
         currentSystemName = name;
-        currentDomainName = wan;
         currentSystem = system;
         currentUser = user;
+
+        primaryDomain = wan;
+        extraDomains = extraWan;
       };
     }
   ];
