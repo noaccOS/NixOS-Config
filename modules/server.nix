@@ -29,7 +29,7 @@
         upstream.default = [ "1.0.0.1" "1.1.1.1" "1.1.1.2" "1.0.0.2"
                              "8.8.8.8" "8.8.4.4" ];
         customDNS.mapping = {
-            "noaccos.ovh" = "hitagi.local";
+            "noaccos.ovh" = "192.168.1.9";
         };
       };
     };
