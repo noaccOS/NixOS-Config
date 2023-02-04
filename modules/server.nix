@@ -21,7 +21,11 @@
     blocky = {
       enable = true;
       settings = {
+        port = 53;
+        httpPort = 4000;
+
         blocking.blackLists.ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" ];
+        blocking.clientGroupsBlock.default = [ "ads" ];
         upstream.default = [ "1.0.0.1" "1.1.1.1" "1.1.1.2" "1.0.0.2"
                              "8.8.8.8" "8.8.4.4" ];
         customDNS.mapping = {
