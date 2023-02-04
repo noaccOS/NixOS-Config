@@ -13,7 +13,6 @@ JetBrains Mono is my favorite monospaced font. I use the nerd font patched versi
     Support for unicode characters
     #+begin_src elisp
       (use-package unicode-fonts
-        :after (doom-themes doom-modeline)
         :config
         (unicode-fonts-setup))
     #+end_src
