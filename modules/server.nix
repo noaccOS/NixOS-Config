@@ -20,7 +20,7 @@
   services = {
     blocky = {
       enable = true;
-      config = {
+      settings = {
         blocking.blackLists.ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" ];
         upstream.default = [ "1.0.0.1" "1.1.1.1" "1.1.1.2" "1.0.0.2"
                              "8.8.8.8" "8.8.4.4" ];
