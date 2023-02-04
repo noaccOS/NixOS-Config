@@ -136,7 +136,7 @@
     podman.enable = true;
   };
 
-  user.groups.homeservices = {};
+  users.groups.homeservices = {};
   users.users = {
     nginx.extraGroups     = [ "homeservices" "acme" ];
     jellyfin.extraGroups  = [ "homeservices" ];
