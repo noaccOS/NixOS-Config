@@ -37,7 +37,6 @@
           inherit nixpkgs;
           system = "aarch64-linux";
           wan = "noaccos.ovh";
-          extraWan = [ "hitagi.local" ];
           extraModules = [
             rock5.nixosModules.kernel
             rock5.nixosModules.fan-control
