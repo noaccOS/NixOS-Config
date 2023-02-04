@@ -53,6 +53,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  networking.resolvconf.enable = false;
   
   programs.fish = {
     enable = true;
