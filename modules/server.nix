@@ -60,6 +60,9 @@
       hostName = "nextcloud.${currentDomainName}";
       home = "/data/nextcloud";
       maxUploadSize = "0";
+      phpOptions = {
+        memory_limit = "512M";
+      };
       config = {
         adminpassFile = "/var/ncAdminPass";
         dbtype = "pgsql";
