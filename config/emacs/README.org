@@ -871,12 +871,6 @@ I try using ccls because lsp-clangd seems abandonware :(
     (setq rustic-format-on-save t))
 #+end_src
 ** C#
-#+begin_src elisp
-  (use-package csharp-mode
-    :after tree-sitter
-    :config
-    (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
-#+end_src
 ** Java
 *** LSP
 #+begin_src elisp
