@@ -43,6 +43,7 @@ in
     rustc
     cargo
     rust-analyzer             # LSP
+    rustfmt                   # Formatter
 
     # Racket
     racket                    # Compiler
