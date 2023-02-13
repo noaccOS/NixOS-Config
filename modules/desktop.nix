@@ -101,7 +101,7 @@
     };
 
     theming = {
-      enable = true;
+      # enable = true;
       theme = {
         defaultTheme = "catppuccin";
         installAll = true;
