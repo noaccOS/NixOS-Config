@@ -92,7 +92,6 @@
     
     printing = {
       enable  = true;
-      # drivers = [ pkgs.cnijfilter2 ];
     };
 
     pipewire = {
