@@ -32,9 +32,9 @@ in
     omnisharp-roslyn          # LSP
 
     # LaTeX
-    texlab                       # LSP
-    python3Packages.pygments     # Minted support
-    texlive.combined.scheme-full # Compiler and libraries
+    texlab                        # LSP
+    python3Packages.pygments      # Minted support
+    texlive.combined.scheme-small # Compiler and libraries
 
     # Lua
     lua                       # Compiler
