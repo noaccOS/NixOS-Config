@@ -107,11 +107,15 @@
     {
     defaultUserShell = pkgs.fish;
 
-    users.root.openssh.authorizedKeys.keyFiles = allowedKeys;
+    users.root = {
+      openssh.authorizedKeys.keyFiles = allowedKeys;
+      initialPassword = "password";
+    };
     users.${currentUser} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "plugdev" ];
       openssh.authorizedKeys.keyFiles = allowedKeys;
+      initialPassword = "password";
     };
   };
 
