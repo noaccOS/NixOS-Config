@@ -107,6 +107,7 @@
     {
     defaultUserShell = pkgs.fish;
 
+    groups.plugdev = {};
     users.root = {
       openssh.authorizedKeys.keyFiles = allowedKeys;
       initialPassword = "password";
