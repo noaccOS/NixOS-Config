@@ -19,11 +19,11 @@
     "kernel-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1670395302,
-        "narHash": "sha256-IZdeXSvGips2OPTwXljGPTeR2Kpx70NGQGF0Cd9xa+0=",
+        "lastModified": 1676631659,
+        "narHash": "sha256-TjAF7BPSDy5iHSk8byp+vsKop0V+rqrmr+TXLqXLB2M=",
         "owner": "radxa",
         "repo": "kernel",
-        "rev": "ca15bbe36e6c087c96a603db7cc491a01d9a6467",
+        "rev": "a9583fb47e9b96c552f458a376207141602c0025",
         "type": "github"
       },
       "original": {
@@ -34,11 +34,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1676885936,
-        "narHash": "sha256-ZRKb6zBfTvdCOXI7nGC1L9UWSU5ay2ltxg+f5UIzBOU=",
+        "lastModified": 1677407201,
+        "narHash": "sha256-3blwdI9o1BAprkvlByHvtEm5HAIRn/XPjtcfiunpY7s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b69883faca9542d135fa6bab7928ff1b233c167f",
+        "rev": "7f5639fa3b68054ca0b062866dc62b22c3f11505",
         "type": "github"
       },
       "original": {
@@ -67,14 +67,15 @@
       "inputs": {
         "fan-control": "fan-control",
         "kernel-src": "kernel-src",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "tow-boot": "tow-boot"
       },
       "locked": {
-        "lastModified": 1672309501,
-        "narHash": "sha256-M6LqzxQwBP9aMI1hCxfL0OwWinqx3NEXlU/8UlwtxFY=",
+        "lastModified": 1677423160,
+        "narHash": "sha256-b3N9GyWMLWXkBnXLuG0i6y+93KLks0EX7b45blq750s=",
         "owner": "aciceri",
         "repo": "rock5b-nixos",
-        "rev": "50e282f459462711be939175285a0a4c83649ab6",
+        "rev": "b43b1a5cbb88e3ab11758bcd767211eddc0a9e79",
         "type": "github"
       },
       "original": {
@@ -87,6 +88,23 @@
       "inputs": {
         "nixpkgs": "nixpkgs",
         "rock5": "rock5"
+      }
+    },
+    "tow-boot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677346757,
+        "narHash": "sha256-3SKlcZhfUaNz1bd/l/1B3D66NUk3sALVIyP8DHv41SU=",
+        "owner": "aciceri",
+        "repo": "Tow-Boot",
+        "rev": "85d099f3473effdeca409bd165175d64dfb37ecc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aciceri",
+        "ref": "rock5b",
+        "repo": "Tow-Boot",
+        "type": "github"
       }
     }
   },
