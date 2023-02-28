@@ -19,7 +19,7 @@
     tealdeer # tldr
     unzip
     git
-    ffmpeg_5
+    ffmpeg_5-full
   ];
 
   i18n = {
