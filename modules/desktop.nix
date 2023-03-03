@@ -111,8 +111,6 @@
         installAll = true;
       };
     };
-
-    udev.packages = [ pkgs.nitrokey-udev-rules ];
   };
 
   users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
