@@ -10,7 +10,6 @@
 
   environment = {
     defaultPackages = with pkgs; [
-      # emacs
       libsForQt5.breeze-qt5
       ungoogled-chromium
       wezterm
@@ -53,10 +52,6 @@
     config.joypixels.acceptLicense = true;
     overlays = [
       (import ../packages)
-      (import (builtins.fetchTarball {
-        url = "https://github.com/nix-community/emacs-overlay/archive/f0fff2e0952e97a9ad733ef96e6fa7d4f3b9fafe.tar.gz";
-        sha256 = "1gvrvxrl1z13rkaxvxlbqd3y3cqqs8h86r68gm52z2hzwz8vqrzv";
-      }))
     ];
   };
   
