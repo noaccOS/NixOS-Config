@@ -45,6 +45,7 @@
 
     fontconfig = {
       defaultFonts = {
+        emoji     = [ "JoyPixels" ];
         serif     = [ "Noto Sans" ];
 	      sansSerif = [ "Noto Sans" ];
 	      monospace = [ "JetBrainsMono Nerd Font" ];
