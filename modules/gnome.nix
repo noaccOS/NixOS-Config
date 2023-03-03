@@ -20,7 +20,12 @@
       ]
     );
   };
-  programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
+  programs = {
+    kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
+    chromium.extensions = [
+      "gphhapmejobijbbhgpjhcjognlahblep" # GNOME Shell Integration
+    ];
+  };
   services.gvfs.enable = true;  
   services.xserver = {
     displayManager.gdm.enable = true;

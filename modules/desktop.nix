@@ -71,6 +71,31 @@
       enable = true;
       enableSSHSupport = true;
     };
+    chromium = {
+      enable = true;
+      extensions = [
+        # General
+        "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+        "hlepfoohegkhhmjieoechaddaejaokhf" # Refined GitHub
+
+        # Theming
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
+
+        # Privacy
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+        "mdjildafknihdffpkfmmpnpoiajfjnjd" # Consent-O-Matic
+        "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # Privacy Badger
+
+        # Coupons
+        "bmnlcjabgnpnenekpadlanbbkooimhnj" # Honey
+        "jjfblogammkiefalfpafidabbnamoknm" # RetailMeNot
+
+        # YouTube
+        "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
+        "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
+      ];
+    };
   };
 
   hardware = {
