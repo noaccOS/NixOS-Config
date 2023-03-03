@@ -73,28 +73,34 @@
     };
     chromium = {
       enable = true;
-      extensions = [
-        # General
-        "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-        "hlepfoohegkhhmjieoechaddaejaokhf" # Refined GitHub
+      extraOpts = {
+        BrowserSignin = 0;
+        SyncDisabled = true;
+        PasswordManagerEnabled = false;
+      };
+      # extensions = [
+      #   # General
+      #   "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+      #   "hlepfoohegkhhmjieoechaddaejaokhf" # Refined GitHub
+      #   "ocaahdebbfolfmndjeplogmgcagdmblk;https://raw.githubusercontent.com/NeverDecaf/chromium-web-store/master/updates.xml" # Chromium Web Store
 
-        # Theming
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-        "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
+      #   # Theming
+      #   "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+      #   "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
 
-        # Privacy
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-        "mdjildafknihdffpkfmmpnpoiajfjnjd" # Consent-O-Matic
-        "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # Privacy Badger
+      #   # Privacy
+      #   "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+      #   "mdjildafknihdffpkfmmpnpoiajfjnjd" # Consent-O-Matic
+      #   "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # Privacy Badger
 
-        # Coupons
-        "bmnlcjabgnpnenekpadlanbbkooimhnj" # Honey
-        "jjfblogammkiefalfpafidabbnamoknm" # RetailMeNot
+      #   # Coupons
+      #   "bmnlcjabgnpnenekpadlanbbkooimhnj" # Honey
+      #   "jjfblogammkiefalfpafidabbnamoknm" # RetailMeNot
 
-        # YouTube
-        "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
-        "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
-      ];
+      #   # YouTube
+      #   "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
+      #   "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
+      # ];
     };
   };
 
