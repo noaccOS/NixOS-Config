@@ -21,6 +21,10 @@
       imagemagick
     ];
 
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+
     variables = {
       XCURSOR_THEME = "breeze_cursors";
       _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
