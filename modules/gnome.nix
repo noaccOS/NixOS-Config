@@ -1,6 +1,8 @@
 { pkgs, lib, ... }:
 {
   environment.systemPackages = [
+    pkgs.adw-gtk3
+
     pkgs.blackbox-terminal
     pkgs.celluloid
 
