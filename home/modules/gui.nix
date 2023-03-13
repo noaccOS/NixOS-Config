@@ -51,7 +51,7 @@ in
       };
     };
     noaccos-wezterm = {
-      enable = true;
+      # enable = true;
       font = {
         family = [
           "JetBrainsMono Nerd Font"
