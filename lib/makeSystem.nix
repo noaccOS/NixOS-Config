@@ -1,6 +1,7 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
 name: { nixpkgs
+      , home-manager
       , system
       , user ? "noaccos"
       , wan ? "${name}.local"
@@ -25,6 +26,17 @@ nixpkgs.lib.nixosSystem rec {
         currentDomainName = wan;
         currentSystem = system;
         currentUser = user;
+      };
+    }
+
+    home-manager.nixosModules.home-manager {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.${user} = import ../home/home.nix;
+        extraSpecialArgs = {
+          inherit user;
+        };
       };
     }
   ];

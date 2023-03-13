@@ -40,7 +40,7 @@
         };
 
         hitagi = makeSystem "hitagi" {
-          inherit nixpkgs;
+          inherit nixpkgs home-manager;
           system = "aarch64-linux";
           wan = "noaccos.ovh";
           extraModules = [
