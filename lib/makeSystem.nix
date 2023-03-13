@@ -2,6 +2,7 @@
 
 name: { nixpkgs
       , home-manager
+      , emacs-ng
       , system
       , user ? "noaccos"
       , wan ? "${name}.local"
@@ -14,7 +15,7 @@ nixpkgs.lib.nixosSystem rec {
   inherit system;
 
   modules = (map (m: ../modules + "/${m}.nix") localModules) ++ extraModules ++ [
-    { nixpkgs.overlays = overlays; }
+    { nixpkgs.overlays = overlays ++ [ emacs-ng.overlay ]; }
 
     ../hosts/${name}.nix
 

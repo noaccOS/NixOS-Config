@@ -2,6 +2,7 @@
 , system
 , home-manager
 , nixgl
+, emacs-ng
 , user ? "noaccos"
 }:
 let
@@ -13,7 +14,7 @@ in
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs {
     inherit system;
-    overlays = mkLstIfNGL [ nixgl.overlay ];
+    overlays = [ emacs-ng.overlay ] ++ mkLstIfNGL [ nixgl.overlay ];
   };
   modules = [
     ../home/home.nix

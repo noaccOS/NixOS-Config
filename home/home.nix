@@ -33,7 +33,7 @@ in
 
     nixpkgs.config.allowUnfree = true;
 
-    imports = [ ./modules/local-theming.nix ./modules/cli.nix ./modules/wezterm.nix ./modules/gui.nix ];
+    imports = [ ./modules/local-theming.nix ./modules/cli.nix ./modules/wezterm.nix ./modules/gui.nix ./modules/emacs.nix ];
     
     home.packages = with pkgs; [
       libsForQt5.breeze-qt5
