@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.nixgl.nixGLDefault
+    pkgs.nixgl.nixGLIntel
   ];
 }
