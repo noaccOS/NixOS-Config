@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user ? "noaccos", ... }:
 
 let
   myPythonPackages = python-packages: with python-packages; [
@@ -23,15 +23,15 @@ in
   
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
-    home.username = "noaccos";
-    home.homeDirectory = "/home/noaccos";
-    xdg.configHome = "/home/noaccos/.config/";
+    home.username = user;
+    home.homeDirectory = "/home/${user}";
+    xdg.configHome = "/home/${user}/.config/";
   
     nixpkgs.overlays = [
       (import (builtins.fetchTarball {
         url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";    
       }))
-      (import ~/src/nixos-config/packages)
+      (import ../packages)
     ];
 
     nixpkgs.config.allowUnfree = true;
