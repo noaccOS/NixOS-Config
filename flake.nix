@@ -14,21 +14,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-ng = {
-      url = "github:emacs-ng/emacs-ng";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs =
-    { self, nixpkgs, rock5, home-manager, nixgl, emacs-ng }:
+    { self, nixpkgs, rock5, home-manager, nixgl, emacs-overlay }:
     let
       makeSystem = import ./lib/makeSystem.nix;
       makeHome   = import ./lib/makeHome.nix;
     in {
       nixosConfigurations = {
         mayoi = makeSystem "mayoi" {
-          inherit nixpkgs home-manager emacs-ng;
+          inherit nixpkgs home-manager emacs-overlay;
           system = "x86_64-linux";
           localModules = [
             "personal"
@@ -44,7 +44,7 @@
         };
 
         hitagi = makeSystem "hitagi" {
-          inherit nixpkgs home-manager emacs-ng;
+          inherit nixpkgs home-manager emacs-overlay;
           system = "aarch64-linux";
           wan = "noaccos.ovh";
           extraModules = [
@@ -60,11 +60,11 @@
       homeConfigurations =
       {
         x86 = makeHome {
-          inherit nixpkgs home-manager nixgl emacs-ng;
+          inherit nixpkgs home-manager nixgl emacs-overlay;
           system = "x86_64-linux";
         };
         arm = makeHome {
-          inherit nixpkgs home-manager nixgl emacs-ng;
+          inherit nixpkgs home-manager nixgl emacs-overlay;
           system = "aarch64-linux";
         };
       };

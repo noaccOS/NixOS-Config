@@ -2,7 +2,7 @@
 
 name: { nixpkgs
       , home-manager
-      , emacs-ng
+      , emacs-overlay
       , system
       , user ? "noaccos"
       , wan ? "${name}.local"
@@ -10,12 +10,11 @@ name: { nixpkgs
       , localModules ? []
       , extraModules ? []
       }:
-
 nixpkgs.lib.nixosSystem rec {
   inherit system;
 
   modules = (map (m: ../modules + "/${m}.nix") localModules) ++ extraModules ++ [
-    { nixpkgs.overlays = overlays ++ [ emacs-ng.overlay ]; }
+    { nixpkgs.overlays = overlays ++ [ emacs-overlay.overlays.default ]; }
 
     ../hosts/${name}.nix
 
@@ -36,6 +35,7 @@ nixpkgs.lib.nixosSystem rec {
         users.${user} = import ../home/home.nix;
         extraSpecialArgs = {
           inherit user;
+          emacsPkg = emacs-overlay.packages.${system}.emacsPgtk;
         };
       };
     }

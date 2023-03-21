@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, emacsPkg ? pkgs.emacs-gtk, ... }:
 {
   programs.emacs = {
       enable = true;
-      package = pkgs.emacsngWRPgtk;
+      package = emacsPkg;
       extraPackages = epkgs: with epkgs; [
         doom-themes
         doom-modeline
