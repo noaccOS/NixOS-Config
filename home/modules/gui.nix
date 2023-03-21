@@ -1,22 +1,6 @@
 
 { config, pkgs, ... }:
-let
-  # emacsOverlay = pkgs.fetchFromGitHub {
-  #   owner  = "nix-community";
-  #   repo   = "emacs-overlay";
-  #   rev    = "e6787f627285bf1963ad582c7d635c97efea524d";
-  #   sha256 = "18hwhs3f2yccymq6h2y2f5amizkfcvy3jzgn3xnfzq09z9adahs0";
-  # };
-  emacsOverlay = builtins.fetchTarball {
-    url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-  };
-in
-{
-  nixpkgs.overlays = [
-    (import emacsOverlay)
-    (import ../../packages)
-  ];
-  
+{  
   programs = {
     foot = {
       enable = true;
@@ -51,7 +35,7 @@ in
       };
     };
     noaccos-wezterm = {
-      enable = true;
+      # enable = true;
       font = {
         family = [
           "JetBrainsMono Nerd Font"
@@ -105,75 +89,5 @@ in
         "]" = "add speed    1";
       };
     };
-
-    emacs = {
-      enable = true;
-      package = pkgs.emacsPgtk;
-      extraPackages = epkgs: with epkgs; [
-        doom-themes
-        doom-modeline
-
-        rainbow-delimiters
-        multiple-cursors
-        avy
-        undo-tree
-        which-key
-        ace-window
-        wrap-region
-        magit
-        ace-popup-menu
-        diff-hl
-        flycheck
-        vterm
-        org-superstar
-        company
-        elcord
-
-        lsp-mode
-        lsp-ui
-        # company-lsp
-        lsp-treemacs
-        lsp-ivy
-        lsp-origami
-        dap-mode
-
-        lsp-pyright
-        lsp-haskell
-        hindent
-        ccls
-        lsp-java
-        fish-mode
-        lua-mode
-        lsp-latex
-        nix-mode
-        nixos-options
-        company-nixos-options
-        rustic
-
-        tree-sitter
-        tree-sitter-langs
-
-        elfeed
-        elfeed-dashboard
-        
-        treemacs
-        treemacs-icons-dired
-        treemacs-magit
-        
-        counsel
-        ivy-rich
-        all-the-icons-ivy
-        ivy-avy
-
-        dired-rsync
-        diredfl
-        all-the-icons-dired
-      ];
-    };
-  };
-
-  home.file = {
-    ".emacs.d/init.el".source    = ../../config/emacs/init.el;
-    ".emacs.d/README.org".source = ../../config/emacs/README.org;
   };
 }
