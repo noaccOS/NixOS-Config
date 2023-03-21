@@ -52,6 +52,10 @@ in
     jdk                       # Compiler
     jdt-language-server       # LSP
 
+    # Elixir
+    elixir                    # Compiler
+    elixir_ls                 # LSP
+
     (aspellWithDicts (ps: with ps; [ en it ]))
   ];
 }
