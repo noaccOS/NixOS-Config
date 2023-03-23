@@ -2,6 +2,9 @@
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
 
+;; Fix error
+(setq native-comp-deferred-compilation-deny-list nil)
+
 ;; -----
 ;; straight.el bootstrap
 ;; -----
