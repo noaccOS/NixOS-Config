@@ -55,6 +55,17 @@
             "server"
           ];
         };
+
+       kaiki = makeSystem "kaiki" {
+          inherit nixpkgs home-manager emacs-overlay;
+          system = "x86_64-linux";
+          user = "francesco";
+          localModules = [
+            "work"
+            "gnome"
+            "development"
+          ];
+        };
       };
 
       homeConfigurations =
@@ -70,3 +81,4 @@
       };
     };
 }
+ 
