@@ -939,3 +939,7 @@ Make config easier
 #+end_src
    
 
+** Elixir
+#+begin_src elisp
+  (use-package elixir-ts-mode)
+#+end_src
