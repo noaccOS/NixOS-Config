@@ -8,7 +8,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    tree-sitter
+    (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
     
     # Haskell
     ghc                       # Compiler

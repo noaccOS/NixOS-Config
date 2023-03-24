@@ -1,13 +1,5 @@
 { pkgs, emacsPkg ? pkgs.emacs-gtk, ... }:
 {
-  home.packages = with pkgs.tree-sitter-grammars; [
-    tree-sitter-elixir
-    tree-sitter-nix
-    tree-sitter-rust
-    tree-sitter-python
-    tree-sitter-haskell
-    tree-sitter-typescript
-  ];
   programs.emacs = {
       enable = true;
       package = emacsPkg;
