@@ -24,9 +24,9 @@
   };
   programs = {
     kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
-    chromium.extensions = [
-      "gphhapmejobijbbhgpjhcjognlahblep" # GNOME Shell Integration
-    ];
+    # chromium.extensions = [
+    #   "gphhapmejobijbbhgpjhcjognlahblep" # GNOME Shell Integration
+    # ];
   };
   services.gvfs.enable = true;  
   services.xserver = {
