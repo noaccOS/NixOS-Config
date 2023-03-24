@@ -66,8 +66,8 @@
     doas = {
       enable  = true;
       extraRules = [
-        { groups = [ "wheel" ]; keepEnv = true;                }
-        { users  = [ "root"  ]; keepEnv = true; noPass = true; }
+        { groups = [ "wheel" ]; keepEnv = true; persist = true; }
+        { users  = [ "root"  ]; keepEnv = true; noPass = true;  }
       ];
     };
   };
