@@ -679,9 +679,10 @@ Useful snippets
 *** Settings
 Settings for org mode
 #+begin_src elisp
-  (org-indent-mode 1)
+  (setq org-startup-indented t)
+  (setq org-confirm-babel-evaluate nil)
   (setq org-ellipsis             " ⤵"
-	org-M-RET-may-split-line nil)
+    org-M-RET-may-split-line nil)
 #+end_src
 *** Minted
 Export for latex source blocks
