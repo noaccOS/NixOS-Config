@@ -10,6 +10,7 @@
     pkgs.gnome.nautilus-python
     
     pkgs.gnomeExtensions.dash-to-dock
+    pkgs.gnomeExtensions.quick-settings-tweaker
   ];
 
   environment.sessionVariables = {
