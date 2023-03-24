@@ -946,4 +946,13 @@ Language major mode
 *** Org babel
 #+begin_src elisp
   (use-package ob-elixir)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (elixir . t)
+     (python . t)
+     (org . t)
+     (ditaa . t)))
+
+  (add-to-list 'org-src-lang-modes '("elixir" . elixir-ts))
 #+end_src
