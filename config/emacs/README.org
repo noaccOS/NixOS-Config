@@ -938,8 +938,12 @@ Make config easier
   ;;   :config (add-to-list 'company-backends 'company-nixos-options))
 #+end_src
    
-
 ** Elixir
+Language major mode
 #+begin_src elisp
   (use-package elixir-ts-mode)
+#+end_src
+*** Org babel
+#+begin_src elisp
+  (use-package ob-elixir)
 #+end_src
