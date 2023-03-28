@@ -64,6 +64,7 @@
             "work"
             "gnome"
             "development"
+            "virtualization"
           ];
         };
       };
