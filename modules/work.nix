@@ -3,7 +3,7 @@
   imports = [ ./desktop.nix ];
 
   environment.defaultPackages = with pkgs; [
-    mattermost-desktop
+
   ];
 
   users.users.tech = {
@@ -11,4 +11,6 @@
     uid = 1000;
     isNormalUser = true;
   };
+
+  
 }
