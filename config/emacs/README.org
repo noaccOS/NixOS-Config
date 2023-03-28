@@ -948,6 +948,7 @@ Language major mode
   (use-package elixir-ts-mode
     :after elixir-mode
     :commands elixir-ts-mode
+    :hook (elixir-ts-mode . lsp)
     :init
     (defun elixir-format-on-save ()
       (add-hook 'before-save-hook 'elixir-format nil t))
