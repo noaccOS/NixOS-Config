@@ -947,10 +947,14 @@ Language major mode
 
   (use-package elixir-ts-mode
     :after elixir-mode
+    :commands elixir-ts-mode
     :init
-    (defun elixir-format-on-save-hook ()
-       (add-hook 'before-save-hook 'elixir-format nil t))
-    (add-hook 'elixir-ts-mode-hook #'elixir-format-on-save-hook))
+    (defun elixir-format-on-save ()
+      (add-hook 'before-save-hook 'elixir-format nil t))
+    (defun elixir-set-tab-width ()
+      (setq tab-width 2))
+    (add-hook 'elixir-ts-mode-hook #'elixir-format-on-save)
+    (add-hook 'elixir-ts-mode-hook #'elixir-set-tab-width))
 #+end_src
 *** Org babel
 #+begin_src elisp
