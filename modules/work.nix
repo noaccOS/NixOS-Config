@@ -3,7 +3,7 @@
   imports = [ ./desktop.nix ];
 
   environment.defaultPackages = with pkgs; [
-
+    firefox
   ];
 
   users.users.tech = {
