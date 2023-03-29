@@ -63,6 +63,8 @@
         dired-rsync
         diredfl
         all-the-icons-dired
+
+        pdf-tools
       ];
   };
 
