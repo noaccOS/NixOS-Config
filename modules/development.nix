@@ -55,6 +55,7 @@ in
     # Elixir
     elixir                    # Compiler
     elixir_ls                 # LSP
+    erlang                    # Needed for escript
 
     (aspellWithDicts (ps: with ps; [ en it ]))
   ];
