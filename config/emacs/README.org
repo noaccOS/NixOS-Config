@@ -91,9 +91,23 @@ I want the standard behavior of deleting the selection
 ** PDF
 #+begin_src elisp
   (use-package pdf-tools
+    :load-path "site-lisp/pdf-tools/lisp"
+    :magic ("%PDF" . pdf-view-mode)
     :config
+    (require 'pdf-tools)
+    (require 'pdf-view)
+    (require 'pdf-misc)
+    (require 'pdf-occur)
+    (require 'pdf-util)
+    (require 'pdf-annot)
+    (require 'pdf-info)
+    (require 'pdf-isearch)
+    (require 'pdf-history)
+    (require 'pdf-links)
     (setq pdf-view-midnight-invert nil)
-    :hook (pdf-view-mode . pdf-view-midnight-minor-mode))
+    (pdf-tools-install :no-query)
+    :hook (pdf-view-mode . pdf-view-midnight-minor-mode)
+          (pdf-view-mode . pdf-view-fit-page-to-window))
 #+end_src
 ** Keybindings
 I completely changed normal keybindings, it's somewhat similar to cua-mode and it just makes more sense to me
