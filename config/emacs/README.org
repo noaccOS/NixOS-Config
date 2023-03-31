@@ -746,6 +746,7 @@ Snippets for uniud thesis, using ~thud~ package
                      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
   ))
 #+end_src
+
 ** Company
 *** Base package
 #+begin_src elisp
@@ -769,6 +770,19 @@ Cute bullets
           (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
           (setq org-superstar-headline-bullets-list
                 '("\U0001F7C0" "\U0001F7C1" "\U0001F7C2" "\U0001F7C3" "\U0001F7C4" "\U0001F7C5" "\U0001F7C6" "\U0001F7C7" "\U0001F7C8")))
+#+end_src
+** Yasnippet
+#+begin_src elisp
+  (use-package yasnippet
+    :after (company)
+    :config (add-to-list 'company-backends 'company-yasnippet)
+    :hook ((prog-mode . yas-minor-mode)
+       (conf-mode . yas-minor-mode)
+       (text-mode . yas-minor-mode)
+       (snippet-mode . yas-minor-mode)))
+
+  (use-package yasnippet-snippets
+    :after (yasnippet))
 #+end_src
 ** LSP
 Packages
