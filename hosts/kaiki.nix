@@ -29,18 +29,5 @@
   # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  environment.variables = {
-    VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
-  };
-
-  hardware.enableAllFirmware = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    vaapiIntel
-    libvdpau-va-gl
-    intel-media-driver
-  ];
+  hardware.cpu.intel.updateMicrocode = true;
 }

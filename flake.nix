@@ -62,6 +62,7 @@
           user = "francesco";
           localModules = [
             "work"
+            "intel"
             "gnome"
             "development"
             "virtualization"
