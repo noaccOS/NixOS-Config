@@ -8,7 +8,7 @@ let
 in
 {
   options.services.parameters = {
-      defaultUser = mkOption {
+    defaultUser = mkOption {
       type = types.str;
       default = "noaccos";
       description = ''

@@ -28,7 +28,7 @@ in
     font = {
       family = mkOption {
         type = with types; listOf str;
-        default = [];
+        default = [ ];
         example = [ "JetBrains Mono" "JetBrainsMono Nerd Font" ];
         description = "List of fonts with fallback";
       };
@@ -94,50 +94,50 @@ in
     home.packages = [ pkgs.wezterm ];
 
     xdg.configFile."wezterm/wezterm.lua".text = ''
-        local wezterm = require 'wezterm';
-        return {
-          ${optionalString (cfg.theme != null)
-            "color_scheme = '${cfg.theme}',"}
-          ${optionalString (cfg.theme == "Catppuccin") (readFile catppuccinColors)}
-          enable_tab_bar = ${trivial.boolToString cfg.tabBarEnable},
-          window_close_confirmation = '${
-                             if cfg.closePromptEnable
-                             then
-                               "AlwaysPrompt"
-                             else
-                               "NeverPrompt"
-                           }',
-          font = wezterm.font_with_fallback({
-            ${
-              concatMapStrings (x: "'${x}',\n") cfg.font.family
-            }
-          }),
-          enable_wayland = ${trivial.boolToString cfg.waylandEnable},
-          font_size = ${toString cfg.font.size},
-          window_padding = {
-            left = ${toString cfg.padding.left},
-            right = ${toString cfg.padding.right},
-            top = ${toString cfg.padding.top},
-            bottom = ${toString cfg.padding.bottom},
-          },
-          use_ime = false,
-        }
-      '';
+      local wezterm = require 'wezterm';
+      return {
+        ${optionalString (cfg.theme != null)
+          "color_scheme = '${cfg.theme}',"}
+        ${optionalString (cfg.theme == "Catppuccin") (readFile catppuccinColors)}
+        enable_tab_bar = ${trivial.boolToString cfg.tabBarEnable},
+        window_close_confirmation = '${
+                           if cfg.closePromptEnable
+                           then
+                             "AlwaysPrompt"
+                           else
+                             "NeverPrompt"
+                         }',
+        font = wezterm.font_with_fallback({
+          ${
+            concatMapStrings (x: "'${x}',\n") cfg.font.family
+          }
+        }),
+        enable_wayland = ${trivial.boolToString cfg.waylandEnable},
+        font_size = ${toString cfg.font.size},
+        window_padding = {
+          left = ${toString cfg.padding.left},
+          right = ${toString cfg.padding.right},
+          top = ${toString cfg.padding.top},
+          bottom = ${toString cfg.padding.bottom},
+        },
+        use_ime = false,
+      }
+    '';
 
     xdg.configFile."wezterm/colors/TrueDracula.toml".text = ''
-        [colors]
-        foreground = "#f8f8f2"
-        background = "#282a36"
-        cursor_bg = "#bd93f9"
-        cursor_border = "#bd93f9"
-        cursor_fg = "#282a36"
-        selection_bg = "#44475a"
-        selection_fg = "#f8f8f2"
+      [colors]
+      foreground = "#f8f8f2"
+      background = "#282a36"
+      cursor_bg = "#bd93f9"
+      cursor_border = "#bd93f9"
+      cursor_fg = "#282a36"
+      selection_bg = "#44475a"
+      selection_fg = "#f8f8f2"
         
-        ansi = ["#000000","#ff5555","#50fa7b","#f1fa8c","#bd93f9","#ff79c6","#8be9fd","#bbbbbb"]
-        brights = ["#555555","#ff5555","#50fa7b","#f1fa8c","#bd93f9","#ff79c6","#8be9fd","#ffffff"]
-      '';
-    
+      ansi = ["#000000","#ff5555","#50fa7b","#f1fa8c","#bd93f9","#ff79c6","#8be9fd","#bbbbbb"]
+      brights = ["#555555","#ff5555","#50fa7b","#f1fa8c","#bd93f9","#ff79c6","#8be9fd","#ffffff"]
+    '';
+
     xdg.configFile."wezterm/colors/Catppuccin.toml".source = fetchurl {
       url = "https://raw.githubusercontent.com/catppuccin/wezterm/74b23a608d02e6b132d91bb2dcf9cb37de89f466/Catppuccin.toml";
       sha256 = "0ns40b5lnsxks41nlw19y2wawnhraxvfgs88qi6x6l9f63dj2dvx";

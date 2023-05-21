@@ -1,15 +1,22 @@
-{ pkgs, currentUser, ... }:
+{ pkgs, currentUser, lib, config, ... }:
+let
+  cfg = config.noaccOSModules.personal;
+in
 {
-  imports = [ ./desktop.nix ];
+  options.noaccOSModules.personal = {
+    enable = lib.mkEnableOption "Personal computer, with insecure settings and messaging apps";
+  };
 
-  boot.kernelParams = [ "mitigations=off" ];
+  config = lib.mkIf cfg.enable {
+    boot.kernelParams = [ "mitigations=off" ];
 
-  environment.defaultPackages = with pkgs; [
-    tdesktop
-    discord-canary
-  ];
+    environment.defaultPackages = with pkgs; [
+      tdesktop
+      discord-canary
+    ];
 
-  security.doas.extraRules = [
-        { users  = [ currentUser ];  keepEnv = true; noPass = true; }
-  ];
+    security.doas.extraRules = [
+      { users = [ currentUser ]; keepEnv = true; noPass = true; }
+    ];
+  };
 }

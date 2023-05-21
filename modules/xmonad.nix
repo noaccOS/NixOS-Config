@@ -1,25 +1,34 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
+let
+  cfg = config.noaccOSModules.xmonad;
+in
 {
-  environment.systemPackages = with pkgs; [
-    feh
-    rofi
-    taffybar
-    xmobar
-    flameshot
-    blueman
-  ];
-  
-  services = {
-    dbus = {
-      enable = true;
-      packages = [ pkgs.dconf ];
-    };
+  options.noaccOSModules.xmonad = {
+    enable = lib.mkEnableOption "XMonad window manager packages and options";
+  };
 
-    xserver = {
-      enable = true;
-      windowManager.xmonad = {
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      feh
+      rofi
+      taffybar
+      xmobar
+      flameshot
+      blueman
+    ];
+
+    services = {
+      dbus = {
         enable = true;
-        enableContribAndExtras = true;
+        packages = [ pkgs.dconf ];
+      };
+
+      xserver = {
+        enable = true;
+        windowManager.xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
       };
     };
   };

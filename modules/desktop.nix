@@ -1,151 +1,126 @@
-{ pkgs, lib, currentUser, currentSystem, ... }:
+{ pkgs, lib, currentUser, currentSystem, config, ... }:
+let
+  cfg = config.noaccOSModules.desktop;
+in
 {
-  imports = [ ./base.nix ../services/theming.nix ];
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  options.noaccOSModules.desktop = {
+    enable = lib.mkEnableOption "Module for desktop computer utilities";
 
-  boot.loader = lib.mkIf (currentSystem == "x86_64-linux") {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
   };
 
-  environment = {
-    defaultPackages = with pkgs; [
-      libsForQt5.breeze-qt5
-      ungoogled-chromium
-      wezterm
-      xorg.xhost
-      xorg.xmodmap
-      pavucontrol
-      mpv
-      pandoc
-      imagemagick
-    ];
+  config = lib.mkIf cfg.enable {
+    boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
+    boot.loader = lib.mkIf (currentSystem == "x86_64-linux") {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      grub.enable = false;
     };
 
-    variables = {
-      XCURSOR_THEME = "breeze_cursors";
-      _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
-    };
-  };
+    environment = {
+      defaultPackages = with pkgs; [
+        libsForQt5.breeze-qt5
+        ungoogled-chromium
+        wezterm
+        xorg.xhost
+        xorg.xmodmap
+        pavucontrol
+        mpv
+        pandoc
+        imagemagick
+      ];
 
-  fonts = {
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk # Chinese, Japanese, Korean
-      roboto
-      joypixels
-      symbola
-      emacs-all-the-icons-fonts
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+      };
 
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
-
-    fontconfig = {
-      defaultFonts = {
-        emoji     = [ "JoyPixels" ];
-        serif     = [ "Noto Sans" ];
-	      sansSerif = [ "Noto Sans" ];
-	      monospace = [ "JetBrainsMono Nerd Font" ];
+      variables = {
+        XCURSOR_THEME = "breeze_cursors";
+        _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
       };
     };
-  };
 
-  nixpkgs = {
-    config.joypixels.acceptLicense = true;
-    overlays = [
-      (import ../packages)
-    ];
-  };
-  
-  programs = {
-    adb.enable  = true;
-    java.enable = true;
-    dconf.enable = true;
-    xwayland.enable = true;
-    kdeconnect.enable = true;
-    ssh.startAgent = false;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    chromium = {
-      enable = true;
-      extraOpts = {
-        BrowserSignin = 0;
-        SyncDisabled = true;
-        PasswordManagerEnabled = false;
-      };
-      # extensions = [
-      #   # General
-      #   "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-      #   "hlepfoohegkhhmjieoechaddaejaokhf" # Refined GitHub
-      #   "ocaahdebbfolfmndjeplogmgcagdmblk;https://raw.githubusercontent.com/NeverDecaf/chromium-web-store/master/updates.xml" # Chromium Web Store
+    fonts = {
+      fonts = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk # Chinese, Japanese, Korean
+        roboto
+        joypixels
+        symbola
+        emacs-all-the-icons-fonts
 
-      #   # Theming
-      #   "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-      #   "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
+        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      ];
 
-      #   # Privacy
-      #   "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-      #   "mdjildafknihdffpkfmmpnpoiajfjnjd" # Consent-O-Matic
-      #   "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # Privacy Badger
-
-      #   # Coupons
-      #   "bmnlcjabgnpnenekpadlanbbkooimhnj" # Honey
-      #   "jjfblogammkiefalfpafidabbnamoknm" # RetailMeNot
-
-      #   # YouTube
-      #   "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
-      #   "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
-      # ];
-    };
-  };
-
-  hardware = {
-    bluetooth.enable  = true;
-    nitrokey.enable   = true;
-    pulseaudio.enable = false;
-
-    enableAllFirmware = true;
-    enableRedistributableFirmware = true;
-  };
-
-  services = {
-    blueman.enable = true;
-    deluge.enable  = true;
-    flatpak.enable = true;
-    
-    xserver = {
-      enable       = true;
-      layout       = "us";
-      wacom.enable = true;
-    };
-    
-    printing = {
-      enable  = true;
-    };
-
-    pipewire = {
-      enable       = true;
-      alsa.enable  = true;
-      pulse.enable = true;
-    };
-
-    theming = {
-      # enable = true;
-      theme = {
-        defaultTheme = "catppuccin";
-        installAll = true;
-      };
-      icons = {
-        defaultTheme = "papirus";
-        installAll = true;
+      fontconfig = {
+        defaultFonts = {
+          emoji = [ "JoyPixels" ];
+          serif = [ "Noto Sans" ];
+          sansSerif = [ "Noto Sans" ];
+          monospace = [ "JetBrainsMono Nerd Font" ];
+        };
       };
     };
-  };
 
-  users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
+    nixpkgs = {
+      config.joypixels.acceptLicense = true;
+      overlays = [
+        (import ../packages)
+      ];
+    };
+
+    programs = {
+      adb.enable = true;
+      java.enable = true;
+      dconf.enable = true;
+      xwayland.enable = true;
+      kdeconnect.enable = true;
+      ssh.startAgent = false;
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+      chromium = {
+        enable = true;
+        extraOpts = {
+          BrowserSignin = 0;
+          SyncDisabled = true;
+          PasswordManagerEnabled = false;
+        };
+      };
+    };
+
+    hardware = {
+      bluetooth.enable = true;
+      nitrokey.enable = true;
+      pulseaudio.enable = false;
+
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
+    };
+
+    services = {
+      blueman.enable = true;
+      deluge.enable = true;
+      flatpak.enable = true;
+
+      xserver = {
+        enable = true;
+        layout = "us";
+        wacom.enable = true;
+      };
+
+      printing = {
+        enable = true;
+      };
+
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+      };
+    };
+
+    users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
+  };
 }

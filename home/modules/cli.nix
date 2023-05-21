@@ -4,7 +4,7 @@ let
     defaults = {
       exa = "${pkgs.exa}/bin/exa --color=always --icons -a";
     };
-    
+
     exa = {
       ls = "${aliases.defaults.exa}";
       ll = "${aliases.defaults.exa} -l";
@@ -22,7 +22,7 @@ in
     pkgs.ripgrep
     pkgs.neofetch
   ];
-  
+
   programs = {
     bat = {
       enable = true;
@@ -55,24 +55,24 @@ in
       ];
 
       interactiveShellInit = ''
-set term (basename "/"(ps -f -p (cat /proc/(echo %self)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //'))
+        set term (basename "/"(ps -f -p (cat /proc/(echo %self)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //'))
 
-switch $term
-  case kitty
-    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-kitty.conf
-  case wezterm-gui
-    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-wezterm.conf
-  case foot
-    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-foot.conf
-  case '*'
-    ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-others.conf
-end
+        switch $term
+          case kitty
+            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-kitty.conf
+          case wezterm-gui
+            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-wezterm.conf
+          case foot
+            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-foot.conf
+          case '*'
+            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-others.conf
+        end
       '';
     };
 
     neovim = {
-      enable   = true;
-      viAlias  = true;
+      enable = true;
+      viAlias = true;
       vimAlias = true;
     };
 

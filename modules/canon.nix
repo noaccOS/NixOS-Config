@@ -1,13 +1,20 @@
-{ pkgs, currentUser, ... }:
+{ pkgs, currentUser, lib, config, ... }:
+let
+  cfg = config.noaccOSModules.canon;
+in
 {
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.sane-airscan ];
-    openFirewall = true;
-  };
-  users.users.${currentUser}.extraGroups = [ "scanner" "lp" "avahi" ];
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.cnijfilter2 ];
+  options.noaccOSModules.canon.enable = lib.mkEnableOption "Module to enable my personal printer (canon mx495) to work";
+
+  config = lib.mkIf cfg.enable {
+    hardware.sane = {
+      enable = true;
+      extraBackends = [ pkgs.sane-airscan ];
+      openFirewall = true;
+    };
+    users.users.${currentUser}.extraGroups = [ "scanner" "lp" "avahi" ];
+    services.printing = {
+      enable = true;
+      drivers = [ pkgs.cnijfilter2 ];
+    };
   };
 }

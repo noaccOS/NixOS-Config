@@ -1,15 +1,24 @@
-{ pkgs, currentUser, ... }:
+{ pkgs, currentUser, config, lib, ... }:
+let
+  cfg = config.noaccOSModules.virtualization;
+in
 {
-  environment.systemPackages = [ pkgs.virt-manager ];
-  
-  programs.dconf.enable = true;
-  
-  services.udev.packages = [ pkgs.qmk-udev-rules ];
+  options.noaccOSModules.virtualization = {
+    enable = lib.mkEnableOption "QMK configuration";
+  };
 
-  users.users.${currentUser}.extraGroups = [ "libvirtd" ];
-  
-  virtualisation = {
-    libvirtd.enable = true;
-    spiceUSBRedirection.enable = true;
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.virt-manager ];
+
+    programs.dconf.enable = true;
+
+    services.udev.packages = [ pkgs.qmk-udev-rules ];
+
+    users.users.${currentUser}.extraGroups = [ "libvirtd" ];
+
+    virtualisation = {
+      libvirtd.enable = true;
+      spiceUSBRedirection.enable = true;
+    };
   };
 }

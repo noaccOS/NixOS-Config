@@ -6,20 +6,14 @@ name: { nixpkgs
       , system
       , user ? "noaccos"
       , wan ? "${name}.local"
-      , overlays ? []
-      , localModules ? []
-      , extraModules ? []
+      , overlays ? [ ]
+      , localModules ? [ ]
+      , extraModules ? [ ]
       }:
 nixpkgs.lib.nixosSystem rec {
   inherit system;
 
-  modules = (map (m: ../modules + "/${m}.nix") localModules) ++ extraModules ++ [
-    { nixpkgs.overlays = overlays ++ [ emacs-overlay.overlays.default ]; }
-
-    ../hosts/${name}.nix
-
-    { networking.hostName = name; }
-
+  modules = extraModules ++ [
     {
       config._module.args = {
         currentSystemName = name;
@@ -29,7 +23,38 @@ nixpkgs.lib.nixosSystem rec {
       };
     }
 
-    home-manager.nixosModules.home-manager {
+    {
+      nixpkgs.overlays = overlays ++ [ emacs-overlay.overlays.default ];
+      networking.hostName = name;
+    }
+
+    ../modules/base.nix
+    ../hosts/${name}.nix
+
+    {
+      # Load all the files, enable the chosen options at the end
+      imports = [
+        ../modules/canon.nix
+        ../modules/desktop.nix
+        ../modules/development.nix
+        ../modules/gaming.nix
+        ../modules/gnome.nix
+        ../modules/intel.nix
+        ../modules/logitech.nix
+        ../modules/nvidia.nix
+        ../modules/personal.nix
+        ../modules/plasma.nix
+        ../modules/server.nix
+        ../modules/sway.nix
+        ../modules/virtualization.nix
+        ../modules/xmonad.nix
+      ];
+
+      noaccOSModules = builtins.listToAttrs (nixpkgs.lib.forEach localModules (m: { name = m; value = { enable = true; }; }));
+    }
+
+    home-manager.nixosModules.home-manager
+    {
       home-manager = {
         useUserPackages = true;
         users.${user} = import ../home/home.nix;
