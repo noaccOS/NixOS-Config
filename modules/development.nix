@@ -59,4 +59,8 @@ in
 
     (aspellWithDicts (ps: with ps; [ en it ]))
   ];
+
+  services = {
+    postgresql.enable = true;
+  };
 }
