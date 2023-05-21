@@ -108,6 +108,9 @@
     bluetooth.enable  = true;
     nitrokey.enable   = true;
     pulseaudio.enable = false;
+
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
   };
 
   services = {
