@@ -10,6 +10,7 @@ in
   config = lib.mkIf cfg.enable {
 
     environment.defaultPackages = with pkgs; [
+      timewarrior
       firefox
     ];
 
@@ -19,6 +20,4 @@ in
       isNormalUser = true;
     };
   };
-
-
 }
