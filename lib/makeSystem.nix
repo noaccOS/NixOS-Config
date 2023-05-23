@@ -46,6 +46,7 @@ nixpkgs.lib.nixosSystem rec {
         ../modules/plasma.nix
         ../modules/server.nix
         ../modules/sway.nix
+        ../modules/work.nix
         ../modules/virtualization.nix
         ../modules/xmonad.nix
       ];
