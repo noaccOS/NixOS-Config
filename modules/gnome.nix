@@ -31,6 +31,7 @@ in
         ]
       );
     };
+
     programs = {
       kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
     };

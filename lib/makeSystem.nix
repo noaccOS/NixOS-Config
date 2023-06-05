@@ -61,7 +61,7 @@ nixpkgs.lib.nixosSystem rec {
         users.${user} = import ../home/home.nix;
         extraSpecialArgs = {
           inherit user;
-          emacsPkg = emacs-overlay.packages.${system}.emacsPgtk;
+          emacsPkg = emacs-overlay.packages.${system}.emacs-pgtk;
         };
       };
     }
