@@ -29,15 +29,7 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
-
-  fileSystems."/home/noaccos/Games/Genshin Impact" =
-    {
-      device = "/dev/disk/by-uuid/849be182-2083-4002-9a55-38e3546a4ca4";
-      fsType = "btrfs";
-      depends = [ "/home" ];
-      options = [ "noatime" ];
-    };
-
+  
   swapDevices = [ ];
 
   services.xserver = {
