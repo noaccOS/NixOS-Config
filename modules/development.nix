@@ -17,9 +17,13 @@ in
     environment.sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
     };
-    
+
     environment.systemPackages = with pkgs; [
       (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
+
+      # Nix
+      nixpkgs-fmt
+      nil
 
       # Haskell
       ghc # Compiler
