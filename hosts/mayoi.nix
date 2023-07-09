@@ -29,7 +29,7 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
-  
+
   swapDevices = [ ];
 
   services.xserver = {
@@ -45,7 +45,7 @@
       DefaultDepth    24
       Option         "Stereo" "0"
       Option         "nvidiaXineramaInfoOrder" "DFP-6"
-      Option         "metamodes" "DP-4: 3440x1440_100 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, HDMI-0: 1920x1080_60 +0+360 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+      Option         "metamodes" "DP-1: 3440x1440_100 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, HDMI-1: 1920x1080_60 +0+360 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
       Option         "SLI" "Off"
       Option         "MultiGPU" "Off"
       Option         "BaseMosaic" "off"
