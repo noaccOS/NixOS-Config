@@ -1,2 +1,4 @@
 /hosts/*/modules
 /hosts/*/packages
+
+/result
