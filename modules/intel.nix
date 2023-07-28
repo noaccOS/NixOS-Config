@@ -3,16 +3,16 @@ let
   cfg = config.noaccOSModules.intel;
   gnomeOverlay = self: super: {
     gnome = super.gnome.overrideScope' (gself: gsuper: {
-    mutter = gsuper.mutter.overrideAttrs (oldAttrs: {
-      src = super.fetchFromGitLab {
-        domain = "gitlab.gnome.org";
-        owner = "Community/Ubuntu";
-        repo = "mutter";
-        rev = "1e2436d15c717e9bc18dc6c11782ae806c3437cb";
-        sha256 = "sha256-jzdZqBaj9fwTr3pHXpC6x8KdBms0w25rrJ4EEg7HaF0=";
-      };
+      mutter = gsuper.mutter.overrideAttrs (oldAttrs: {
+        src = super.fetchFromGitLab {
+          domain = "gitlab.gnome.org";
+          owner = "Community/Ubuntu";
+          repo = "mutter";
+          rev = "357ebf9a227bd5b4bd87b610dd6545d8a81ba265";
+          sha256 = "sha256-2bplmWu9qcSRdbaFzL7k5XOaAhq4in2UL4JaZ8kksDA=";
+        };
+      });
     });
-  });
   };
 in
 {

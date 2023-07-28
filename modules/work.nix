@@ -1,20 +1,6 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, currentUser, ... }:
 let
   cfg = config.noaccOSModules.work;
-  astartectl = pkgs.buildGoModule rec {
-    pname = "astartectl";
-    version = "22.11.02";
-    src = pkgs.fetchFromGitHub {
-      owner = "astarte-platform";
-      repo = "astartectl";
-      rev = "v${version}";
-      sha256 = "sha256-24KzPxbewf/abzqQ7yf6HwFQ/ovJeMCrMNYDfVn5HA8=";
-    };
-    vendorSha256 = "sha256-RVWnkbLOXtNraSoY12KMNwT5H6KdiQoeLfRCLSqVwKQ=";
-    # preBuild = ''
-    #   export CGO_ENABLED=0
-    # '';
-  };
 in
 {
   options.noaccOSModules.work = {
@@ -27,7 +13,6 @@ in
     environment.systemPackages = with pkgs; [
       timewarrior
       firefox
-      astartectl
     ] ++ lib.optional cfg.enablePodman pkgs.podman-compose;
 
     users.users.tech = {
@@ -37,18 +22,15 @@ in
       extraGroups = [ "wheel" ];
     };
 
-    services.cassandra = {
-      enable = true;
-      package = pkgs.cassandra_4;
+    virtualisation.docker = {
+      enable = lib.mkDefault cfg.enablePodman;
     };
 
-    virtualisation.podman = {
-      enable = lib.mkDefault cfg.enablePodman;
-      defaultNetwork.settings.dns_enabled = true;
-    };
+    users.users.${currentUser}.extraGroups = [ "docker" "podman" ];
 
     boot.kernel.sysctl = lib.mkIf cfg.enablePodman {
       "fs.aio-max-nr" = 1048576;
+      "net.ipv4.ip_unprivileged_port_start" = 80;
     };
   };
 }

@@ -1,22 +1,9 @@
 { config, pkgs, lib, user ? "noaccos", ... }:
 
-let
-  myPythonPackages = python-packages: with python-packages; [
-    pypresence
-    # pandas
-    # requests
-    # seaborn
-    # ipykernel
-    # scikit-learn
-    # nltk
-    # tensorflow
-    # Keras
-  ];
-  myPython = pkgs.python3.withPackages myPythonPackages;
-
-  # themes = pkgs.callPackage ./helpers/local-theming.nix { };
-  # themes = {bat = "Dracula";};
-in
+# let
+#   # themes = pkgs.callPackage ./helpers/local-theming.nix { };
+#   # themes = {bat = "Dracula";};
+# in
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -37,13 +24,6 @@ in
 
   home.packages = with pkgs; [
     libsForQt5.breeze-qt5
-    # lightcord
-
-    # wine-ge
-    # xmonad-git
-    # xmonad-contrib-git
-
-    myPython
   ];
 
   # This value determines the Home Manager release that your
