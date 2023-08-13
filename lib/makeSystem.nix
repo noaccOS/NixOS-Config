@@ -4,7 +4,7 @@ name: { nixpkgs
       , home-manager
       , emacs-overlay
       , system
-      , user ? "noaccos"
+      , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
       , wan ? "${name}.local"
       , overlays ? [ ]
       , localModules ? [ ]
@@ -58,7 +58,7 @@ nixpkgs.lib.nixosSystem rec {
     {
       home-manager = {
         useUserPackages = true;
-        users.${user} = import ../home/home.nix;
+        users.${user.name} = import ../home/home.nix;
         extraSpecialArgs = {
           inherit user;
           emacsPkg = emacs-overlay.packages.${system}.emacs-pgtk;

@@ -49,7 +49,7 @@
       options = "--delete-older-than 7d";
     };
 
-    settings.trusted-users = [ "root" currentUser ];
+    settings.trusted-users = [ "root" currentUser.name ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -112,9 +112,10 @@
         openssh.authorizedKeys.keyFiles = allowedKeys;
         initialPassword = "password";
       };
-      users.${currentUser} = {
+      users.${currentUser.name} = {
         isNormalUser = true;
-        group = currentUser;
+        group = currentUser.name;
+        description = currentUser.fullName;
         extraGroups = [ "wheel" "plugdev" ];
         openssh.authorizedKeys.keyFiles = allowedKeys;
         initialPassword = "password";

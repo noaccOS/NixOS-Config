@@ -161,6 +161,6 @@ in
       nextcloud.extraGroups = [ "homeservices" ];
     };
 
-    users.users.${currentUser}.extraGroups = [ "homeservices" "jellyfin" "podman" ];
+    users.users.${currentUser.name}.extraGroups = [ "homeservices" "jellyfin" "podman" ];
   };
 }

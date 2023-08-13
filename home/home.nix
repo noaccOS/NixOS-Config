@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user ? "noaccos", ... }:
+{ config, pkgs, lib, user ? {name = "noaccos"; fullName = "Francesco Noacco";}, ... }:
 
 let
   myPythonPackages = python-packages: with python-packages; [
@@ -23,9 +23,9 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = user;
-  home.homeDirectory = lib.mkForce "/home/${user}";
-  xdg.configHome = "/home/${user}/.config/";
+  home.username = user.name;
+  home.homeDirectory = lib.mkForce "/home/${user.name}";
+  xdg.configHome = "/home/${user.name}/.config/";
 
   nixpkgs.overlays = [
     (import ../packages)

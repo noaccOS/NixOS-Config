@@ -121,6 +121,6 @@ in
       };
     };
 
-    users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
+    users.users.${currentUser.name}.extraGroups = [ "adbusers" "audio" "video" ];
   };
 }

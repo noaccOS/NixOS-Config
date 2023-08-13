@@ -11,7 +11,7 @@ in
       extraBackends = [ pkgs.sane-airscan ];
       openFirewall = true;
     };
-    users.users.${currentUser}.extraGroups = [ "scanner" "lp" "avahi" ];
+    users.users.${currentUser.name}.extraGroups = [ "scanner" "lp" "avahi" ];
     services.printing = {
       enable = true;
       drivers = [ pkgs.cnijfilter2 ];
