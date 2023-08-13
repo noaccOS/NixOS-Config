@@ -41,7 +41,7 @@ in
     };
 
     fonts = {
-      fonts = with pkgs; [
+      packages = with pkgs; [
         noto-fonts
         noto-fonts-cjk # Chinese, Japanese, Korean
         roboto
