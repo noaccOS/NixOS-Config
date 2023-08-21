@@ -70,6 +70,42 @@ in
       '';
     };
 
+    git = {
+      enable = true;
+      difftastic.enable = true;
+      ignores = [
+        "log/"
+        ".direnv/"
+        ".nix-mix/"
+        ".nix-hex/"
+        ".envrc"
+      ];
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.ff = "only";
+        github.user = "noaccOS";
+        diff.algorithm = "patience";
+        credential.helper = "store";
+
+        user = {
+          name = "Francesco Noacco";
+          email = "francesco.noacco2000@gmail.com";
+        };
+      };
+
+      includes = [{
+        condition = "gitdir:~/src/seco/";
+        contents = {
+          user = {
+            email = "francesco.noacco@secomind.com";
+            signingKey = "A83DA1B14BD444A6";
+          };
+          commit.gpgSign = true;
+        };
+      }];
+
+    };
+
     neovim = {
       enable = true;
       viAlias = true;
