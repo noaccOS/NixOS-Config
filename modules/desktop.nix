@@ -93,6 +93,16 @@ in
     hardware = {
       bluetooth.enable = true;
       nitrokey.enable = true;
+      opengl = {
+        enable = true;
+        driSupport = true;
+        extraPackages = with pkgs; [
+          libvdpau
+          vaapiVdpau
+          vulkan-validation-layers
+          vulkan-extension-layer
+        ];
+      };
       pulseaudio.enable = false;
 
       enableAllFirmware = true;

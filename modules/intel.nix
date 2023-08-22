@@ -24,6 +24,7 @@ in
     hardware.opengl.extraPackages = with pkgs; [
       vaapiIntel
       intel-media-driver
+      intel-compute-runtime
     ];
 
     nixpkgs.overlays = [ gnomeOverlay ];
