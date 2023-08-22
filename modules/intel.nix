@@ -8,8 +8,8 @@ let
           domain = "gitlab.gnome.org";
           owner = "Community/Ubuntu";
           repo = "mutter";
-          rev = "357ebf9a227bd5b4bd87b610dd6545d8a81ba265";
-          sha256 = "sha256-2bplmWu9qcSRdbaFzL7k5XOaAhq4in2UL4JaZ8kksDA=";
+          rev = "1bf8ae3e26a7508be4e2901c1afc025aea7d8465";
+          sha256 = "sha256-GoJRuPXNXyEGuhgEPFXdCXZMKS/H2GnrOTzyIuj/zho=";
         };
       });
     });
