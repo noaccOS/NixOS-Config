@@ -26,7 +26,7 @@ in
       enable = lib.mkDefault cfg.enablePodman;
     };
 
-    users.users.${currentUser}.extraGroups = [ "docker" "podman" ];
+    users.users.${currentUser.name}.extraGroups = [ "docker" "podman" ];
 
     boot.kernel.sysctl = lib.mkIf cfg.enablePodman {
       "fs.aio-max-nr" = 1048576;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user ? {name = "noaccos"; fullName = "Francesco Noacco";}, ... }:
+{ config, pkgs, lib, user ? { name = "noaccos"; fullName = "Francesco Noacco"; }, ... }:
 
 # let
 #   # themes = pkgs.callPackage ./helpers/local-theming.nix { };

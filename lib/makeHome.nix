@@ -1,8 +1,5 @@
-{ nixpkgs
-, system
-, home-manager
-, nixgl
-, emacs-overlay
+{ nixpkgs, home-manager, nixgl, emacs-overlay, ... }@inputs:
+{ system ? "x86_64-linux"
 , user ? "noaccos"
 }:
 let

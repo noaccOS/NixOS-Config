@@ -1,9 +1,7 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-name: { nixpkgs
-      , home-manager
-      , emacs-overlay
-      , system
+{ nixpkgs, home-manager, emacs-overlay, ... }@inputs:
+name: { system ? "x86_64-linux"
       , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
       , wan ? "${name}.local"
       , overlays ? [ ]

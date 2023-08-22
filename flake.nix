@@ -21,16 +21,14 @@
   };
 
   outputs =
-    { self, nixpkgs, rock5, home-manager, nixgl, emacs-overlay }:
+    { self, nixpkgs, home-manager, nixgl, emacs-overlay }@inputs:
     let
-      makeSystem = import ./lib/makeSystem.nix;
-      makeHome = import ./lib/makeHome.nix;
+      makeSystem = import ./lib/makeSystem.nix inputs;
+      makeHome = import ./lib/makeHome.nix inputs;
     in
     {
       nixosConfigurations = {
         mayoi = makeSystem "mayoi" {
-          inherit nixpkgs home-manager emacs-overlay;
-          system = "x86_64-linux";
           localModules = [
             "desktop"
             "personal"
@@ -45,7 +43,6 @@
         };
 
         hitagi = makeSystem "hitagi" {
-          inherit nixpkgs home-manager emacs-overlay;
           system = "aarch64-linux";
           wan = "noaccos.ovh";
           extraModules = [
@@ -58,9 +55,7 @@
         };
 
         kaiki = makeSystem "kaiki" {
-          inherit nixpkgs home-manager emacs-overlay;
-          system = "x86_64-linux";
-          user = "francesco";
+          user = { name = "francesco"; fullName = "Francesco Noacco"; };
           localModules = [
             "desktop"
             "work"
@@ -74,14 +69,8 @@
 
       homeConfigurations =
         {
-          x86 = makeHome {
-            inherit nixpkgs home-manager nixgl emacs-overlay;
-            system = "x86_64-linux";
-          };
-          arm = makeHome {
-            inherit nixpkgs home-manager nixgl emacs-overlay;
-            system = "aarch64-linux";
-          };
+          x86 = makeHome { };
+          arm = makeHome { system = "aarch64-linux"; };
         };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
