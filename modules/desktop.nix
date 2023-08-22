@@ -32,9 +32,6 @@ in
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        QT_QPA_PLATFORM = "wayland";
-        GDK_BACKEND = "wayland";
-
       };
 
       variables = {
@@ -44,7 +41,7 @@ in
     };
 
     fonts = {
-      fonts = with pkgs; [
+      packages = with pkgs; [
         noto-fonts
         noto-fonts-cjk # Chinese, Japanese, Korean
         roboto
@@ -124,6 +121,6 @@ in
       };
     };
 
-    users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
+    users.users.${currentUser.name}.extraGroups = [ "adbusers" "audio" "video" ];
   };
 }

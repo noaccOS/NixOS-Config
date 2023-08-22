@@ -8,7 +8,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.nvidia.modesetting.enable = true;
     services.xserver.videoDrivers = [ "nvidia" ];
 
     environment.sessionVariables = {
@@ -17,6 +16,13 @@ in
 
       WLR_DRM_NO_ATOMIC = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
+    };
+
+    hardware.nvidia = {
+      modesetting.enable = true;
+      open = true;
+      nvidiaSettings = true;
+      powerManagement.enable = true;
     };
   };
 }

@@ -14,7 +14,7 @@ in
 
     services.udev.packages = [ pkgs.qmk-udev-rules ];
 
-    users.users.${currentUser}.extraGroups = [ "libvirtd" ];
+    users.users.${currentUser.name}.extraGroups = [ "libvirtd" ];
 
     virtualisation = {
       libvirtd.enable = true;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user ? "noaccos", ... }:
+{ config, pkgs, lib, user ? {name = "noaccos"; fullName = "Francesco Noacco";}, ... }:
 
 # let
 #   # themes = pkgs.callPackage ./helpers/local-theming.nix { };
@@ -10,9 +10,9 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = user;
-  home.homeDirectory = lib.mkForce "/home/${user}";
-  xdg.configHome = "/home/${user}/.config/";
+  home.username = user.name;
+  home.homeDirectory = lib.mkForce "/home/${user.name}";
+  xdg.configHome = "/home/${user.name}/.config/";
 
   nixpkgs.overlays = [
     (import ../packages)
@@ -34,5 +34,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.11";
+  home.stateVersion = "23.11";
 }

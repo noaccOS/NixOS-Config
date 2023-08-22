@@ -16,7 +16,7 @@ in
     ];
 
     security.doas.extraRules = [
-      { users = [ currentUser ]; keepEnv = true; noPass = true; }
+      { users = [ currentUser.name ]; keepEnv = true; noPass = true; }
     ];
   };
 }

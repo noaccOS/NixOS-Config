@@ -36,7 +36,6 @@
             "personal"
             "gaming"
             "gnome"
-            "xmonad"
             "development"
             "nvidia"
             "virtualization"
