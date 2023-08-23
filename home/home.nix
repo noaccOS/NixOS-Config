@@ -20,7 +20,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./modules/local-theming.nix ./modules/cli.nix ./modules/wezterm.nix ./modules/gui.nix ./modules/emacs.nix ./modules/vscode.nix
+  imports = [
+    ./modules/local-theming.nix
+    ./modules/cli.nix
+    ./modules/wezterm.nix
+    ./modules/gui.nix
+    ./modules/emacs.nix
+    ./modules/vscode.nix
   ];
 
   home.packages = with pkgs; [
