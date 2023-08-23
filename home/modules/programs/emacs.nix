@@ -3,13 +3,13 @@ let
   cfg = config.homeModules.emacs;
 in
 {
-  options.homeModules.emacs= {
+  options.homeModules.emacs = {
     enable = lib.mkEnableOption "custom emacs";
-  package = lib.mkOption {
-    type = lib.types.package;
-    default = pkgs.emacs-gtk;
-    description = "Emacs package to install";
-  };
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.emacs-gtk;
+      description = "Emacs package to install";
+    };
   };
 
   config = lib.mkIf cfg.enable {

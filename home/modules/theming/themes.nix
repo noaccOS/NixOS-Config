@@ -1,12 +1,12 @@
 {
-    bat = {
-      dracula = "Dracula";
-      nord = "Nord";
-      catppuccin = "";
-    };
-    wezterm = {
-      dracula = "TrueDracula";
-      nord = "nord";
-      catppuccin = "Catppuccin Mocha";
-    };
+  bat = {
+    dracula = "Dracula";
+    nord = "Nord";
+    catppuccin = "";
+  };
+  wezterm = {
+    dracula = "TrueDracula";
+    nord = "nord";
+    catppuccin = "Catppuccin Mocha";
+  };
 }

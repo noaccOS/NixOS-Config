@@ -6,7 +6,7 @@ let
   allSources = import theming/sources.nix;
 
   themes = lib.mapAttrs (_name: themes: themes.${cfg.theme}) allThemes;
-  sources =lib.mapAttrs (_name: sources: sources.${cfg.theme}) allSources;
+  sources = lib.mapAttrs (_name: sources: sources.${cfg.theme}) allSources;
 in
 {
   options.homeModules.theming = {
@@ -18,24 +18,24 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-  programs = {
-    bat = {
-      config.theme = themes.bat;
-      themes = lib.mkIf (sources.bat != null) {
-        ${themes.bat} = sources.bat;
+    programs = {
+      bat = {
+        config.theme = themes.bat;
+        themes = lib.mkIf (sources.bat != null) {
+          ${themes.bat} = sources.bat;
+        };
       };
-  };
-  };
-
-  homeModules = {
-    packages = {
-      wezterm.theme = themes.wezterm;
     };
-  };
 
-  xdg.configFile = lib.mkIf (sources.wezterm.dest != null) {
-    "wezterm/colors/${sources.wezterm.dest}".source = sources.wezterm.src;
-  };
+    homeModules = {
+      packages = {
+        wezterm.theme = themes.wezterm;
+      };
+    };
+
+    xdg.configFile = lib.mkIf (sources.wezterm.dest != null) {
+      "wezterm/colors/${sources.wezterm.dest}".source = sources.wezterm.src;
+    };
 
   };
 }

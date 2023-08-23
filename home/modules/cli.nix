@@ -29,48 +29,48 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-  home.packages = with pkgs; [
-    ripgrep
-    fd
-    sd
-  ];
+    home.packages = with pkgs; [
+      ripgrep
+      fd
+      sd
+    ];
 
-  # Remove when Fish gains theme support through home-manager
-  xdg.configFile."fish/themes/catppuccin.theme".source = builtins.fetchurl {
-    name = "catppuccin-fish";
-    url = "https://raw.githubusercontent.com/catppuccin/fish/91e6d6721362be05a5c62e235ed8517d90c567c9/themes/Catppuccin%20Mocha.theme";
-    sha256 = "sha256:0qkghib607nrsi72wzkgvxm2rwf42ad73472ksbf3sik1q33slij";
-  };
-  programs = {
-    bat = {
-      enable = true;
+    # Remove when Fish gains theme support through home-manager
+    xdg.configFile."fish/themes/catppuccin.theme".source = builtins.fetchurl {
+      name = "catppuccin-fish";
+      url = "https://raw.githubusercontent.com/catppuccin/fish/91e6d6721362be05a5c62e235ed8517d90c567c9/themes/Catppuccin%20Mocha.theme";
+      sha256 = "sha256:0qkghib607nrsi72wzkgvxm2rwf42ad73472ksbf3sik1q33slij";
     };
+    programs = {
+      bat = {
+        enable = true;
+      };
 
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
 
-    exa = {
-      enable = true;
-      # enableAliases = true; # I'm probably doing my own aliases
-    };
+      exa = {
+        enable = true;
+        # enableAliases = true; # I'm probably doing my own aliases
+      };
 
-    fish = {
-      enable = true;
-      shellAliases = aliases.exa // aliases.fd;
+      fish = {
+        enable = true;
+        shellAliases = aliases.exa // aliases.fd;
 
-      interactiveShellInit = ''
-        ${pkgs.fastfetch}/bin/fastfetch
-      '';
+        interactiveShellInit = ''
+          ${pkgs.fastfetch}/bin/fastfetch
+        '';
 
-      shellInit = lib.strings.optionalString cfg.sourceNix ''
+        shellInit = lib.strings.optionalString cfg.sourceNix ''
 
     if test -f ~/.nix-profile/etc/profile.d/nix.fish
       source ~/.nix-profile/etc/profile.d/nix.fish
     end
   '';
-    };
+      };
 
     git = {
       enable = true;
@@ -194,7 +194,6 @@ in
         };
       };
     };
-  };
 
   };
 }

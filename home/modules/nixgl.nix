@@ -14,17 +14,18 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    home.packages = let
-      packages = {
-        mesa = {
-          gl = pkgs.nixgl.nixGLIntel;
-          vk = pkgs.nixgl.nixVulkanIntel;
-        };
-        nvidia = {
-          gl = pkgs.nixgl.nixGLNvidia;
-          vk = pkgs.nixgl.nixVulkanNvidia;
-        };
-      }.${cfg.driver};
+    home.packages =
+      let
+        packages = {
+          mesa = {
+            gl = pkgs.nixgl.nixGLIntel;
+            vk = pkgs.nixgl.nixVulkanIntel;
+          };
+          nvidia = {
+            gl = pkgs.nixgl.nixGLNvidia;
+            vk = pkgs.nixgl.nixVulkanNvidia;
+          };
+        }.${cfg.driver};
       in
       [ packages.gl packages.vk ];
   };
