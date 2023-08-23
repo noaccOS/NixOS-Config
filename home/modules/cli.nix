@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
+  cfg = config.homeModules.cli;
   aliases = {
     defaults = {
-      exa = "${pkgs.exa}/bin/exa --color=always --icons -a";
+      exa = "${pkgs.exa}/bin/exa --color=auto --icons -a";
     };
 
     exa = {
@@ -18,11 +19,28 @@ let
 in
 
 {
-  home.packages = [
-    pkgs.ripgrep
-    pkgs.neofetch
+  options.homeModules.cli = {
+    enable = lib.mkEnableOption "basic cli tools";
+    sourceNix = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable sourcing of nix profile. Useful in non-nixos systems.";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+    sd
   ];
 
+  # Remove when Fish gains theme support through home-manager
+  xdg.configFile."fish/themes/catppuccin.theme".source = builtins.fetchurl {
+    name = "catppuccin-fish";
+    url = "https://raw.githubusercontent.com/catppuccin/fish/91e6d6721362be05a5c62e235ed8517d90c567c9/themes/Catppuccin%20Mocha.theme";
+    sha256 = "sha256:0qkghib607nrsi72wzkgvxm2rwf42ad73472ksbf3sik1q33slij";
+  };
   programs = {
     bat = {
       enable = true;
@@ -42,32 +60,16 @@ in
       enable = true;
       shellAliases = aliases.exa // aliases.fd;
 
-      plugins = [
-        {
-          name = "catppuccin";
-          src = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "fish";
-            rev = "0b228f65728631bdc815c0f74a4d5134802e092d";
-            sha256 = "1pxl1mp42ks5zq7al6dig4w5cgwsb3zs9pckjc88wd5wdq8ph4pj";
-          };
-        }
-      ];
-
       interactiveShellInit = ''
-        set term (basename "/"(ps -f -p (cat /proc/(echo %self)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //'))
-
-        switch $term
-          case kitty
-            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-kitty.conf
-          case wezterm-gui
-            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-wezterm.conf
-          case foot
-            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-foot.conf
-          case '*'
-            ${pkgs.neofetch}/bin/neofetch --config ~/.config/neofetch/config-others.conf
-        end
+        ${pkgs.fastfetch}/bin/fastfetch
       '';
+
+      shellInit = lib.strings.optionalString cfg.sourceNix ''
+
+    if test -f ~/.nix-profile/etc/profile.d/nix.fish
+      source ~/.nix-profile/etc/profile.d/nix.fish
+    end
+  '';
     };
 
     git = {
@@ -192,5 +194,7 @@ in
         };
       };
     };
+  };
+
   };
 }

@@ -1,22 +1,25 @@
 { nixpkgs, home-manager, nixgl, emacs-overlay, ... }@inputs:
 { system ? "x86_64-linux"
 , user ? "noaccos"
+, gpuDriver ? "mesa"
 }:
-let
-  mkLstIf = condition: expr: if condition then expr else [ ];
-  nixglEnabled = system == "x86_64-linux";
-
-  mkLstIfNGL = mkLstIf nixglEnabled;
-in
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs {
     inherit system;
-    overlays = mkLstIfNGL [ nixgl.overlay ];
+    overlays = [ nixgl.overlay ];
   };
   modules = [
     ../home/home.nix
-    ../home/modules/not-nixos.nix
-  ] ++ mkLstIfNGL [ ../home/modules/nixgl.nix ];
+
+    {
+      config.homeModules.cli.sourceNix = true;
+      config.homeModules.nixgl = {
+        enable = system == "x86_64-linux";
+        driver = gpuDriver;
+      };
+    }
+  ];
+
   extraSpecialArgs = {
     inherit user;
     emacsPkg = emacs-overlay.packages.${system}.emacsPgtk;

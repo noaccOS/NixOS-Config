@@ -4,19 +4,12 @@ with builtins;
 with lib;
 
 let
-  cfg = config.programs.noaccos-wezterm;
-  catppuccinColors = fetchurl {
-    url = "https://raw.githubusercontent.com/catppuccin/wezterm/74b23a608d02e6b132d91bb2dcf9cb37de89f466/wezterm.lua";
-    sha256 = "0zi5nzkk4y0fd3zffmyj4pl56yma735dmwn13ngk1r92v1zv63gp";
-  };
+  cfg = config.homeModules.packages.wezterm;
+  sources = import ./sources { inherit lib cfg; };
 in
 {
-  options.programs.noaccos-wezterm = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Wether to enable the wezterm module";
-    };
+  options.homeModules.packages.wezterm = {
+    enable = mkEnableOption "wezterm";
 
     theme = mkOption {
       type = types.nullOr types.str;
@@ -123,24 +116,5 @@ in
         use_ime = false,
       }
     '';
-
-    xdg.configFile."wezterm/colors/TrueDracula.toml".text = ''
-      [colors]
-      foreground = "#f8f8f2"
-      background = "#282a36"
-      cursor_bg = "#bd93f9"
-      cursor_border = "#bd93f9"
-      cursor_fg = "#282a36"
-      selection_bg = "#44475a"
-      selection_fg = "#f8f8f2"
-        
-      ansi = ["#000000","#ff5555","#50fa7b","#f1fa8c","#bd93f9","#ff79c6","#8be9fd","#bbbbbb"]
-      brights = ["#555555","#ff5555","#50fa7b","#f1fa8c","#bd93f9","#ff79c6","#8be9fd","#ffffff"]
-    '';
-
-    xdg.configFile."wezterm/colors/Catppuccin.toml".source = fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/wezterm/74b23a608d02e6b132d91bb2dcf9cb37de89f466/Catppuccin.toml";
-      sha256 = "0ns40b5lnsxks41nlw19y2wawnhraxvfgs88qi6x6l9f63dj2dvx";
-    };
   };
 }
