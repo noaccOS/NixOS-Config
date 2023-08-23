@@ -21,7 +21,7 @@
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nixgl, emacs-overlay }@inputs:
+    { self, nixpkgs, rock5, home-manager, nixgl, emacs-overlay }@inputs:
     let
       makeSystem = import ./lib/makeSystem.nix inputs;
       makeHome = import ./lib/makeHome.nix inputs;
