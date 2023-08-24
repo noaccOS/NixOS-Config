@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user ? { name = "noaccos"; fullName = "Francesco Noacco"; }, ... }:
+{ pkgs, lib, user ? { name = "noaccos"; fullName = "Francesco Noacco"; }, ... }:
 
 {
   home.username = user.name;

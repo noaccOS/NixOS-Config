@@ -65,6 +65,7 @@ nixpkgs.lib.nixosSystem rec {
                 theming.enable = true;
                 theming.theme = "catppuccin";
                 programs.emacs.package = emacs-overlay.packages.${system}.emacs-pgtk;
+                programs.vscode.defaultEditor = true;
               };
             });
         extraSpecialArgs = {

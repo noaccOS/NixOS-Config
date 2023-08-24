@@ -12,6 +12,7 @@ home-manager.lib.homeManagerConfiguration {
     ../home/home.nix
 
     {
+      config.homeModules.programs.programs.vscode.defaultEditor = true;
       config.homeModules.programs.emacs.package = emacs-overlay.packages.${system}.emacsPgtk;
       config.homeModules.cli.sourceNix = true;
       config.homeModules.nixgl = {

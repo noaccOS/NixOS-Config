@@ -11,32 +11,54 @@ let
   keybindings = lib.pipe vscode/keybindings.json [ builtins.readFile builtins.fromJSON ];
 in
 {
-  options.homeModules.programs.vscode.enable = lib.mkEnableOption "custom vscode";
-  config.programs.vscode = {
-    enable = cfg.enable;
-    package = pkgs.vscodium;
-    inherit userSettings keybindings;
+  options.homeModules.programs.vscode = {
+    enable = lib.mkEnableOption "VSCode";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.vscodium;
+      description = "VSCode package to install";
+    };
+    defaultEditor = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        Whether to configure VSCode as the default
+        editor using the {env}`EDITOR` environment variable.
+      '';
+    };
+  };
+  config = lib.mkIf cfg.enable {
+    programs.vscode = {
+      enable = true;
+      package = cfg.package;
+      inherit userSettings keybindings;
 
-    enableUpdateCheck = false;
-    enableExtensionUpdateCheck = true;
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = true;
 
-    extensions = with pkgs.vscode-extensions; [
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
-      kahole.magit
-      mkhl.direnv
-      elixir-lsp.vscode-elixir-ls
-      mhutchie.git-graph
-      donjayamanne.githistory
-      github.vscode-github-actions
-      github.vscode-pull-request-github
-      eamodio.gitlens
-      golang.go
-      jnoortheen.nix-ide
-      ibm.output-colorizer
-      humao.rest-client
-      streetsidesoftware.code-spell-checker
-      tamasfe.even-better-toml
-    ] ++ customPackages;
+      extensions = with pkgs.vscode-extensions; [
+        catppuccin.catppuccin-vsc
+        catppuccin.catppuccin-vsc-icons
+        kahole.magit
+        mkhl.direnv
+        elixir-lsp.vscode-elixir-ls
+        mhutchie.git-graph
+        donjayamanne.githistory
+        github.vscode-github-actions
+        github.vscode-pull-request-github
+        eamodio.gitlens
+        golang.go
+        jnoortheen.nix-ide
+        ibm.output-colorizer
+        humao.rest-client
+        streetsidesoftware.code-spell-checker
+        tamasfe.even-better-toml
+      ] ++ customPackages;
+    };
+
+    home.sessionVariables = lib.mkIf cfg.defaultEditor {
+      EDITOR = "${cfg.package.executableName} -n --wait";
+      VISUAL = "${cfg.package.executableName} -n --wait";
+    };
   };
 }
