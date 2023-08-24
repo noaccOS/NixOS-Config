@@ -56,16 +56,17 @@ nixpkgs.lib.nixosSystem rec {
     {
       home-manager = {
         useUserPackages = true;
-        users.${user.name} = { pkgs, ... }@inputs:
-          {
-            homeModules = {
-              cli.enable = true;
-              gui.enable = true;
-              theming.enable = true;
-              theming.theme = "catppuccin";
-              programs.emacs.package = emacs-overlay.packages.${system}.emacs-pgtk;
-            };
-          } // import ../home/home.nix inputs;
+        users.${user.name} = ({ pkgs, ... }@inputs:
+          (import ../home/home.nix inputs) //
+            {
+              homeModules = {
+                cli.enable = true;
+                gui.enable = true;
+                theming.enable = true;
+                theming.theme = "catppuccin";
+                programs.emacs.package = emacs-overlay.packages.${system}.emacs-pgtk;
+              };
+            });
         extraSpecialArgs = {
           inherit user;
         };
