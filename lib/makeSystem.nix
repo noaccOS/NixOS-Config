@@ -56,7 +56,7 @@ nixpkgs.lib.nixosSystem rec {
     {
       home-manager = {
         useUserPackages = true;
-        users.${user.name} = ({ ... }@inputs:
+        users.${user.name} = ({ pkgs, ... }@inputs:
           (import ../home/home.nix inputs) //
             {
               homeModules = {
