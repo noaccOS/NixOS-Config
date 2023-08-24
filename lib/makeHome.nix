@@ -12,6 +12,7 @@ home-manager.lib.homeManagerConfiguration {
     ../home/home.nix
 
     {
+      config.homeModules.programs.emacs.package = emacs-overlay.packages.${system}.emacsPgtk;
       config.homeModules.cli.sourceNix = true;
       config.homeModules.nixgl = {
         enable = system == "x86_64-linux";
@@ -22,6 +23,5 @@ home-manager.lib.homeManagerConfiguration {
 
   extraSpecialArgs = {
     inherit user;
-    emacsPkg = emacs-overlay.packages.${system}.emacsPgtk;
   };
 }

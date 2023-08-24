@@ -1,15 +1,17 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.vscode;
+  cfg = config.homeModules.programs.vscode;
+
   customPackages = import vscode/customPackages.nix {
     buildVscodeMarketplaceExtension = pkgs.vscode-utils.buildVscodeMarketplaceExtension;
     licenses = lib.licenses;
   };
+
   userSettings = lib.pipe vscode/settings.json [ builtins.readFile builtins.fromJSON ];
   keybindings = lib.pipe vscode/keybindings.json [ builtins.readFile builtins.fromJSON ];
 in
 {
-  options.homeModules.vscode.enable = lib.mkEnableOption "custom vscode";
+  options.homeModules.programs.vscode.enable = lib.mkEnableOption "custom vscode";
   config.programs.vscode = {
     enable = cfg.enable;
     package = pkgs.vscodium;

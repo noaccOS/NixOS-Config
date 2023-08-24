@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.emacs;
+  cfg = config.homeModules.programs.emacs;
 in
 {
-  options.homeModules.emacs = {
-    enable = lib.mkEnableOption "custom emacs";
+  options.homeModules.programs.emacs = {
+    enable = lib.mkEnableOption "Emacs";
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.emacs-gtk;

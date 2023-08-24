@@ -63,7 +63,7 @@ nixpkgs.lib.nixosSystem rec {
               gui.enable = true;
               theming.enable = true;
               theming.theme = "catppuccin";
-              emacs.package = emacs-overlay.packages.${system}.emacs-pgtk;
+              programs.emacs.package = emacs-overlay.packages.${system}.emacs-pgtk;
             };
           } // import ../home/home.nix inputs;
         extraSpecialArgs = {

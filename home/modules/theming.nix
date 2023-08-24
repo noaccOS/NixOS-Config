@@ -28,8 +28,8 @@ in
     };
 
     homeModules = {
-      packages = {
-        wezterm.theme = themes.wezterm;
+      programs = {
+        wezterm.packageModule.theme = themes.wezterm;
       };
     };
 
