@@ -1572,5 +1572,13 @@
         "key": "shift+tab",
         "command": "-markdowntable.prevCell",
         "when": "editorTextFocus && markdowntable.contextkey.selection.InMarkdownTable && !editorReadonly && !editorTabMovesFocus && !inSnippetMode && !suggestWidgetMultipleSuggestions && !suggestWidgetVisible"
+    },
+    {
+      "key": "ctrl+h ctrl+h",
+      "command": "workbench.action.terminal.runActiveFile"
+    },
+    {
+      "key": "ctrl+h ctrl+shift+h",
+      "command": "workbench.action.terminal.runSelectedText"
     }
 ]
