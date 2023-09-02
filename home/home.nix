@@ -10,11 +10,11 @@
   homeModules.programs.vscode.defaultEditor = true;
 
   imports = [
-    ./modules/theming.nix
     ./modules/cli.nix
     ./modules/gui.nix
     ./modules/gui.nix
     ./modules/nixgl.nix
+    ./modules/theming.nix
     ./modules/programs/emacs.nix
     ./modules/programs/foot.nix
     ./modules/programs/mpv.nix
