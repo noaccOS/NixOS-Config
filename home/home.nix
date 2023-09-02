@@ -7,6 +7,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  homeModules.programs.vscode.defaultEditor = true;
+
   imports = [
     ./modules/theming.nix
     ./modules/cli.nix
