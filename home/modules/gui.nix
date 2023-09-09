@@ -6,10 +6,10 @@ in
   options.homeModules.gui.enable = lib.mkEnableOption "gui programs";
 
   config.homeModules = {
-    programs.emacs.enable = cfg.enable;
+    programs.emacs.enable = false;
     programs.foot.enable = cfg.enable;
     programs.mpv.enable = cfg.enable;
     programs.vscode.enable = cfg.enable;
-    programs.wezterm.enable = cfg.enable;
+    programs.wezterm.enable = false;
   };
 }
