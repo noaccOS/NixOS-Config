@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.programs.wezterm;
+  cfg = config.homeModules.programs.terminals.wezterm;
 in
 {
-  options.homeModules.programs.wezterm.enable = lib.mkEnableOption "custom wezterm";
+  options.homeModules.programs.terminals.wezterm.enable = lib.mkEnableOption "custom wezterm";
 
-  config.homeModules.programs.wezterm.packageModule = {
+  config.homeModules.programs.terminals.wezterm.packageModule = {
     enable = cfg.enable;
     font = {
       family = [

@@ -4,11 +4,10 @@ with builtins;
 with lib;
 
 let
-  cfg = config.homeModules.programs.wezterm.packageModule;
-  sources = import ./sources { inherit lib cfg; };
+  cfg = config.homeModules.programs.terminals.wezterm.packageModule;
 in
 {
-  options.homeModules.programs.wezterm.packageModule = {
+  options.homeModules.programs.terminals.wezterm.packageModule = {
     enable = mkEnableOption "wezterm";
 
     theme = mkOption {

@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.programs.emacs;
+  cfg = config.homeModules.programs.editors.emacs;
 in
 {
-  options.homeModules.programs.emacs = {
+  options.homeModules.programs.editors.emacs = {
     enable = lib.mkEnableOption "Emacs";
     package = lib.mkOption {
       type = lib.types.package;

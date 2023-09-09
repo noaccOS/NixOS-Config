@@ -12,7 +12,6 @@
   imports = [
     ./modules/cli.nix
     ./modules/gui.nix
-    ./modules/gui.nix
     ./modules/nixgl.nix
     ./modules/theming.nix
     ./modules/programs/emacs.nix

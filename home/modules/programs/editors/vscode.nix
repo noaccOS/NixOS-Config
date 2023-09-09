@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.programs.vscode;
+  cfg = config.homeModules.programs.editors.vscode;
 
   customPackages = import vscode/customPackages.nix {
     buildVscodeMarketplaceExtension = pkgs.vscode-utils.buildVscodeMarketplaceExtension;
@@ -11,7 +11,7 @@ let
   keybindings = lib.pipe vscode/keybindings.json [ builtins.readFile builtins.fromJSON ];
 in
 {
-  options.homeModules.programs.vscode = {
+  options.homeModules.programs.editors.vscode = {
     enable = lib.mkEnableOption "VSCode";
     package = lib.mkOption {
       type = lib.types.package;

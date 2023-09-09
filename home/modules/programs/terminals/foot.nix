@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.programs.foot;
+  cfg = config.homeModules.programs.terminals.foot;
 in
 {
-  options.homeModules.programs.foot = {
+  options.homeModules.programs.terminals.foot = {
     enable = lib.mkEnableOption "foot";
   };
 

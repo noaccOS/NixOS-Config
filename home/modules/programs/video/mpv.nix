@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.programs.mpv;
+  cfg = config.homeModules.programs.video.mpv;
 in
 {
-  options.homeModules.programs.mpv = {
+  options.homeModules.programs.video.mpv = {
     enable = lib.mkEnableOption "mpv";
   };
   config.programs.mpv = {
