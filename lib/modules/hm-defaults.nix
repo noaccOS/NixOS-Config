@@ -6,7 +6,7 @@ inputs:
     gui.enable = true;
     theming.enable = true;
     theming.theme = "catppuccin";
-    programs.vscode.defaultEditor = true;
-    programs.emacs.package = inputs.emacs-overlay.packages.${system}.emacs-pgtk;
+    programs.editors.vscode.defaultEditor = true;
+    programs.editors.emacs.package = inputs.emacs-overlay.packages.${system}.emacs-pgtk;
   };
 }

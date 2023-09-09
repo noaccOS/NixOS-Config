@@ -29,7 +29,7 @@ in
 
     homeModules = {
       programs = {
-        wezterm.packageModule.theme = themes.wezterm;
+        terminals.wezterm.packageModule.theme = themes.wezterm;
       };
     };
 
