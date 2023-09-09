@@ -1,5 +1,6 @@
 system:
 inputs:
+{ config, ... }:
 {
   homeModules = {
     cli.enable = true;
