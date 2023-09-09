@@ -10,10 +10,9 @@ home-manager.lib.homeManagerConfiguration {
   };
   modules = [
     ../home/home.nix
+    (import ./modules/hm-defaults system inputs)
 
     {
-      config.homeModules.programs.programs.vscode.defaultEditor = true;
-      config.homeModules.programs.emacs.package = emacs-overlay.packages.${system}.emacsPgtk;
       config.homeModules.cli.sourceNix = true;
       config.homeModules.nixgl = {
         enable = system == "x86_64-linux";

@@ -1,6 +1,6 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-{ nixpkgs, home-manager, emacs-overlay, ... }@inputs:
+{ nixpkgs, home-manager, emacs-overlay, ... }@flake-inputs:
 name: { system ? "x86_64-linux"
       , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
       , wan ? "${name}.local"
@@ -58,14 +58,7 @@ nixpkgs.lib.nixosSystem rec {
         useUserPackages = true;
         users.${user.name} = ({ pkgs, ... }@inputs:
           {
-            imports = [ ../home/home.nix ];
-            homeModules = {
-              cli.enable = true;
-              gui.enable = true;
-              theming.enable = true;
-              theming.theme = "catppuccin";
-              programs.emacs.package = emacs-overlay.packages.${system}.emacs-pgtk;
-            };
+            imports = [ ../home/home.nix (import ./modules/hm-defaults.nix system flake-inputs) ];
           });
         extraSpecialArgs = {
           inherit user;
