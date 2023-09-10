@@ -8,7 +8,10 @@ name: { system ? "x86_64-linux"
       , localModules ? [ ]
       , extraModules ? [ ]
       }:
-nixpkgs.lib.nixosSystem rec {
+let
+  lib = nixpkgs.lib;
+in
+lib.nixosSystem rec {
   inherit system;
 
   modules = extraModules ++ [
@@ -49,7 +52,7 @@ nixpkgs.lib.nixosSystem rec {
         ../modules/xmonad.nix
       ];
 
-      noaccOSModules = builtins.listToAttrs (nixpkgs.lib.forEach localModules (m: { name = m; value = { enable = true; }; }));
+      noaccOSModules = builtins.listToAttrs (lib.forEach localModules (m: { name = m; value = { enable = true; }; }));
     }
 
     home-manager.nixosModules.home-manager
