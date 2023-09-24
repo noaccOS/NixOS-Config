@@ -14,7 +14,7 @@
     htop
     fd # find
     ripgrep # rg (grep)
-    exa # ls
+    eza # ls
     bat # cat
     tealdeer # tldr
     unzip

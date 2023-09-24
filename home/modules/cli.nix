@@ -3,13 +3,13 @@ let
   cfg = config.homeModules.cli;
   aliases = {
     defaults = {
-      exa = "${pkgs.exa}/bin/exa --color=auto --icons -a";
+      eza = "${pkgs.eza}/bin/eza --color=auto --icons -a";
     };
 
-    exa = {
-      ls = "${aliases.defaults.exa}";
-      ll = "${aliases.defaults.exa} -l";
-      lt = "${aliases.defaults.exa} --tree";
+    eza = {
+      ls = "${aliases.defaults.eza}";
+      ll = "${aliases.defaults.eza} -lh";
+      lt = "${aliases.defaults.eza} --tree";
     };
 
     fd = {
@@ -51,14 +51,14 @@ in
         nix-direnv.enable = true;
       };
 
-      exa = {
+      eza = {
         enable = true;
         # enableAliases = true; # I'm probably doing my own aliases
       };
 
       fish = {
         enable = true;
-        shellAliases = aliases.exa // aliases.fd;
+        shellAliases = aliases.eza // aliases.fd;
 
         interactiveShellInit = ''
           ${pkgs.fastfetch}/bin/fastfetch
