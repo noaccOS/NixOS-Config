@@ -27,6 +27,17 @@ lib.nixosSystem rec {
     {
       nixpkgs.overlays = overlays ++ [ emacs-overlay.overlays.default ];
       networking.hostName = name;
+
+      nix = {
+        registry.nixpkgs.flake = nixpkgs;
+        channel.enable = false;
+        settings.nix-path = "nixpkgs=${nixpkgs}";
+      };
+
+      programs = {
+        nix-index.enable = true;
+        command-not-found.enable = false;
+      };
     }
 
     ../modules/base.nix
