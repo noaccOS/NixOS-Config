@@ -40,7 +40,6 @@ in
       lutris
       heroic
       yuzu-mainline
-      ryujinx
     ];
 
     programs.steam.enable = true;
