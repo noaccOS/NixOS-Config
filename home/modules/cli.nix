@@ -80,6 +80,8 @@ in
           ".nix-mix/"
           ".nix-hex/"
           ".envrc"
+          ".vscode/"
+          "result"
         ];
         extraConfig = {
           init.defaultBranch = "main";
