@@ -13,6 +13,8 @@ in
     environment.systemPackages = with pkgs; [
       timewarrior
       firefox
+      kubectl
+      (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
     ] ++ lib.optional cfg.enablePodman pkgs.podman-compose;
 
     users.users.tech = {
@@ -24,7 +26,10 @@ in
 
     virtualisation.docker = {
       enable = lib.mkDefault cfg.enablePodman;
+      enableOnBoot = false;
     };
+
+    networking.firewall.allowedTCPPorts = [ 4000 8080 ];
 
     users.users.${currentUser.name}.extraGroups = [ "docker" "podman" ];
 
