@@ -120,6 +120,7 @@
         "CFSSL",
         "datastream",
         "datastreams",
+        "dedup",
         "dontcare",
         "Edgehog",
         "keypair",
@@ -129,5 +130,6 @@
         "unregistering",
         "upserting",
         "Xandra"
-    ]
+    ],
+    "githubPullRequests.pullBranch": "never"
 }
