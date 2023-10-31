@@ -111,7 +111,6 @@
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "gitlens.rebaseEditor.ordering": "asc",
     "window.restoreWindows": "none",
-    "window.zoomLevel": 1,
     "cSpell.userWords": [
         "AMQP",
         "astartectl",
