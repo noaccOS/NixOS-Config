@@ -15,8 +15,8 @@ in
       discord-canary
     ];
 
-    security.doas.extraRules = [
-      { users = [ currentUser.name ]; keepEnv = true; noPass = true; }
+    security.sudo-rs.extraRules = [
+      { users = [ currentUser.name ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }
     ];
   };
 }

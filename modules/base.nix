@@ -63,12 +63,9 @@
   security = {
     rtkit.enable = true;
     sudo.enable = false;
-    doas = {
+    sudo-rs = {
       enable = true;
-      extraRules = [
-        { groups = [ "wheel" ]; keepEnv = true; persist = true; }
-        { users = [ "root" ]; keepEnv = true; noPass = true; }
-      ];
+      execWheelOnly = true;
     };
   };
 
