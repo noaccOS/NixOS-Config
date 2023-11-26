@@ -64,6 +64,7 @@
     rtkit.enable = true;
     sudo.enable = false;
     pam.services.sudo.nodelay = true;
+    pam.services.login.nodelay = true;
     sudo-rs = {
       enable = true;
       execWheelOnly = true;
