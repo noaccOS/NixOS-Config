@@ -12,7 +12,6 @@ in
 
     environment.defaultPackages = with pkgs; [
       tdesktop
-      discord-canary
     ];
 
     security.sudo-rs.extraRules = [
