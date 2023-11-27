@@ -41,6 +41,7 @@
       keep-outputs     = true
       keep-derivations = true
       experimental-features = nix-command flakes
+      commit-lockfile-summary = chore(flake): update inputs
     '';
 
     gc = {
