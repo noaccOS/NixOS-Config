@@ -31,7 +31,7 @@ in
     programs.vscode = {
       enable = true;
       package = cfg.package;
-      inherit userSettings keybindings;
+      # inherit userSettings keybindings;
 
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = true;
