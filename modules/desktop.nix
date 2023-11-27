@@ -21,7 +21,6 @@ in
       defaultPackages = with pkgs; [
         libsForQt5.breeze-qt5
         ungoogled-chromium
-        wezterm
         xorg.xhost
         xorg.xmodmap
         pavucontrol
