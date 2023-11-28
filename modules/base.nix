@@ -84,6 +84,7 @@
         userServices = true;
       };
     };
+    fwupd.enable = true;
     openssh = {
       enable = true;
       knownHosts = {
