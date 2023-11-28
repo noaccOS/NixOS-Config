@@ -90,7 +90,11 @@ in
     };
 
     hardware = {
-      bluetooth.enable = true;
+      bluetooth = {
+        enable = true;
+        package = pkgs.bluez5-experimental;
+        settings.General.Experimental = true;
+      };
       nitrokey.enable = true;
       opengl = {
         enable = true;
