@@ -121,6 +121,7 @@
         "datastreams",
         "dedup",
         "dontcare",
+        "dotenv",
         "Edgehog",
         "keypair",
         "Keyspace",
@@ -128,6 +129,7 @@
         "SECO",
         "unregistering",
         "upserting",
+        "whereis",
         "Xandra"
     ],
     "githubPullRequests.pullBranch": "never"
