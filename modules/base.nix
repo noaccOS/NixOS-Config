@@ -41,6 +41,7 @@
       keep-outputs     = true
       keep-derivations = true
       experimental-features = nix-command flakes
+      commit-lockfile-summary = chore(flake): update inputs
     '';
 
     gc = {
@@ -63,12 +64,11 @@
   security = {
     rtkit.enable = true;
     sudo.enable = false;
-    doas = {
+    pam.services.sudo.nodelay = true;
+    pam.services.login.nodelay = true;
+    sudo-rs = {
       enable = true;
-      extraRules = [
-        { groups = [ "wheel" ]; keepEnv = true; persist = true; }
-        { users = [ "root" ]; keepEnv = true; noPass = true; }
-      ];
+      execWheelOnly = true;
     };
   };
 

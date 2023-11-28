@@ -112,6 +112,7 @@
     "gitlens.rebaseEditor.ordering": "asc",
     "window.restoreWindows": "none",
     "cSpell.userWords": [
+        "acked",
         "AMQP",
         "astartectl",
         "autodiscovery",
