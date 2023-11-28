@@ -1,19 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, mutterTripleBufferOverlay, ... }:
 let
   cfg = config.noaccOSModules.intel;
-  gnomeOverlay = self: super: {
-    gnome = super.gnome.overrideScope' (gself: gsuper: {
-      mutter = gsuper.mutter.overrideAttrs (oldAttrs: {
-        src = super.fetchFromGitLab {
-          domain = "gitlab.gnome.org";
-          owner = "Community/Ubuntu";
-          repo = "mutter";
-          rev = "1bf8ae3e26a7508be4e2901c1afc025aea7d8465";
-          sha256 = "sha256-GoJRuPXNXyEGuhgEPFXdCXZMKS/H2GnrOTzyIuj/zho=";
-        };
-      });
-    });
-  };
 in
 {
   options.noaccOSModules.intel = {
@@ -27,6 +14,6 @@ in
       intel-compute-runtime
     ];
 
-    nixpkgs.overlays = [ gnomeOverlay ];
+    nixpkgs.overlays = [ mutterTripleBufferOverlay ];
   };
 }

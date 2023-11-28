@@ -1,6 +1,6 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-{ nixpkgs, home-manager, emacs-overlay, ... }@flake-inputs:
+{ nixpkgs, home-manager, emacs-overlay, mutter-triple-buffer, ... }@flake-inputs:
 name: { system ? "x86_64-linux"
       , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
       , wan ? "${name}.local"
@@ -16,12 +16,23 @@ lib.nixosSystem rec {
 
   modules = extraModules ++ [
     {
-      config._module.args = {
-        currentSystemName = name;
-        currentDomainName = wan;
-        currentSystem = system;
-        currentUser = user;
-      };
+      config._module.args =
+        let
+          mutterTripleBufferOverlay = (self: super: {
+            gnome = super.gnome.overrideScope' (gself: gsuper: {
+              mutter = gsuper.mutter.overrideAttrs ({
+                src = mutter-triple-buffer;
+              });
+            });
+          });
+        in
+        {
+          currentSystemName = name;
+          currentDomainName = wan;
+          currentSystem = system;
+          currentUser = user;
+          inherit mutterTripleBufferOverlay;
+        };
     }
 
     {

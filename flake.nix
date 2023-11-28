@@ -18,10 +18,18 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mutter-triple-buffer = {
+      type = "gitlab";
+      owner = "Community%2FUbuntu";
+      repo = "mutter";
+      ref = "triple-buffering-v4-45";
+      host = "gitlab.gnome.org";
+      flake = false;
+    };
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nixgl, emacs-overlay }@inputs:
+    { self, nixpkgs, home-manager, nixgl, emacs-overlay, mutter-triple-buffer }@inputs:
     let
       makeSystem = import ./lib/makeSystem.nix inputs;
       makeHome = import ./lib/makeHome.nix inputs;
