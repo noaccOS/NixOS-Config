@@ -50,7 +50,4 @@
       Option         "BaseMosaic" "off"
     '';
   };
-
-  services.postgresql.enable = true;
-
 }

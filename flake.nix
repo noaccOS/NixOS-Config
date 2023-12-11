@@ -39,6 +39,7 @@
         mayoi = makeSystem "mayoi" {
           localModules = [
             "desktop"
+            "docker"
             "personal"
             "gaming"
             "gnome"
@@ -78,6 +79,7 @@
           localModules = [
             "desktop"
             "work"
+            "docker"
             "intel"
             "gnome"
             "development"

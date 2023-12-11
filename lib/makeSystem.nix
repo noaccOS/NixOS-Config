@@ -60,6 +60,7 @@ lib.nixosSystem rec {
         ../modules/canon.nix
         ../modules/desktop.nix
         ../modules/development.nix
+        ../modules/docker.nix
         ../modules/gaming.nix
         ../modules/gnome.nix
         ../modules/intel.nix
