@@ -124,6 +124,7 @@
         "dontcare",
         "dotenv",
         "Edgehog",
+        "Itertools",
         "keypair",
         "Keyspace",
         "noreply",
