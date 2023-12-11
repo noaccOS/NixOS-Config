@@ -129,6 +129,7 @@
         "Keyspace",
         "noreply",
         "SECO",
+        "ttyd",
         "unregistering",
         "upserting",
         "whereis",
