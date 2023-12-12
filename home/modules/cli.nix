@@ -129,6 +129,7 @@ in
           elixir.symbol = " ";
           elm.symbol = " ";
           fossil_branch.symbol = " ";
+          gcloud.disabled = true;
           git_branch.symbol = " ";
           golang.symbol = " ";
           guix_shell.symbol = " ";
