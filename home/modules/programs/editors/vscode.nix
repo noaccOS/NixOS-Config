@@ -33,8 +33,8 @@ in
       package = cfg.package;
       # inherit userSettings keybindings;
 
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = true;
+      # enableUpdateCheck = false;
+      # enableExtensionUpdateCheck = true;
 
       extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc
