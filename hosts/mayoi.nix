@@ -7,8 +7,11 @@
 
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
+  boot.kernelParams = [ "amd_pstate=active" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+
+  hardware.cpu.amd.updateMicrocode = true;
 
   fileSystems."/" =
     {
