@@ -59,10 +59,8 @@ lib.nixosSystem rec {
         ../modules/personal.nix
         ../modules/plasma.nix
         ../modules/server.nix
-        ../modules/sway.nix
         ../modules/work.nix
         ../modules/virtualization.nix
-        ../modules/xmonad.nix
       ];
 
       noaccOSModules = builtins.listToAttrs (lib.forEach localModules (m: { name = m; value = { enable = true; }; }));
