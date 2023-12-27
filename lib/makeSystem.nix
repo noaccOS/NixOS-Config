@@ -16,23 +16,13 @@ lib.nixosSystem rec {
 
   modules = extraModules ++ [
     {
-      config._module.args =
-        let
-          mutterTripleBufferOverlay = (self: super: {
-            gnome = super.gnome.overrideScope' (gself: gsuper: {
-              mutter = gsuper.mutter.overrideAttrs ({
-                src = mutter-triple-buffer;
-              });
-            });
-          });
-        in
-        {
-          currentSystemName = name;
-          currentDomainName = wan;
-          currentSystem = system;
-          currentUser = user;
-          inherit mutterTripleBufferOverlay;
-        };
+      config._module.args = {
+        currentSystemName = name;
+        currentDomainName = wan;
+        currentSystem = system;
+        currentUser = user;
+        inputs = flake-inputs;
+      };
     }
 
     {
@@ -88,6 +78,7 @@ lib.nixosSystem rec {
           });
         extraSpecialArgs = {
           inherit user;
+          inputs = flake-inputs;
         };
       };
     }

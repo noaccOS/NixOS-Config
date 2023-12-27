@@ -22,6 +22,6 @@ home-manager.lib.homeManagerConfiguration {
   ];
 
   extraSpecialArgs = {
-    inherit user;
+    inherit user inputs;
   };
 }
