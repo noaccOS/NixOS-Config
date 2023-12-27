@@ -26,10 +26,29 @@
       host = "gitlab.gnome.org";
       flake = false;
     };
+
+    catppuccin-bat = {
+      type = "github";
+      owner = "catppuccin";
+      repo = "bat";
+      flake = false;
+    };
+    catppuccin-fish = {
+      type = "github";
+      owner = "catppuccin";
+      repo = "fish";
+      flake = false;
+    };
+    catppuccin-starship = {
+      type = "github";
+      owner = "catppuccin";
+      repo = "starship";
+      flake = false;
+    };
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nixgl, emacs-overlay, mutter-triple-buffer }@inputs:
+    { self, nixpkgs, home-manager, ... }@inputs:
     let
       makeSystem = import ./lib/makeSystem.nix inputs;
       makeHome = import ./lib/makeHome.nix inputs;
@@ -95,5 +114,6 @@
         };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      legacyPackages = nixpkgs.legacyPackages;
     };
 }

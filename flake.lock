@@ -1,5 +1,53 @@
 {
   "nodes": {
+    "catppuccin-bat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668065083,
+        "narHash": "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=",
+        "owner": "catppuccin",
+        "repo": "bat",
+        "rev": "ba4d16880d63e656acced2b7d4e034e4a93f74b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "bat",
+        "type": "github"
+      }
+    },
+    "catppuccin-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698929621,
+        "narHash": "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg=",
+        "owner": "catppuccin",
+        "repo": "fish",
+        "rev": "0ce27b518e8ead555dec34dd8be3df5bd75cff8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "fish",
+        "type": "github"
+      }
+    },
+    "catppuccin-starship": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689246850,
+        "narHash": "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=",
+        "owner": "catppuccin",
+        "repo": "starship",
+        "rev": "5629d2356f62a9f2f8efad3ff37476c19969bd4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "starship",
+        "type": "github"
+      }
+    },
     "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -148,6 +196,9 @@
     },
     "root": {
       "inputs": {
+        "catppuccin-bat": "catppuccin-bat",
+        "catppuccin-fish": "catppuccin-fish",
+        "catppuccin-starship": "catppuccin-starship",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "mutter-triple-buffer": "mutter-triple-buffer",

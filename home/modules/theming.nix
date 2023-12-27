@@ -1,41 +1,39 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.homeModules.theming;
-
-  allThemes = import theming/themes.nix;
-  allSources = import theming/sources.nix;
-
-  themes = lib.mapAttrs (_name: themes: themes.${cfg.theme}) allThemes;
-  sources = lib.mapAttrs (_name: sources: sources.${cfg.theme}) allSources;
+  theme = pkgs.callPackage ./themes/${cfg.theme.name}.nix { inherit inputs; inherit (cfg.theme) variant; };
 in
+with lib;
 {
   options.homeModules.theming = {
-    enable = lib.mkEnableOption "custom theming";
-    theme = lib.mkOption {
-      type = lib.types.enum [ "dracula" "nord" "catppuccin" ];
-      default = "catppuccin";
+    enable = mkEnableOption "custom theming";
+    theme = mkOption {
+      type = types.submodule {
+        options = {
+          name = mkOption { type = types.enum [ "catppuccin" ]; default = "catppuccin"; };
+          variant = mkOption {
+            type = types.nullOr types.str;
+            description = "theme variant (eg \"mocha\" for catppuccin mocha). null when theme does not have variants.";
+            default = null;
+          };
+        };
+      };
+      default = { name = "catppuccin"; variant = "mocha"; };
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs = {
       bat = {
-        config.theme = themes.bat;
-        themes = lib.mkIf (sources.bat != null) {
-          ${themes.bat} = sources.bat;
+        config.theme = theme.bat.name;
+        themes = mkIf theme.bat.withSource {
+          ${theme.bat.name} = { inherit (theme.bat) src file; };
         };
       };
-    };
-
-    homeModules = {
-      programs = {
-        terminals.wezterm.packageModule.theme = themes.wezterm;
+      fish = {
+        plugins = [ theme.fish.plugin ];
       };
+      starship.settings = theme.starship;
     };
-
-    xdg.configFile = lib.mkIf (sources.wezterm.dest != null) {
-      "wezterm/colors/${sources.wezterm.dest}".source = sources.wezterm.src;
-    };
-
   };
 }
