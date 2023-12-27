@@ -46,7 +46,6 @@ in
         roboto
         joypixels
         symbola
-        emacs-all-the-icons-fonts
 
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];

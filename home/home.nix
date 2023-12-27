@@ -11,11 +11,8 @@
     ./modules/gui.nix
     ./modules/nixgl.nix
     ./modules/theming.nix
-    ./modules/programs/editors/emacs.nix
     ./modules/programs/editors/vscode.nix
     ./modules/programs/terminals/foot.nix
-    ./modules/programs/terminals/wezterm.nix
-    ./modules/programs/terminals/wezterm/module.nix
     ./modules/programs/video/mpv.nix
   ];
 

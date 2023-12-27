@@ -1,6 +1,6 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-{ nixpkgs, home-manager, emacs-overlay, mutter-triple-buffer, ... }@flake-inputs:
+{ nixpkgs, home-manager, mutter-triple-buffer, ... }@flake-inputs:
 name: { system ? "x86_64-linux"
       , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
       , wan ? "${name}.local"
@@ -26,7 +26,7 @@ lib.nixosSystem rec {
     }
 
     {
-      nixpkgs.overlays = overlays ++ [ emacs-overlay.overlays.default ];
+      nixpkgs.overlays = overlays;
       networking.hostName = name;
 
       nix = {

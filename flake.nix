@@ -14,10 +14,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     mutter-triple-buffer = {
       type = "gitlab";
       owner = "Community%2FUbuntu";
