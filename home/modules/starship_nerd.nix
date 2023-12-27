@@ -73,4 +73,4 @@
     Unknown = " ";
     Windows = "󰍲 ";
   };
-};
+}
