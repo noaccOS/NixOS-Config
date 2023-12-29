@@ -55,10 +55,10 @@ let
 
   gnomeThemeProfileSettings = lib.mkIf cfg.gnomeTheme {
     userChrome = ''
-      @import "../../firefox-gnome-theme/userChrome.css
+      @import "../../firefox-gnome-theme/userChrome.css"
     '';
     userContent = ''
-      @import "../../firefox-gnome-theme/userContent.css
+      @import "../../firefox-gnome-theme/userContent.css"
     '';
 
     settings = {
@@ -116,7 +116,9 @@ in
         };
       };
 
-      home.file.".mozilla/firefox/firefox-gnome-theme".source = lib.mkIf cfg.gnomeTheme inputs.firefox-gnome-theme;
+      home.file.".mozilla/firefox/firefox-gnome-theme" = lib.mkIf cfg.gnomeTheme {
+        source = inputs.firefox-gnome-theme;
+      };
     })
 
     (lib.mkIf cfg.defaultBrowser {
