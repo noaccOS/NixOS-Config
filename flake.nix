@@ -15,6 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Overrides
     mutter-triple-buffer = {
       type = "gitlab";
       owner = "Community%2FUbuntu";
@@ -24,6 +25,7 @@
       flake = false;
     };
 
+    # Theming
     catppuccin-bat = {
       type = "github";
       owner = "catppuccin";
