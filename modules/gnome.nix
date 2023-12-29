@@ -35,6 +35,9 @@ in
     programs = {
       kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
     };
+    services.gnome = {
+      gnome-browser-connector.enable = true;
+    };
     services.gvfs.enable = true;
     services.xserver = {
       displayManager.gdm.enable = true;
