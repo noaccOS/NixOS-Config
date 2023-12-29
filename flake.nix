@@ -14,6 +14,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rycee = {
+      url = "gitlab:rycee/nur-expressions";
+      flake = false;
+    };
 
     # Overrides
     mutter-triple-buffer = {

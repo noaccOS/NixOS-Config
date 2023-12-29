@@ -146,7 +146,24 @@
         "home-manager": "home-manager",
         "mutter-triple-buffer": "mutter-triple-buffer",
         "nixgl": "nixgl",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rycee": "rycee"
+      }
+    },
+    "rycee": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703837353,
+        "narHash": "sha256-Zjm7OBf3j8RE0XOZv3fl/lx2NokO8nHVaw8OGVIIckE=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "562f210ae8fd096ccc9d946bbfcc848cf6034689",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
       }
     }
   },
