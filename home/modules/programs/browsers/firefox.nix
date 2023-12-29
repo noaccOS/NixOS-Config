@@ -1,0 +1,134 @@
+{ config, pkgs, lib, inputs, ... }:
+let
+  cfg = config.homeModules.programs.browsers.firefox;
+  ffcfg = config.programs.firefox;
+  rycee = import (inputs.rycee + "/default.nix") { inherit pkgs; };
+
+  defaultProfileSettings = {
+    search.default = "Brave";
+    search.privateDefault = "Brave";
+    search.order = [ "Brave" "Nix Packages" "Google" ];
+    search.force = true;
+    search.engines =
+      let updateDaily = 86400000;
+      in {
+        "Nix Packages" = {
+          urls = [{
+            template = "https://search.nixos.org/packages";
+            params = [
+              { name = "type"; value = "packages"; }
+              { name = "query"; value = "{searchTerms}"; }
+            ];
+          }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@n" ];
+        };
+        "NixOS Wiki" = {
+          urls = [{
+            template = "https://nixos.wiki/index.php?search={searchTerms}";
+          }];
+          iconUpdateURL = "https://nixos.wiki/favicon.png";
+          updateInterval = updateDaily;
+          definedAliases = [ "@nw" ];
+        };
+        "Bing".metaData.hidden = true;
+        "Google".metaData.alias = "@g";
+        "Brave" = {
+          urls = [{ template = "https://search.brave.com/search?q={searchTerms}"; }];
+          iconUpdateURL = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon.c09fe1a1.ico";
+          updateInterval = updateDaily;
+          definedAliases = [ "@b" ];
+        };
+      };
+
+    extensions = with rycee.firefox-addons; [
+      bitwarden
+      consent-o-matic
+      firefox-color
+      libredirect
+      privacy-badger
+      sponsorblock
+      stylus
+      ublock-origin
+    ];
+  };
+
+  gnomeThemeProfileSettings = lib.mkIf cfg.gnomeTheme {
+    userChrome = ''
+      @import "../../firefox-gnome-theme/userChrome.css
+    '';
+    userContent = ''
+      @import "../../firefox-gnome-theme/userContent.css
+    '';
+
+    settings = {
+      "browser.theme.dark-private-windows" = false;
+      "browser.uidensity" = 0;
+      "gnomeTheme.closeOnlySelectedTabs" = true;
+      "gnomeTheme.hideSingleTab" = true;
+      "svg.context-properties.content.enabled" = true;
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      "widget.gtk.rounded-bottom-corners.enabled" = true;
+    };
+  };
+
+  containers = {
+    containers = {
+      work = {
+        id = 0;
+        color = "pink";
+        icon = "dollar";
+      };
+
+      guest = {
+        id = 1;
+        color = "purple";
+        icon = "gift";
+      };
+
+      clean = {
+        id = 2;
+        color = "turquoise";
+        icon = "fence";
+      };
+    };
+  };
+
+  finalProfileSettings = defaultProfileSettings // gnomeThemeProfileSettings // containers;
+in
+{
+  options.homeModules.programs.browsers.firefox = {
+    enable = lib.mkEnableOption "firefox";
+    gnomeTheme = lib.mkEnableOption "gnome theme for firefox" // { default = true; };
+    defaultBrowser = lib.mkEnableOption "firefox as the default web browser";
+    profileSettinsgOverrides = lib.mkOption { type = lib.types.attrSet; default = { }; };
+  };
+
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      programs.firefox = {
+        enable = true;
+        enableGnomeExtensions = true;
+        profiles = {
+          default = finalProfileSettings // {
+            id = 0;
+          };
+        };
+      };
+
+      home.file.".mozilla/firefox/firefox-gnome-theme".source = lib.mkIf cfg.gnomeTheme inputs.firefox-gnome-theme;
+    })
+
+    (lib.mkIf cfg.defaultBrowser {
+      xdg.mimeApps.defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
+
+      home.sessionVariables.DEFAULT_BROWSER = "${ffcfg.finalPackage}/bin/firefox";
+    })
+  ];
+}
