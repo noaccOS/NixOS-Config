@@ -12,6 +12,15 @@ let
     search.engines =
       let updateDaily = 86400000;
       in {
+        "Brave" = {
+          urls = [{ template = "https://search.brave.com/search?q={searchTerms}"; }];
+          iconUpdateURL = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon.c09fe1a1.ico";
+          updateInterval = updateDaily;
+          definedAliases = [ "@b" ];
+        };
+        "Bing".metaData.hidden = true;
+        "Google".metaData.alias = "@g";
+
         "Nix Packages" = {
           urls = [{
             template = "https://search.nixos.org/packages";
@@ -42,13 +51,15 @@ let
           updateInterval = updateDaily;
           definedAliases = [ "@nw" ];
         };
-        "Bing".metaData.hidden = true;
-        "Google".metaData.alias = "@g";
-        "Brave" = {
-          urls = [{ template = "https://search.brave.com/search?q={searchTerms}"; }];
-          iconUpdateURL = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon.c09fe1a1.ico";
-          updateInterval = updateDaily;
-          definedAliases = [ "@b" ];
+        "Home Manager" = {
+          urls = [{
+            template = "https://mipmip.github.io/home-manager-option-search";
+            params = [
+              { name = "query"; value = "{searchTerms}"; }
+            ];
+          }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@hm" ];
         };
       };
 
