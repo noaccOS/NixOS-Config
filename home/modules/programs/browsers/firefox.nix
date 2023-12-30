@@ -66,8 +66,10 @@ let
     extensions = with rycee.firefox-addons; [
       bitwarden
       consent-o-matic
+      darkreader
       firefox-color
       libredirect
+      multi-account-containers
       privacy-badger
       sponsorblock
       stylus
