@@ -97,19 +97,19 @@ let
   containers = {
     containers = {
       work = {
-        id = 0;
+        id = 1;
         color = "pink";
         icon = "dollar";
       };
 
       guest = {
-        id = 1;
+        id = 2;
         color = "purple";
         icon = "gift";
       };
 
       clean = {
-        id = 2;
+        id = 3;
         color = "turquoise";
         icon = "fence";
       };
