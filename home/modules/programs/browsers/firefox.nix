@@ -119,18 +119,26 @@ let
   finalProfileSettings = defaultProfileSettings // gnomeThemeProfileSettings // containers;
 in
 {
-  options.homeModules.programs.browsers.firefox = {
-    enable = lib.mkEnableOption "firefox";
-    gnomeTheme = lib.mkEnableOption "gnome theme for firefox" // { default = true; };
-    defaultBrowser = lib.mkEnableOption "firefox as the default web browser";
-    profileSettinsgOverrides = lib.mkOption { type = lib.types.attrSet; default = { }; };
+  options.homeModules.programs.browsers.firefox = with lib; {
+    enable = mkEnableOption "firefox";
+    defaultBrowser = mkEnableOption "firefox as the default web browser";
+    gnomeTheme = mkEnableOption "gnome theme for firefox" // { default = true; };
+    nativeMessagingHosts = mkOption {
+      type = types.listOf types.package;
+      default = [ pkgs.gnome-browser-connector ];
+    };
+    package = mkOption {
+      type = types.package;
+      default = pkgs.firefox;
+    };
+    profileSettinsgOverrides = mkOption { type = types.attrSet; default = { }; };
   };
 
-  config = lib.mkMerge [
-    (lib.mkIf cfg.enable {
+  config = with lib; mkMerge [
+    (mkIf cfg.enable {
       programs.firefox = {
         enable = true;
-        enableGnomeExtensions = true;
+        package = cfg.package.override { inherit (cfg) nativeMessagingHosts; };
         profiles = {
           default = finalProfileSettings // {
             id = 0;
@@ -138,12 +146,12 @@ in
         };
       };
 
-      home.file.".mozilla/firefox/firefox-gnome-theme" = lib.mkIf cfg.gnomeTheme {
+      home.file.".mozilla/firefox/firefox-gnome-theme" = mkIf cfg.gnomeTheme {
         source = inputs.firefox-gnome-theme;
       };
     })
 
-    (lib.mkIf cfg.defaultBrowser {
+    (mkIf cfg.defaultBrowser {
       xdg.mimeApps.defaultApplications = {
         "text/html" = "firefox.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
