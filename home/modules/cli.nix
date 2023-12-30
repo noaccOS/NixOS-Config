@@ -117,10 +117,13 @@ in
       starship = {
         enable = true;
         enableFishIntegration = true;
-        settings = import ./starship_nerd.nix // {
-          gcloud.disabled = true;
-          nix_shell.heuristic = true;
-        };
+        settings = lib.mkMerge [
+          (import ./starship_nerd.nix)
+          {
+            gcloud.disabled = true;
+            nix_shell.heuristic = true;
+          }
+        ];
       };
     };
   };
