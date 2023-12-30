@@ -118,7 +118,7 @@ let
     };
   };
 
-  finalProfileSettings = defaultProfileSettings // gnomeThemeProfileSettings // containers;
+  finalProfileSettings = lib.mkMerge [ defaultProfileSettings gnomeThemeProfileSettings containers ];
 in
 {
   options.homeModules.programs.browsers.firefox = with lib; {
