@@ -23,6 +23,17 @@ let
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@n" ];
         };
+        "NixOS Options" = {
+          urls = [{
+            template = "https://search.nixos.org/options";
+            params = [
+              { name = "channel"; value = "unstable"; }
+              { name = "query"; value = "{searchTerms}"; }
+            ];
+          }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@no" ];
+        };
         "NixOS Wiki" = {
           urls = [{
             template = "https://nixos.wiki/index.php?search={searchTerms}";
