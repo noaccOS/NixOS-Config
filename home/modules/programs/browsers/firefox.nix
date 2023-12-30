@@ -75,10 +75,13 @@ let
       sponsorblock
       stylus
       ublock-origin
+    ] ++ lib.lists.optionals cfg.gnomeIntegration [
+      gnome-shell-integration
+      gsconnect
     ];
   };
 
-  gnomeThemeProfileSettings = lib.mkIf cfg.gnomeTheme {
+  gnomeThemeProfileSettings = lib.mkIf cfg.gnomeIntegration {
     userChrome = ''
       @import "../../firefox-gnome-theme/userChrome.css"
     '';
@@ -125,10 +128,10 @@ in
   options.homeModules.programs.browsers.firefox = with lib; {
     enable = mkEnableOption "firefox";
     defaultBrowser = mkEnableOption "firefox as the default web browser";
-    gnomeTheme = mkEnableOption "gnome theme for firefox" // { default = true; };
-    nativeMessagingHosts = mkOption {
+    gnomeIntegration = mkEnableOption "gnome integration for firefox";
+    extraNativeMessagingHosts = mkOption {
       type = types.listOf types.package;
-      default = [ pkgs.gnome-browser-connector ];
+      default = [ ];
     };
     package = mkOption {
       type = types.package;
@@ -141,7 +144,9 @@ in
     (mkIf cfg.enable {
       programs.firefox = {
         enable = true;
-        package = cfg.package.override { inherit (cfg) nativeMessagingHosts; };
+        package =
+          let nativeMessagingHosts = cfg.extraNativeMessagingHosts ++ lib.lists.optional cfg.gnomeIntegration pkgs.gnome-browser-connector;
+          in cfg.package.override { inherit nativeMessagingHosts; };
         profiles = {
           default = finalProfileSettings // {
             id = 0;
@@ -149,12 +154,12 @@ in
         };
       };
 
-      home.file.".mozilla/firefox/firefox-gnome-theme" = mkIf cfg.gnomeTheme {
+      home.file.".mozilla/firefox/firefox-gnome-theme" = mkIf cfg.gnomeIntegration {
         source = inputs.firefox-gnome-theme;
       };
     })
 
-    (mkIf cfg.defaultBrowser {
+    (mkIf (cfg.enable && cfg.defaultBrowser) {
       xdg.mimeApps.defaultApplications = {
         "text/html" = "firefox.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
