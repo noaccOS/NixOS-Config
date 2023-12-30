@@ -10,7 +10,6 @@ home-manager.lib.homeManagerConfiguration {
   };
   modules = [
     ../home/home.nix
-    (import ./modules/hm-defaults system inputs)
 
     {
       config.homeModules.cli.sourceNix = true;

@@ -22,6 +22,8 @@
     ffmpeg_6-full
   ];
 
+  home-manager.users.${currentUser.name}.homeModules.cli.enable = true;
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {

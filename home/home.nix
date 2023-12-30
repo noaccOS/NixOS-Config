@@ -17,5 +17,7 @@
     ./modules/programs/video/mpv.nix
   ];
 
+  homeModules.theming.enable = lib.mkDefault true;
+
   home.stateVersion = "23.11";
 }

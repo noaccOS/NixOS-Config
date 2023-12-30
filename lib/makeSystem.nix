@@ -70,10 +70,7 @@ lib.nixosSystem rec {
     {
       home-manager = {
         useUserPackages = true;
-        users.${user.name} = ({ pkgs, ... }@inputs:
-          {
-            imports = [ ../home/home.nix (import ./modules/hm-defaults.nix system flake-inputs) ];
-          });
+        users.${user.name} = ({ pkgs, ... }@inputs: { imports = [ ../home/home.nix ]; });
         extraSpecialArgs = {
           inherit user;
           inputs = flake-inputs;

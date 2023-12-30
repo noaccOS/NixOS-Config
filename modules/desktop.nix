@@ -60,6 +60,8 @@ in
       };
     };
 
+    home-manager.users.${currentUser.name}.homeModules.gui.enable = true;
+
     nixpkgs = {
       config.joypixels.acceptLicense = true;
       overlays = [

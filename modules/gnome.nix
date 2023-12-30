@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, currentUser, ... }:
 let
   cfg = config.noaccOSModules.gnome;
 in
@@ -31,6 +31,8 @@ in
         ]
       );
     };
+
+    home-manager.users.${currentUser.name}.homeModules.programs.browsers.firefox.gnomeIntegration = true;
 
     programs = {
       kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
