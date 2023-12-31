@@ -31,21 +31,15 @@
 
     # Theming
     catppuccin-bat = {
-      type = "github";
-      owner = "catppuccin";
-      repo = "bat";
+      url = "github:catppuccin/bat";
       flake = false;
     };
     catppuccin-fish = {
-      type = "github";
-      owner = "catppuccin";
-      repo = "fish";
+      url = "github:catppuccin/fish";
       flake = false;
     };
     catppuccin-starship = {
-      type = "github";
-      owner = "catppuccin";
-      repo = "starship";
+      url = "github:catppuccin/starship";
       flake = false;
     };
     firefox-gnome-theme = {
