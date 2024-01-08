@@ -57,8 +57,8 @@ in
     };
 
     home.sessionVariables = lib.mkIf cfg.defaultEditor {
-      EDITOR = "${cfg.package.executableName} -n --wait";
-      VISUAL = "${cfg.package.executableName} -n --wait";
+      EDITOR = "${cfg.package.executableName} --wait";
+      VISUAL = "${cfg.package.executableName} --wait";
     };
   };
 }
