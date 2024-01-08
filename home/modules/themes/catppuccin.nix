@@ -29,6 +29,10 @@ in
     name = "Catppuccin ${capitalize variant}";
   };
 
+  helix = {
+    name = "catppuccin_${variant}";
+  };
+
   starship =
     lib.trivial.pipe inputs.catppuccin-starship [
       (l: l + "/palettes/${variant}.toml")

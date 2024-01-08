@@ -12,6 +12,7 @@
     ./modules/nixgl.nix
     ./modules/theming.nix
     ./modules/programs/browsers/firefox.nix
+    ./modules/programs/editors/helix.nix
     ./modules/programs/editors/vscode.nix
     ./modules/programs/terminals/foot.nix
     ./modules/programs/video/mpv.nix

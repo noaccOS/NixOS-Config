@@ -33,6 +33,7 @@ with lib;
       fish = {
         plugins = [ theme.fish.plugin ];
       };
+      helix.settings.theme = theme.helix.name;
       starship.settings = theme.starship;
     };
   };

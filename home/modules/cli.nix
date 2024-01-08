@@ -35,6 +35,8 @@ in
       sd
     ];
 
+    homeModules.programs.editors.helix.enable = true;
+
     # Remove when Fish gains theme support through home-manager
     xdg.configFile."fish/themes/catppuccin.theme".source = builtins.fetchurl {
       name = "catppuccin-fish";
@@ -106,12 +108,6 @@ in
           };
         }];
 
-      };
-
-      neovim = {
-        enable = true;
-        viAlias = true;
-        vimAlias = true;
       };
 
       starship = {
