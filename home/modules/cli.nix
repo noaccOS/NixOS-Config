@@ -114,7 +114,7 @@ in
         enable = true;
         enableFishIntegration = true;
         settings = lib.mkMerge [
-          (import ./starship_nerd.nix)
+          (builtins.fromTOML (builtins.readFile ../../config/starship-nerd.toml))
           {
             gcloud.disabled = true;
             nix_shell.heuristic = true;
