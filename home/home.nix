@@ -9,6 +9,7 @@
   imports = [
     ./modules/cli.nix
     ./modules/gui.nix
+    ./modules/development.nix
     ./modules/nixgl.nix
     ./modules/theming.nix
     ./modules/programs/browsers/firefox.nix
