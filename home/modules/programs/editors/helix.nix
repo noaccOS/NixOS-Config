@@ -1,8 +1,8 @@
 { pkgs, lib, config, ... }:
-let 
+let
   cfg = config.homeModules.programs.editors.helix;
   languages = {
-    
+
   };
 in {
   options.homeModules.programs.editors.helix = {
