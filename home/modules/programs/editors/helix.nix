@@ -53,6 +53,7 @@ in {
         J = "till_prev_char";
         k = "search_next";
         K = "search_prev";
+        l = "select_regex";
         p = "paste_before";
         P = "paste_after";
         o = "open_above";
@@ -63,6 +64,8 @@ in {
         "`" = "select_register";
         "!" = "shell_append_output";
         "A-!" = "shell_insert_output";
+        g.w = "goto_first_nonwhitespace";
+        g.s = "goto_line_end";
       };
     };
   };
