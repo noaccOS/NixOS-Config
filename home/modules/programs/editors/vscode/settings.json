@@ -129,7 +129,9 @@
         "Keyspace",
         "marp",
         "noreply",
+        "Oban",
         "peekable",
+        "Sched",
         "SECO",
         "thiserror",
         "ttyd",
@@ -138,5 +140,9 @@
         "whereis",
         "Xandra"
     ],
-    "githubPullRequests.pullBranch": "never"
+    "githubPullRequests.pullBranch": "never",
+    "[elixir]": {
+        "editor.defaultFormatter": "lexical-lsp.lexical"
+    },
+    "diffEditor.ignoreTrimWhitespace": false
 }
