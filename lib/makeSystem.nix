@@ -72,7 +72,7 @@ lib.nixosSystem rec {
         useUserPackages = true;
         users.${user.name} = ({ pkgs, ... }@inputs: { imports = [ ../home/home.nix ]; });
         extraSpecialArgs = {
-          inherit user;
+          inherit user system;
           inputs = flake-inputs;
         };
       };
