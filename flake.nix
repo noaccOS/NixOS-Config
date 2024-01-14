@@ -38,6 +38,10 @@
       url = "github:catppuccin/fish";
       flake = false;
     };
+    catppuccin-rio = {
+      url = "github:catppuccin/rio";
+      flake = false;
+    };
     catppuccin-starship = {
       url = "github:catppuccin/starship";
       flake = false;

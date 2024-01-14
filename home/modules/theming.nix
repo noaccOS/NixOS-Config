@@ -3,8 +3,7 @@ let
   cfg = config.homeModules.theming;
   theme = pkgs.callPackage ./themes/${cfg.theme.name}.nix { inherit inputs; inherit (cfg.theme) variant; };
 in
-with lib;
-{
+with lib; {
   options.homeModules.theming = {
     enable = mkEnableOption "custom theming";
     theme = mkOption {
@@ -34,7 +33,10 @@ with lib;
         plugins = [ theme.fish.plugin ];
       };
       helix.settings.theme = theme.helix.name;
+      rio.settings.theme = theme.rio.name;
       starship.settings = theme.starship;
     };
+
+    xdg.configFile."rio/themes/${theme.rio.name}.toml".source = theme.rio.src;
   };
 }

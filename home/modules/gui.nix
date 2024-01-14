@@ -8,7 +8,7 @@ in
   config.homeModules.programs = lib.mkIf cfg.enable {
     browsers.firefox.enable = true;
     browsers.firefox.defaultBrowser = lib.mkDefault true;
-    terminals.foot.enable = true;
+    terminals.rio.enable = true;
     video.mpv.enable = true;
   };
 

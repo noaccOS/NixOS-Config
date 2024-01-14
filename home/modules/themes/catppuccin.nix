@@ -33,6 +33,11 @@ in
     name = "catppuccin_${variant}";
   };
 
+  rio = {
+    src = inputs.catppuccin-rio + /catppuccin-${variant}.toml;
+    name = "catppuccin-${variant}";
+  };
+
   starship =
     lib.trivial.pipe inputs.catppuccin-starship [
       (l: l + "/palettes/${variant}.toml")
