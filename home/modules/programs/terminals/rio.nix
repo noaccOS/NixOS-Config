@@ -12,6 +12,13 @@ in with lib; {
       use-kitty-keyboard-protocol = true;
       fonts = {
         family = "JetBrainsMono Nerd Font";
+        extras = [
+          { family = "Noto Sans Mono CJK JP"; }
+          { family = "Noto Sans Mono CJK HK"; }
+          { family = "Noto Sans Mono CJK KR"; }
+          { family = "Noto Sans Mono CJK SC"; }
+          { family = "Noto Sans Mono CJK TC"; }
+        ];
       };
     };
   };
