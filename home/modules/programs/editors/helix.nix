@@ -11,7 +11,7 @@ in {
 
   config.programs.helix = {
     enable = cfg.enable;
-    extraPackages = config.homeModules.development.packages;
+    extraPackages = config.homeModules.development.toolPackages;
     settings = {
       editor = {
         cursorline = true;
