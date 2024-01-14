@@ -1,7 +1,18 @@
 { pkgs, config, lib, ... }:
-let cfg = config.homeModules.development;
+let
+  cfg = config.homeModules.development;
+  editorsCfg = config.homeModules.programs.editors;
 in with lib; {
   options.homeModules.development = {
+    defaultEditor = mkOption {
+      type = types.enum [ "helix" "vscode" ];
+    };
+
+    defaultVisual = mkOption {
+      type = types.nullOr (types.enum [ "vscode" ]);
+      default = null;
+    };
+
     enableTools = mkEnableOption "LSPs, DAPs and compilers";
 
     toolPackages = mkOption {
@@ -25,6 +36,14 @@ in with lib; {
   };
 
   config = mkMerge [
+    {
+      homeModules.programs.editors.${cfg.defaultEditor}.enable = true;
+      home.sessionVariables.EDITOR = editorsCfg.${cfg.defaultEditor}.editor;
+    }
+    (mkIf (cfg.defaultVisual != null) {
+      homeModules.programs.editors.${cfg.defaultVisual}.enable = true;
+      home.sessionVariables.VISUAL = editorsCfg.${cfg.defaultVisual}.visual;
+    })
     (mkIf cfg.enableTools {
       home.sessionVariables = {
         ERL_AFLAGS = "-kernel shell_history enabled";
@@ -90,5 +109,4 @@ in with lib; {
       ]);
     }
   ];
-
 }

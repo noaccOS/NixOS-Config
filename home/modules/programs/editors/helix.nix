@@ -7,6 +7,14 @@ let
 in {
   options.homeModules.programs.editors.helix = {
     enable = lib.mkEnableOption "helix";
+    editor = lib.mkOption {
+      type = lib.types.str;
+      readOnly = true;
+      default = "hx";
+      description = ''
+        The string to use when setting helix as the default editor.
+      '';
+    };
   };
 
   config.programs.helix = {

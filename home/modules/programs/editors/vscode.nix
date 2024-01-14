@@ -18,12 +18,20 @@ in
       default = pkgs.vscodium;
       description = "VSCode package to install";
     };
-    defaultEditor = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
+    editor = lib.mkOption {
+      type = lib.types.str;
+      readOnly = true;
+      default = "${cfg.package.executableName} --wait";
       description = ''
-        Whether to configure VSCode as the default
-        editor using the {env}`EDITOR` environment variable.
+        The string to use when setting vscode as the default editor.
+      '';
+    };
+    visual = lib.mkOption {
+      type = lib.types.str;
+      readOnly = true;
+      default = "${cfg.package.executableName} --wait";
+      description = ''
+        The string to use when setting vscode as the default visual.
       '';
     };
   };
@@ -54,11 +62,6 @@ in
         streetsidesoftware.code-spell-checker
         tamasfe.even-better-toml
       ] ++ customPackages;
-    };
-
-    home.sessionVariables = lib.mkIf cfg.defaultEditor {
-      EDITOR = "${cfg.package.executableName} --wait";
-      VISUAL = "${cfg.package.executableName} --wait";
     };
   };
 }
