@@ -1,14 +1,10 @@
 { pkgs, lib, config, ... }:
-let
-  cfg = config.homeModules.programs.editors.helix;
-  languages = {
-
-  };
-in {
+let cfg = config.homeModules.programs.editors.helix;
+in with lib; {
   options.homeModules.programs.editors.helix = {
-    enable = lib.mkEnableOption "helix";
-    editor = lib.mkOption {
-      type = lib.types.str;
+    enable = mkEnableOption "helix";
+    editor = mkOption {
+      type = types.str;
       readOnly = true;
       default = "hx";
       description = ''
@@ -39,7 +35,7 @@ in {
           nbsp = "all";
           tab = "all";
         };
-        rulers = [100];
+        rulers = [ 100 ];
         smart-tab.supersede-menu = true;
       };
       keys.normal = {

@@ -2,7 +2,8 @@
 let
   cfg = config.homeModules.development;
   editorsCfg = config.homeModules.programs.editors;
-in with lib; {
+in
+with lib; {
   options.homeModules.development = {
     defaultEditor = mkOption {
       type = types.enum [ "helix" "vscode" ];
