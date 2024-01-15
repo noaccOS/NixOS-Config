@@ -44,5 +44,4 @@ in
       builtins.readFile
       builtins.fromTOML
     ] // { palette = "catppuccin_${variant}"; };
-
 }
