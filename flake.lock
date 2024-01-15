@@ -1,38 +1,5 @@
 {
   "nodes": {
-    "alacritty-ligatures": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1640261889,
-        "narHash": "sha256-Vm/pcVDh6CcR2Sl3mrIvqWF+SmX4wqtLPEeQ5GcepPA=",
-        "owner": "fee1-dead",
-        "repo": "alacritty",
-        "rev": "796cdfeeaae730b2224e910bf9f1dfa81abcfd51",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fee1-dead",
-        "ref": "ligatures_harfbuzz",
-        "repo": "alacritty",
-        "type": "github"
-      }
-    },
-    "catppuccin-alacritty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704045909,
-        "narHash": "sha256-bpHznCqkNMbauDQjh98qj2+r1V8mXQIVmvKTldLcln0=",
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "rev": "ce476fb41f307d90f841c1a4fd7f0727c21248b2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "type": "github"
-      }
-    },
     "catppuccin-bat": {
       "flake": false,
       "locked": {
@@ -245,8 +212,6 @@
     },
     "root": {
       "inputs": {
-        "alacritty-ligatures": "alacritty-ligatures",
-        "catppuccin-alacritty": "catppuccin-alacritty",
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-fish": "catppuccin-fish",
         "catppuccin-rio": "catppuccin-rio",
