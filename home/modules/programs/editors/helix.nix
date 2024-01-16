@@ -19,6 +19,7 @@ in with lib; {
       ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
+        auto-save = true;
         cursorline = true;
         cursor-shape = {
           insert = "bar";
@@ -29,6 +30,7 @@ in with lib; {
           render = true;
           skip-levels = 2;
         };
+        idle-timeout = 0;
         line-number = "relative";
         lsp.display-messages = true;
         file-picker.hidden = false;
