@@ -3,6 +3,7 @@ let
   cfg = config.homeModules.programs.editors.helix;
   commonKeys = {
     l = "select_regex";
+    L = "split_selection";
     p = "paste_before";
     P = "paste_after";
     o = "open_above";
@@ -30,7 +31,7 @@ with lib; {
 
   config.programs.helix = {
     enable = cfg.enable;
-    extraPackages = config.homeModules.development.toolPackages 
+    extraPackages = config.homeModules.development.toolPackages
       ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
@@ -59,6 +60,8 @@ with lib; {
 
       keys.normal = commonKeys // {
         space.space = "file_picker";
+        space.p = "paste_clipboard_before";
+        space.P = "paste_clipboard_after";
         t = "move_line_down";
         T = "move_visual_line_down";
         n = "move_line_up";
