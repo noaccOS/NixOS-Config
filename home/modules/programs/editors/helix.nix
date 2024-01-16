@@ -2,6 +2,9 @@
 let
   cfg = config.homeModules.programs.editors.helix;
   commonKeys = {
+    space.space = "file_picker";
+    space.p = "paste_clipboard_before";
+    space.P = "paste_clipboard_after";
     l = "select_regex";
     L = "split_selection";
     p = "paste_before";
@@ -59,9 +62,6 @@ with lib; {
       };
 
       keys.normal = commonKeys // {
-        space.space = "file_picker";
-        space.p = "paste_clipboard_before";
-        space.P = "paste_clipboard_after";
         t = "move_line_down";
         T = "move_visual_line_down";
         n = "move_line_up";
