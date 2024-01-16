@@ -1,6 +1,21 @@
 { pkgs, lib, config, ... }:
-let cfg = config.homeModules.programs.editors.helix;
-in with lib; {
+let
+  cfg = config.homeModules.programs.editors.helix;
+  commonKeys = {
+    l = "select_regex";
+    p = "paste_before";
+    P = "paste_after";
+    o = "open_above";
+    O = "open_below";
+    "'" = "switch_to_lowercase";
+    "\"" = "switch_to_uppercase";
+    "C-'" = "switch_case";
+    "`" = "select_register";
+    "!" = "shell_append_output";
+    "A-!" = "shell_insert_output";
+  };
+in
+with lib; {
   options.homeModules.programs.editors.helix = {
     enable = mkEnableOption "helix";
     editor = mkOption {
@@ -41,7 +56,8 @@ in with lib; {
         rulers = [ 100 ];
         smart-tab.supersede-menu = true;
       };
-      keys.normal = {
+
+      keys.normal = commonKeys // {
         space.space = "file_picker";
         t = "move_line_down";
         T = "move_visual_line_down";
@@ -52,19 +68,22 @@ in with lib; {
         J = "till_prev_char";
         k = "search_next";
         K = "search_prev";
-        l = "select_regex";
-        p = "paste_before";
-        P = "paste_after";
-        o = "open_above";
-        O = "open_below";
-        "'" = "switch_to_lowercase";
-        "\"" = "switch_to_uppercase";
-        "C-'" = "switch_case";
-        "`" = "select_register";
-        "!" = "shell_append_output";
-        "A-!" = "shell_insert_output";
         g.w = "goto_first_nonwhitespace";
         g.s = "goto_line_end";
+      };
+
+      keys.select = commonKeys // {
+        t = "extend_line_down";
+        T = "extend_visual_line_down";
+        n = "extend_line_up";
+        N = "extend_visual_line_up";
+        s = "extend_char_right";
+        j = "extend_till_char";
+        J = "extend_till_prev_char";
+        k = "extend_search_next";
+        K = "extend_search_prev";
+        g.w = "extend_to_first_nonwhitespace";
+        g.s = "extend_to_line_end";
       };
     };
   };
