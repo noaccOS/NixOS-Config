@@ -15,7 +15,8 @@ in with lib; {
 
   config.programs.helix = {
     enable = cfg.enable;
-    extraPackages = config.homeModules.development.toolPackages;
+    extraPackages = config.homeModules.development.toolPackages 
+      ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
         cursorline = true;
