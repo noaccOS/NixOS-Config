@@ -93,7 +93,7 @@ with lib; {
 
     languages = mkIf cfgDev.enableTools (mkMerge [
       (mkIf cfgDev.elixir.enable {
-        language-server.lexical.command = "${inputs.lexical.packages.${system}.default}/bin/start_lexical.sh";
+        language-server.lexical.command = "${inputs.lexical.packages.${system}.default}/binsh/start_lexical.sh";
         language = map (name: { inherit name; language-servers = [ "lexical" ]; }) [ "elixir" "heex" ];
       })
     ]);
