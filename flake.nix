@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lexical = {
-      url = "github:lexical-lsp/lexical?ref=v0.4.1";
+      url = "github:lexical-lsp/lexical?ref=8d1b345";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rycee = {

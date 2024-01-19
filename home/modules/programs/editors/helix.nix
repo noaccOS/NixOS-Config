@@ -1,6 +1,7 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, system, ... }:
 let
   cfg = config.homeModules.programs.editors.helix;
+  cfgDev = config.homeModules.development;
   commonKeys = {
     space.space = "file_picker";
     space.p = "paste_clipboard_before";
@@ -34,7 +35,7 @@ with lib; {
 
   config.programs.helix = {
     enable = cfg.enable;
-    extraPackages = config.homeModules.development.toolPackages
+    extraPackages = cfgDev.toolPackages
       ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
@@ -89,5 +90,12 @@ with lib; {
         g.s = "extend_to_line_end";
       };
     };
+
+    languages = mkIf cfgDev.enableTools (mkMerge [
+      (mkIf cfgDev.elixir.enable {
+        language-server.lexical.command = "${inputs.lexical.packages.${system}.default}/bin/start_lexical.sh";
+        language = map (name: { inherit name; language-servers = [ "lexical" ]; }) [ "elixir" "heex" ];
+      })
+    ]);
   };
 }

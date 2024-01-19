@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, system, ... }:
 let
   cfg = config.homeModules.development;
   editorsCfg = config.homeModules.programs.editors;
@@ -67,7 +67,7 @@ with lib; {
       ]
       ++ lib.optionals cfg.elixir.enable [
         elixir # Compiler
-        elixir_ls # LSP
+        inputs.lexical.packages.${system}.default # LSP
         erlang # Needed for escript
       ]
       ++ lib.optionals cfg.haskell.enable [
