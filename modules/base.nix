@@ -32,10 +32,6 @@
       LC_PAPER = "en_IE.UTF-8";
       LC_MEASUREMENT = "en_IE.UTF-8";
     };
-    inputMethod = {
-      enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ mozc uniemoji ];
-    };
   };
 
   nix = {
@@ -127,11 +123,6 @@
         initialPassword = "password";
       };
     };
-
-  environment.variables = rec {
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-  };
 
   system.stateVersion = "23.11";
 }
