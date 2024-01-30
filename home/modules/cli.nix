@@ -61,10 +61,6 @@ in
         enable = true;
         shellAliases = aliases.eza // aliases.fd;
 
-        interactiveShellInit = ''
-          ${pkgs.fastfetch}/bin/fastfetch
-        '';
-
         shellInit = lib.strings.optionalString cfg.sourceNix ''
           if test -f ~/.nix-profile/etc/profile.d/nix.fish
             source ~/.nix-profile/etc/profile.d/nix.fish
@@ -88,7 +84,7 @@ in
           init.defaultBranch = "main";
           pull.ff = "only";
           github.user = "noaccOS";
-          diff.algorithm = "patience";
+          diff.algorithm = "histogram";
           credential.helper = "store";
 
           user = {
