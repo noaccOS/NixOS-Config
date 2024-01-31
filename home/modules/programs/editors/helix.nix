@@ -10,6 +10,8 @@ let
     L = "split_selection";
     p = "paste_before";
     P = "paste_after";
+    "C-j" = "join_selections";
+    "A-j" = "join_selections_space";
     "'" = "switch_to_lowercase";
     "\"" = "switch_to_uppercase";
     "C-'" = "switch_case";
