@@ -124,6 +124,7 @@
         "dontcare",
         "dotenv",
         "Edgehog",
+        "envdoc",
         "Itertools",
         "keypair",
         "Keyspace",
@@ -133,6 +134,7 @@
         "peekable",
         "Sched",
         "SECO",
+        "Skogsra",
         "thiserror",
         "ttyd",
         "unregistering",
@@ -144,5 +146,8 @@
     "[elixir]": {
         "editor.defaultFormatter": "lexical-lsp.lexical"
     },
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editorAssociations": {
+        "git-rebase-todo": "default"
+    }
 }
