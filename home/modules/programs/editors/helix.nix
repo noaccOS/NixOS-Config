@@ -15,6 +15,14 @@ let
     "'" = "switch_to_lowercase";
     "\"" = "switch_to_uppercase";
     "C-'" = "switch_case";
+    "C-w".r = "vsplit";
+    "C-w".d = "hsplit";
+    "C-w".t = "jump_view_down";
+    "C-w".n = "jump_view_up";
+    "C-w".s = "jump_view_right";
+    "C-w".T = "swap_view_down";
+    "C-w".N = "swap_view_up";
+    "C-w".S = "swap_view_right";
     "`" = "select_register";
     "!" = "shell_append_output";
     "A-!" = "shell_insert_output";
