@@ -15,6 +15,7 @@
     ./modules/programs/browsers/firefox.nix
     ./modules/programs/editors/helix.nix
     ./modules/programs/editors/vscode.nix
+    ./modules/programs/terminals/alacritty.nix
     ./modules/programs/terminals/foot.nix
     ./modules/programs/terminals/rio.nix
     ./modules/programs/video/mpv.nix

@@ -16,6 +16,8 @@ let
     head + rest;
 in
 {
+  alacritty = inputs.catppuccin-alacritty + /catppuccin-${variant}.toml;
+
   bat = {
     withSource = true;
     name = "Catppuccin-${variant}";

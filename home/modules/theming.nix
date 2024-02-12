@@ -23,6 +23,7 @@ with lib; {
 
   config = mkIf cfg.enable {
     programs = {
+      alacritty.settings.import = [ theme.alacritty ];
       bat = {
         config.theme = theme.bat.name;
         themes = mkIf theme.bat.withSource {

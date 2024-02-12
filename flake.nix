@@ -34,6 +34,10 @@
     };
 
     # Theming
+    catppuccin-alacritty = {
+      url = "github:catppuccin/alacritty";
+      flake = false;
+    };
     catppuccin-bat = {
       url = "github:catppuccin/bat";
       flake = false;
