@@ -126,7 +126,7 @@ in
 
       xserver = {
         enable = true;
-        layout = "us";
+        xkb.layout = "us";
         wacom.enable = true;
       };
 
