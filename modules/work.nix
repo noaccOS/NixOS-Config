@@ -22,6 +22,7 @@ in
       extraGroups = [ "wheel" ];
     };
 
+    home-manager.users.${currentUser.name}.programs.starship.settings.kubernetes.disabled = false;
     networking.firewall.allowedTCPPorts = [ 4000 8080 ];
   };
 }
