@@ -136,11 +136,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708294481,
-        "narHash": "sha256-DZtxmeb4OR7iCaKUUuq05ADV2rX8WReZEF7Tq//W0+Y=",
+        "lastModified": 1708806879,
+        "narHash": "sha256-MSbxtF3RThI8ANs/G4o1zIqF5/XlShHvwjl9Ws0QAbI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a54e05bc12d88ff2df941d0dc1183cb5235fa438",
+        "rev": "4ee704cb13a5a7645436f400b9acc89a67b9c08a",
         "type": "github"
       },
       "original": {
@@ -158,16 +158,16 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1705518986,
-        "narHash": "sha256-89Ic8QGoC4wMK1wUk/VKRMA05lhXVsfxauL9Y9SDs+4=",
+        "lastModified": 1708623281,
+        "narHash": "sha256-4mTIH1MqacAgXMKd0T0GptKicMm6hmRERxXuDbdKqGQ=",
         "owner": "lexical-lsp",
         "repo": "lexical",
-        "rev": "8d1b34530f69c4419d54fde487f0fc776ff64b93",
+        "rev": "aba16bb757822535357a2100db7045b0cae0528a",
         "type": "github"
       },
       "original": {
         "owner": "lexical-lsp",
-        "ref": "8d1b345",
+        "ref": "v0.5.1",
         "repo": "lexical",
         "type": "github"
       }
@@ -214,11 +214,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1708296515,
-        "narHash": "sha256-FyF489fYNAUy7b6dkYV6rGPyzp+4tThhr80KNAaF/yY=",
+        "lastModified": 1708807242,
+        "narHash": "sha256-sRTRkhMD4delO/hPxxi+XwLqPn8BuUq6nnj4JqLwOu0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b98a4e1746acceb92c509bc496ef3d0e5ad8d4aa",
+        "rev": "73de017ef2d18a04ac4bfd0c02650007ccb31c2a",
         "type": "github"
       },
       "original": {
@@ -264,11 +264,11 @@
     "rycee": {
       "flake": false,
       "locked": {
-        "lastModified": 1708401848,
-        "narHash": "sha256-c/xLuo6gWSGRXKP9fp3ylH4GTmWNe1xzHOQ54+YEJnE=",
+        "lastModified": 1708805268,
+        "narHash": "sha256-TyB6HacqcoIoK8tf5mwk/K9bkexCxjJsVXBp4+cbATI=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "3fa5cb2289b4491a5a50099db9de61529dc1b6c6",
+        "rev": "211c45ca8c36d7aebcff3e4b548142093fc85857",
         "type": "gitlab"
       },
       "original": {
