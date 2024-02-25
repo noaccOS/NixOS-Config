@@ -18,12 +18,14 @@
     {
       device = "/dev/disk/by-uuid/e98c8596-fe7a-412c-8c63-fb6b079c0958";
       fsType = "btrfs";
+      options = [ "defaults" "noatime" ];
     };
 
   fileSystems."/home" =
     {
       device = "/dev/disk/by-uuid/0a3cdb36-cdff-4606-9d42-a2d89aef22f3";
       fsType = "btrfs";
+      options = [ "defaults" "noatime" ];
     };
 
   fileSystems."/boot" =

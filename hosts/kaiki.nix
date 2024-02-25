@@ -14,12 +14,14 @@
     {
       device = "/dev/disk/by-uuid/dcbd2f73-cf6c-4a0d-88b1-d49c426f45b4";
       fsType = "btrfs";
+      options = [ "defaults" "noatime" ];
     };
 
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/161A-FF6A";
       fsType = "vfat";
+      options = [ "defaults" "noatime" ];
     };
 
   swapDevices = [{ device = "/swap/swapfile"; }];

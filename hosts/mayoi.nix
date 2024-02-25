@@ -17,7 +17,7 @@
     {
       device = "/dev/disk/by-uuid/f69d81f1-99da-4808-9661-11705afa6417";
       fsType = "btrfs";
-      options = [ "noatime" ];
+      options = [ "defaults" "noatime" ];
     };
 
   fileSystems."/boot" =
@@ -30,7 +30,7 @@
     {
       device = "/dev/disk/by-uuid/9c50037a-c4d0-4c5e-9c8d-90f5d5ee7ec8";
       fsType = "ext4";
-      options = [ "noatime" ];
+      options = [ "defaults" "noatime" ];
     };
 
   swapDevices = [ ];
