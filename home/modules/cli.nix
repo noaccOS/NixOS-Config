@@ -79,13 +79,24 @@ in
           ".envrc"
           ".vscode/"
           "result"
+          ".lexical/"
         ];
         extraConfig = {
-          init.defaultBranch = "main";
-          pull.ff = "only";
-          github.user = "noaccOS";
-          diff.algorithm = "histogram";
           credential.helper = "store";
+          diff.algorithm = "histogram";
+          fetch.prune = true;
+          fetch.prunetags = true;
+          github.user = "noaccOS";
+          init.defaultBranch = "main";
+          log.date = "iso";
+          merge.confilictStyle = "zdiff3";
+          pull.ff = "only";
+          pull.rebase = "interactive";
+          push.autoSetupRemote = true;
+          rebase.autosquash = true;
+          rebase.autostash = true;
+          rebase.updateRefs = true;
+          rerere.enabled = true;
 
           user = {
             name = "Francesco Noacco";
