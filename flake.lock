@@ -158,16 +158,16 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1705518986,
-        "narHash": "sha256-89Ic8QGoC4wMK1wUk/VKRMA05lhXVsfxauL9Y9SDs+4=",
+        "lastModified": 1708623281,
+        "narHash": "sha256-4mTIH1MqacAgXMKd0T0GptKicMm6hmRERxXuDbdKqGQ=",
         "owner": "lexical-lsp",
         "repo": "lexical",
-        "rev": "8d1b34530f69c4419d54fde487f0fc776ff64b93",
+        "rev": "aba16bb757822535357a2100db7045b0cae0528a",
         "type": "github"
       },
       "original": {
         "owner": "lexical-lsp",
-        "ref": "8d1b345",
+        "ref": "v0.5.1",
         "repo": "lexical",
         "type": "github"
       }
