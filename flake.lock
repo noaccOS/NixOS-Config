@@ -3,11 +3,11 @@
     "catppuccin-alacritty": {
       "flake": false,
       "locked": {
-        "lastModified": 1705368763,
-        "narHash": "sha256-ypYaxlsDjI++6YNcE+TxBSnlUXKKuAMmLQ4H74T/eLw=",
+        "lastModified": 1708974882,
+        "narHash": "sha256-HiIYxTlif5Lbl9BAvPsnXp8WAexL8YuohMDd/eCJVQ8=",
         "owner": "catppuccin",
         "repo": "alacritty",
-        "rev": "f2da554ee63690712274971dd9ce0217895f5ee0",
+        "rev": "071d73effddac392d5b9b8cd5b4b527a6cf289f9",
         "type": "github"
       },
       "original": {
@@ -83,11 +83,11 @@
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1707094435,
-        "narHash": "sha256-QZk/qZQVt1X53peCqB2qmWhpA3xtAVgY95pebSKaTFU=",
+        "lastModified": 1708965002,
+        "narHash": "sha256-gIBZCPB0sA8Gagrxd8w4+y9uUkWBnXJBmq9Ur5BYTQU=",
         "owner": "rafaelmardojai",
         "repo": "firefox-gnome-theme",
-        "rev": "d7db6e546d13de55fd70dc3204bd99195eb004c4",
+        "rev": "4e966509c180f93ba8665cd73cad8456bf44baab",
         "type": "github"
       },
       "original": {
@@ -136,11 +136,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708806879,
-        "narHash": "sha256-MSbxtF3RThI8ANs/G4o1zIqF5/XlShHvwjl9Ws0QAbI=",
+        "lastModified": 1708988456,
+        "narHash": "sha256-RCz7Xe64tN2zgWk+MVHkzg224znwqknJ1RnB7rVqUWw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4ee704cb13a5a7645436f400b9acc89a67b9c08a",
+        "rev": "1d085ea4444d26aa52297758b333b449b2aa6fca",
         "type": "github"
       },
       "original": {
@@ -158,16 +158,16 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1708623281,
-        "narHash": "sha256-4mTIH1MqacAgXMKd0T0GptKicMm6hmRERxXuDbdKqGQ=",
+        "lastModified": 1705518986,
+        "narHash": "sha256-89Ic8QGoC4wMK1wUk/VKRMA05lhXVsfxauL9Y9SDs+4=",
         "owner": "lexical-lsp",
         "repo": "lexical",
-        "rev": "aba16bb757822535357a2100db7045b0cae0528a",
+        "rev": "8d1b34530f69c4419d54fde487f0fc776ff64b93",
         "type": "github"
       },
       "original": {
         "owner": "lexical-lsp",
-        "ref": "v0.5.1",
+        "ref": "8d1b345",
         "repo": "lexical",
         "type": "github"
       }
@@ -264,11 +264,11 @@
     "rycee": {
       "flake": false,
       "locked": {
-        "lastModified": 1708805268,
-        "narHash": "sha256-TyB6HacqcoIoK8tf5mwk/K9bkexCxjJsVXBp4+cbATI=",
+        "lastModified": 1709006625,
+        "narHash": "sha256-QxBqMkGbxKjDym5keWaZG/pVgDl+V2//6C6/V2JzDWc=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "211c45ca8c36d7aebcff3e4b548142093fc85857",
+        "rev": "ef5ffffab80806a4c20e54966a39fcb0649b0381",
         "type": "gitlab"
       },
       "original": {
