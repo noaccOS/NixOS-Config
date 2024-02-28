@@ -8,9 +8,8 @@ in
   config.homeModules.programs = lib.mkIf cfg.enable {
     browsers.firefox.enable = true;
     browsers.firefox.defaultBrowser = lib.mkDefault true;
+    editors.vscode.enable = true;
     terminals.alacritty.enable = true;
     video.mpv.enable = true;
   };
-
-  config.homeModules.development.defaultVisual = "vscode";
 }

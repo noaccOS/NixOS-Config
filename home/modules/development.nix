@@ -7,11 +7,11 @@ with lib; {
   options.homeModules.development = {
     defaultEditor = mkOption {
       type = types.enum [ "helix" "vscode" ];
+      default = cfg.defaultVisual;
     };
 
     defaultVisual = mkOption {
-      type = types.nullOr (types.enum [ "vscode" ]);
-      default = null;
+      type = types.enum [ "helix" "vscode" ];
     };
 
     enableTools = mkEnableOption "LSPs, DAPs and compilers";
@@ -41,10 +41,10 @@ with lib; {
       homeModules.programs.editors.${cfg.defaultEditor}.enable = true;
       home.sessionVariables.EDITOR = editorsCfg.${cfg.defaultEditor}.editor;
     }
-    (mkIf (cfg.defaultVisual != null) {
+    {
       homeModules.programs.editors.${cfg.defaultVisual}.enable = true;
       home.sessionVariables.VISUAL = editorsCfg.${cfg.defaultVisual}.visual;
-    })
+    }
     (mkIf cfg.enableTools {
       home.sessionVariables = {
         ERL_AFLAGS = "-kernel shell_history enabled";

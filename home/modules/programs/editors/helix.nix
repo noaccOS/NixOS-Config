@@ -45,6 +45,14 @@ with lib; {
         The string to use when setting helix as the default editor.
       '';
     };
+    visual = mkOption {
+      type = types.str;
+      readOnly = true;
+      default = "hx";
+      description = ''
+        The string to use when setting helix as the default visual.
+      '';
+    };
   };
 
   config.programs.helix = {

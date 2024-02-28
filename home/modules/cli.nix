@@ -35,7 +35,7 @@ in
       sd
     ];
 
-    homeModules.development.defaultEditor = "helix";
+    homeModules.development.defaultVisual = "helix";
 
     # Remove when Fish gains theme support through home-manager
     xdg.configFile."fish/themes/catppuccin.theme".source = builtins.fetchurl {
