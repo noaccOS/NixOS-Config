@@ -26,6 +26,12 @@ let
     "`" = "select_register";
     "!" = "shell_append_output";
     "A-!" = "shell_insert_output";
+    ";" = "command_mode";
+    "." = "collapse_selection";
+    "A-." = "flip_selections";
+    "C-." = "ensure_selections_forward";
+    "A-;" = "repeat_last_motion";
+    ":" = "repeat_last_insert";
   };
 in
 with lib; {
