@@ -31,7 +31,7 @@ let
     "A-." = "flip_selections";
     "C-." = "ensure_selections_forward";
     "A-;" = "repeat_last_motion";
-    ":" = "repeat_last_insert";
+    # ":" = "repeat_last_insert";
   };
 in
 with lib; {
