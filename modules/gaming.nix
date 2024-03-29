@@ -22,7 +22,6 @@ in
       # prismlauncher
       lutris
       heroic
-      yuzu-mainline
     ];
 
     programs.steam.enable = true;
