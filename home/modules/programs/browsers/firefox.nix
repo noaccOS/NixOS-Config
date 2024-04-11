@@ -101,6 +101,7 @@ let
   };
 
   containers = {
+    containersForce = true;
     containers = {
       work = {
         id = 1;
