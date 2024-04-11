@@ -4,6 +4,7 @@ let
   cfgDev = config.homeModules.development;
   commonKeys = {
     space.space = "file_picker";
+    space.f = ":format";
     space.p = "paste_clipboard_before";
     space.P = "paste_clipboard_after";
     l = "select_regex";
@@ -94,6 +95,7 @@ with lib; {
         J = "till_prev_char";
         k = "search_next";
         K = "search_prev";
+        g.space = "goto_word";
         g.w = "goto_first_nonwhitespace";
         g.s = "goto_line_end";
       };
@@ -108,6 +110,7 @@ with lib; {
         J = "extend_till_prev_char";
         k = "extend_search_next";
         K = "extend_search_prev";
+        g.space = "extend_to_word";
         g.w = "extend_to_first_nonwhitespace";
         g.s = "extend_to_line_end";
       };
