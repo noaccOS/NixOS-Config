@@ -88,7 +88,7 @@
         # };
 
         kaiki = makeSystem "kaiki" {
-          user = { name = "francesco"; fullName = "Francesco Noacco"; };
+          user = "francesco";
           localModules = [
             "desktop"
             "work"

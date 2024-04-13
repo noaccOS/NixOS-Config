@@ -60,7 +60,7 @@ in
       };
     };
 
-    home-manager.users.${currentUser.name}.homeModules.gui.enable = true;
+    home-manager.users.${currentUser}.homeModules.gui.enable = true;
 
     i18n.inputMethod = {
       enabled = "ibus";
@@ -142,6 +142,6 @@ in
       };
     };
 
-    users.users.${currentUser.name}.extraGroups = [ "adbusers" "audio" "video" ];
+    users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
   };
 }

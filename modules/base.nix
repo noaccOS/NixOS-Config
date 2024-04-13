@@ -23,7 +23,7 @@
     ffmpeg_6-full
   ];
 
-  home-manager.users.${currentUser.name}.homeModules.cli.enable = true;
+  home-manager.users.${currentUser}.homeModules.cli.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -49,7 +49,7 @@
       options = "--delete-older-than 7d";
     };
 
-    settings.trusted-users = [ "root" currentUser.name ];
+    settings.trusted-users = [ "root" currentUser ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -109,16 +109,16 @@
 
       groups = {
         plugdev = { };
-        ${currentUser.name} = { };
+        ${currentUser} = { };
       };
       users.root = {
         openssh.authorizedKeys.keyFiles = allowedKeys;
         initialPassword = "password";
       };
-      users.${currentUser.name} = {
+      users.${currentUser} = {
         isNormalUser = true;
-        group = currentUser.name;
-        description = currentUser.fullName;
+        group = currentUser;
+        description = "Francesco Noacco";
         extraGroups = [ "wheel" "plugdev" ];
         openssh.authorizedKeys.keyFiles = allowedKeys;
         initialPassword = "password";

@@ -2,7 +2,7 @@
 
 { nixpkgs, home-manager, mutter-triple-buffer, catppuccin, ... }@flake-inputs:
 name: { system ? "x86_64-linux"
-      , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
+      , user ? "noaccos"
       , wan ? "${name}.local"
       , overlays ? [ ]
       , localModules ? [ ]
@@ -72,7 +72,7 @@ lib.nixosSystem rec {
     {
       home-manager = {
         useUserPackages = true;
-        users.${user.name} = ({ pkgs, ... }@inputs: {
+        users.${user} = ({ pkgs, ... }@inputs: {
           imports = [
             ../home/home.nix
             catppuccin.homeManagerModules.catppuccin

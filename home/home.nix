@@ -1,9 +1,10 @@
-{ pkgs, lib, user ? { name = "noaccos"; fullName = "Francesco Noacco"; }, ... }:
+{ pkgs, lib, user ? "noaccos", ... }:
 
 {
-  home.username = user.name;
-  home.homeDirectory = lib.mkForce "/home/${user.name}";
-  xdg.configHome = "/home/${user.name}/.config/";
+  home.username = user;
+  home.homeDirectory = lib.mkForce "/home/${user}";
+  xdg.configHome = "/home/${user}/.config/";
+  xdg.enable = true;
   nixpkgs.config.allowUnfree = true;
 
   imports = [

@@ -32,7 +32,7 @@ in
       );
     };
 
-    home-manager.users.${currentUser.name}.homeModules.programs.browsers.firefox.gnomeIntegration = true;
+    home-manager.users.${currentUser}.homeModules.programs.browsers.firefox.gnomeIntegration = true;
 
     programs = {
       kdeconnect.package = pkgs.gnomeExtensions.gsconnect;

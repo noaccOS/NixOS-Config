@@ -15,7 +15,7 @@ in
     ];
 
     security.sudo-rs.extraRules = [
-      { users = [ currentUser.name ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }
+      { users = [ currentUser ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }
     ];
   };
 }
