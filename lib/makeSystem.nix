@@ -1,6 +1,6 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-{ nixpkgs, home-manager, mutter-triple-buffer, ... }@flake-inputs:
+{ nixpkgs, home-manager, mutter-triple-buffer, catppuccin, ... }@flake-inputs:
 name: { system ? "x86_64-linux"
       , user ? { name = "noaccos"; fullName = "Francesco Noacco"; }
       , wan ? "${name}.local"
@@ -41,6 +41,8 @@ lib.nixosSystem rec {
       };
     }
 
+    catppuccin.nixosModules.catppuccin
+
     ../modules/base.nix
     ../hosts/${name}.nix
 
@@ -70,7 +72,12 @@ lib.nixosSystem rec {
     {
       home-manager = {
         useUserPackages = true;
-        users.${user.name} = ({ pkgs, ... }@inputs: { imports = [ ../home/home.nix ]; });
+        users.${user.name} = ({ pkgs, ... }@inputs: {
+          imports = [
+            ../home/home.nix
+            catppuccin.homeManagerModules.catppuccin
+          ];
+        });
         extraSpecialArgs = {
           inherit user system;
           inputs = flake-inputs;

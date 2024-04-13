@@ -34,26 +34,7 @@
     };
 
     # Theming
-    catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
-    catppuccin-fish = {
-      url = "github:catppuccin/fish";
-      flake = false;
-    };
-    catppuccin-rio = {
-      url = "github:catppuccin/rio";
-      flake = false;
-    };
-    catppuccin-starship = {
-      url = "github:catppuccin/starship";
-      flake = false;
-    };
+    catppuccin.url = "github:catppuccin/nix";
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;

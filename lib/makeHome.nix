@@ -1,4 +1,4 @@
-{ nixpkgs, home-manager, nixgl, emacs-overlay, ... }@inputs:
+{ nixpkgs, home-manager, nixgl, emacs-overlay, catppuccin, ... }@inputs:
 { system ? "x86_64-linux"
 , user ? "noaccos"
 , gpuDriver ? "mesa"
@@ -10,6 +10,8 @@ home-manager.lib.homeManagerConfiguration {
   };
   modules = [
     ../home/home.nix
+
+    catppuccin.homeManagerModules.catppuccin
 
     {
       config.homeModules.cli.sourceNix = true;

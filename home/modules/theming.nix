@@ -23,19 +23,7 @@ with lib; {
 
   config = mkIf cfg.enable {
     programs = {
-      alacritty.settings.import = [ theme.alacritty ];
-      bat = {
-        config.theme = theme.bat.name;
-        themes = mkIf theme.bat.withSource {
-          ${theme.bat.name} = { inherit (theme.bat) src file; };
-        };
-      };
-      fish = {
-        plugins = [ theme.fish.plugin ];
-      };
-      helix.settings.theme = theme.helix.name;
       rio.settings.theme = theme.rio.name;
-      starship.settings = theme.starship;
     };
 
     xdg.configFile."rio/themes/${theme.rio.name}.toml".source = theme.rio.src;

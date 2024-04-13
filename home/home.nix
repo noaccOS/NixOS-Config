@@ -11,7 +11,6 @@
     ./modules/gui.nix
     ./modules/development.nix
     ./modules/nixgl.nix
-    ./modules/theming.nix
     ./modules/programs/browsers/firefox.nix
     ./modules/programs/editors/helix.nix
     ./modules/programs/editors/vscode.nix
@@ -21,7 +20,7 @@
     ./modules/programs/video/mpv.nix
   ];
 
-  homeModules.theming.enable = lib.mkDefault true;
+  catppuccin.flavour = "mocha";
 
   home.stateVersion = "23.11";
 }

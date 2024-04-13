@@ -31,7 +31,6 @@ in
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        QT_IM_MODULE = "fcitx";
       };
 
       variables = {
@@ -64,9 +63,10 @@ in
     home-manager.users.${currentUser.name}.homeModules.gui.enable = true;
 
     i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
-      fcitx5.waylandFrontend = true;
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ mozc ];
+      # fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
+      # fcitx5.waylandFrontend = true;
     };
 
     nixpkgs = {

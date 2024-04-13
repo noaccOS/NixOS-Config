@@ -37,15 +37,10 @@ in
 
     homeModules.development.defaultVisual = "helix";
 
-    # Remove when Fish gains theme support through home-manager
-    xdg.configFile."fish/themes/catppuccin.theme".source = builtins.fetchurl {
-      name = "catppuccin-fish";
-      url = "https://raw.githubusercontent.com/catppuccin/fish/91e6d6721362be05a5c62e235ed8517d90c567c9/themes/Catppuccin%20Mocha.theme";
-      sha256 = "sha256:0qkghib607nrsi72wzkgvxm2rwf42ad73472ksbf3sik1q33slij";
-    };
     programs = {
       bat = {
         enable = true;
+        catppuccin.enable = true;
       };
 
       direnv = {
@@ -59,6 +54,7 @@ in
 
       fish = {
         enable = true;
+        catppuccin.enable = true;
         shellAliases = aliases.eza // aliases.fd;
 
         shellInit = lib.strings.optionalString cfg.sourceNix ''
@@ -120,6 +116,7 @@ in
       starship = {
         enable = true;
         enableFishIntegration = true;
+        catppuccin.enable = true;
         settings = lib.mkMerge [
           (builtins.fromTOML (builtins.readFile ../../config/starship-nerd.toml))
           {

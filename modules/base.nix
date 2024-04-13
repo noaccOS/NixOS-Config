@@ -4,6 +4,7 @@
 
   console = {
     font = "Lat2-Terminus16";
+    catppuccin.enable = true;
     keyMap = "us";
   };
 
