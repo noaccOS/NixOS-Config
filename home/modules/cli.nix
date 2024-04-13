@@ -43,6 +43,11 @@ in
         catppuccin.enable = true;
       };
 
+      bottom = {
+        enable = true;
+        catppuccin.enable = true;
+      };
+
       direnv = {
         enable = true;
         nix-direnv.enable = true;
