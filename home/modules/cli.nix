@@ -35,6 +35,7 @@ in
       sd
     ];
 
+    homeModules.programs.cli.zellij.enable = true;
     homeModules.development.defaultVisual = "helix";
 
     programs = {
