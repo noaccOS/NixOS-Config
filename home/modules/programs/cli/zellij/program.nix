@@ -1,11 +1,11 @@
 { pkgs, lib, config, inputs, system, ... }:
 let
   simpleLayout = ''
-    layout = {
-      pane
-      pane size=1 borderless=true = {
+    layout {
+      pane size=1 borderless=true {
         plugin location="zellij:status-bar"
       }
+      pane
     }
   '';
 
@@ -19,6 +19,7 @@ let
     pane_frames = false;
     layout_dir = layoutDir;
     theme = "catppuccin-mocha";
+    copy_on_select = false;
   };
 
   zellijconfig = keybindings + "\n" + settings;

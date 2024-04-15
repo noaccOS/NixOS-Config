@@ -1,5 +1,7 @@
 keybinds clear-defaults=true {
-    normal
+    normal {
+        bind "Ctrl C" { Copy; }
+    }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
