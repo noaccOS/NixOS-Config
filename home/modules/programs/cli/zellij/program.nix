@@ -2,9 +2,6 @@
 let
   simpleLayout = ''
     layout {
-      pane size=1 borderless=true {
-        plugin location="zellij:status-bar"
-      }
       pane
     }
   '';
