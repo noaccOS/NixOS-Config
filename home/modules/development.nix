@@ -34,6 +34,7 @@ with lib; {
     rust.enable = mkEnableOption "Rust" // { default = true; };
     python.enable = mkEnableOption "Python" // { default = true; };
     racket.enable = mkEnableOption "Racket";
+    zig.enable = mkEnableOption "Zig" // { default = true; };
   };
 
   config = mkMerge [
@@ -107,6 +108,10 @@ with lib; {
       ]
       ++ lib.optionals cfg.racket.enable [
         racket # Compiler
+      ]
+      ++ lib.optionals cfg.zig.enable [
+        zig # Compiler
+        zls # LSP
       ]);
     }
   ];
