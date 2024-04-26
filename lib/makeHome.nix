@@ -14,8 +14,12 @@ home-manager.lib.homeManagerConfiguration {
     catppuccin.homeManagerModules.catppuccin
 
     {
-      config.homeModules.cli.sourceNix = true;
-      config.homeModules.nixgl = {
+      catppuccin.enable = true;
+      catppuccin.flavour = "mocha";
+      catppuccin.accent = "lavender";
+
+      homeModules.cli.sourceNix = true;
+      homeModules.nixgl = {
         enable = system == "x86_64-linux";
         driver = gpuDriver;
       };

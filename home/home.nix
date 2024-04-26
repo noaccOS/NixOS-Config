@@ -22,7 +22,5 @@
     ./modules/programs/video/mpv.nix
   ];
 
-  catppuccin.flavour = "mocha";
-
   home.stateVersion = "23.11";
 }

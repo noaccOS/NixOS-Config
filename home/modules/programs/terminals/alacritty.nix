@@ -7,7 +7,6 @@ in with lib; {
 
   config.programs.alacritty = {
     enable = cfg.enable;
-    catppuccin.enable = true;
     settings = {
       font.size = 14;
       font.normal.family = "JetBrainsMono Nerd Font";

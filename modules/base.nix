@@ -2,11 +2,8 @@
 {
   imports = [ ./cachix.nix ];
 
-  catppuccin.flavour = "mocha";
-
   console = {
     font = "Lat2-Terminus16";
-    catppuccin.enable = true;
     keyMap = "us";
   };
 

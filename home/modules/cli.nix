@@ -23,12 +23,10 @@ in
     programs = {
       bat = {
         enable = true;
-        catppuccin.enable = true;
       };
 
       bottom = {
         enable = true;
-        catppuccin.enable = true;
       };
 
       direnv = {
@@ -45,8 +43,6 @@ in
 
       fish = {
         enable = true;
-        catppuccin.enable = true;
-
         shellInit = lib.strings.optionalString cfg.sourceNix ''
           if test -f ~/.nix-profile/etc/profile.d/nix.fish
             source ~/.nix-profile/etc/profile.d/nix.fish
@@ -114,7 +110,6 @@ in
       starship = {
         enable = true;
         enableFishIntegration = true;
-        catppuccin.enable = true;
         settings = lib.mkMerge [
           (builtins.fromTOML (builtins.readFile ../../config/starship-nerd.toml))
           {

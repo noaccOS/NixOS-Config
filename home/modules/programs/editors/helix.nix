@@ -58,7 +58,6 @@ with lib; {
 
   config.programs.helix = {
     enable = cfg.enable;
-    catppuccin.enable = true;
     extraPackages = cfgDev.toolPackages
       ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {

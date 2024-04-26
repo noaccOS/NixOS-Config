@@ -15,7 +15,6 @@ let
     simplified_ui = true;
     pane_frames = false;
     layout_dir = layoutDir;
-    theme = "catppuccin-mocha";
     copy_on_select = false;
   };
 

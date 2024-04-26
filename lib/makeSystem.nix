@@ -29,6 +29,9 @@ lib.nixosSystem rec {
       nixpkgs.overlays = overlays;
       networking.hostName = name;
 
+      catppuccin.enable = true;
+      catppuccin.flavour = "mocha";
+
       nix = {
         registry.nixpkgs.flake = nixpkgs;
         channel.enable = false;
@@ -77,6 +80,10 @@ lib.nixosSystem rec {
             ../home/home.nix
             catppuccin.homeManagerModules.catppuccin
           ];
+
+          catppuccin.enable = true;
+          catppuccin.flavour = "mocha";
+          catppuccin.accent = "lavender";
         });
         extraSpecialArgs = {
           inherit user system;
