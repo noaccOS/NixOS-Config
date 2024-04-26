@@ -1,5 +1,7 @@
 keybinds clear-defaults=true {
-    normal { }
+    normal {
+        bind "Alt c" { Copy; }
+    }
     tmux {
         bind "h" { MoveFocus "Left"; }
         bind "t" { MoveFocus "Down"; }
