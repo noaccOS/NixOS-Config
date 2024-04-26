@@ -1,23 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.homeModules.cli;
-  aliases = {
-    defaults = {
-      eza = "${pkgs.eza}/bin/eza --color=auto --icons -a";
-    };
-
-    eza = {
-      ls = "${aliases.defaults.eza}";
-      ll = "${aliases.defaults.eza} -lh";
-      lt = "${aliases.defaults.eza} --tree";
-    };
-
-    fd = {
-      fd = "${pkgs.fd}/bin/fd -H";
-    };
-  };
 in
-
 {
   options.homeModules.cli = {
     enable = lib.mkEnableOption "basic cli tools";
@@ -30,8 +14,6 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      ripgrep
-      fd
       sd
     ];
 
@@ -56,18 +38,25 @@ in
 
       eza = {
         enable = true;
+        enableFishIntegration = true;
+        icons = true;
+        git = true;
       };
 
       fish = {
         enable = true;
         catppuccin.enable = true;
-        shellAliases = aliases.eza // aliases.fd;
 
         shellInit = lib.strings.optionalString cfg.sourceNix ''
           if test -f ~/.nix-profile/etc/profile.d/nix.fish
             source ~/.nix-profile/etc/profile.d/nix.fish
           end
         '';
+      };
+
+      fd = {
+        enable = true;
+        hidden = true;
       };
 
       git = {
@@ -116,7 +105,10 @@ in
             commit.gpgSign = true;
           };
         }];
+      };
 
+      ripgrep = {
+        enable = true;
       };
 
       starship = {
