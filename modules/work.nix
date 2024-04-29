@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      (callPackage ../packages/copyrighter/package.nix {})
       timewarrior
       firefox
       kubectl
