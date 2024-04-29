@@ -69,12 +69,7 @@ in
       # fcitx5.waylandFrontend = true;
     };
 
-    nixpkgs = {
-      config.joypixels.acceptLicense = true;
-      overlays = [
-        (import ../packages)
-      ];
-    };
+    nixpkgs.config.joypixels.acceptLicense = true;
 
     programs = {
       adb.enable = true;
