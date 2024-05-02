@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.homeModules.programs.editors.helix;
   cfgDev = config.homeModules.development;
@@ -35,7 +40,8 @@ let
     # ":" = "repeat_last_insert";
   };
 in
-with lib; {
+with lib;
+{
   options.homeModules.programs.editors.helix = {
     enable = mkEnableOption "helix";
     editor = mkOption {
@@ -58,8 +64,7 @@ with lib; {
 
   config.programs.helix = {
     enable = cfg.enable;
-    extraPackages = cfgDev.toolPackages
-      ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
+    extraPackages = cfgDev.toolPackages ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
         auto-save = true;
@@ -119,7 +124,28 @@ with lib; {
     languages = mkIf cfgDev.enableTools (mkMerge [
       (mkIf cfgDev.elixir.enable {
         language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
-        language = map (name: { inherit name; language-servers = [ "lexical" ]; }) [ "elixir" "heex" ];
+        language =
+          map
+            (name: {
+              inherit name;
+              language-servers = [ "lexical" ];
+            })
+            [
+              "elixir"
+              "heex"
+            ];
+      })
+      (mkIf cfgDev.nix.enable {
+        language-server.nixd.command = "${pkgs.nixd}/bin/nixd";
+        language = [
+          {
+            name = "nix";
+            language-servers = [ "nixd" ];
+            formatter = {
+              command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            };
+          }
+        ];
       })
     ]);
   };

@@ -38,7 +38,12 @@
   };
 
   outputs =
-    { self, nixpkgs, home-manager, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       makeSystem = import ./lib/makeSystem.nix inputs;
       makeHome = import ./lib/makeHome.nix inputs;
@@ -97,12 +102,11 @@
         };
       };
 
-      homeConfigurations =
-        {
-          x86 = makeHome { };
-          arm = makeHome { system = "aarch64-linux"; };
-        };
+      homeConfigurations = {
+        x86 = makeHome { };
+        arm = makeHome { system = "aarch64-linux"; };
+      };
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
 }

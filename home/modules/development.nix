@@ -93,8 +93,8 @@ with lib; {
         marksman # LSP
       ]
       ++ lib.optionals cfg.nix.enable [
-        nixpkgs-fmt # Formatter
-        nil # LSP
+        nixfmt-rfc-style # Formatter
+        nixd # LSP
       ]
       ++ lib.optionals cfg.rust.enable [
         rustc # Compiler
