@@ -14,10 +14,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lexical = {
-      url = "github:lexical-lsp/lexical?ref=v0.6.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;

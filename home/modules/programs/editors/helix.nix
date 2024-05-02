@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, system, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.homeModules.programs.editors.helix;
   cfgDev = config.homeModules.development;
@@ -118,7 +118,7 @@ with lib; {
 
     languages = mkIf cfgDev.enableTools (mkMerge [
       (mkIf cfgDev.elixir.enable {
-        language-server.lexical.command = "${inputs.lexical.packages.${system}.default}/binsh/start_lexical.sh";
+        language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
         language = map (name: { inherit name; language-servers = [ "lexical" ]; }) [ "elixir" "heex" ];
       })
     ]);
