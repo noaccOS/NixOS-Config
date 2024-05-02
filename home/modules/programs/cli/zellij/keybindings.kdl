@@ -14,7 +14,7 @@ keybinds clear-defaults=true {
         bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "C" { SwitchToMode "RenamePane"; PaneNameInput 0;}
-        bind "d" { Detach; }
+        bind "D" { Detach; }
         bind "q" { CloseFocus; SwitchToMode "Normal"; }
         bind "Tab" { SwitchFocus; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
