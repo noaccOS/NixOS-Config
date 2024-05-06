@@ -1,13 +1,21 @@
 # Inspiration from https://github.com/mitchellh/nixos-config/blob/main/flake.nix
 
-{ nixpkgs, home-manager, mutter-triple-buffer, catppuccin, ... }@flake-inputs:
-name: { system ? "x86_64-linux"
-      , user ? "noaccos"
-      , wan ? "${name}.local"
-      , overlays ? [ ]
-      , localModules ? [ ]
-      , extraModules ? [ ]
-      }:
+{
+  nixpkgs,
+  home-manager,
+  mutter-triple-buffer,
+  catppuccin,
+  ...
+}@flake-inputs:
+name:
+{
+  system ? "x86_64-linux",
+  user ? "noaccos",
+  wan ? "${name}.local",
+  overlays ? [ ],
+  localModules ? [ ],
+  extraModules ? [ ],
+}:
 let
   lib = nixpkgs.lib;
 in
@@ -68,23 +76,33 @@ lib.nixosSystem rec {
         ../modules/virtualization.nix
       ];
 
-      noaccOSModules = builtins.listToAttrs (lib.forEach localModules (m: { name = m; value = { enable = true; }; }));
+      noaccOSModules = builtins.listToAttrs (
+        lib.forEach localModules (m: {
+          name = m;
+          value = {
+            enable = true;
+          };
+        })
+      );
     }
 
     home-manager.nixosModules.home-manager
     {
       home-manager = {
         useUserPackages = true;
-        users.${user} = ({ pkgs, ... }@inputs: {
-          imports = [
-            ../home/home.nix
-            catppuccin.homeManagerModules.catppuccin
-          ];
+        users.${user} = (
+          { pkgs, ... }@inputs:
+          {
+            imports = [
+              ../home/home.nix
+              catppuccin.homeManagerModules.catppuccin
+            ];
 
-          catppuccin.enable = true;
-          catppuccin.flavour = "mocha";
-          catppuccin.accent = "lavender";
-        });
+            catppuccin.enable = true;
+            catppuccin.flavour = "mocha";
+            catppuccin.accent = "lavender";
+          }
+        );
         extraSpecialArgs = {
           inherit user system;
           inputs = flake-inputs;

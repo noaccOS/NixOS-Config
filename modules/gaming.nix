@@ -1,4 +1,10 @@
-{ lib, config, pkgs, currentSystem, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  currentSystem,
+  ...
+}:
 let
   kp = config.boot.kernelPackages;
   cfg = config.noaccOSModules.gaming;
@@ -34,5 +40,4 @@ in
       joycond.enable = true;
     };
   };
-
 }

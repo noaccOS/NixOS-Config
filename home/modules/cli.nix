@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.homeModules.cli;
 in
@@ -13,9 +18,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      sd
-    ];
+    home.packages = with pkgs; [ sd ];
 
     homeModules.programs.cli.zellij.enable = true;
     homeModules.development.defaultVisual = "helix";
@@ -91,16 +94,18 @@ in
           };
         };
 
-        includes = [{
-          condition = "gitdir:~/src/seco/";
-          contents = {
-            user = {
-              email = "francesco.noacco@secomind.com";
-              signingKey = "A83DA1B14BD444A6";
+        includes = [
+          {
+            condition = "gitdir:~/src/seco/";
+            contents = {
+              user = {
+                email = "francesco.noacco@secomind.com";
+                signingKey = "A83DA1B14BD444A6";
+              };
+              commit.gpgSign = true;
             };
-            commit.gpgSign = true;
-          };
-        }];
+          }
+        ];
       };
 
       ripgrep = {

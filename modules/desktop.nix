@@ -1,11 +1,17 @@
-{ pkgs, lib, currentUser, currentSystem, config, ... }:
+{
+  pkgs,
+  lib,
+  currentUser,
+  currentSystem,
+  config,
+  ...
+}:
 let
   cfg = config.noaccOSModules.desktop;
 in
 {
   options.noaccOSModules.desktop = {
     enable = lib.mkEnableOption "Module for desktop computer utilities";
-
   };
 
   config = lib.mkIf cfg.enable {
@@ -137,6 +143,10 @@ in
       };
     };
 
-    users.users.${currentUser}.extraGroups = [ "adbusers" "audio" "video" ];
+    users.users.${currentUser}.extraGroups = [
+      "adbusers"
+      "audio"
+      "video"
+    ];
   };
 }

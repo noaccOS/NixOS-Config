@@ -1,4 +1,10 @@
-{ pkgs, currentUser, lib, config, ... }:
+{
+  pkgs,
+  currentUser,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.noaccOSModules.canon;
 in
@@ -11,7 +17,11 @@ in
       extraBackends = [ pkgs.sane-airscan ];
       openFirewall = true;
     };
-    users.users.${currentUser}.extraGroups = [ "scanner" "lp" "avahi" ];
+    users.users.${currentUser}.extraGroups = [
+      "scanner"
+      "lp"
+      "avahi"
+    ];
     services.printing = {
       enable = true;
       drivers = [ pkgs.cnijfilter2 ];

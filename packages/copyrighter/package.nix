@@ -1,4 +1,11 @@
-{ stdenvNoCC, coreutils, git, ripgrep, sd, ... }:
+{
+  stdenvNoCC,
+  coreutils,
+  git,
+  ripgrep,
+  sd,
+  ...
+}:
 stdenvNoCC.mkDerivation {
   pname = "copyrighter";
   version = "0.1.0";
@@ -12,7 +19,7 @@ stdenvNoCC.mkDerivation {
   ];
 
   dontBuild = true;
-  
+
   installPhase = ''
     install -Dm755 copyrighter.sh $out/bin/copyrighter
   '';

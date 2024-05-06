@@ -1,6 +1,9 @@
 { config, lib, ... }:
-let cfg = config.homeModules.programs.terminals.rio;
-in with lib; {
+let
+  cfg = config.homeModules.programs.terminals.rio;
+in
+with lib;
+{
   options.homeModules.programs.terminals.rio = {
     enable = mkEnableOption "rio";
   };

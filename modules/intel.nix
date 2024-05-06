@@ -1,14 +1,20 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
   cfg = config.noaccOSModules.intel;
 
-  mutterTripleBufferOverlay = (self: super: {
-    gnome = super.gnome.overrideScope (gself: gsuper: {
-      mutter = gsuper.mutter.overrideAttrs ({
-        src = inputs.mutter-triple-buffer;
-      });
-    });
-  });
+  mutterTripleBufferOverlay = (
+    self: super: {
+      gnome = super.gnome.overrideScope (
+        gself: gsuper: { mutter = gsuper.mutter.overrideAttrs ({ src = inputs.mutter-triple-buffer; }); }
+      );
+    }
+  );
 in
 {
   options.noaccOSModules.intel = {

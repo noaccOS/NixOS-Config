@@ -1,4 +1,10 @@
-{ pkgs, config, lib, currentUser, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  currentUser,
+  ...
+}:
 let
   cfg = config.noaccOSModules.work;
 in
@@ -9,7 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      (callPackage ../packages/copyrighter/package.nix {})
+      (callPackage ../packages/copyrighter/package.nix { })
       timewarrior
       firefox
       kubectl
@@ -24,6 +30,9 @@ in
     };
 
     home-manager.users.${currentUser}.programs.starship.settings.kubernetes.disabled = false;
-    networking.firewall.allowedTCPPorts = [ 4000 8080 ];
+    networking.firewall.allowedTCPPorts = [
+      4000
+      8080
+    ];
   };
 }

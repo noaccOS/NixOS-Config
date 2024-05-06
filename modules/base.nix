@@ -48,7 +48,10 @@
       options = "--delete-older-than 7d";
     };
 
-    settings.trusted-users = [ "root" currentUser ];
+    settings.trusted-users = [
+      "root"
+      currentUser
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -118,7 +121,10 @@
         isNormalUser = true;
         group = currentUser;
         description = "Francesco Noacco";
-        extraGroups = [ "wheel" "plugdev" ];
+        extraGroups = [
+          "wheel"
+          "plugdev"
+        ];
         openssh.authorizedKeys.keyFiles = allowedKeys;
         initialPassword = "password";
       };

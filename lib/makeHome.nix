@@ -1,7 +1,15 @@
-{ nixpkgs, home-manager, nixgl, emacs-overlay, catppuccin, ... }@inputs:
-{ system ? "x86_64-linux"
-, user ? "noaccos"
-, gpuDriver ? "mesa"
+{
+  nixpkgs,
+  home-manager,
+  nixgl,
+  emacs-overlay,
+  catppuccin,
+  ...
+}@inputs:
+{
+  system ? "x86_64-linux",
+  user ? "noaccos",
+  gpuDriver ? "mesa",
 }:
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs {

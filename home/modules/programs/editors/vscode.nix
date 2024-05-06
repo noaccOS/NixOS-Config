@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.homeModules.programs.editors.vscode;
 
@@ -7,8 +12,14 @@ let
     licenses = lib.licenses;
   };
 
-  userSettings = lib.pipe vscode/settings.json [ builtins.readFile builtins.fromJSON ];
-  keybindings = lib.pipe vscode/keybindings.json [ builtins.readFile builtins.fromJSON ];
+  userSettings = lib.pipe vscode/settings.json [
+    builtins.readFile
+    builtins.fromJSON
+  ];
+  keybindings = lib.pipe vscode/keybindings.json [
+    builtins.readFile
+    builtins.fromJSON
+  ];
 in
 {
   options.homeModules.programs.editors.vscode = {
@@ -44,24 +55,27 @@ in
       # enableUpdateCheck = false;
       # enableExtensionUpdateCheck = true;
 
-      extensions = with pkgs.vscode-extensions; [
-        catppuccin.catppuccin-vsc
-        catppuccin.catppuccin-vsc-icons
-        kahole.magit
-        mkhl.direnv
-        elixir-lsp.vscode-elixir-ls
-        mhutchie.git-graph
-        donjayamanne.githistory
-        github.vscode-github-actions
-        github.vscode-pull-request-github
-        eamodio.gitlens
-        golang.go
-        jnoortheen.nix-ide
-        ibm.output-colorizer
-        humao.rest-client
-        streetsidesoftware.code-spell-checker
-        tamasfe.even-better-toml
-      ] ++ customPackages;
+      extensions =
+        with pkgs.vscode-extensions;
+        [
+          catppuccin.catppuccin-vsc
+          catppuccin.catppuccin-vsc-icons
+          kahole.magit
+          mkhl.direnv
+          elixir-lsp.vscode-elixir-ls
+          mhutchie.git-graph
+          donjayamanne.githistory
+          github.vscode-github-actions
+          github.vscode-pull-request-github
+          eamodio.gitlens
+          golang.go
+          jnoortheen.nix-ide
+          ibm.output-colorizer
+          humao.rest-client
+          streetsidesoftware.code-spell-checker
+          tamasfe.even-better-toml
+        ]
+        ++ customPackages;
     };
   };
 }

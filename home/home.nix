@@ -1,4 +1,9 @@
-{ pkgs, lib, user ? "noaccos", ... }:
+{
+  pkgs,
+  lib,
+  user ? "noaccos",
+  ...
+}:
 
 {
   home.username = user;

@@ -1,9 +1,7 @@
-{ buildVscodeMarketplaceExtension
-, licenses
-}:
+{ buildVscodeMarketplaceExtension, licenses }:
 let
-  cut-all-right = buildVscodeMarketplaceExtension
-    {
+  cut-all-right =
+    buildVscodeMarketplaceExtension {
       mktplcRef = {
         publisher = "cou929";
         name = "vscode-cut-all-right";
@@ -16,10 +14,13 @@ let
         homepage = "https://github.com/cou929/vscode-cut-all-right";
         license = licenses.unlicense;
       };
-    } // { recurseForDerivations = true; };
+    }
+    // {
+      recurseForDerivations = true;
+    };
 
-  markdown-table = buildVscodeMarketplaceExtension
-    {
+  markdown-table =
+    buildVscodeMarketplaceExtension {
       mktplcRef = {
         publisher = "TakumiI";
         name = "markdowntable";
@@ -33,10 +34,13 @@ let
         homepage = "https://github.com/takumisoft68/vscode-markdown-table";
         license = licenses.asl20;
       };
-    } // { recurseForDerivations = true; };
+    }
+    // {
+      recurseForDerivations = true;
+    };
 
-  org-mode = buildVscodeMarketplaceExtension
-    {
+  org-mode =
+    buildVscodeMarketplaceExtension {
       mktplcRef = {
         publisher = "vscode-org-mode";
         name = "org-mode";
@@ -50,7 +54,10 @@ let
         homepage = "https://github.com/vscode-org-mode/vscode-org-mode";
         license = licenses.gpl3;
       };
-    } // { recurseForDerivations = true; };
+    }
+    // {
+      recurseForDerivations = true;
+    };
 in
 [
   cut-all-right

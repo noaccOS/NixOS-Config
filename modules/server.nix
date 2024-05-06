@@ -1,4 +1,11 @@
-{ pkgs, config, currentUser, currentDomainName, lib, ... }:
+{
+  pkgs,
+  config,
+  currentUser,
+  currentDomainName,
+  lib,
+  ...
+}:
 let
   cfg = config.noaccOSModules.server;
 in
@@ -14,18 +21,35 @@ in
       certs.${currentDomainName} = {
         webroot = "/var/lib/acme/.challenges";
         group = "nginx";
-        extraDomainNames = [ "jellyfin.${currentDomainName}" "nextcloud.${currentDomainName}" ];
+        extraDomainNames = [
+          "jellyfin.${currentDomainName}"
+          "nextcloud.${currentDomainName}"
+        ];
       };
     };
 
     networking.firewall = {
-      allowedTCPPorts = [ 80 443 ]     # NGINX
-        ++ [ 53 4000 ] # Blocky
-        ++ [ 8096 ]    # Jellyfin
+      allowedTCPPorts =
+        [
+          80
+          443
+        ] # NGINX
+        ++ [
+          53
+          4000
+        ] # Blocky
+        ++ [ 8096 ] # Jellyfin
         ++ [ 5201 ]; # iperf
-      allowedUDPPorts = [ 80 443 ]     # NGINX
-        ++ [ 53 4000 ] # Blocky
-        ++ [ 8096 ]    # Jellyfin
+      allowedUDPPorts =
+        [
+          80
+          443
+        ] # NGINX
+        ++ [
+          53
+          4000
+        ] # Blocky
+        ++ [ 8096 ] # Jellyfin
         ++ [ 5201 ]; # iperf
     };
 
@@ -156,11 +180,18 @@ in
 
     users.groups.homeservices = { };
     users.users = {
-      nginx.extraGroups = [ "homeservices" "acme" ];
+      nginx.extraGroups = [
+        "homeservices"
+        "acme"
+      ];
       jellyfin.extraGroups = [ "homeservices" ];
       nextcloud.extraGroups = [ "homeservices" ];
     };
 
-    users.users.${currentUser}.extraGroups = [ "homeservices" "jellyfin" "podman" ];
+    users.users.${currentUser}.extraGroups = [
+      "homeservices"
+      "jellyfin"
+      "podman"
+    ];
   };
 }

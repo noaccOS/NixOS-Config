@@ -1,4 +1,10 @@
-{ pkgs, currentUser, config, lib, ... }:
+{
+  pkgs,
+  currentUser,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.noaccOSModules.virtualization;
 in
