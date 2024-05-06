@@ -11,7 +11,6 @@ in
     environment.systemPackages = [
       pkgs.adw-gtk3
 
-      pkgs.blackbox-terminal
       pkgs.celluloid
 
       pkgs.gnome.gnome-tweaks

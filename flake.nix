@@ -24,7 +24,7 @@
       type = "gitlab";
       owner = "Community%2FUbuntu";
       repo = "mutter";
-      ref = "triple-buffering-v4-45";
+      ref = "triple-buffering-v4-46";
       host = "gitlab.gnome.org";
       flake = false;
     };
