@@ -1,4 +1,11 @@
-{ pkgs, lib, config, inputs, system, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  system,
+  ...
+}:
 let
   simpleLayout = ''
     layout {
@@ -30,7 +37,13 @@ with lib;
   config = mkIf cfg.enable {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = true;
+    };
+
+    programs.alacritty.settings = {
+      shell = {
+        program = "${config.programs.zellij.package}/bin/zellij";
+        args = [ "-l" "welcome" ];
+      };
     };
 
     xdg.configFile."zellij/config.kdl".text = zellijconfig;
