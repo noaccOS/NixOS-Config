@@ -22,10 +22,6 @@ home-manager.lib.homeManagerConfiguration {
     catppuccin.homeManagerModules.catppuccin
 
     {
-      catppuccin.enable = true;
-      catppuccin.flavour = "mocha";
-      catppuccin.accent = "lavender";
-
       homeModules.cli.sourceNix = true;
       homeModules.nixgl = {
         enable = system == "x86_64-linux";

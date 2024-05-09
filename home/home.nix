@@ -12,6 +12,12 @@
   xdg.enable = true;
   nixpkgs.config.allowUnfree = true;
 
+  catppuccin = {
+    enable = true;
+    flavour = "mocha";
+    accent = "lavender";
+  };
+
   imports = [
     ./modules/cli.nix
     ./modules/gui.nix

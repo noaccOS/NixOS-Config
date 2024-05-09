@@ -1,6 +1,10 @@
-{ pkgs, currentUser, ... }:
 {
-  imports = [ ./cachix.nix ];
+  pkgs,
+  currentUser,
+  ...
+}:
+{
+  imports = [ ./cachix.nix ./catppuccin.nix ];
 
   console = {
     font = "Lat2-Terminus16";
