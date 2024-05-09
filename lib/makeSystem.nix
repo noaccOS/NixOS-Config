@@ -3,7 +3,6 @@
 {
   nixpkgs,
   home-manager,
-  mutter-triple-buffer,
   catppuccin,
   ...
 }@flake-inputs:
