@@ -42,7 +42,10 @@ with lib;
     programs.alacritty.settings = {
       shell = {
         program = "${config.programs.zellij.package}/bin/zellij";
-        args = [ "-l" "welcome" ];
+        args = [
+          "-l"
+          "welcome"
+        ];
       };
     };
 
