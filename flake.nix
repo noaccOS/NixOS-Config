@@ -14,6 +14,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;
@@ -42,6 +43,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixos-hardware,
       ...
     }@inputs:
     let
@@ -83,6 +85,8 @@
             "development"
             "virtualization"
           ];
+
+          extraModules = [ nixos-hardware.nixosModules.framework-13-7040-amd ];
         };
 
         # hitagi = makeSystem "hitagi" {
