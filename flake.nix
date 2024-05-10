@@ -75,6 +75,16 @@
           ];
         };
 
+        ougi = makeSystem "ougi" {
+          localModules = [
+            "desktop"
+            "personal"
+            "gnome"
+            "development"
+            "virtualization"
+          ];
+        };
+
         # hitagi = makeSystem "hitagi" {
         #   inherit nixpkgs home-manager emacs-overlay;
         #   system = "aarch64-linux";
