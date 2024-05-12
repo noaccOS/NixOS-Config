@@ -66,6 +66,28 @@
         "type": "github"
       }
     },
+    "kmonad": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1715058553,
+        "narHash": "sha256-5y87n9v8WJ921Q6hMFGIYq1g/HaZHoopTuzDk4SvrfQ=",
+        "owner": "kmonad",
+        "repo": "kmonad",
+        "rev": "8efcc8f7f7369a5e684d201c0263416db2a5df60",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "kmonad",
+        "repo": "kmonad",
+        "type": "github"
+      }
+    },
     "mutter-triple-buffer": {
       "flake": false,
       "locked": {
@@ -141,6 +163,7 @@
         "catppuccin": "catppuccin",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "home-manager": "home-manager",
+        "kmonad": "kmonad",
         "mutter-triple-buffer": "mutter-triple-buffer",
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
