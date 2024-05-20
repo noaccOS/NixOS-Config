@@ -4,6 +4,7 @@
   nixpkgs,
   home-manager,
   catppuccin,
+  kmonad,
   ...
 }@flake-inputs:
 name:
@@ -49,6 +50,7 @@ lib.nixosSystem rec {
     }
 
     catppuccin.nixosModules.catppuccin
+    kmonad.nixosModules.default
 
     ../modules/base.nix
     ../hosts/${name}.nix
@@ -63,6 +65,7 @@ lib.nixosSystem rec {
         ../modules/gaming.nix
         ../modules/gnome.nix
         ../modules/intel.nix
+        ../modules/kmonad.nix
         ../modules/logitech.nix
         ../modules/nvidia.nix
         ../modules/personal.nix

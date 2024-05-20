@@ -1,0 +1,72 @@
+(defalias
+  lwr (layer-toggle lower)
+  rse (layer-toggle raise)
+  adj (layer-toggle adjust)
+  kil C-A-del
+  
+  ag #(C-S-u 0 0 E 0 ent)
+  eg #(C-S-u 0 0 E 8 ent)
+  ig #(C-S-u 0 0 E C ent)
+  og #(C-S-u 0 0 F 2 ent)
+  ug #(C-S-u 0 0 F 9 ent)
+  aa #(C-S-u 0 0 E 1 ent)
+  ea #(C-S-u 0 0 E 9 ent)
+  ia #(C-S-u 0 0 E D ent)
+  oa #(C-S-u 0 0 F 3 ent)
+  ua #(C-S-u 0 0 F A ent)
+  Ag #(C-S-u 0 0 C 0 ent)
+  Eg #(C-S-u 0 0 C 8 ent)
+  Ig #(C-S-u 0 0 C C ent)
+  Og #(C-S-u 0 0 D 2 ent)
+  Ug #(C-S-u 0 0 D 9 ent)
+  Aa #(C-S-u 0 0 C 1 ent)
+  Ea #(C-S-u 0 0 C 9 ent)
+  Ia #(C-S-u 0 0 C D ent)
+  Oa #(C-S-u 0 0 D 3 ent)
+  Ua #(C-S-u 0 0 D A ent))
+
+(defsrc 
+  esc  f1   f2   f3   f4       f5   f6      f7               f8   f9   f10  f11  f12  del
+  `    1    2    3    4        5    6       7                8    9    0    -    =    yen bspc
+  tab  q    w    e    r        t    y       u                i    o    p    [    ]    ret
+  caps a    s    d    f        g    h       j                k    l    ;    '    \    
+  lsft z    x    c    v        b    n       m                ,    .    /    ro   rsft
+  lctl      lmet lalt muhenkan spc  henkan  katakanahiragana ralt rctl left up   down rght
+  )
+
+(deflayer base
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
+  tab  '    ,    .    p    y    f    g    c    r    l    [    ]    ret
+  caps a    o    e    u    i    d    h    t    n    s    '    \    
+  lsft ;    q    j    k    x    b    m    w    v    z    ro   rsft
+  lctl      lmet ret  lsft spc  lctl @rse lalt rctl left up   down rght
+  )
+
+(deflayer raise
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
+  tab  1    2    3    4    5    6    7    8    9    0    [    ]    ret
+  caps @ag  @og  @eg  @ug  @ig  esc  left down up   rght '    \    
+  lsft =    -    \    /    `    tab  home pgdn pgup end  ro   rsft
+  lctl      lmet lalt @lwr lmet _    _    lalt rctl left up   down rght
+  )
+
+(deflayer lower
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
+  tab  !    @    #    $    %    ^    &    *    S-9  S-0  [    ]    ret
+  caps @aa  @oa  @ea  @ua  @ia  _    {    }    [    ]    '    \    
+  lsft +    S--  |    ?    ~    _    bspc _    _    del  ro   rsft
+  lctl      lmet _    _    _    @adj _    lalt rctl left up   down rght
+  )
+
+(deflayer adjust
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
+  tab  f1   f2   f3   f4   _    _    _    _    _    _    [    ]    ret
+  caps f5   f6   f7   f8   _    pp   prev vold volu next '    \    
+  lsft f9   f10  f11  f12  _    caps @kil _    _    _    ro   rsft
+  lctl      lmet _    _    _    _    _    lalt rctl left up   down rght
+  )
+

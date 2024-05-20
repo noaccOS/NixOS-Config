@@ -14,6 +14,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     rycee = {
       url = "gitlab:rycee/nur-expressions";
@@ -83,6 +87,7 @@
             "personal"
             "gnome"
             "development"
+            "kmonad"
             "virtualization"
           ];
 
