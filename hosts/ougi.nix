@@ -25,7 +25,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ab7c7870-4af5-49cf-affc-4706446498d5";
+    device = "/dev/disk/by-uuid/69d6544a-0cee-43fe-8d38-0d987aac417d";
     fsType = "btrfs";
   };
 
@@ -37,6 +37,8 @@
       "dmask=0022"
     ];
   };
+
+  boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/0d4c911f-24c7-4688-bde8-8b9ef32f0811";
 
   swapDevices = [ ];
 
