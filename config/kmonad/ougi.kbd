@@ -3,6 +3,20 @@
   rse (layer-toggle raise)
   adj (layer-toggle adjust)
   kil C-A-del
+
+  tty (around-next (layer-toggle tty))
+  t1 C-A-f1
+  t2 C-A-f2
+  t3 C-A-f3
+  t4 C-A-f4
+  t5 C-A-f5
+  t6 C-A-f6
+  t7 C-A-f7
+  t8 C-A-f8
+  t9 C-A-f9
+  t10 C-A-f10
+  t11 C-A-f11
+  t12 C-A-f12
   
   ag #(C-S-u 0 0 E 0 ent)
   eg #(C-S-u 0 0 E 8 ent)
@@ -40,33 +54,41 @@
   tab  '    ,    .    p    y    f    g    c    r    l    [    ]    ret
   caps a    o    e    u    i    d    h    t    n    s    '    \    
   lsft ;    q    j    k    x    b    m    w    v    z    ro   rsft
-  lctl      lmet ret  lsft spc  lctl @rse lalt rctl left up   down rght
-  )
-
-(deflayer raise
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
-  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
-  tab  1    2    3    4    5    6    7    8    9    0    [    ]    ret
-  caps @ag  @og  @eg  @ug  @ig  esc  left down up   rght '    \    
-  lsft =    -    \    /    `    tab  home pgdn pgup end  ro   rsft
-  lctl      lmet lalt @lwr lmet _    _    lalt rctl left up   down rght
+  lctl      lmet lsft @lwr spc  ret  @rse ralt rctl left up   down rght
   )
 
 (deflayer lower
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
+  tab  1    2    3    4    5    6    7    8    9    0    [    ]    ret
+  caps @ag  @og  @eg  @ug  @ig  _    {    }    [    ]    '    \    
+  lsft _    _    _    _    _    `    /    \    -    =    ro   rsft
+  lctl      lmet _    _    _    lalt @adj ralt rctl left up   down rght
+  )
+
+(deflayer raise
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
   tab  S-1  @    #    $    %    ^    &    *    S-9  S-0  [    ]    ret
-  caps @aa  @oa  @ea  @ua  @ia  _    {    }    [    ]    '    \    
-  lsft +    S--  |    ?    ~    _    bspc _    _    del  ro   rsft
-  lctl      lmet _    _    _    @adj _    lalt rctl left up   down rght
+  caps @aa  @oa  @ea  @ua  @ia  esc  left down up   rght '    \    
+  lsft _    bspc del  tab  _    ~    ?    |    S--  +    ro   rsft
+  lctl      lmet lmet @adj lctl _    _    ralt rctl left up   down rght
   )
 
 (deflayer adjust
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
-  tab  f1   f2   f3   f4   _    _    _    _    _    _    [    ]    ret
-  caps f5   f6   f7   f8   _    pp   prev vold volu next '    \    
-  lsft f9   f10  f11  f12  _    caps @kil _    _    _    ro   rsft
-  lctl      lmet _    _    _    _    _    lalt rctl left up   down rght
+  tab  f1   f2   f3   f4   _    pp   prev vold volu next [    ]    ret
+  caps f5   f6   f7   f8   _    tab  home pgdn pgup end  '    \    
+  lsft f9   f10  f11  f12  _    caps @kil @tty _    _    ro   rsft
+  lctl      lmet _    _    _    _    _    ralt rctl left up   down rght
   )
 
+(deflayer tty
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
+  tab  @t1  @t2  @t3  @t4  _    _    _    _    _    _    [    ]    ret
+  caps @t5  @t6  @t7  @t8  _    _    _    _    _    _    '    \    
+  lsft @t9  @t10 @t11 @t12 _    _    _    _    _    _    ro   rsft
+  lctl      lmet _    _    _    _    _    ralt rctl left up   down rght
+  )
