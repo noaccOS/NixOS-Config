@@ -81,61 +81,61 @@ with lib;
       homeModules.development.toolPackages = optionals cfg.enableTools (
         with pkgs;
         [ (tree-sitter.withPlugins (_: tree-sitter.allGrammars)) ]
-        ++ lib.optionals cfg.c.enable [
+        ++ optionals cfg.c.enable [
           clang # Compiler
           gcc # Compiler
           ccls # LSP
         ]
-        ++ lib.optionals cfg.cSharp.enable [
+        ++ optionals cfg.cSharp.enable [
           dotnet-sdk # Compiler
           dotnet-runtime # Runner
           mono # Runner
           omnisharp-roslyn # LSP
         ]
-        ++ lib.optionals cfg.elixir.enable [
+        ++ optionals cfg.elixir.enable [
           elixir # Compiler
           lexical # LSP
           erlang # Needed for escript
         ]
-        ++ lib.optionals cfg.haskell.enable [
+        ++ optionals cfg.haskell.enable [
           ghc # Compiler
           stack # CLI tool
           haskell-language-server # LSP
           haskellPackages.hindent # Indent
         ]
-        ++ lib.optionals cfg.java.enable [
+        ++ optionals cfg.java.enable [
           jdk # Compiler
           jdt-language-server # LSP
         ]
-        ++ lib.optionals cfg.latex.enable [
+        ++ optionals cfg.latex.enable [
           texlab # LSP
           python3Packages.pygments # Minted support
           texlive.combined.scheme-small # Compiler and libraries
         ]
-        ++ lib.optionals cfg.lua.enable [
+        ++ optionals cfg.lua.enable [
           lua # Compiler
         ]
-        ++ lib.optionals cfg.markdown.enable [
-          marksman # LSP
+        ++ optionals cfg.markdown.enable [
+          markdown-oxide # LSP
         ]
-        ++ lib.optionals cfg.nix.enable [
+        ++ optionals cfg.nix.enable [
           nixfmt-rfc-style # Formatter
           nixd # LSP
         ]
-        ++ lib.optionals cfg.rust.enable [
+        ++ optionals cfg.rust.enable [
           rustc # Compiler
           cargo # Project Manager
           rust-analyzer # LSP
           rustfmt # Formatter
         ]
-        ++ lib.optionals cfg.python.enable [
+        ++ optionals cfg.python.enable [
           python3 # Compiler
           nodePackages.pyright # LSP
         ]
-        ++ lib.optionals cfg.racket.enable [
+        ++ optionals cfg.racket.enable [
           racket # Compiler
         ]
-        ++ lib.optionals cfg.zig.enable [
+        ++ optionals cfg.zig.enable [
           zig # Compiler
           zls # LSP
         ]
