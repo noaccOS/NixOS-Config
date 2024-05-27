@@ -33,6 +33,7 @@ in
         mpv
         pandoc
         imagemagick
+        wl-clipboard
       ];
 
       sessionVariables = {
