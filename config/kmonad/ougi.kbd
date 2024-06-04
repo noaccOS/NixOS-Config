@@ -54,25 +54,25 @@
   tab  '    ,    .    p    y    f    g    c    r    l    [    ]    ret
   caps a    o    e    u    i    d    h    t    n    s    '    \    
   lsft ;    q    j    k    x    b    m    w    v    z    ro   rsft
-  lctl      lmet lsft @lwr spc  ret  @rse ralt rctl left up   down rght
+  lctl      lmet ret  @lwr spc  lsft @rse ralt rctl left up   down rght
   )
 
 (deflayer lower
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
   tab  1    2    3    4    5    6    7    8    9    0    [    ]    ret
-  caps @ag  @og  @eg  @ug  @ig  _    {    }    [    ]    '    \    
+  caps @aa  @oa  @ea  @ua  @ia  _    {    }    [    ]    '    \    
   lsft _    _    _    _    _    `    \    /    -    =    ro   rsft
-  lctl      lmet _    _    _    lctl @adj ralt rctl left up   down rght
+  lctl      lmet _    _    _    lalt @adj ralt rctl left up   down rght
   )
 
 (deflayer raise
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   `    1    2    3    4    5    6    7    8    9    0    -    =    yen bspc
   tab  S-1  @    #    $    %    ^    &    *    S-9  S-0  [    ]    ret
-  caps @aa  @oa  @ea  @ua  @ia  esc  left down up   rght '    \    
+  caps @ag  @og  @eg  @ug  @ig  esc  left down up   rght '    \    
   lsft _    bspc del  tab  _    ~    |    ?    S--  +    ro   rsft
-  lctl      lmet lalt @adj lmet _    _    ralt rctl left up   down rght
+  lctl      lmet lmet @adj lctl _    _    ralt rctl left up   down rght
   )
 
 (deflayer adjust
