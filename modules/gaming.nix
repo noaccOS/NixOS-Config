@@ -6,7 +6,6 @@
   ...
 }:
 let
-  kp = config.boot.kernelPackages;
   cfg = config.noaccOSModules.gaming;
 in
 {
@@ -15,8 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    boot.extraModulePackages = [ kp.xpadneo ];
-
     environment.systemPackages = with pkgs; [
       wineWowPackages.staging
       winetricks
@@ -30,6 +27,7 @@ in
       heroic
     ];
 
+    hardware.xpadneo.enable = true;
     programs.steam.enable = true;
 
     services = {
