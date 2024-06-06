@@ -40,7 +40,7 @@ let
     z.t = "scroll_down";
     z.n = "scroll_up";
     "C-k" = "keep_selections";
-    "C-K" = "remove_selections";
+    "A-k" = "remove_selections";
     "`" = "select_register";
     "!" = "shell_append_output";
     "A-!" = "shell_insert_output";
