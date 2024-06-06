@@ -29,6 +29,17 @@ let
     "C-w".T = "swap_view_down";
     "C-w".N = "swap_view_up";
     "C-w".S = "swap_view_right";
+    space.r = "vsplit";
+    space.d = "hsplit";
+    space.t = "jump_view_down";
+    space.n = "jump_view_up";
+    space.s = "jump_view_right";
+    space.T = "swap_view_down";
+    space.N = "swap_view_up";
+    space.S = "swap_view_right";
+    z.t = "scroll_down";
+    z.n = "scroll_up";
+    
     "`" = "select_register";
     "!" = "shell_append_output";
     "A-!" = "shell_insert_output";
@@ -37,6 +48,7 @@ let
     "A-." = "flip_selections";
     "C-." = "ensure_selections_forward";
     "A-;" = "repeat_last_motion";
+    # https://github.com/helix-editor/helix/issues/1488
     # ":" = "repeat_last_insert";
   };
 in
