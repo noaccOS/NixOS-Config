@@ -21,6 +21,7 @@ in
     home.packages = with pkgs; [ sd ];
 
     homeModules.programs.cli.zellij.enable = true;
+    homeModules.programs.cli.gitui.enable = true;
     homeModules.development.defaultVisual = "helix";
 
     programs = {
