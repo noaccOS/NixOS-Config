@@ -39,7 +39,8 @@ let
     space.S = "swap_view_right";
     z.t = "scroll_down";
     z.n = "scroll_up";
-    
+    "C-k" = "keep_selections";
+    "C-K" = "remove_selections";
     "`" = "select_register";
     "!" = "shell_append_output";
     "A-!" = "shell_insert_output";
