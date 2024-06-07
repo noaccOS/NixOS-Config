@@ -12,7 +12,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
+    helix
+    xq # jq
     wget
     neofetch
     htop
