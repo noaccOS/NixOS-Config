@@ -40,6 +40,7 @@ in
         config.global = {
           bash_path = "${pkgs.bash}/bin/bash";
           load_dotenv = true;
+          warn_timeout = 0;
         };
       };
 
