@@ -130,7 +130,7 @@ with lib;
         ]
         ++ optionals cfg.python.enable [
           python3 # Compiler
-          nodePackages.pyright # LSP
+          pyright # LSP
         ]
         ++ optionals cfg.racket.enable [
           racket # Compiler
