@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -31,20 +30,5 @@ with lib;
       shift_up: Some(( code: Char('N'), modifiers: "SHIFT" )),
       shift_down: Some(( code: Char('T'), modifiers: "SHIFT" )),
     '';
-
-    catppuccin.enable = false;
-    theme =
-      let
-        theme = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "gitui";
-          rev = "c7661f043cb6773a1fc96c336738c6399de3e617";
-          hash = "sha256-CRxpEDShQcCEYtSXwLV5zFB8u0HVcudNcMruPyrnSEk=";
-        };
-      in
-      builtins.path {
-        name = "catppuccin-${config.catppuccin.flavor}.ron";
-        path = "${theme}/themes/catppuccin-${config.catppuccin.flavor}.ron";
-      };
   };
 }
