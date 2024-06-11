@@ -14,6 +14,7 @@ with lib;
   config.programs.gitui = {
     enable = cfg.enable;
     keyConfig = ''
+    (
       move_left: Some(( code: Char('h'), modifiers: "" )),
       move_down: Some(( code: Char('t'), modifiers: "" )),
       move_up: Some(( code: Char('n'), modifiers: "" )),
@@ -29,6 +30,7 @@ with lib;
       open_help: Some(( code: Char('?'), modifiers: "SHIFT" )),
       shift_up: Some(( code: Char('N'), modifiers: "SHIFT" )),
       shift_down: Some(( code: Char('T'), modifiers: "SHIFT" )),
+    )
     '';
   };
 }
