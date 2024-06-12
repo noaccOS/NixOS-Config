@@ -15,13 +15,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    boot.initrd.systemd.enable = true;
     boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    boot.kernelParams = [ "quiet" ];
 
     boot.loader = lib.mkIf (currentSystem == "x86_64-linux") {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       grub.enable = false;
     };
+
+    boot.plymouth.enable = true;
 
     environment = {
       defaultPackages = with pkgs; [
