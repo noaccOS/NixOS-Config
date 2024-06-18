@@ -91,9 +91,10 @@ with lib;
           render = true;
           skip-levels = 2;
         };
-        idle-timeout = 0;
+        completion-timeout = 5;
         line-number = "relative";
         lsp.display-messages = true;
+        lsp.display-inlay-hints = true;
         file-picker.hidden = false;
         whitespace.render = {
           nbsp = "all";
