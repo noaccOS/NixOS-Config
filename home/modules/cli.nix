@@ -77,6 +77,7 @@ in
           ".vscode/"
           "result"
           ".lexical/"
+          ".helix"
         ];
         extraConfig = {
           credential.helper = "store";
