@@ -110,9 +110,8 @@ in
         settings.General.Experimental = true;
       };
       nitrokey.enable = true;
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport = true;
         extraPackages = with pkgs; [
           libvdpau
           vaapiVdpau
