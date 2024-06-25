@@ -53,6 +53,9 @@ in
 
       fish = {
         enable = true;
+        shellAliases = {
+          cat = "bat --style=plain --paging=never";
+        };
         shellInit = lib.strings.optionalString cfg.sourceNix ''
           if test -f ~/.nix-profile/etc/profile.d/nix.fish
             source ~/.nix-profile/etc/profile.d/nix.fish
