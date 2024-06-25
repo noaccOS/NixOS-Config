@@ -22,7 +22,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.opengl.extraPackages = with pkgs; [
+    hardware.graphics.extraPackages = with pkgs; [
       vaapiIntel
       intel-media-driver
       intel-compute-runtime
