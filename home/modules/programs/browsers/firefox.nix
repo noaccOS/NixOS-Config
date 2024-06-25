@@ -203,9 +203,7 @@ in
             in
             cfg.package.override { inherit nativeMessagingHosts; };
           profiles = {
-            default = finalProfileSettings // {
-              id = 1;
-            };
+            default = finalProfileSettings;
           };
         };
 
