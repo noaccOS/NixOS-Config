@@ -80,16 +80,19 @@ keybinds clear-defaults=true {
     shared_except "pane" "locked" {
         bind "Alt u" { SwitchToMode "Pane"; }
     }
-    shared_except "resize" "normal" {
+    shared_except "resize" "locked" {
         bind "Alt r" { SwitchToMode "Resize"; }
     }
-    shared_except "scroll" "normal" {
+    shared_except "scroll" "locked" {
         bind "Alt s" { SwitchToMode "Scroll"; }
     }
-    shared_except "tmux" {
+    shared_except "tmux" "locked" {
         bind "Alt h" { SwitchToMode "Tmux"; }
     }
-    shared_except "normal" "entersearch" {
+    shared_except "normal" "entersearch" "locked" {
         bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+    }
+    shared_except "entersearch" "locked" {
+        bind "Alt /" { SwitchToMode "EnterSearch"; SearchInput 0; }
     }
 }
