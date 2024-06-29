@@ -75,14 +75,9 @@ lib.nixosSystem rec {
         ../modules/virtualization.nix
       ];
 
-      noaccOSModules = builtins.listToAttrs (
-        lib.forEach localModules (m: {
-          name = m;
-          value = {
-            enable = true;
-          };
-        })
-      );
+      noaccOSModules = lib.genAttrs localModules (_: {
+        enable = true;
+      });
     }
 
     home-manager.nixosModules.home-manager
