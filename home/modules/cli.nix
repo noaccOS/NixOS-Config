@@ -22,16 +22,13 @@ in
 
     homeModules.programs.cli.zellij.enable = true;
     homeModules.programs.cli.gitui.enable = true;
+    homeModules.programs.shells.nu.enable = true;
     homeModules.development.defaultVisual = "helix";
 
     programs = {
-      bat = {
-        enable = true;
-      };
-
-      bottom = {
-        enable = true;
-      };
+      bat.enable = true;
+      bottom.enable = true;
+      carapace.enable = true;
 
       direnv = {
         enable = true;
@@ -119,9 +116,7 @@ in
         ];
       };
 
-      ripgrep = {
-        enable = true;
-      };
+      ripgrep.enable = true;
 
       starship = {
         enable = true;
@@ -134,6 +129,8 @@ in
           }
         ];
       };
+
+      zoxide.enable = true;
     };
   };
 }

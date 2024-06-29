@@ -122,7 +122,7 @@ in
   time.timeZone = "Europe/Rome";
 
   users = {
-    defaultUserShell = pkgs.fish;
+    defaultUserShell = pkgs.nushell;
 
     groups = {
       plugdev = { };
