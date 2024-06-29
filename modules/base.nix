@@ -1,10 +1,17 @@
 {
   pkgs,
+  lib,
   currentUser,
   ...
 }:
+let
+  ssh-keys = lib.filesystem.listFilesRecursive ../config/ssh-keys;
+in
 {
-  imports = [ ./cachix.nix ./catppuccin.nix ];
+  imports = [
+    ./cachix.nix
+    ./catppuccin.nix
+  ];
 
   console = {
     font = "Lat2-Terminus16";
@@ -92,47 +99,51 @@
     fwupd.enable = true;
     openssh = {
       enable = true;
-      knownHosts = {
-        mayoi.publicKeyFile = ../config/ssh-keys/mayoi.pub;
-        shinobu.publicKeyFile = ../config/ssh-keys/shinobu.pub;
-        yotsugi.publicKeyFile = ../config/ssh-keys/yotsugi.pub;
-      };
+      knownHosts =
+        let
+          hostname = lib.flip lib.pipe [
+            builtins.baseNameOf
+            (lib.splitString ".")
+            builtins.head
+          ];
+        in
+        lib.pipe ssh-keys [
+          (map (key: {
+            name = hostname key;
+            value = {
+              publicKeyFile = key;
+            };
+          }))
+          builtins.listToAttrs
+        ];
     };
   };
 
   time.timeZone = "Europe/Rome";
 
-  users =
-    let
-      allowedKeys = [
-        ../config/ssh-keys/mayoi.pub
-        ../config/ssh-keys/shinobu.pub
-        ../config/ssh-keys/yotsugi.pub
-      ];
-    in
-    {
-      defaultUserShell = pkgs.fish;
+  users = {
+    defaultUserShell = pkgs.fish;
 
-      groups = {
-        plugdev = { };
-        ${currentUser} = { };
-      };
-      users.root = {
-        openssh.authorizedKeys.keyFiles = allowedKeys;
-        initialPassword = "password";
-      };
-      users.${currentUser} = {
-        isNormalUser = true;
-        group = currentUser;
-        description = "Francesco Noacco";
-        extraGroups = [
-          "wheel"
-          "plugdev"
-        ];
-        openssh.authorizedKeys.keyFiles = allowedKeys;
-        initialPassword = "password";
-      };
+    groups = {
+      plugdev = { };
+      ${currentUser} = { };
     };
+    users.root = {
+      openssh.authorizedKeys.keyFiles = ssh-keys;
+      initialPassword = "password";
+    };
+    users.${currentUser} = {
+      isNormalUser = true;
+      group = currentUser;
+      description = "Francesco Noacco";
+      extraGroups = [
+        "wheel"
+        "plugdev"
+      ];
+      openssh.authorizedKeys.keyFiles = ssh-keys;
+      initialPassword = "password";
+    };
+  };
 
   system.stateVersion = "24.05";
 }
