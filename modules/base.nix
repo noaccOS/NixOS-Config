@@ -18,6 +18,7 @@ in
     keyMap = "us";
   };
 
+  environment.shells = [ pkgs.nushell ];
   environment.systemPackages = with pkgs; [
     helix
     xq # jq
@@ -122,7 +123,7 @@ in
   time.timeZone = "Europe/Rome";
 
   users = {
-    defaultUserShell = pkgs.nushell;
+    defaultUserShell = pkgs.fish;
 
     groups = {
       plugdev = { };
