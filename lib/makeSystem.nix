@@ -37,11 +37,7 @@ lib.nixosSystem rec {
       nixpkgs.overlays = overlays;
       networking.hostName = name;
 
-      nix = {
-        registry.nixpkgs.flake = nixpkgs;
-        channel.enable = false;
-        settings.nix-path = "nixpkgs=${nixpkgs}";
-      };
+      nix.channel.enable = false;
 
       programs = {
         nix-index.enable = true;
