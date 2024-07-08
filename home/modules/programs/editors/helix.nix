@@ -17,7 +17,7 @@ let
     p = "paste_before";
     P = "paste_after";
     "C-j" = "join_selections";
-    "A-j" = "join_selections_space";
+    "C-J" = "join_selections_space";
     "'" = "switch_to_lowercase";
     "\"" = "switch_to_uppercase";
     "C-'" = "switch_case";
@@ -40,15 +40,14 @@ let
     z.t = "scroll_down";
     z.n = "scroll_up";
     "C-k" = "keep_selections";
-    "A-k" = "remove_selections";
+    "C-K" = "remove_selections";
     "`" = "select_register";
     "!" = "shell_append_output";
-    "A-!" = "shell_insert_output";
+    "C-!" = "shell_insert_output";
     ";" = "command_mode";
     "." = "collapse_selection";
-    "A-." = "flip_selections";
-    "C-." = "ensure_selections_forward";
-    "A-;" = "repeat_last_motion";
+    "C-." = "flip_selections";
+    "C-;" = "repeat_last_motion";
     # https://github.com/helix-editor/helix/issues/1488
     # ":" = "repeat_last_insert";
   };
