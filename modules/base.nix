@@ -23,7 +23,6 @@ in
     helix
     xq # jq
     wget
-    neofetch
     htop
     fd # find
     ripgrep # rg (grep)

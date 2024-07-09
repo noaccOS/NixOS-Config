@@ -19,8 +19,8 @@ in
 
       pkgs.celluloid
 
-      pkgs.gnome.gnome-tweaks
-      pkgs.gnome.nautilus-python
+      pkgs.gnome-tweaks
+      pkgs.nautilus-python
 
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.quick-settings-tweaker
