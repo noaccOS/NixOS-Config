@@ -26,7 +26,7 @@
     ./modules/programs/browsers/firefox.nix
     ./modules/programs/cli/zellij/program.nix
     ./modules/programs/cli/gitui.nix
-    ./modules/programs/editors/helix.nix
+    ./modules/programs/editors/helix/program.nix
     ./modules/programs/editors/vscode/program.nix
     ./modules/programs/shells/nu/program.nix
     ./modules/programs/terminals/alacritty.nix
