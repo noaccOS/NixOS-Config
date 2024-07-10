@@ -7,16 +7,16 @@
 let
   cfg = config.homeModules.programs.editors.vscode;
 
-  customPackages = import vscode/customPackages.nix {
+  customPackages = import ./customPackages.nix {
     buildVscodeMarketplaceExtension = pkgs.vscode-utils.buildVscodeMarketplaceExtension;
     licenses = lib.licenses;
   };
 
-  userSettings = lib.pipe vscode/settings.json [
+  userSettings = lib.pipe ./settings.json [
     builtins.readFile
     builtins.fromJSON
   ];
-  keybindings = lib.pipe vscode/keybindings.json [
+  keybindings = lib.pipe ./keybindings.json [
     builtins.readFile
     builtins.fromJSON
   ];
