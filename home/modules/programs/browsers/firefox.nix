@@ -16,7 +16,7 @@ let
     settings = {
       "browser.toolbars.bookmarks.visibility" = "never";
       "signon.rememberSignons" = false;
-    }; 
+    };
     search.order = [
       "Brave"
       "Nix Packages"
