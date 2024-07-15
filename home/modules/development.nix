@@ -76,6 +76,9 @@ with lib;
       home.sessionVariables = {
         ERL_AFLAGS = "-kernel shell_history enabled";
       };
+
+      programs.gh.enable = true;
+      programs.gh-dash.enable = true;
     })
     {
       homeModules.development.toolPackages = optionals cfg.enableTools (
