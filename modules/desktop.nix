@@ -74,7 +74,8 @@ in
     home-manager.users.${currentUser}.homeModules.gui.enable = true;
 
     i18n.inputMethod = {
-      enabled = "ibus";
+      enable = true;
+      type = "ibus";
       ibus.engines = with pkgs.ibus-engines; [ mozc ];
       # fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
       # fcitx5.waylandFrontend = true;
