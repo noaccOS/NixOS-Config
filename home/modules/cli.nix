@@ -26,6 +26,7 @@ in
     homeModules.development.defaultVisual = "helix";
 
     programs = {
+      atuin.enable = true;
       bat.enable = true;
       bottom.enable = true;
       carapace.enable = true;
