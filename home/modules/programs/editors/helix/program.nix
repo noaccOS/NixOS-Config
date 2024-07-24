@@ -94,6 +94,7 @@ in
           skip-levels = 2;
         };
         completion-timeout = 5;
+        completion-trigger-len = 1;
         line-number = "relative";
         lsp.display-messages = true;
         lsp.display-inlay-hints = true;
