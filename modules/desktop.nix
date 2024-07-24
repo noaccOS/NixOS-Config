@@ -130,6 +130,7 @@ in
       blueman.enable = true;
       deluge.enable = true;
       flatpak.enable = true;
+      libinput.touchpad.disableWhileTyping = true;
 
       xserver = {
         enable = true;
