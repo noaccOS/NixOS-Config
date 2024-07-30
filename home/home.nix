@@ -22,6 +22,7 @@
     ./modules/cli.nix
     ./modules/gui.nix
     ./modules/development.nix
+    ./modules/gnome.nix
     ./modules/nixgl.nix
     ./modules/programs/browsers/firefox.nix
     ./modules/programs/cli/zellij/program.nix
