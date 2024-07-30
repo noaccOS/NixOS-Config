@@ -50,13 +50,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  services.kmonad.keyboards.internal = {
-    name = "laptop-internal";
-    device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-    defcfg.enable = true;
-    defcfg.compose.key = null;
-    defcfg.fallthrough = true;
-    config = builtins.readFile ../config/kmonad/ougi.kbd;
-  };
 }
