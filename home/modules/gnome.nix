@@ -8,6 +8,7 @@ let
   inherit (lib)
     forEach
     getExe
+    mkDefault
     mkEnableOption
     mkIf
     mkOption
@@ -47,7 +48,7 @@ in
       pkgs.nautilus-python
     ];
 
-    homeModules.programs.browsers.firefox.gnomeIntegration = true;
+    homeModules.programs.browsers.firefox.gnomeIntegration = mkDefault true;
 
     programs.gnome-shell.enable = true;
     programs.gnome-shell.extensions =

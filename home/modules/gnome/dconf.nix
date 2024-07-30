@@ -83,13 +83,7 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       disable-user-extensions = false;
       disabled-extensions = [ ];
-      enabled-extensions = [
-        # "dash-to-dock@micxgx.gmail.com"
-        # "gsconnect@andyholmes.github.io"
-        # "quick-settings-tweaks@qwreey"
-        # "user-theme@gnome-shell-extensions.gcampax.github.com"
-        # "kmonad-toggle@jurf.github.io"
-      ];
+      enabled-extensions = [ ];
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
@@ -103,12 +97,6 @@ with lib.hm.gvariant;
       show-mounts = true;
       show-trash = false;
     };
-
-    # "org/gnome/shell/extensions/kmonad-toggle" = {
-    #   autostart-kmonad = true;
-    #   kmonad-command = "kmonadcacca";
-    #   kmonad-running = false;
-    # };
 
     "org/gnome/shell/extensions/quick-settings-tweaks" = {
       datemenu-fix-weather-widget = false;
