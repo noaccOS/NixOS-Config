@@ -85,6 +85,7 @@
           localModules = [
             "desktop"
             "personal"
+            "gaming"
             "gnome"
             "development"
             "kmonad"
