@@ -34,6 +34,7 @@ in
     enable = mkEnableOption "gnome customization";
     kmonad = mkOption {
       type = types.submodule kmonad;
+      default = { };
       description = "kmonad-toggle configuration";
     };
   };
