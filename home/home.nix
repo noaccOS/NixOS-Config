@@ -32,6 +32,7 @@
     ./modules/programs/shells/nu/program.nix
     ./modules/programs/terminals/alacritty.nix
     ./modules/programs/terminals/foot.nix
+    ./modules/programs/terminals/kitty.nix
     ./modules/programs/terminals/rio.nix
     ./modules/programs/video/mpv.nix
   ];

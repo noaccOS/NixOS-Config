@@ -15,6 +15,7 @@ in
     browsers.firefox.defaultBrowser = lib.mkDefault true;
     editors.vscode.enable = true;
     terminals.alacritty.enable = true;
+    terminals.kitty.enable = true;
     video.mpv.enable = true;
   };
 }
