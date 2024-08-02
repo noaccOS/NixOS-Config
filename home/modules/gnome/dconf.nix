@@ -54,7 +54,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/keybindings" = {
       focus-active-notification = [ "<Super>c" ];
-      show-screenshot-ui = [ "<Super>g" ];
+      show-screenshot-ui = [ "<Super>o" ];
       toggle-quick-settings = [ "<Super>r" ];
     };
 
