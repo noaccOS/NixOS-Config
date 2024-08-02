@@ -12,12 +12,13 @@ in
     enable = true;
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 16;
+      size = 13;
     };
     settings = {
       cursor_shape = "beam";
       cursor_blink_interval = "0";
       mouse_hide_wait = "0";
+      disable_ligatures_in = "active cursor";
     };
   };
 }
