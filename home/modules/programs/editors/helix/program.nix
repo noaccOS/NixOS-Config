@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  inputs,
+  system,
   ...
 }:
 let
@@ -79,6 +81,7 @@ in
 
   config.programs.helix = {
     enable = cfg.enable;
+    package = inputs.helix.packages.${system}.default;
     extraPackages = cfgDev.toolPackages ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
@@ -92,6 +95,10 @@ in
         indent-guides = {
           render = true;
           skip-levels = 2;
+        };
+        inline-diagnostics = {
+          cursor-line = "hint";
+          other-lines = "error";
         };
         completion-timeout = 5;
         completion-trigger-len = 1;
