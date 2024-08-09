@@ -38,6 +38,7 @@ in
       bat.enable = true;
       bottom.enable = true;
       carapace.enable = true;
+      carapace.enableFishIntegration = false;
 
       direnv = {
         enable = true;
