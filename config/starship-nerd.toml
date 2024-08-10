@@ -39,6 +39,9 @@ symbol = " "
 [git_branch]
 symbol = " "
 
+[gleam]
+symbol = " "
+
 [golang]
 symbol = " "
 
