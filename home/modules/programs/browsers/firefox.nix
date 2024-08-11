@@ -6,9 +6,19 @@
   ...
 }:
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    optional
+    optionals
+    types
+    ;
+
   cfg = config.homeModules.programs.browsers.firefox;
   ffcfg = config.programs.firefox;
-  rycee = import (inputs.rycee + "/default.nix") { inherit pkgs; };
+  rycee = pkgs.callPackages (inputs.rycee + "/default.nix") { };
 
   defaultProfileSettings = {
     search.default = "Brave";
@@ -85,6 +95,11 @@ let
           updateInterval = updateDaily;
           definedAliases = [ "@nw" ];
         };
+        "nixpkgs issues" = {
+          urls = [ { template = "https://github.com/NixOS/nixpkgs/issues?q={searchTerms}"; } ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@ni" ];
+        };
         "Home Manager" = {
           urls = [
             {
@@ -103,26 +118,28 @@ let
       };
 
     extensions =
-      with rycee.firefox-addons;
+      let
+        ffext = rycee.firefox-addons;
+      in
       [
-        bitwarden
-        consent-o-matic
-        darkreader
-        firefox-color
-        libredirect
-        multi-account-containers
-        privacy-badger
-        sponsorblock
-        stylus
-        ublock-origin
+        ffext.bitwarden
+        ffext.consent-o-matic
+        ffext.darkreader
+        ffext.firefox-color
+        ffext.libredirect
+        ffext.multi-account-containers
+        ffext.privacy-badger
+        ffext.sponsorblock
+        ffext.stylus
+        ffext.ublock-origin
       ]
-      ++ lib.lists.optionals cfg.gnomeIntegration [
-        gnome-shell-integration
-        gsconnect
+      ++ optionals cfg.gnomeIntegration [
+        ffext.gnome-shell-integration
+        ffext.gsconnect
       ];
   };
 
-  gnomeThemeProfileSettings = lib.mkIf cfg.gnomeIntegration {
+  gnomeThemeProfileSettings = mkIf cfg.gnomeIntegration {
     userChrome = ''
       @import "../../firefox-gnome-theme/userChrome.css"
     '';
@@ -164,14 +181,14 @@ let
     };
   };
 
-  finalProfileSettings = lib.mkMerge [
+  finalProfileSettings = mkMerge [
     defaultProfileSettings
     gnomeThemeProfileSettings
     containers
   ];
 in
 {
-  options.homeModules.programs.browsers.firefox = with lib; {
+  options.homeModules.programs.browsers.firefox = {
     enable = mkEnableOption "firefox";
     defaultBrowser = mkEnableOption "firefox as the default web browser";
     gnomeIntegration = mkEnableOption "gnome integration for firefox";
@@ -189,39 +206,37 @@ in
     };
   };
 
-  config =
-    with lib;
-    mkMerge [
-      (mkIf cfg.enable {
-        programs.firefox = {
-          enable = true;
-          package =
-            let
-              nativeMessagingHosts =
-                cfg.extraNativeMessagingHosts
-                ++ lib.lists.optional cfg.gnomeIntegration pkgs.gnome-browser-connector;
-            in
-            cfg.package.override { inherit nativeMessagingHosts; };
-          profiles = {
-            default = finalProfileSettings;
-          };
+  config = mkMerge [
+    (mkIf cfg.enable {
+      programs.firefox = {
+        enable = true;
+        package =
+          let
+            nativeMessagingHosts =
+              cfg.extraNativeMessagingHosts
+              ++ optional cfg.gnomeIntegration pkgs.gnome-browser-connector;
+          in
+          cfg.package.override { inherit nativeMessagingHosts; };
+        profiles = {
+          default = finalProfileSettings;
         };
+      };
 
-        home.file.".mozilla/firefox/firefox-gnome-theme" = mkIf cfg.gnomeIntegration {
-          source = inputs.firefox-gnome-theme;
-        };
-      })
+      home.file.".mozilla/firefox/firefox-gnome-theme" = mkIf cfg.gnomeIntegration {
+        source = inputs.firefox-gnome-theme;
+      };
+    })
 
-      (mkIf (cfg.enable && cfg.defaultBrowser) {
-        xdg.mimeApps.defaultApplications = {
-          "text/html" = "firefox.desktop";
-          "x-scheme-handler/http" = "firefox.desktop";
-          "x-scheme-handler/https" = "firefox.desktop";
-          "x-scheme-handler/about" = "firefox.desktop";
-          "x-scheme-handler/unknown" = "firefox.desktop";
-        };
+    (mkIf (cfg.enable && cfg.defaultBrowser) {
+      xdg.mimeApps.defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
 
-        home.sessionVariables.DEFAULT_BROWSER = "${ffcfg.finalPackage}/bin/firefox";
-      })
-    ];
+      home.sessionVariables.DEFAULT_BROWSER = "${ffcfg.finalPackage}/bin/firefox";
+    })
+  ];
 }
