@@ -1,11 +1,14 @@
 {
   pkgs,
   lib,
+  config,
   currentUser,
   ...
 }:
 let
   ssh-keys = lib.filesystem.listFilesRecursive ../config/ssh-keys;
+  inherit (builtins) baseNameOf head listToAttrs;
+  inherit (lib) flip pipe splitString;
 in
 {
   imports = [
@@ -47,11 +50,20 @@ in
   };
 
   nix = {
+    settings = {
+      keep-outputs = true;
+      keep-derivations = true;
+      inherit (config.home-manager.users.${currentUser}.nix.settings)
+        commit-lockfile-summary
+        experimental-features
+        ;
+    };
+
     extraOptions = ''
       keep-outputs     = true
       keep-derivations = true
       experimental-features = nix-command flakes
-      commit-lockfile-summary = chore(flake): update inputs
+      commit-lockfile-summary = chore(nix): update inputs
     '';
 
     gc = {
@@ -101,20 +113,20 @@ in
       enable = true;
       knownHosts =
         let
-          hostname = lib.flip lib.pipe [
-            builtins.baseNameOf
-            (lib.splitString ".")
-            builtins.head
+          hostname = flip pipe [
+            baseNameOf
+            (splitString ".")
+            head
           ];
         in
-        lib.pipe ssh-keys [
+        pipe ssh-keys [
           (map (key: {
             name = hostname key;
             value = {
               publicKeyFile = key;
             };
           }))
-          builtins.listToAttrs
+          listToAttrs
         ];
     };
   };

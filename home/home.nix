@@ -4,12 +4,21 @@
   user ? "noaccos",
   ...
 }:
-
+let
+  inherit (lib) mkForce;
+in
 {
   home.username = user;
-  home.homeDirectory = lib.mkForce "/home/${user}";
+  home.homeDirectory = mkForce "/home/${user}";
   xdg.configHome = "/home/${user}/.config/";
   xdg.enable = true;
+  nix.settings = {
+    commit-lockfile-summary = "chore(flake): update inputs";
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
   nixpkgs.config.allowUnfree = true;
 
   catppuccin = {
