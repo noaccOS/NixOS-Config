@@ -13,7 +13,7 @@ in
   xdg.configHome = "/home/${user}/.config/";
   xdg.enable = true;
   nix.settings = {
-    commit-lockfile-summary = "chore(flake): update inputs";
+    commit-lockfile-summary = "chore(nix): update inputs";
     experimental-features = [
       "nix-command"
       "flakes"
