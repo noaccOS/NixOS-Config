@@ -2,6 +2,9 @@ keybinds clear-defaults=true {
     normal {
         bind "Alt c" { Copy; }
     }
+    locked {
+        bind "Alt l" { SwitchToMode "Normal"; }
+    }
     pane {
         bind "h" { MoveFocus "Left"; }
         bind "t" { MoveFocus "Down"; }
@@ -20,6 +23,7 @@ keybinds clear-defaults=true {
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
     }
     tmux {
+        bind "l" { SwitchToMode "Locked"; }
         bind "D" { Detach; }
         bind "q" { CloseFocus; SwitchToMode "Normal"; }
         bind "Space" {
@@ -73,7 +77,7 @@ keybinds clear-defaults=true {
     renamepane {
         bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; }
     }
-    shared_except "normal" {
+    shared_except "normal" "locked" {
         bind "Ctrl q" { Quit; }
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
