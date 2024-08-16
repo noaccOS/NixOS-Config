@@ -141,15 +141,6 @@ in
               command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
             };
           }
-          {
-            name = "nu";
-            formatter.command = pkgs.writeShellScript "nu-format-from-stdin" ''
-              file=$(mktemp --suffix=.nu)
-              cp /dev/stdin "$file"
-              ${pkgs.nufmt}/bin/nufmt "$file"
-              cat "$file"
-            '';
-          }
         ];
       })
     ]);
