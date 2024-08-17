@@ -100,6 +100,11 @@ let
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@ni" ];
         };
+        "Noogle" = {
+          urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@ne" ];
+        };
         "Home Manager" = {
           urls = [
             {
