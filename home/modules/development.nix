@@ -7,8 +7,17 @@
 let
   cfg = config.homeModules.development;
   editorsCfg = config.homeModules.programs.editors;
+
+  inherit (builtins) attrValues;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    optionals
+    types
+    ;
 in
-with lib;
 {
   options.homeModules.development = {
     defaultEditor = mkOption {
@@ -82,66 +91,103 @@ with lib;
     })
     {
       homeModules.development.toolPackages = optionals cfg.enableTools (
-        with pkgs;
-        [ (tree-sitter.withPlugins (_: tree-sitter.allGrammars)) ]
-        ++ optionals cfg.c.enable [
-          clang # Compiler
-          gcc # Compiler
-          ccls # LSP
-        ]
-        ++ optionals cfg.cSharp.enable [
-          dotnet-sdk # Compiler
-          dotnet-runtime # Runner
-          mono # Runner
-          omnisharp-roslyn # LSP
-        ]
-        ++ optionals cfg.elixir.enable [
-          elixir # Compiler
-          lexical # LSP
-          erlang # Needed for escript
-        ]
-        ++ optionals cfg.haskell.enable [
-          ghc # Compiler
-          stack # CLI tool
-          haskell-language-server # LSP
-          haskellPackages.hindent # Indent
-        ]
-        ++ optionals cfg.java.enable [
-          jdk # Compiler
-          jdt-language-server # LSP
-        ]
-        ++ optionals cfg.latex.enable [
-          texlab # LSP
-          python3Packages.pygments # Minted support
-          texlive.combined.scheme-small # Compiler and libraries
-        ]
-        ++ optionals cfg.lua.enable [
-          lua # Compiler
-        ]
-        ++ optionals cfg.markdown.enable [
-          markdown-oxide # LSP
-        ]
-        ++ optionals cfg.nix.enable [
-          nixfmt-rfc-style # Formatter
-          nixd # LSP
-        ]
-        ++ optionals cfg.rust.enable [
-          rustc # Compiler
-          cargo # Project Manager
-          rust-analyzer # LSP
-          rustfmt # Formatter
-        ]
-        ++ optionals cfg.python.enable [
-          python3 # Compiler
-          pyright # LSP
-        ]
-        ++ optionals cfg.racket.enable [
-          racket # Compiler
-        ]
-        ++ optionals cfg.zig.enable [
-          zig # Compiler
-          zls # LSP
-        ]
+        [ (pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars)) ]
+        ++ optionals cfg.c.enable (attrValues {
+          inherit (pkgs)
+            clang # Compiler
+            gcc # Compiler
+            ccls # LSP
+            ;
+        })
+        ++ optionals cfg.cSharp.enable (attrValues {
+          inherit (pkgs)
+            dotnet-sdk # Compiler
+            dotnet-runtime # Runner
+            mono # Runner
+            omnisharp-roslyn # LSP
+            ;
+        })
+        ++ optionals cfg.elixir.enable (attrValues {
+          inherit (pkgs)
+            elixir # Compiler
+            lexical # LSP
+            erlang # Needed for escript
+            ;
+        })
+        ++ optionals cfg.haskell.enable (attrValues {
+          inherit (pkgs)
+            ghc # Compiler
+            stack # CLI tool
+            haskell-language-server # LSP
+            ;
+
+          inherit (pkgs.haskellPackages)
+            hindent # Indent
+            ;
+        })
+        ++ optionals cfg.java.enable (attrValues {
+          inherit (pkgs)
+            jdk # Compiler
+            jdt-language-server # LSP
+            ;
+        })
+        ++ optionals cfg.latex.enable (attrValues {
+          inherit (pkgs)
+            texlab # LSP
+            ;
+
+          inherit (pkgs.python3Packages)
+            pygments # Minted support
+            ;
+          inherit (pkgs.texlive.combined)
+            scheme-small # Compiler and libraries
+            ;
+        })
+        ++ optionals cfg.lua.enable (attrValues {
+          inherit (pkgs)
+            lua # Compiler
+            ;
+        })
+        ++ optionals cfg.markdown.enable (attrValues {
+          inherit (pkgs)
+            markdown-oxide # LSP
+            ;
+
+          inherit (pkgs.nodePackages_latest)
+            prettier # Formatter
+            ;
+        })
+        ++ optionals cfg.nix.enable (attrValues {
+          inherit (pkgs)
+            nixfmt-rfc-style # Formatter
+            nixd # LSP
+            ;
+        })
+        ++ optionals cfg.rust.enable (attrValues {
+          inherit (pkgs)
+            rustc # Compiler
+            cargo # Project Manager
+            rust-analyzer # LSP
+            rustfmt # Formatter
+            ;
+        })
+        ++ optionals cfg.python.enable (attrValues {
+          inherit (pkgs)
+            python3 # Compiler
+            pyright # LSP
+            ;
+        })
+        ++ optionals cfg.racket.enable (attrValues {
+          inherit (pkgs)
+            racket # Compiler
+            ;
+        })
+        ++ optionals cfg.zig.enable (attrValues {
+          inherit (pkgs)
+            zig # Compiler
+            zls # LSP
+            ;
+        })
       );
     }
   ];
