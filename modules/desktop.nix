@@ -116,7 +116,13 @@ in
         extraPackages = with pkgs; [
           libvdpau
           vaapiVdpau
-          vulkan-validation-layers
+          ((import (fetchFromGitHub {
+            repo = "nixpkgs";
+            owner = "nixos";
+            rev = "24d7835b9ae72ca8c553fc5c331342c1894a15b4";
+            hash = "sha256-7uPy6hyg2yC/rprJq1HjRF4cOXu4zy87C3JAiuTnr7Y=";
+          }) { inherit system; }).vulkan-validation-layers
+          )
           vulkan-extension-layer
         ];
       };
