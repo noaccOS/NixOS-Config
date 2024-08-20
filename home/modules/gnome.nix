@@ -56,6 +56,7 @@ in
       let
         extensions = [
           pkgs.gnomeExtensions.dash-to-dock
+          pkgs.gnomeExtensions.fullscreen-avoider
           pkgs.gnomeExtensions.gsconnect
           pkgs.gnomeExtensions.native-window-placement
           pkgs.gnomeExtensions.quick-settings-tweaker
