@@ -6,15 +6,7 @@
   ...
 }:
 let
-  inherit (lib)
-    pipe
-    types
-    makeSearchPath
-    mkOption
-    mkEnableOption
-    mkIf
-    ;
-  inherit (builtins) readFile fromTOML;
+  inherit (lib) makeSearchPath mkEnableOption mkIf;
   cfg = config.noaccOSModules.gnome;
 in
 {
@@ -23,6 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.nautilus-python ];
     environment.sessionVariables = {
       GST_PLUGIN_PATH_1_0 = makeSearchPath "lib/gstreamer-1.0" (
         with pkgs.gst_all_1;
