@@ -137,6 +137,7 @@ let
         ffext.sponsorblock
         ffext.stylus
         ffext.ublock-origin
+        ffext.yomitan
       ]
       ++ optionals cfg.gnomeIntegration [
         ffext.gnome-shell-integration
