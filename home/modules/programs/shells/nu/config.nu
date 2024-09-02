@@ -104,6 +104,7 @@ let external_completer = {|spans|
         git => $fish_completer
         asdf => $fish_completer
         nix => $fish_completer
+        zig => $fish_completer
         __zoxide_z | __zoxide_zi => $zoxide_completer
         _ => $carapace_completer
     } | do $in $spans
