@@ -7,9 +7,9 @@
 let
   cfg = config.homeModules.programs.shells.nu;
   inherit (lib)
+    getExe
     mkEnableOption
     mkIf
-    optionalString
     pipe
     ;
 in
@@ -48,6 +48,9 @@ in
             pkgs.runCommand "nix-your-shell-config.nu" { }
               "${pkgs.nix-your-shell}/bin/nix-your-shell nu >> $out"
           }'
+
+          use '${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu'
+          $env.config.color_config = (catppuccin-mocha)
         '';
       };
   };
