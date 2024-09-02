@@ -44,7 +44,6 @@ in
   config = mkIf cfg.enable {
     home.packages = [
       pkgs.adw-gtk3
-      pkgs.celluloid
       pkgs.gnome-tweaks
       pkgs.nautilus-python
     ];
