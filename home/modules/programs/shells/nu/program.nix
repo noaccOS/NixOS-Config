@@ -29,14 +29,18 @@ in
           (builtins.replaceStrings
             [
               "/usr/bin/env fish"
+              "/usr/bin/env vivid"
               "/usr/bin/env zoxide"
               "/usr/bin/env carapace"
             ]
-            [
-              "${config.programs.fish.package}/bin/fish"
-              "${config.programs.zoxide.package}/bin/zoxide"
-              "${config.programs.carapace.package}/bin/carapace"
-            ]
+            (
+              map getExe [
+                pkgs.fish
+                pkgs.vivid
+                pkgs.zoxide
+                pkgs.carapace
+              ]
+            )
           )
         ];
         extraConfig = ''

@@ -110,6 +110,8 @@ let external_completer = {|spans|
     } | do $in $spans
 }
 
+$env.LS_COLORS = (/usr/bin/env vivid generate catppuccin-mocha | str trim)
+
 $env.config = {
     show_banner: false
 
