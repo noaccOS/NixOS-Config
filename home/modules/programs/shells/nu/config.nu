@@ -267,7 +267,7 @@ $env.config = {
         {
             name: completion_menu
             only_buffer_difference: false
-            marker: "| "
+            marker: ""
             type: {
                 layout: columnar
                 columns: 4
@@ -285,7 +285,7 @@ $env.config = {
         {
             name: ide_completion_menu
             only_buffer_difference: false
-            marker: "| "
+            marker: ""
             type: {
                 layout: ide
                 min_completion_width: 0,
@@ -318,7 +318,7 @@ $env.config = {
         {
             name: history_menu
             only_buffer_difference: true
-            marker: "? "
+            marker: ""
             type: {
                 layout: list
                 page_size: 10
@@ -332,7 +332,7 @@ $env.config = {
         {
             name: help_menu
             only_buffer_difference: true
-            marker: "? "
+            marker: ""
             type: {
                 layout: description
                 columns: 4
