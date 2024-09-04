@@ -11,6 +11,7 @@ let
     mkEnableOption
     mkIf
     pipe
+    removeSuffix
     ;
 in
 {
@@ -49,8 +50,7 @@ in
               "${pkgs.nix-your-shell}/bin/nix-your-shell nu >> $out"
           }'
 
-          use '${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu'
-          $env.config.color_config = (catppuccin-mocha)
+          $env.config.color_config = source '${./catppuccin.nu}'
         '';
       };
   };
