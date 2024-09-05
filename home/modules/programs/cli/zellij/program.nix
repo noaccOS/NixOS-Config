@@ -1,14 +1,12 @@
 {
-  pkgs,
-  lib,
   config,
-  inputs,
-  system,
+  lib,
+  pkgs,
   ...
 }:
 let
   inherit (builtins) readFile;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) getExe mkEnableOption mkIf;
   inherit (lib.hm.generators) toKDL;
 
   simpleLayout = ''
@@ -27,6 +25,7 @@ let
     pane_frames = false;
     layout_dir = layoutDir;
     copy_on_select = false;
+    default_shell = getExe config.programs.nushell.package;
   };
 
   zellijconfig = keybindings + "\n" + settings;
