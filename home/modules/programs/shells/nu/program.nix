@@ -11,7 +11,6 @@ let
     mkEnableOption
     mkIf
     pipe
-    removeSuffix
     ;
 in
 {
@@ -49,8 +48,6 @@ in
             pkgs.runCommand "nix-your-shell-config.nu" { }
               "${pkgs.nix-your-shell}/bin/nix-your-shell nu >> $out"
           }'
-
-          $env.config.color_config = source '${./catppuccin.nu}'
         '';
       };
   };
