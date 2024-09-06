@@ -160,6 +160,9 @@ in
               formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
             };
           })
+          (mkIf cfgDev.markdown.enable {
+            language.markdown.language-servers = [ "markdown-oxide" ];
+          })
           {
             # prettier
             language =
