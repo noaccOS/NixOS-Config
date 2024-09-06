@@ -7,13 +7,17 @@
   ...
 }:
 let
-  inherit (builtins) attrValues;
+  inherit (builtins)
+    attrValues
+    listToAttrs
+    mapAttrs
+    typeOf
+    ;
   inherit (lib)
+    elemAt
     foldl'
     getExe
     mkEnableOption
-    mkIf
-    mkMerge
     mkOption
     optional
     pipe
@@ -120,6 +124,8 @@ in
 
     languages =
       let
+        mkIf = condition: attrs: if condition then attrs else { };
+        mkMerge = foldl' recursiveUpdate { };
         prettierFmt' = hxlang: prettierlang: {
           name = hxlang;
           formatter.command = getExe pkgs.nodePackages_latest.prettier;
@@ -129,52 +135,94 @@ in
           ];
         };
         prettierFmt = lang: prettierFmt' lang lang;
-      in
-      mkIf cfgDev.enableTools (mkMerge [
-
-        (mkIf cfgDev.elixir.enable {
-          language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
-          language =
-            map
-              (name: {
-                inherit name;
-                language-servers = [ "lexical" ];
-              })
-              [
-                "elixir"
-                "heex"
+        language_config = mkMerge [
+          (mkIf cfgDev.elixir.enable {
+            language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
+            language =
+              let
+                languages = [
+                  "elixir"
+                  "heex"
+                ];
+              in
+              pipe languages [
+                (map (lang: {
+                  name = lang;
+                  value.language-servers = [ "lexical" ];
+                }))
+                listToAttrs
               ];
-        })
-        (mkIf cfgDev.nix.enable {
-          language-server.nixd.command = getExe pkgs.nixd;
-          language = [
-            {
-              name = "nix";
+          })
+          (mkIf cfgDev.nix.enable {
+            language-server.nixd.command = getExe pkgs.nixd;
+            language.nix = {
               language-servers = [ "nixd" ];
-              formatter = {
-                command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-              };
-            }
+              formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            };
+          })
+          {
+            # prettier
+            language =
+              let
+                languages = [
+                  "html"
+                  "css"
+                  [
+                    "javascript"
+                    "typescript"
+                  ]
+                  "typescript"
+                  [
+                    "tsx"
+                    "typescript"
+                  ]
+                  "json"
+                  "json5"
+                  "yaml"
+                  "markdown"
+                ];
+              in
+              pipe languages [
+                (map (
+                  language:
+                  let
+                    config =
+                      {
+                        string = prettierFmt language;
+                        list =
+                          let
+                            hxlang = elemAt language 0;
+                            prettierlang = elemAt language 1;
+                          in
+                          prettierFmt' hxlang prettierlang;
+                      }
+                      .${typeOf language};
+                  in
+                  {
+                    name = config.name;
+                    value = config;
+                  }
+                ))
+                listToAttrs
+              ];
+          }
+          {
+            # formatter only
+            language.haskell.formatter.command = getExe pkgs.stylish-haskell;
+          }
+        ];
+      in
+      mkIf cfgDev.enableTools (
+        let
+          language-server = language_config.language-server;
+          language = pipe language_config.language [
+            (mapAttrs (name: value: value // { inherit name; }))
+            attrValues
           ];
-        })
+        in
         {
-          # languages where we only need to configure the formatter (prettier mostly)
-          language = [
-            (prettierFmt "html")
-            (prettierFmt "css")
-            (prettierFmt' "javascript" "typescript")
-            (prettierFmt "typescript")
-            (prettierFmt' "tsx" "typescript")
-            (prettierFmt "json")
-            (prettierFmt "json5")
-            (prettierFmt "yaml")
-            (prettierFmt "markdown")
-            {
-              name = "haskell";
-              formatter.command = getExe pkgs.stylish-haskell;
-            }
-          ];
+          inherit language language-server;
         }
-      ]);
+      );
   };
 }
