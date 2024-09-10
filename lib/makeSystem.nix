@@ -5,6 +5,7 @@
   home-manager,
   catppuccin,
   kmonad,
+  lix,
   ...
 }@flake-inputs:
 name:
@@ -47,6 +48,7 @@ lib.nixosSystem rec {
 
     catppuccin.nixosModules.catppuccin
     kmonad.nixosModules.default
+    lix.nixosModules.default
 
     ../modules/base.nix
     ../hosts/${name}.nix
