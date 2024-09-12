@@ -27,10 +27,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    rio = {
+      url = "github:raphamorim/rio";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;
     };
+
 
     # Overrides
     mutter-triple-buffer = {

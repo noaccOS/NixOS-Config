@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
   cfg = config.homeModules.programs.terminals.rio;
 in
@@ -10,11 +10,23 @@ with lib;
 
   config.programs.rio = {
     enable = cfg.enable;
+    package = inputs.rio.packages.${pkgs.system}.default;
     settings = {
-      editor = config.home.sessionVariables.EDITOR;
-      use-kitty-keyboard-protocol = true;
+      editor.program = config.home.sessionVariables.EDITOR;
+      editor.args = [];
+      keyboard.use-kitty-keyboard-protocol = true;
+      cursor.shape = "beam";
+      cursor.blinking = false;
+      renderer = {
+        performance = "High";
+        backend = "Vulkan";
+        level = 1;
+      };
       fonts = {
         family = "JetBrainsMono Nerd Font";
+        size = 18;
+        emoji.family = "JoyPixels";
+        bold.weight = 700;
         extras = [
           { family = "Noto Sans Mono CJK JP"; }
           { family = "Noto Sans Mono CJK HK"; }
