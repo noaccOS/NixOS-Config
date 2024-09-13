@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "betterfox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724206118,
+        "narHash": "sha256-hpkEO5BhMVtINQG8HN4xqfas/R6q5pYPZiFK8bilIDs=",
+        "owner": "yokoffing",
+        "repo": "Betterfox",
+        "rev": "e026ed7d3a763c5d3f96c2680d7bc3340831af4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yokoffing",
+        "repo": "Betterfox",
+        "type": "github"
+      }
+    },
     "catppuccin": {
       "locked": {
         "lastModified": 1725509983,
@@ -361,6 +377,7 @@
     },
     "root": {
       "inputs": {
+        "betterfox": "betterfox",
         "catppuccin": "catppuccin",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "helix": "helix",

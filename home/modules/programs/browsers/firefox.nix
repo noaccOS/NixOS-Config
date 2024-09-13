@@ -6,19 +6,65 @@
   ...
 }:
 let
+  inherit (builtins)
+    elemAt
+    filter
+    fromJSON
+    listToAttrs
+    readFile
+    split
+    typeOf
+    ;
   inherit (lib)
+    forEach
     mkEnableOption
     mkIf
     mkMerge
     mkOption
     optional
     optionals
+    pipe
     types
     ;
 
   cfg = config.homeModules.programs.browsers.firefox;
   ffcfg = config.programs.firefox;
   rycee = pkgs.callPackages (inputs.rycee + "/default.nix") { };
+
+  betterfox =
+    let
+      parsePrefs =
+        contents:
+        pipe contents [
+          (split "\n")
+          (filter (line: typeOf line == "string"))
+          (map (builtins.match "user_pref\\(\"(.*)\",[[:space:]]*([^[:space:]]*)\\).*"))
+          (filter (a: !isNull a))
+          (map (
+            pref:
+            let
+              name = elemAt pref 0;
+              value = fromJSON (elemAt pref 1);
+            in
+            {
+              inherit name value;
+            }
+          ))
+          listToAttrs
+        ];
+      selectedFiles = [ "user.js" ];
+      prefs_per_file = forEach selectedFiles (
+        file:
+        pipe file [
+          (f: "${inputs.betterfox}/${f}")
+          readFile
+          parsePrefs
+        ]
+      );
+    in
+    {
+      settings = mkMerge prefs_per_file;
+    };
 
   defaultProfileSettings = {
     search.default = "Brave";
@@ -188,9 +234,10 @@ let
   };
 
   finalProfileSettings = mkMerge [
+    betterfox
+    containers
     defaultProfileSettings
     gnomeThemeProfileSettings
-    containers
   ];
 in
 {

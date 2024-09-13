@@ -14,6 +14,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +39,6 @@
       url = "gitlab:rycee/nur-expressions";
       flake = false;
     };
-
 
     # Overrides
     mutter-triple-buffer = {
