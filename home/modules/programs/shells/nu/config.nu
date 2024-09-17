@@ -241,7 +241,6 @@ $env.config = {
     }
 
     color_config: $catppuccin_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
-    use_grid_icons: true
     footer_mode: "25" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -865,36 +864,6 @@ $env.config = {
             keycode: char_c
             mode: emacs
             event: { edit: capitalizechar }
-        }
-        # The following bindings with `*system` events require that Nushell has
-        # been compiled with the `system-clipboard` feature.
-        # This should be the case for Windows, macOS, and most Linux distributions
-        # Not available for example on Android (termux)
-        # If you want to use the system clipboard for visual selection or to
-        # paste directly, uncomment the respective lines and replace the version
-        # using the internal clipboard.
-        {
-            name: copy_selection
-            modifier: control_shift
-            keycode: char_c
-            mode: emacs
-            # event: { edit: copyselection }
-            event: { edit: copyselectionsystem }
-        }
-        {
-            name: cut_selection
-            modifier: control_shift
-            keycode: char_x
-            mode: emacs
-            # event: { edit: cutselection }
-            event: { edit: cutselectionsystem }
-        }
-        {
-            name: paste_system
-            modifier: control
-            keycode: char_v
-            mode: emacs
-            event: { edit: pastesystem }
         }
         {
             name: select_all
