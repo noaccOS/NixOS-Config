@@ -26,6 +26,7 @@
   selection = {
     l = "select_regex";
     L = "split_selection";
+    Y = "yank_joined";
     "." = "collapse_selection";
     "C-." = "flip_selections";
     "C-minus" = "merge_selections";
@@ -67,6 +68,7 @@
   };
   space.space = {
     space = "file_picker";
+    Y = "yank_joined_to_clipboard";
     f = ":format";
     p = "paste_clipboard_before";
     P = "paste_clipboard_after";
