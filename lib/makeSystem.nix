@@ -3,9 +3,11 @@
 {
   nixpkgs,
   home-manager,
+  anyrun,
   catppuccin,
   kmonad,
   lix,
+  niri,
   ...
 }@flake-inputs:
 name:
@@ -18,9 +20,10 @@ name:
   extraModules ? [ ],
 }:
 let
-  lib = nixpkgs.lib;
+  inherit (nixpkgs.lib) nixosSystem mkIf genAttrs;
+  inherit (builtins) elem;
 in
-lib.nixosSystem rec {
+nixosSystem rec {
   inherit system;
 
   modules = extraModules ++ [
@@ -49,6 +52,7 @@ lib.nixosSystem rec {
     catppuccin.nixosModules.catppuccin
     kmonad.nixosModules.default
     lix.nixosModules.default
+    # niri.nixosModules.niri
 
     ../modules/base.nix
     ../hosts/${name}.nix
@@ -71,14 +75,20 @@ lib.nixosSystem rec {
         ../modules/server.nix
         ../modules/work.nix
         ../modules/virtualization.nix
+        ../modules/windowManager.nix
       ];
 
-      noaccOSModules = lib.genAttrs localModules (_: {
+      noaccOSModules = genAttrs localModules (_: {
         enable = true;
       });
     }
 
+    (mkIf (elem "gnome" localModules) {
+      noaccOSModules.gnome.barebones = false;
+    })
+
     home-manager.nixosModules.home-manager
+
     {
       home-manager = {
         useUserPackages = true;
@@ -88,6 +98,8 @@ lib.nixosSystem rec {
             imports = [
               ../home/home.nix
               catppuccin.homeManagerModules.catppuccin
+              anyrun.homeManagerModules.default
+              niri.homeModules.niri
             ];
           }
         );

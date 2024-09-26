@@ -6,12 +6,23 @@
   ...
 }:
 let
-  inherit (lib) makeSearchPath mkEnableOption mkIf;
+  inherit (lib)
+    makeSearchPath
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.noaccOSModules.gnome;
 in
 {
   options.noaccOSModules.gnome = {
     enable = mkEnableOption "Gnome desktop environment";
+    barebones = mkOption {
+      type = types.bool;
+      description = "Do not enable gnome desktop, only core components";
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -28,11 +39,19 @@ in
       );
     };
 
-    home-manager.users.${user}.homeModules.gnome.enable = true;
+    home-manager.users.${user}.homeModules.gnome.enable = !cfg.barebones;
     programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
-    services.gnome.gnome-browser-connector.enable = true;
-    services.gvfs.enable = true;
-    services.xserver = {
+
+    services.gnome.core-os-services.enable = true;
+    services.gnome.core-shell.enable = true;
+    services.gnome.core-utilities.enable = true;
+
+    services.gnome.gnome-browser-connector.enable = !cfg.barebones;
+    services.gnome.gnome-initial-setup.enable = !cfg.barebones;
+    services.gnome.gnome-remote-desktop.enable = !cfg.barebones;
+    # services.gnome.gnome-settings-daemon.enable = mkForce !cfg.barebones;
+
+    services.xserver = mkIf (!cfg.barebones) {
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };

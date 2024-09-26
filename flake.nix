@@ -14,6 +14,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anyrun = {
+      url = "github:anyrun-org/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     betterfox = {
       url = "github:yokoffing/Betterfox";
       flake = false;
@@ -39,6 +43,10 @@
       url = "gitlab:rycee/nur-expressions";
       flake = false;
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Overrides
     mutter-triple-buffer = {
@@ -60,9 +68,7 @@
 
   outputs =
     {
-      self,
       nixpkgs,
-      home-manager,
       nixos-hardware,
       ...
     }@inputs:
@@ -102,7 +108,9 @@
             "desktop"
             "personal"
             "gaming"
+            "docker"
             "gnome"
+            "windowManager"
             "development"
             "kmonad"
             "virtualization"

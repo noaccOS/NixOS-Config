@@ -27,7 +27,7 @@ in
       grub.enable = false;
     };
 
-    boot.plymouth.enable = true;
+    # boot.plymouth.enable = true;
 
     environment = {
       defaultPackages = with pkgs; [
@@ -77,6 +77,8 @@ in
       # fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
       # fcitx5.waylandFrontend = true;
     };
+
+    networking.networkmanager.enable = true;
 
     nixpkgs.config.joypixels.acceptLicense = true;
 
