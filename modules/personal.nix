@@ -1,6 +1,6 @@
 {
   pkgs,
-  currentUser,
+  user,
   lib,
   config,
   ...
@@ -20,7 +20,7 @@ in
 
     security.sudo-rs.extraRules = [
       {
-        users = [ currentUser ];
+        users = [ user ];
         commands = [
           {
             command = "ALL";

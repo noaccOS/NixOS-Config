@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  currentUser,
+  user,
   ...
 }:
 let
@@ -28,7 +28,7 @@ in
       );
     };
 
-    home-manager.users.${currentUser}.homeModules.gnome.enable = true;
+    home-manager.users.${user}.homeModules.gnome.enable = true;
     programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
     services.gnome.gnome-browser-connector.enable = true;
     services.gvfs.enable = true;

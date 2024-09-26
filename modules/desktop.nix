@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  currentUser,
+  user,
   currentSystem,
   config,
   ...
@@ -71,7 +71,7 @@ in
       };
     };
 
-    home-manager.users.${currentUser}.homeModules.gui.enable = true;
+    home-manager.users.${user}.homeModules.gui.enable = true;
 
     i18n.inputMethod = {
       enable = true;
@@ -149,7 +149,7 @@ in
       };
     };
 
-    users.users.${currentUser}.extraGroups = [
+    users.users.${user}.extraGroups = [
       "adbusers"
       "audio"
       "video"

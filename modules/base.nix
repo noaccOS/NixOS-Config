@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  currentUser,
+  user,
   ...
 }:
 let
@@ -37,7 +37,7 @@ in
     ffmpeg_6-full
   ];
 
-  home-manager.users.${currentUser}.homeModules.cli.enable = true;
+  home-manager.users.${user}.homeModules.cli.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -53,7 +53,7 @@ in
     settings = {
       keep-outputs = true;
       keep-derivations = true;
-      inherit (config.home-manager.users.${currentUser}.nix.settings)
+      inherit (config.home-manager.users.${user}.nix.settings)
         commit-lockfile-summary
         experimental-features
         ;
@@ -67,7 +67,7 @@ in
 
     settings.trusted-users = [
       "root"
-      currentUser
+      user
     ];
   };
 
@@ -131,15 +131,15 @@ in
 
     groups = {
       plugdev = { };
-      ${currentUser} = { };
+      ${user} = { };
     };
     users.root = {
       openssh.authorizedKeys.keyFiles = ssh-keys;
       initialPassword = "password";
     };
-    users.${currentUser} = {
+    users.${user} = {
       isNormalUser = true;
-      group = currentUser;
+      group = user;
       description = "Francesco Noacco";
       extraGroups = [
         "wheel"

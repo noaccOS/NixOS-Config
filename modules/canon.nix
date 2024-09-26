@@ -1,6 +1,6 @@
 {
   pkgs,
-  currentUser,
+  user,
   lib,
   config,
   ...
@@ -17,7 +17,7 @@ in
       extraBackends = [ pkgs.sane-airscan ];
       openFirewall = true;
     };
-    users.users.${currentUser}.extraGroups = [
+    users.users.${user}.extraGroups = [
       "scanner"
       "lp"
       "avahi"

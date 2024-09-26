@@ -1,6 +1,6 @@
 {
   pkgs,
-  currentUser,
+  user,
   config,
   lib,
   ...
@@ -20,7 +20,7 @@ in
 
     services.udev.packages = [ pkgs.qmk-udev-rules ];
 
-    users.users.${currentUser}.extraGroups = [ "libvirtd" ];
+    users.users.${user}.extraGroups = [ "libvirtd" ];
 
     virtualisation = {
       libvirtd.enable = true;

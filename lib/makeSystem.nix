@@ -29,7 +29,7 @@ lib.nixosSystem rec {
         currentSystemName = name;
         currentDomainName = wan;
         currentSystem = system;
-        currentUser = user;
+        user = user;
         inputs = flake-inputs;
       };
     }

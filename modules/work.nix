@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  currentUser,
+  user,
   ...
 }:
 let
@@ -29,7 +29,7 @@ in
       extraGroups = [ "wheel" ];
     };
 
-    home-manager.users.${currentUser}.programs.starship.settings.kubernetes.disabled = false;
+    home-manager.users.${user}.programs.starship.settings.kubernetes.disabled = false;
     networking.firewall.allowedTCPPorts = [
       4000
       8080

@@ -1,6 +1,6 @@
-{ config, currentUser, ... }:
+{ config, user, ... }:
 {
   config.catppuccin = {
-    inherit (config.home-manager.users.${currentUser}.catppuccin) enable flavor accent;
+    inherit (config.home-manager.users.${user}.catppuccin) enable flavor accent;
   };
 }

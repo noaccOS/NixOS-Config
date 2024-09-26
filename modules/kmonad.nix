@@ -1,6 +1,6 @@
 {
   config,
-  currentUser,
+  user,
   home-manager,
   lib,
   pkgs,
@@ -46,7 +46,7 @@ in
     {
       services.kmonad.enable = true;
 
-      users.users.${currentUser}.extraGroups = [
+      users.users.${user}.extraGroups = [
         "input"
         "uinput" # Created by kmonad nixos-module
       ];
@@ -55,7 +55,7 @@ in
       services.kmonad.keyboards.keyboard = cfg.serviceConfiguration;
     })
     (mkIf (cfg.serviceType == "gnome") {
-      home-manager.users.${currentUser}.homeModules.gnome.kmonad = {
+      home-manager.users.${user}.homeModules.gnome.kmonad = {
         enable = true;
         config = cfg.configuration;
       };

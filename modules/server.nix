@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  currentUser,
+  user,
   currentDomainName,
   lib,
   ...
@@ -188,7 +188,7 @@ in
       nextcloud.extraGroups = [ "homeservices" ];
     };
 
-    users.users.${currentUser}.extraGroups = [
+    users.users.${user}.extraGroups = [
       "homeservices"
       "jellyfin"
       "podman"

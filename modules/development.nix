@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  currentUser,
+  user,
   ...
 }:
 let
@@ -13,5 +13,5 @@ in
     enable = mkEnableOption "Dev tools, mostly languages and compilers";
   };
 
-  config.home-manager.users.${currentUser}.homeModules.development.enableTools = cfg.enable;
+  config.home-manager.users.${user}.homeModules.development.enableTools = cfg.enable;
 }

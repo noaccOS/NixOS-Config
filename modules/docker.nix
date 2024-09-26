@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  currentUser,
+  user,
   ...
 }:
 let
@@ -18,7 +18,7 @@ in
       enable = true;
       enableOnBoot = false;
     };
-    users.users.${currentUser}.extraGroups = [
+    users.users.${user}.extraGroups = [
       "docker"
       "podman"
     ];
