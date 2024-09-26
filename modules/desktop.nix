@@ -81,6 +81,8 @@ in
       # fcitx5.waylandFrontend = true;
     };
 
+    networking.networkmanager.enable = true;
+
     nixpkgs.config.joypixels.acceptLicense = true;
 
     programs = {

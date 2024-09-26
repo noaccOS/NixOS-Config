@@ -244,7 +244,9 @@ in
   options.homeModules.programs.browsers.firefox = {
     enable = mkEnableOption "firefox";
     defaultBrowser = mkEnableOption "firefox as the default web browser";
-    gnomeIntegration = mkEnableOption "gnome integration for firefox";
+    gnomeIntegration = mkEnableOption "gnome integration for firefox" // {
+      default = true;
+    };
     extraNativeMessagingHosts = mkOption {
       type = types.listOf types.package;
       default = [ ];

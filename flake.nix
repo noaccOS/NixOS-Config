@@ -39,6 +39,10 @@
       url = "gitlab:rycee/nur-expressions";
       flake = false;
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Overrides
     mutter-triple-buffer = {
@@ -60,9 +64,7 @@
 
   outputs =
     {
-      self,
       nixpkgs,
-      home-manager,
       nixos-hardware,
       ...
     }@inputs:
@@ -102,7 +104,9 @@
             "desktop"
             "personal"
             "gaming"
+            "docker"
             "gnome"
+            "windowManager"
             "development"
             "kmonad"
             "virtualization"
