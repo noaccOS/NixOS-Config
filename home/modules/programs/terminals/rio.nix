@@ -1,4 +1,10 @@
-{ config, lib, inputs, pkgs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 let
   cfg = config.homeModules.programs.terminals.rio;
 in
@@ -13,7 +19,7 @@ with lib;
     package = inputs.rio.packages.${pkgs.system}.default;
     settings = {
       editor.program = config.home.sessionVariables.EDITOR;
-      editor.args = [];
+      editor.args = [ ];
       keyboard.use-kitty-keyboard-protocol = true;
       cursor.shape = "beam";
       cursor.blinking = false;
