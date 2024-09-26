@@ -32,6 +32,13 @@ in
 {
   options.homeModules.gnome = {
     enable = mkEnableOption "gnome customization";
+
+    extraExtensions = mkOption {
+      type = types.listOf types.package;
+      default = [ ];
+      description = "Extra extensions to enable";
+    };
+
     kmonad = mkOption {
       type = types.submodule kmonad;
       default = { };
@@ -53,14 +60,18 @@ in
     programs.gnome-shell.enable = true;
     programs.gnome-shell.extensions =
       let
-        extensions = [
-          pkgs.gnomeExtensions.dash-to-dock
-          pkgs.gnomeExtensions.fullscreen-avoider
-          pkgs.gnomeExtensions.gsconnect
-          pkgs.gnomeExtensions.native-window-placement
-          pkgs.gnomeExtensions.quick-settings-tweaker
-          pkgs.gnomeExtensions.user-themes
-        ] ++ optional cfg.kmonad.enable pkgs.gnomeExtensions.kmonad-toggle;
+        extensions =
+          with pkgs.gnomeExtensions;
+          [
+            dash-to-dock
+            fullscreen-avoider
+            gsconnect
+            native-window-placement
+            quick-settings-tweaker
+            user-themes
+          ]
+          ++ cfg.extraExtensions
+          ++ optional cfg.kmonad.enable kmonad-toggle;
       in
       forEach extensions (package: {
         inherit package;
