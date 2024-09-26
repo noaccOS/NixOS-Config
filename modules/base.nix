@@ -59,13 +59,6 @@ in
         ;
     };
 
-    extraOptions = ''
-      keep-outputs     = true
-      keep-derivations = true
-      experimental-features = nix-command flakes
-      commit-lockfile-summary = chore(nix): update inputs
-    '';
-
     gc = {
       automatic = true;
       dates = "weekly";
