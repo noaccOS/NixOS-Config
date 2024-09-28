@@ -82,6 +82,12 @@ in
         The string to use when setting helix as the default visual.
       '';
     };
+    desktopFile = mkOption {
+      type = types.str;
+      readOnly = true;
+      default = "Helix.desktop";
+      description = "Desktop file name. Used for xdg default applications";
+    };
   };
 
   config.programs.helix = {

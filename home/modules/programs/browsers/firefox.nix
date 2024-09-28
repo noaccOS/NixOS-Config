@@ -288,11 +288,19 @@ in
 
     (mkIf (cfg.enable && cfg.defaultBrowser) {
       xdg.mimeApps.defaultApplications = {
+        "application/rdf+xml" = "firefox.desktop";
+        "application/rss+xml" = "firefox.desktop";
+        "application/vnd.mozilla.xul+xml" = "firefox.desktop";
+        "application/xhtml+xml" = "firefox.desktop";
+        "application/xhtml_xml" = "firefox.desktop";
+        "application/x-mimearchive" = "firefox.desktop";
+        "application/xml" = "firefox.desktop";
         "text/html" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/unknown" = "firefox.desktop";
+        "x-scheme-handler/webcal" = "firefox.desktop";
       };
 
       home.sessionVariables.DEFAULT_BROWSER = "${ffcfg.finalPackage}/bin/firefox";

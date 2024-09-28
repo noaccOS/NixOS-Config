@@ -80,6 +80,30 @@ in
     {
       homeModules.programs.editors.${cfg.defaultVisual}.enable = true;
       home.sessionVariables.VISUAL = editorsCfg.${cfg.defaultVisual}.visual;
+      xdg.mimeApps.defaultApplications =
+        let
+          visual = editorsCfg.${cfg.defaultVisual}.desktopFile;
+        in
+        {
+          "application/x-shellscript" = visual;
+          "application/x-sh" = visual;
+          "text/*" = visual;
+          "text/english" = visual;
+          "text/plain" = visual;
+          "text/xml" = visual;
+          "text/x-c" = visual;
+          "text/x-c++" = visual;
+          "text/x-c++hdr" = visual;
+          "text/x-c++src" = visual;
+          "text/x-chdr" = visual;
+          "text/x-csrc" = visual;
+          "text/x-java" = visual;
+          "text/x-makefile" = visual;
+          "text/x-moc" = visual;
+          "text/x-pascal" = visual;
+          "text/x-tcl" = visual;
+          "text/x-tex" = visual;
+        };
     }
     (mkIf cfg.enableTools {
       home.sessionVariables = {
