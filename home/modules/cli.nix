@@ -121,6 +121,7 @@ in
                 signingKey = "A83DA1B14BD444A6";
               };
               commit.gpgSign = true;
+              tag.gpgSign = true;
             };
           }
         ];
