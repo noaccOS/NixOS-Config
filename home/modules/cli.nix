@@ -27,10 +27,10 @@ in
 
     programs = {
       atuin.enable = true;
+      atuin.flags = [ "--disable-up-arrow" ];
       atuin.settings = {
         enter_accept = true;
         inline_height = 15;
-        search_mode_shell_up_key_binding = "fulltext";
         show_help = false;
         show_tabs = false;
         style = "full";
