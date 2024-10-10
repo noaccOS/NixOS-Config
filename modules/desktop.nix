@@ -8,18 +8,20 @@
 }:
 let
   cfg = config.noaccOSModules.desktop;
+
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.noaccOSModules.desktop = {
-    enable = lib.mkEnableOption "Module for desktop computer utilities";
+    enable = mkEnableOption "Module for desktop computer utilities";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     boot.initrd.systemd.enable = true;
     boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
     boot.kernelParams = [ "quiet" ];
 
-    boot.loader = lib.mkIf (currentSystem == "x86_64-linux") {
+    boot.loader = mkIf (currentSystem == "x86_64-linux") {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       grub.enable = false;
@@ -52,7 +54,7 @@ in
 
     fonts = {
       packages = with pkgs; [
-        noto-fonts
+        inter-nerdfont
         noto-fonts-cjk # Chinese, Japanese, Korean
         roboto
         joypixels
@@ -62,12 +64,7 @@ in
       ];
 
       fontconfig = {
-        defaultFonts = {
-          emoji = [ "JoyPixels" ];
-          serif = [ "Noto Sans" ];
-          sansSerif = [ "Noto Sans" ];
-          monospace = [ "JetBrainsMono Nerd Font" ];
-        };
+        inherit (config.home-manager.users.${user}.fonts.fontconfig) defaultFonts;
       };
     };
 

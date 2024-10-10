@@ -49,7 +49,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/wm/keybindings" = {
       auto-raise = false;
       resize-with-right-button = true;
-      titlebar-font = "Noto Sans 11";
+      titlebar-font = "Inter Nerd Font 11";
     };
 
     "org/gnome/shell/keybindings" = {
@@ -62,9 +62,9 @@ with lib.hm.gvariant;
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
       cursor-theme = "breeze_cursors";
-      document-font-name = "Noto Sans 11";
+      document-font-name = "Inter Nerd Font 11";
       enable-hot-corners = false;
-      font-name = "Noto Sans 11";
+      font-name = "Inter Nerd Font 11";
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "Adwaita";
       monospace-font-name = "JetBrainsMono Nerd Font 11";
