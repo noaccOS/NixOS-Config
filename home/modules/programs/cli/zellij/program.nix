@@ -25,7 +25,7 @@ let
     pane_frames = false;
     layout_dir = layoutDir;
     copy_on_select = false;
-    default_shell = getExe config.programs.nushell.package;
+    # default_shell = getExe config.programs.nushell.package;
   };
 
   zellijconfig = keybindings + "\n" + settings;
