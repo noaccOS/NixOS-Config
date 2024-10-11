@@ -34,7 +34,7 @@ in
     tealdeer # tldr
     unzip
     git
-    ffmpeg_6-full
+    ffmpeg_7-full
   ];
 
   home-manager.users.${user}.homeModules.cli.enable = true;
