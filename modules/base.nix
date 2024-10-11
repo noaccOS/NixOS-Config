@@ -21,6 +21,10 @@ in
     keyMap = "us";
   };
 
+  environment.shellAliases = {
+    http = "xh";
+    https = "xhs";
+  };
   environment.shells = [ pkgs.nushell ];
   environment.systemPackages = with pkgs; [
     helix
@@ -35,6 +39,7 @@ in
     unzip
     git
     ffmpeg_7-full
+    xh
   ];
 
   home-manager.users.${user}.homeModules.cli.enable = true;
