@@ -45,10 +45,7 @@ in
     # programs.hyprlock.enable = true;
     # services.hypridle.enable = true;
     xdg.portal.extraPortals = [
-      (pkgs.xdg-desktop-portal-gtk.override {
-        # Do not build portals that we already have.
-        buildPortalsInGnome = false;
-      })
+      pkgs.xdg-desktop-portal-gtk
     ];
     programs.niri = {
       enable = true;
