@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 let
@@ -15,13 +14,6 @@ let
     mkOption
     types
     ;
-
-  programs = {
-    terminal = getExe pkgs.kitty;
-    fileManager = getExe pkgs.nautilus;
-    # topBar = getExe inputs.ags;
-    lockScreen = getExe pkgs.hyprlock;
-  };
 in
 {
   options.homeModules.windowManagers.niri = {
@@ -41,12 +33,8 @@ in
     homeModules.windowManagers.gnome-shell.enable = true;
     homeModules.programs.launchers.anyrun.enable = true;
     homeModules.windowManagers.bars.waybar.enable = true;
-    # homeModules.windowManagers.bars.waybar.target = "niri.";
-    # programs.hyprlock.enable = true;
-    # services.hypridle.enable = true;
-    xdg.portal.extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
+
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     programs.niri = {
       enable = true;
 

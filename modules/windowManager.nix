@@ -39,10 +39,6 @@ in
       hmCfg.homeModules.windowManagers.${cfg.windowManager}.package
     ];
 
-    # programs.niri = {
-    #   enable = cfg.windowManager == "niri";
-    # };
-
     home-manager.users.${user}.homeModules.windowManagers.${cfg.windowManager}.enable = true;
   };
 }

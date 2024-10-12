@@ -110,7 +110,6 @@
             "gaming"
             "docker"
             "gnome"
-            "windowManager"
             "development"
             "kmonad"
             "virtualization"

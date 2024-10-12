@@ -8,7 +8,6 @@ let
   inherit (lib)
     forEach
     getExe
-    mkDefault
     mkEnableOption
     mkIf
     mkOption
@@ -49,13 +48,8 @@ in
   imports = [ gnome/dconf.nix ];
 
   config = mkIf cfg.enable {
-    home.packages = [
-      pkgs.adw-gtk3
-      pkgs.gnome-tweaks
-      pkgs.nautilus-python
-    ];
-
-    homeModules.programs.browsers.firefox.gnomeIntegration = mkDefault true;
+    home.packages = [ pkgs.gnome-tweaks ];
+    homeModules.windowManagers.gnome-shell.enable = true;
 
     programs.gnome-shell.enable = true;
     programs.gnome-shell.extensions =

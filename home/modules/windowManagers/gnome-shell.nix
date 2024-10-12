@@ -7,14 +7,17 @@
 let
   cfg = config.homeModules.windowManagers.gnome-shell;
 
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
 in
 {
   options.homeModules.windowManagers.gnome-shell = {
     enable = mkEnableOption "gnome programs and looks";
   };
   config = mkIf cfg.enable {
+    homeModules.programs.browsers.firefox.gnomeIntegration = mkDefault true;
+
     home.packages = with pkgs; [
+      adw-gtk3
       evolution-data-server-gtk4
       file-roller
       fragments
@@ -22,12 +25,13 @@ in
       gnome-calendar
       gnome-disk-utility
       gnome-font-viewer
+      gnome-maps
       gnome-online-accounts
       gnome-online-accounts-gtk
-      gnome-maps
       gnome-software
       loupe
       nautilus
+      nautilus-python
       papers
       seahorse
       yelp
