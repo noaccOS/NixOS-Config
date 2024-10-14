@@ -184,6 +184,7 @@ let
         ffext.libredirect
         ffext.multi-account-containers
         ffext.privacy-badger
+        ffext.refined-github
         ffext.sponsorblock
         ffext.stylus
         ffext.ublock-origin
