@@ -106,8 +106,10 @@ in
     hardware = {
       bluetooth = {
         enable = true;
-        package = pkgs.bluez5-experimental;
+        package = pkgs.bluez-experimental;
         settings.General.Experimental = true;
+        settings.General.FastConnectable = true;
+        settings.General.MultiProfile = "multiple";
       };
       nitrokey.enable = true;
       graphics = {
