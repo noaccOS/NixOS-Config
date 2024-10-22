@@ -135,6 +135,7 @@ in
           inherit (pkgs)
             elixir # Compiler
             lexical # LSP
+            elixir-ls
             erlang # Needed for escript
             ;
         })

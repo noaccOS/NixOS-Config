@@ -142,7 +142,7 @@ in
         };
         prettierFmt = lang: prettierFmt' lang lang;
         language_config = mkMerge [
-          (mkIf cfgDev.elixir.enable {
+          (mkIf false {
             language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
             language =
               let

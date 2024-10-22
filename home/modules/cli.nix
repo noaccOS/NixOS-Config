@@ -86,6 +86,7 @@ in
           ".envrc"
           ".vscode/"
           "result"
+          ".elixir_ls/"
           ".lexical/"
           ".helix"
         ];
