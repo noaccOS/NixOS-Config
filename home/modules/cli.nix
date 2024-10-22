@@ -128,6 +128,10 @@ in
         ];
       };
 
+      jujutsu = {
+        enable = true;
+      };
+
       ripgrep.enable = true;
 
       starship = {
