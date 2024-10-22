@@ -1,7 +1,6 @@
 {
   nixpkgs,
   home-manager,
-  nixgl,
   emacs-overlay,
   catppuccin,
   ...
@@ -12,10 +11,7 @@
   gpuDriver ? "mesa",
 }:
 home-manager.lib.homeManagerConfiguration {
-  pkgs = import nixpkgs {
-    inherit system;
-    overlays = [ nixgl.overlay ];
-  };
+  pkgs = import nixpkgs { inherit system; };
   modules = [
     ../home/home.nix
 
@@ -23,10 +19,6 @@ home-manager.lib.homeManagerConfiguration {
 
     {
       homeModules.cli.sourceNix = true;
-      homeModules.nixgl = {
-        enable = system == "x86_64-linux";
-        driver = gpuDriver;
-      };
     }
   ];
 
