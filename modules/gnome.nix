@@ -8,6 +8,7 @@
 let
   inherit (lib)
     makeSearchPath
+    mkDefault
     mkEnableOption
     mkIf
     mkOption
@@ -50,6 +51,8 @@ in
     services.gnome.gnome-initial-setup.enable = !cfg.barebones;
     services.gnome.gnome-remote-desktop.enable = !cfg.barebones;
     # services.gnome.gnome-settings-daemon.enable = mkForce !cfg.barebones;
+
+    noaccOSModules.virtualization.qemu-frontend = mkDefault pkgs.gnome-boxes;
 
     services.xserver = mkIf (!cfg.barebones) {
       displayManager.gdm.enable = true;
