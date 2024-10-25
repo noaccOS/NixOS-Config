@@ -6,24 +6,40 @@
 }:
 let
   cfg = config.homeModules.cli;
+  inherit (builtins) fromTOML readFile;
+
+  inherit (lib)
+    concatStringsSep
+    mapAttrsToList
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    optionalString
+    pipe
+    types
+    ;
+
 in
 {
   options.homeModules.cli = {
-    enable = lib.mkEnableOption "basic cli tools";
-    sourceNix = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkEnableOption "basic cli tools";
+    sourceNix = mkOption {
+      type = types.bool;
       default = false;
       description = "Enable sourcing of nix profile. Useful in non-nixos systems.";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [ sd ];
 
     homeModules.programs.cli.zellij.enable = true;
     homeModules.programs.cli.gitui.enable = true;
     homeModules.programs.shells.nu.enable = true;
     homeModules.development.defaultVisual = "helix";
+
+    PAGER = "less -FRX";
 
     programs = {
       atuin.enable = true;
@@ -63,7 +79,7 @@ in
         shellAliases = {
           cat = "bat --style=plain --paging=never";
         };
-        shellInit = lib.strings.optionalString cfg.sourceNix ''
+        shellInit = optionalString cfg.sourceNix ''
           if test -f ~/.nix-profile/etc/profile.d/nix.fish
             source ~/.nix-profile/etc/profile.d/nix.fish
           end
@@ -130,6 +146,21 @@ in
 
       jujutsu = {
         enable = true;
+      less = {
+        enable = true;
+        keys =
+          let
+            keys = {
+              k = "repeat-search";
+              K = "reverse-search";
+              t = "forw-line";
+              n = "back-line";
+            };
+          in
+          pipe keys [
+            (mapAttrsToList (name: value: "${toString name}\t${toString value}"))
+            (concatStringsSep "\n")
+          ];
       };
 
       ripgrep.enable = true;
@@ -137,8 +168,8 @@ in
       starship = {
         enable = true;
         enableFishIntegration = true;
-        settings = lib.mkMerge [
-          (builtins.fromTOML (builtins.readFile ../../config/starship-nerd.toml))
+        settings = mkMerge [
+          (fromTOML (readFile ../../config/starship-nerd.toml))
           {
             gcloud.disabled = true;
             nix_shell.heuristic = true;
