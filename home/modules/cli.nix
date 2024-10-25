@@ -146,6 +146,9 @@ in
 
       jujutsu = {
         enable = true;
+        settings.user = config.programs.git.extraConfig.user;
+      };
+
       less = {
         enable = true;
         keys =
