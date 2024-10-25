@@ -11,6 +11,7 @@ let
   inherit (lib)
     concatStringsSep
     mapAttrsToList
+    mkDefault
     mkEnableOption
     mkIf
     mkMerge
@@ -146,7 +147,10 @@ in
 
       jujutsu = {
         enable = true;
-        settings.user = config.programs.git.extraConfig.user;
+        settings.user = {
+          name = config.programs.git.extraConfig.user.name;
+          email = mkDefault config.programs.git.extraConfig.user.email;
+        };
       };
 
       less = {
