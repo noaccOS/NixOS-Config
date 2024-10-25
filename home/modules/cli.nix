@@ -151,6 +151,8 @@ in
           name = config.programs.git.extraConfig.user.name;
           email = mkDefault config.programs.git.extraConfig.user.email;
         };
+
+        settings.ui.default-command = "log";
       };
 
       less = {
