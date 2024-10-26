@@ -22,19 +22,11 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kmonad = {
-      url = "github:kmonad/kmonad?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lix = {
       url = "git+https://git.lix.systems/lix-project/nixos-module";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    rio = {
-      url = "github:raphamorim/rio";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;

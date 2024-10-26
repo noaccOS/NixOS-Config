@@ -5,7 +5,6 @@
   home-manager,
   anyrun,
   catppuccin,
-  kmonad,
   lix,
   niri,
   ...
@@ -50,7 +49,6 @@ nixosSystem rec {
     }
 
     catppuccin.nixosModules.catppuccin
-    kmonad.nixosModules.default
     lix.nixosModules.default
     # niri.nixosModules.niri
 

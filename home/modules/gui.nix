@@ -26,7 +26,7 @@ in
     # Fonts
     home.packages = with pkgs; [
       inter-nerdfont
-      noto-fonts-cjk # Chinese, Japanese, Korean
+      noto-fonts-cjk-sans # Chinese, Japanese, Korean
       roboto
       joypixels
       symbola

@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
   ...
 }:
 let
@@ -16,7 +14,6 @@ with lib;
 
   config.programs.rio = {
     enable = cfg.enable;
-    package = inputs.rio.packages.${pkgs.system}.default;
     settings = {
       editor.program = config.home.sessionVariables.EDITOR;
       editor.args = [ ];
