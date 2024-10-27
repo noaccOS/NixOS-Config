@@ -40,9 +40,18 @@ in
       enable = true;
       defaultFonts = {
         emoji = [ "JoyPixels" ];
-        serif = [ "Inter Nerd Font" ];
-        sansSerif = [ "Inter Nerd Font" ];
-        monospace = [ "JetBrainsMono Nerd Font" ];
+        serif = [
+          "Inter Nerd Font"
+          "Noto Sans CJK JP"
+        ];
+        sansSerif = [
+          "Inter Nerd Font"
+          "Noto Sans CJK JP"
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "Noto Sans Mono CJK JP"
+        ];
       };
     };
   };
