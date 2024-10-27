@@ -9,7 +9,7 @@ let
 in
 {
   options.noaccOSModules.personal = {
-    enable = lib.mkEnableOption "Personal computer, with insecure settings and messaging apps";
+    enable = lib.mkEnableOption "Personal computer, with insecure settings and personal programs";
   };
 
   config = lib.mkIf cfg.enable {

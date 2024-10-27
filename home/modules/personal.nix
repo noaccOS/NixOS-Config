@@ -16,6 +16,7 @@ in
     (mkIf config.homeModules.gui.enable {
       home.packages = with pkgs; [
         tdesktop
+        anki-bin
       ];
     })
   ]);
