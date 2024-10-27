@@ -33,9 +33,15 @@ in
       nautilus
       nautilus-python
       papers
+      qadwaitadecorations
+      qadwaitadecorations-qt6
       seahorse
       yelp
     ];
+
+    home.sessionVariables = {
+      QT_WAYLAND_DECORATION = "adwaita";
+    };
 
     xdg.mimeApps.defaultApplications = {
       # Applications
