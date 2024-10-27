@@ -32,7 +32,6 @@ in
     ./modules/gui.nix
     ./modules/development.nix
     ./modules/gnome.nix
-    ./modules/windowManagers/niri.nix
     ./modules/programs/browsers/firefox.nix
     ./modules/programs/cli/zellij/program.nix
     ./modules/programs/cli/gitui.nix
