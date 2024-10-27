@@ -1,8 +1,7 @@
 {
-  pkgs,
-  user,
-  lib,
   config,
+  lib,
+  user,
   ...
 }:
 let
@@ -16,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     boot.kernelParams = [ "mitigations=off" ];
 
-    environment.defaultPackages = with pkgs; [ tdesktop ];
+    home-manager.users.${user}.homeModules.personal.enable = true;
 
     security.sudo-rs.extraRules = [
       {
