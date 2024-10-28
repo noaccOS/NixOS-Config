@@ -40,7 +40,7 @@ in
     homeModules.programs.shells.nu.enable = true;
     homeModules.development.defaultVisual = "helix";
 
-    home.sessionVariables.PAGER = "less -FRX";
+    home.sessionVariables.PAGER = "less -FRX --mouse --wheel-lines=3";
 
     programs = {
       atuin.enable = true;
