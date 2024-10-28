@@ -93,6 +93,11 @@ let
         "Bing".metaData.hidden = true;
         "Google".metaData.alias = "@g";
 
+        Jisho = {
+          urls = [ { template = "https://jisho.org/search/{searchTerms}"; } ];
+          definedAliases = [ "@j" ];
+        };
+
         "Nix Packages" = {
           urls = [
             {
