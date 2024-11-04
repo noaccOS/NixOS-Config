@@ -142,8 +142,13 @@ in
         };
         prettierFmt = lang: prettierFmt' lang lang;
         language_config = mkMerge [
-          (mkIf false {
+          (mkIf cfgDev.elixir.enable {
             language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
+            language-server.nextls = {
+              command = getExe pkgs.next-ls;
+              args = [ "--stdio" ];
+              config.experimental.completions.enable = true;
+            };
             language =
               let
                 languages = [
@@ -154,7 +159,8 @@ in
               pipe languages [
                 (map (lang: {
                   name = lang;
-                  value.language-servers = [ "lexical" ];
+                  value.scope = "source.elixir";
+                  value.language-servers = [ "nextls" ];
                 }))
                 listToAttrs
               ];
