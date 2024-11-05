@@ -5,7 +5,6 @@
   home-manager,
   anyrun,
   catppuccin,
-  lix,
   niri,
   ...
 }@flake-inputs:
@@ -49,7 +48,6 @@ nixosSystem rec {
     }
 
     catppuccin.nixosModules.catppuccin
-    lix.nixosModules.default
     # niri.nixosModules.niri
 
     ../modules/base.nix
