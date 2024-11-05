@@ -42,6 +42,8 @@ in
 
     home.sessionVariables.LESS = "--quit-if-one-screen --RAW-CONTROL-CHARS --mouse --wheel-lines=3";
 
+    xdg.userDirs.enable = true;
+
     programs = {
       atuin.enable = true;
       atuin.flags = [ "--disable-up-arrow" ];
