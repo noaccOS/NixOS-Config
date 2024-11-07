@@ -134,6 +134,13 @@
         arm = makeHome { system = "aarch64-linux"; };
       };
 
+      templates = {
+        rust = {
+          description = "Rust project flake with crane and flake-parts";
+          path = ./templates/rust;
+        };
+      };
+
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
 }
