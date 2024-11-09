@@ -27,7 +27,9 @@ in
       grub.enable = false;
     };
 
-    # boot.plymouth.enable = true;
+    boot.plymouth.enable = true;
+
+    console.earlySetup = true;
 
     environment = {
       defaultPackages = with pkgs; [
