@@ -139,6 +139,10 @@
           description = "Rust project flake with crane and flake-parts";
           path = ./templates/rust;
         };
+        rust-gpu = {
+          description = "Rust project flake with crane and flake-parts, for running graphical projects for wayland";
+          path = ./templates/rust-bevy;
+        };
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
