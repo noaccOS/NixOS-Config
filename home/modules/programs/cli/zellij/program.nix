@@ -6,7 +6,7 @@
 }:
 let
   inherit (builtins) readFile;
-  inherit (lib) getExe mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
   inherit (lib.hm.generators) toKDL;
 
   simpleLayout = ''
@@ -40,7 +40,6 @@ in
   config = mkIf cfg.enable {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = true;
     };
 
     xdg.configFile."zellij/config.kdl".text = zellijconfig;

@@ -19,7 +19,7 @@ in
       editors.vscode.enable = true;
       terminals.alacritty.enable = true;
       terminals.kitty.enable = true;
-      terminals.rio.enable = true;
+      terminals.wez.enable = true;
       video.mpv.enable = true;
     };
 

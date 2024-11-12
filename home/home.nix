@@ -44,6 +44,7 @@ in
     ./modules/programs/terminals/foot.nix
     ./modules/programs/terminals/kitty.nix
     ./modules/programs/terminals/rio.nix
+    ./modules/programs/terminals/wezterm.nix
     ./modules/programs/video/mpv.nix
     ./modules/windowManagers/bars/waybar.nix
     ./modules/windowManagers/niri.nix
