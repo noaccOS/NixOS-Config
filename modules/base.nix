@@ -40,6 +40,7 @@ in
     git
     ffmpeg_7-full
     xh
+    hwatch
   ];
 
   home-manager.users.${user}.homeModules.cli.enable = true;

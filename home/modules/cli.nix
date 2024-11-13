@@ -33,7 +33,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ sd ];
+    home.packages = with pkgs; [
+      sd
+      hwatch
+    ];
 
     homeModules.programs.cli.zellij.enable = true;
     homeModules.programs.cli.gitui.enable = true;
@@ -41,6 +44,7 @@ in
     homeModules.development.defaultVisual = "helix";
 
     home.sessionVariables.LESS = "--quit-if-one-screen --RAW-CONTROL-CHARS --mouse --wheel-lines=3";
+    home.sessionVariables.HWATCH = "--no-title --color --no-help-banner";
 
     xdg.userDirs.enable = true;
 
