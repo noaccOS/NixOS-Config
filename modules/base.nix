@@ -8,7 +8,12 @@
 let
   ssh-keys = lib.filesystem.listFilesRecursive ../config/ssh-keys;
   inherit (builtins) baseNameOf head listToAttrs;
-  inherit (lib) flip pipe splitString;
+  inherit (lib)
+    flip
+    mkForce
+    pipe
+    splitString
+    ;
 in
 {
   imports = [
@@ -83,6 +88,7 @@ in
     enable = true;
     promptInit = "${pkgs.nix-your-shell}/bin/nix-your-shell fish | source";
   };
+  programs.less.enable = mkForce false;
 
   security = {
     rtkit.enable = true;
