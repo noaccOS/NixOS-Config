@@ -154,8 +154,9 @@ in
       group = user;
       description = "Francesco Noacco";
       extraGroups = [
-        "wheel"
+        "network"
         "plugdev"
+        "wheel"
       ];
       openssh.authorizedKeys.keyFiles = ssh-keys;
       initialPassword = "password";
