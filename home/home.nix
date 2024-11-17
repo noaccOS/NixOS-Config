@@ -51,5 +51,5 @@ in
     ./modules/windowManagers/gnome-shell.nix
   ];
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "25.05";
 }
