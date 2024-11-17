@@ -8,7 +8,7 @@
 let
   cfg = config.homeModules.programs.terminals.wez;
 
-  inherit (lib) mkEnableOption;
+  inherit (lib) getExe mkEnableOption optionalString;
 in
 {
   options.homeModules.programs.terminals.wez = {
@@ -29,6 +29,7 @@ in
       config.font_size = 13
       config.enable_wayland = false
       config.default_cursor_style = 'SteadyBar'
+      ${optionalString config.homeModules.programs.shells.nu.enable "config.default_prog = { '${getExe config.programs.nushell.package}' }\n"}
       config.hide_tab_bar_if_only_one_tab = true
       config.integrated_title_button_style = 'Gnome'
       config.cursor_blink_rate = 0

@@ -6,6 +6,7 @@ let
     attrValues
     concatStringsSep
     flatten
+    getExe
     mkEnableOption
     mkIf
     pipe
@@ -89,6 +90,7 @@ in
         ];
       in
       {
+        shell = mkIf config.homeModules.programs.shells.nu.enable (getExe config.programs.nushell.package);
         cursor_shape = "beam";
         cursor_blink_interval = "0";
         mouse_hide_wait = "0";
