@@ -18,7 +18,6 @@ in
       wineWowPackages.staging
       winetricks
 
-      gamemode
       mangohud
 
       # polymc
@@ -28,6 +27,7 @@ in
     ];
 
     hardware.xpadneo.enable = true;
+    programs.gamemode.enable = true;
     programs.steam.enable = true;
 
     services = {
