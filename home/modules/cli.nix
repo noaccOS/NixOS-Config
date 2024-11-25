@@ -66,6 +66,7 @@ in
       direnv = {
         enable = true;
         nix-direnv.enable = true;
+        enableNushellIntegration = false;
 
         config.global = {
           bash_path = "${pkgs.bash}/bin/bash";

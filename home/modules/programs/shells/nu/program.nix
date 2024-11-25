@@ -9,7 +9,9 @@ let
   inherit (lib)
     getExe
     mkEnableOption
+    mkAfter
     mkIf
+    optionalString
     pipe
     ;
 in
@@ -38,12 +40,19 @@ in
           )
         )
       ];
-      extraConfig = ''
-        source '${
-          pkgs.runCommand "nix-your-shell-config.nu" { }
-            "${pkgs.nix-your-shell}/bin/nix-your-shell nu >> $out"
-        }'
-      '';
+      extraConfig = mkAfter (
+        ''
+          source '${
+            pkgs.runCommand "nix-your-shell-config.nu" { }
+              "${pkgs.nix-your-shell}/bin/nix-your-shell nu >> $out"
+          }'
+        ''
+        + (optionalString config.programs.direnv.enable ''
+          $env.config.hooks.env_change.PWD = (
+              $env.config.hooks.env_change.PWD | append (source '${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/direnv/config.nu')
+          )
+        '')
+      );
     };
   };
 }
