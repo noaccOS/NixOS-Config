@@ -57,9 +57,3 @@ in
     '';
   };
 }
-  map
-  ctrl
-+ left neighboring_window left map ctrl
-+ right neighboring_window right map ctrl
-+ up neighboring_window up map ctrl
-+ down neighboring_window down
