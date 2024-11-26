@@ -31,6 +31,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Overrides
     mutter-triple-buffer = {
@@ -72,9 +76,30 @@
             "development"
             "nvidia"
             "virtualization"
+            "windowManager"
             "logitech"
             "canon"
           ];
+          monitors = {
+            "DP-1" = {
+              mode = {
+                x = 3440;
+                y = 1440;
+                hz = 100;
+              };
+            };
+            "HDMI-A-1" = {
+              mode = {
+                x = 1920;
+                y = 1080;
+              };
+              position = {
+                x = -1920;
+                y = 360;
+              };
+            };
+          };
+
         };
 
         nadeko = makeSystem "nadeko" {
@@ -97,7 +122,13 @@
             "development"
             "kmonad"
             "virtualization"
+            "windowManager"
           ];
+
+          monitors."eDP-1".mode = {
+            x = 2256;
+            y = 1504;
+          };
 
           extraModules = [ nixos-hardware.nixosModules.framework-13-7040-amd ];
         };
@@ -117,8 +148,27 @@
 
         kaiki = makeSystem "kaiki" {
           user = "francesco";
+          monitors = {
+            "DP-1" = {
+              mode = {
+                x = 3870;
+                y = 2160;
+              };
+            };
+            "DP-2" = {
+              mode = {
+                x = 3870;
+                y = 2160;
+              };
+              position = {
+                x = -2160;
+                y = 0;
+              };
+            };
+          };
           localModules = [
             "desktop"
+            "windowManager"
             "work"
             "docker"
             "intel"

@@ -55,9 +55,15 @@ in
       services.kmonad.keyboards.keyboard = cfg.serviceConfiguration;
     })
     (mkIf (cfg.serviceType == "gnome") {
-      home-manager.users.${user}.homeModules.gnome.kmonad = {
-        enable = true;
-        config = cfg.configuration;
+      home-manager.users.${user}.homeModules = {
+        gnome.kmonad = {
+          enable = true;
+          config = cfg.configuration;
+        };
+        windowManagers.niri.kmonad = {
+          enable = true;
+          config = cfg.configuration;
+        };
       };
     })
   ]);

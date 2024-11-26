@@ -251,6 +251,13 @@ let
     defaultProfileSettings
     gnomeThemeProfileSettings
   ];
+
+  mkProfile =
+    id:
+    mkMerge [
+      finalProfileSettings
+      { inherit id; }
+    ];
 in
 {
   options.homeModules.programs.browsers.firefox = {
@@ -285,7 +292,8 @@ in
           in
           cfg.package.override { inherit nativeMessagingHosts; };
         profiles = {
-          default = finalProfileSettings;
+          default = mkProfile 0;
+          clean = mkProfile 1;
         };
       };
 

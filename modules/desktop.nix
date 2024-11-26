@@ -9,7 +9,10 @@
 let
   cfg = config.noaccOSModules.desktop;
 
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 in
 {
   options.noaccOSModules.desktop = {
@@ -55,16 +58,7 @@ in
     };
 
     fonts = {
-      packages = with pkgs; [
-        inter-nerdfont
-        noto-fonts-cjk-sans # Chinese, Japanese, Korean
-        roboto
-        joypixels
-        symbola
-
-        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      ];
-
+      packages = config.home-manager.users.${user}.homeModules.gui.fontPackages;
       fontconfig = {
         inherit (config.home-manager.users.${user}.fonts.fontconfig) defaultFonts;
       };
