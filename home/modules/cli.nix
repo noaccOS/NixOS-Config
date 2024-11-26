@@ -50,7 +50,6 @@ in
 
     programs = {
       atuin.enable = true;
-      atuin.flags = [ "--disable-up-arrow" ];
       atuin.settings = {
         enter_accept = true;
         inline_height = 15;
@@ -154,6 +153,16 @@ in
 
       jujutsu = {
         enable = true;
+        package =
+          let
+            jj24pkgs = import (pkgs.fetchFromGitHub {
+              owner = "junglerobba";
+              repo = "nixpkgs";
+              rev = "33e805a362d7160b46ab65f947371c2da1ecd679";
+              hash = "sha256-+reKF5BnuxBk+Y/bqq0TRwIvIT+XmnpJBMLC1dnRbxc=";
+            }) { system = pkgs.system; };
+          in
+          jj24pkgs.jujutsu;
         settings.user = {
           name = config.programs.git.extraConfig.user.name;
           email = mkDefault config.programs.git.extraConfig.user.email;
@@ -184,6 +193,7 @@ in
       starship = {
         enable = true;
         enableFishIntegration = true;
+        enableTransience = true;
         settings = mkMerge [
           (fromTOML (readFile ../../config/starship-nerd.toml))
           {

@@ -6,6 +6,7 @@
   anyrun,
   catppuccin,
   niri,
+  nix-index-database,
   ...
 }@flake-inputs:
 name:
@@ -13,6 +14,7 @@ name:
   system ? "x86_64-linux",
   user ? "noaccos",
   wan ? "${name}.local",
+  monitors ? { },
   overlays ? [ ],
   localModules ? [ ],
   extraModules ? [ ],
@@ -20,6 +22,7 @@ name:
 let
   inherit (nixpkgs.lib) nixosSystem mkIf genAttrs;
   inherit (builtins) elem;
+  adjustedMonitors = import ./adjustMonitors.nix nixpkgs.lib monitors;
 in
 nixosSystem rec {
   inherit system;
@@ -27,11 +30,12 @@ nixosSystem rec {
   modules = extraModules ++ [
     {
       config._module.args = {
+        inherit user;
         currentSystemName = name;
         currentDomainName = wan;
         currentSystem = system;
-        user = user;
         inputs = flake-inputs;
+        monitors = adjustedMonitors;
       };
     }
 
@@ -40,14 +44,10 @@ nixosSystem rec {
       networking.hostName = name;
 
       nix.channel.enable = false;
-
-      programs = {
-        nix-index.enable = true;
-        command-not-found.enable = false;
-      };
     }
 
     catppuccin.nixosModules.catppuccin
+    nix-index-database.nixosModules.nix-index
     # niri.nixosModules.niri
 
     ../modules/base.nix
@@ -89,12 +89,13 @@ nixosSystem rec {
       home-manager = {
         useUserPackages = true;
         users.${user} = (
-          { pkgs, ... }@inputs:
+          { ... }:
           {
             imports = [
               ../home/home.nix
               catppuccin.homeManagerModules.catppuccin
               anyrun.homeManagerModules.default
+              nix-index-database.hmModules.nix-index
               niri.homeModules.niri
             ];
           }
@@ -102,6 +103,7 @@ nixosSystem rec {
         extraSpecialArgs = {
           inherit user system;
           inputs = flake-inputs;
+          monitors = adjustedMonitors;
         };
       };
     }

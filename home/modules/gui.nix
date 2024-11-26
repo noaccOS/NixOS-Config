@@ -7,10 +7,29 @@
 let
   cfg = config.homeModules.gui;
 
-  inherit (lib) mkDefault mkEnableOption mkIf;
+  inherit (lib)
+    mkDefault
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
   options.homeModules.gui.enable = mkEnableOption "gui programs";
+  options.homeModules.gui.fontPackages = mkOption {
+    type = with types; listOf package;
+    description = "Font packages";
+    readOnly = true;
+    default = with pkgs; [
+      inter-nerdfont
+      joypixels
+      nerd-fonts.jetbrains-mono
+      noto-fonts-cjk-sans # Chinese, Japanese, Korean
+      roboto
+      symbola
+    ];
+  };
 
   config = mkIf cfg.enable {
     homeModules.programs = {
@@ -22,17 +41,7 @@ in
       video.mpv.enable = true;
     };
 
-    # Fonts
-    home.packages = with pkgs; [
-      inter-nerdfont
-      noto-fonts-cjk-sans # Chinese, Japanese, Korean
-      roboto
-      joypixels
-      symbola
-
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
-
+    home.packages = cfg.fontPackages;
     nixpkgs.config.joypixels.acceptLicense = true;
 
     fonts.fontconfig = {

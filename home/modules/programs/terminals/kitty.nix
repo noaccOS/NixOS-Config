@@ -99,7 +99,7 @@ in
         ];
       in
       {
-        shell = mkIf config.homeModules.programs.shells.nu.enable (getExe config.programs.nushell.package);
+        # shell = mkIf config.homeModules.programs.shells.nu.enable (getExe config.programs.nushell.package);
         input_delay = "0";
         repaint_delay = "2";
         cursor_shape = "beam";
