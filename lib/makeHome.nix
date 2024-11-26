@@ -3,12 +3,12 @@
   home-manager,
   emacs-overlay,
   catppuccin,
+  nix-index-database,
   ...
 }@inputs:
 {
   system ? "x86_64-linux",
   user ? "noaccos",
-  gpuDriver ? "mesa",
 }:
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs { inherit system; };
@@ -16,6 +16,7 @@ home-manager.lib.homeManagerConfiguration {
     ../home/home.nix
 
     catppuccin.homeManagerModules.catppuccin
+    nix-index-database.hmModules.nix-index
 
     {
       homeModules.cli.sourceNix = true;
@@ -24,5 +25,6 @@ home-manager.lib.homeManagerConfiguration {
 
   extraSpecialArgs = {
     inherit user inputs system;
+    monitors = { };
   };
 }

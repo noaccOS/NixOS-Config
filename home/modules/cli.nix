@@ -50,7 +50,6 @@ in
 
     programs = {
       atuin.enable = true;
-      atuin.flags = [ "--disable-up-arrow" ];
       atuin.settings = {
         enter_accept = true;
         inline_height = 15;
