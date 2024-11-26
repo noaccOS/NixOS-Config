@@ -34,7 +34,11 @@ in
     homeModules.programs.launchers.anyrun.enable = true;
     homeModules.windowManagers.bars.waybar.enable = true;
 
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    xdg.portal.extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+
     programs.niri = {
       enable = true;
 

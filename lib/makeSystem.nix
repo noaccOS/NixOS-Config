@@ -13,6 +13,7 @@ name:
   system ? "x86_64-linux",
   user ? "noaccos",
   wan ? "${name}.local",
+  monitors ? { },
   overlays ? [ ],
   localModules ? [ ],
   extraModules ? [ ],
@@ -27,10 +28,10 @@ nixosSystem rec {
   modules = extraModules ++ [
     {
       config._module.args = {
+        inherit monitors user;
         currentSystemName = name;
         currentDomainName = wan;
         currentSystem = system;
-        user = user;
         inputs = flake-inputs;
       };
     }
@@ -100,7 +101,7 @@ nixosSystem rec {
           }
         );
         extraSpecialArgs = {
-          inherit user system;
+          inherit user system monitors;
           inputs = flake-inputs;
         };
       };

@@ -1,9 +1,7 @@
 {
-  inputs,
   lib,
   config,
   user,
-  pkgs,
   ...
 }:
 let
@@ -12,7 +10,6 @@ let
     mkEnableOption
     mkIf
     mkOption
-    optional
     types
     ;
   cfg = config.noaccOSModules.windowManager;
