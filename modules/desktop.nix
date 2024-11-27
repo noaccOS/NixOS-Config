@@ -9,7 +9,10 @@
 let
   cfg = config.noaccOSModules.desktop;
 
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 in
 {
   options.noaccOSModules.desktop = {

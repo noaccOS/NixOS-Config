@@ -2,18 +2,38 @@
   pkgs,
   lib,
   config,
+  monitors,
   ...
 }:
 let
   cfg = config.homeModules.windowManagers.niri;
 
+  inherit (builtins) readFile;
+
   inherit (lib)
     getExe
+    mapAttrsToList
     mkEnableOption
     mkIf
     mkOption
+    pipe
+    concatStringsSep
     types
     ;
+
+  monitorSection = pipe monitors [
+    (mapAttrsToList (
+      key: value: ''
+        output "${key}" {
+          mode "${toString value.mode.x}x${toString value.mode.y}"
+          scale "${toString value.scale}";
+          transform "${value.rotation}";
+          position x=${toString value.position.x} y=${toString value.position.y}
+        }
+      ''
+    ))
+    (concatStringsSep "\n")
+  ];
 in
 {
   options.homeModules.windowManagers.niri = {
@@ -41,7 +61,7 @@ in
 
     programs.niri = {
       enable = true;
-
+      config = monitorSection + "\n" + (readFile ../../../config/niri/config.kdl);
     };
   };
 }

@@ -35,6 +35,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Overrides
     mutter-triple-buffer = {
@@ -101,6 +105,7 @@
             "development"
             "kmonad"
             "virtualization"
+            "windowManager"
           ];
 
           monitors."eDP-1".mode = {
