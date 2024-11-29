@@ -160,7 +160,7 @@ in
                 (map (lang: {
                   name = lang;
                   value.scope = "source.elixir";
-                  # value.language-servers = [ "nextls" ];
+                  value.language-servers = [ "lexical" ];
                 }))
                 listToAttrs
               ];

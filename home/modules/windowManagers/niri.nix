@@ -26,7 +26,7 @@ let
       key: value: ''
         output "${key}" {
           mode "${toString value.mode.x}x${toString value.mode.y}"
-          scale "${toString value.scale}";
+          scale ${toString value.scale};
           transform "${value.rotation}";
           position x=${toString value.position.x} y=${toString value.position.y}
         }

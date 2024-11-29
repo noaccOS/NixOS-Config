@@ -30,7 +30,7 @@ layout {
     focus-ring {
         width 4
 
-        active-gradient from="#b4befe" to="#f9e2af"
+        active-gradient from="#b4befe" to="#f9e2af" angle=135 in="oklab"
         inactive-color "#b4befe"
     }
 
