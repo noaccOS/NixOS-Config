@@ -80,6 +80,15 @@ in
       name = "JetBrainsMono Nerd Font";
       size = 13;
     };
+    keybindings = {
+      "alt+d" = "launch --location=split --cwd=current";
+      "alt+r" = "launch --location=vsplit --cwd=current";
+      "alt+h" = "neighboring_window left";
+      "alt+s" = "neighboring_window right";
+      "alt+n" = "neighboring_window up";
+      "alt+t" = "neighboring_window down";
+      "alt+enter" = "start_resizing_window";
+    };
     settings =
       let
         japanese_map = pipe japanese_code_points [
@@ -91,6 +100,8 @@ in
       in
       {
         shell = mkIf config.homeModules.programs.shells.nu.enable (getExe config.programs.nushell.package);
+        input_delay = "0";
+        repaint_delay = "2";
         cursor_shape = "beam";
         cursor_blink_interval = "0";
         mouse_hide_wait = "0";

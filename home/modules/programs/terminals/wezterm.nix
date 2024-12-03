@@ -1,8 +1,6 @@
 {
   config,
-  inputs,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -17,7 +15,6 @@ in
 
   config.programs.wezterm = {
     enable = cfg.enable;
-    package = inputs.wezterm.packages.${pkgs.system}.default;
     extraConfig = ''
       local config = wezterm.config_builder()
 
@@ -60,3 +57,9 @@ in
     '';
   };
 }
+  map
+  ctrl
++ left neighboring_window left map ctrl
++ right neighboring_window right map ctrl
++ up neighboring_window up map ctrl
++ down neighboring_window down
