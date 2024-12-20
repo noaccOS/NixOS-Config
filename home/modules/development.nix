@@ -67,6 +67,9 @@ in
       default = true;
     };
     racket.enable = mkEnableOption "Racket";
+    typescript.enable = mkEnableOption "Typescript" // {
+      default = true;
+    };
     zig.enable = mkEnableOption "Zig" // {
       default = true;
     };
@@ -205,6 +208,12 @@ in
         ++ optionals cfg.racket.enable (attrValues {
           inherit (pkgs)
             racket # Compiler
+            ;
+        })
+        ++ optionals cfg.typescript.enable (attrValues {
+          inherit (pkgs)
+            typescript-language-server
+            bun
             ;
         })
         ++ optionals cfg.zig.enable (attrValues {
