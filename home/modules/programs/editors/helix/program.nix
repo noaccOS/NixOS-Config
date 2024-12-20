@@ -45,8 +45,10 @@ let
     k = "search_next";
     K = "search_prev";
     g.space = "goto_word";
-    g.w = "goto_first_nonwhitespace";
+    home = "goto_first_nonwhitespace";
+    g.h = "goto_first_nonwhitespace";
     g.s = "goto_line_end";
+    g.l = "goto_line_start";
   };
   keys.select = defaultKeymap // {
     t = "extend_line_down";
@@ -59,8 +61,10 @@ let
     k = "extend_search_next";
     K = "extend_search_prev";
     g.space = "extend_to_word";
-    g.w = "extend_to_first_nonwhitespace";
+    home = "extend_to_first_nonwhitespace";
+    g.h = "extend_to_first_nonwhitespace";
     g.s = "extend_to_line_end";
+    g.l = "extend_to_line_start";
   };
 in
 {

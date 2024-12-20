@@ -54,7 +54,10 @@
     t = "scroll_down";
     n = "scroll_up";
   };
-  goto = { };
+  goto.g = {
+    t = "goto_window_bottom";
+    n = "goto_window_top";
+  };
   match = { };
   window.space.w = {
     r = "vsplit";
