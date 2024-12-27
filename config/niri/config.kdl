@@ -84,7 +84,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+E { spawn "kitty"; }
+    Mod+E { spawn "ghostty"; }
     Mod+U { spawn "anyrun"; }
     Super+Alt+L { spawn "swaylock"; }
 

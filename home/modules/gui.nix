@@ -37,7 +37,7 @@ in
       browsers.firefox.defaultBrowser = mkDefault true;
       editors.vscode.enable = true;
       terminals.alacritty.enable = true;
-      terminals.kitty.enable = true;
+      terminals.ghostty.enable = true;
       video.mpv.enable = true;
     };
 
