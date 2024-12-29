@@ -73,7 +73,6 @@
             "docker"
             "personal"
             "gaming"
-            "gnome"
             "development"
             "nvidia"
             "virtualization"
