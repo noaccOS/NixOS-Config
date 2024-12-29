@@ -19,6 +19,12 @@ in
   options.noaccOSModules.windowManager = {
     enable = mkEnableOption "window managers";
 
+    primary = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to also set up the greeter";
+    };
+
     windowManager = mkOption {
       description = "The window manager to enable";
       type = types.enum [
@@ -37,6 +43,9 @@ in
     ];
 
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
+
+    # maybe look into greetd eventually, for now gdm works
+    services.xserver.displayManager.gdm.enable = cfg.primary;
 
     home-manager.users.${user}.homeModules.windowManagers.${cfg.windowManager}.enable = true;
   };
