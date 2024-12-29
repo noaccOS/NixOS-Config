@@ -60,6 +60,7 @@ let
   kmonad = optionalString cfg.kmonad.enable ''
     spawn-at-startup "${getExe pkgs.kmonad}" "${cfg.kmonad.config}"
   '';
+  swaync = "spawn-at-startup \"${getExe pkgs.swaynotificationcenter}\"\n";
 in
 {
   options.homeModules.windowManagers.niri = {
@@ -93,7 +94,7 @@ in
     programs.niri = {
       enable = true;
       package = inputs.niri.packages.${pkgs.system}.niri-unstable;
-      config = monitorSection + kmonad + xwayland + (readFile ../../../config/niri/config.kdl);
+      config = monitorSection + kmonad + xwayland + swaync + (readFile ../../../config/niri/config.kdl);
     };
   };
 }
