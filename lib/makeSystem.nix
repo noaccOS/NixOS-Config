@@ -20,7 +20,7 @@ name:
   extraModules ? [ ],
 }:
 let
-  inherit (nixpkgs.lib) nixosSystem mkIf genAttrs;
+  inherit (nixpkgs.lib) nixosSystem mkDefault mkIf genAttrs;
   inherit (builtins) elem;
   adjustedMonitors = import ./adjustMonitors.nix nixpkgs.lib monitors;
 in
@@ -80,6 +80,7 @@ nixosSystem rec {
     }
 
     (mkIf (elem "gnome" localModules) {
+      noaccOSModules.desktop.ime = mkDefault "ibus";
       noaccOSModules.gnome.barebones = false;
     })
 

@@ -12,11 +12,20 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
+    mkOption
+    types
     ;
 in
 {
   options.noaccOSModules.desktop = {
     enable = mkEnableOption "Module for desktop computer utilities";
+    ime = mkOption {
+      type = types.enum [
+        "ibus"
+        "fcitx5"
+      ];
+      default = "fcitx5";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -68,10 +77,10 @@ in
 
     i18n.inputMethod = {
       enable = true;
-      type = "ibus";
+      type = cfg.ime;
       ibus.engines = with pkgs.ibus-engines; [ mozc ];
-      # fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
-      # fcitx5.waylandFrontend = true;
+      fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
+      fcitx5.waylandFrontend = true;
     };
 
     networking.networkmanager.enable = true;
