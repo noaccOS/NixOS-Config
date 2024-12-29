@@ -12,6 +12,7 @@ let
 
   ghostty-config = ''
     theme = catppuccin-mocha
+    window-theme = ghostty
     font-size = 14
     shell-integration-features = no-cursor
     cursor-style = bar
