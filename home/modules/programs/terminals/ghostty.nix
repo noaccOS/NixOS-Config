@@ -14,11 +14,15 @@ let
     theme = catppuccin-mocha
     window-theme = ghostty
     font-size = 14
+    clipboard-paste-protection = false
     shell-integration-features = no-cursor
     cursor-style = bar
     cursor-style-blink = false
+    unfocused-split-opacity = 0.85
 
     keybind = clear
+    keybind = alt+y=copy_to_clipboard
+    keybind = alt+p=paste_from_clipboard
     keybind = alt+r=new_split:right
     keybind = alt+d=new_split:down
     keybind = alt+h=goto_split:left
