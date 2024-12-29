@@ -29,6 +29,11 @@ in
     hardware.xpadneo.enable = true;
     programs.gamemode.enable = true;
     programs.steam.enable = true;
+    programs.steam.package = pkgs.steam.override {
+      extraEnv = {
+        XMODIFIERS = "@im=none";
+      };
+    };
 
     services = {
       input-remapper = {
