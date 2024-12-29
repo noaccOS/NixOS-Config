@@ -36,6 +36,8 @@ in
       hmCfg.homeModules.windowManagers.${cfg.windowManager}.package
     ];
 
+    services.xserver.desktopManager.runXdgAutostartIfNone = true;
+
     home-manager.users.${user}.homeModules.windowManagers.${cfg.windowManager}.enable = true;
   };
 }
