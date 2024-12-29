@@ -2,7 +2,7 @@
 
 with lib.hm.gvariant;
 {
-  config.dconf.settings = lib.mkIf (config.homeModules.gnome.enable) {
+  config.dconf.settings = lib.mkIf (config.homeModules.windowManagers.gnome-shell.enable) {
     "org/gnome/desktop/input-sources" = {
       mru-sources = [
         (mkTuple [
