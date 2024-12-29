@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  currentSystem,
   ...
 }:
 let
@@ -20,14 +19,14 @@ in
 
       mangohud
 
-      # polymc
-      # prismlauncher
+      prismlauncher
       lutris
       heroic
     ];
 
     hardware.xpadneo.enable = true;
     programs.gamemode.enable = true;
+
     programs.steam.enable = true;
     programs.steam.package = pkgs.steam.override {
       extraEnv = {
