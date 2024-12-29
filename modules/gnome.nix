@@ -22,7 +22,7 @@ in
     barebones = mkOption {
       type = types.bool;
       description = "Do not enable gnome desktop, only core components";
-      default = false;
+      default = true;
     };
   };
 
