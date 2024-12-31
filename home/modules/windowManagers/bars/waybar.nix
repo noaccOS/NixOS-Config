@@ -74,7 +74,7 @@ in
           ];
         };
         network = {
-          fromat = "{icon}";
+          format = "{icon}";
           format-icons = {
             wifi = " ";
             ethernet = " ";
