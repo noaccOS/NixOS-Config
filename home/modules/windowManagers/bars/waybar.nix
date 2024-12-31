@@ -24,6 +24,10 @@ in
       * {
         font-family: Inter Nerd Font;
       }
+
+      .modules-right * {
+        margin-left: 1rem;
+      }
     '';
     settings = [
       {
