@@ -44,6 +44,7 @@ in
         ];
         modules-right = [
           "battery"
+          "backlight"
           "network"
           "pulseaudio"
         ];
@@ -58,6 +59,21 @@ in
         clock = {
           format = "{:%a, %b %d %R}";
           format-alt = "{:%Y}";
+        };
+        backlight = {
+          format = "{icon}";
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+          tooltip-format = "{percent}%";
         };
         battery = {
           states = {
@@ -76,6 +92,7 @@ in
             " "
             " "
           ];
+          tooltip-format = "{percent}%";
         };
         network = {
           format = "{icon}";
