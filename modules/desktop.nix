@@ -126,7 +126,6 @@ in
           vulkan-extension-layer
         ];
       };
-      pulseaudio.enable = false;
 
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
