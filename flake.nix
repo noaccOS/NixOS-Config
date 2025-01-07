@@ -191,7 +191,7 @@
         };
         rust-gpu = {
           description = "Rust project flake with crane and flake-parts, for running graphical projects for wayland";
-          path = ./templates/rust-bevy;
+          path = ./templates/rust-gpu;
         };
       };
 
