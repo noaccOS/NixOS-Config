@@ -172,7 +172,6 @@
             "work"
             "docker"
             "intel"
-            "gnome"
             "development"
             "virtualization"
           ];
