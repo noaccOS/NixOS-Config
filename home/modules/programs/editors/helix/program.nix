@@ -107,14 +107,12 @@ in
           normal = "block";
           select = "underline";
         };
+        end-of-line-diagnostics = "hint";
         indent-guides = {
           render = true;
           skip-levels = 2;
         };
-        inline-diagnostics = {
-          cursor-line = "hint";
-          other-lines = "error";
-        };
+        inline-diagnostics.cursor-line = "hint";
         completion-timeout = 5;
         completion-trigger-len = 1;
         line-number = "relative";
