@@ -42,8 +42,6 @@ in
       hmCfg.homeModules.windowManagers.${cfg.windowManager}.package
     ];
 
-    services.xserver.desktopManager.runXdgAutostartIfNone = true;
-
     # maybe look into greetd eventually, for now gdm works
     services.xserver.displayManager.gdm.enable = cfg.primary;
 

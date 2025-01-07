@@ -127,7 +127,10 @@ in
       };
     };
 
-    home.packages = [ pkgs.playerctl ];
+    home.packages = [
+      pkgs.playerctl
+      pkgs.dex
+    ];
 
     programs.niri = {
       enable = true;
