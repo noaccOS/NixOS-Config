@@ -169,15 +169,20 @@ binds {
     Mod+Comma  { consume-or-expel-window-left; }
     Mod+Period { consume-or-expel-window-right; }
 
-    Mod+Apostrophe { switch-preset-column-width; }
     Mod+A { maximize-column; }
     Mod+Shift+A { fullscreen-window; }
 
-    Mod+M { set-column-width "-10%"; }
-    Mod+Z { set-column-width "+10%"; }
+    Mod+B { set-column-width "50%"; }
+    Mod+M { set-column-width "25%"; }
+    Mod+W { set-column-width "33.3333%"; }
+    Mod+V { set-column-width "66.6667%"; }
+    Mod+Z { set-column-width "75%"; }
 
-    Mod+V { set-window-height "-10%"; }
-    Mod+W { set-window-height "+10%"; }
+    Mod+Shift+B { switch-preset-column-width; }
+    Mod+Shift+M { set-column-width "-10%"; }
+    Mod+Shift+Z { set-column-width "+10%"; }
+    Mod+Shift+V { set-window-height "-10%"; }
+    Mod+Shift+W { set-window-height "+10%"; }
 
     Mod+Space       { switch-layout "next"; }
 
