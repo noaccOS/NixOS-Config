@@ -60,6 +60,7 @@ in
             dash-to-dock
             fullscreen-avoider
             gsconnect
+            kimpanel
             native-window-placement
             quick-settings-tweaker
             user-themes

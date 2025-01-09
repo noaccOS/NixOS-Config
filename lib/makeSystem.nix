@@ -80,7 +80,6 @@ nixosSystem rec {
     }
 
     (mkIf (elem "gnome" localModules) {
-      noaccOSModules.desktop.ime = mkDefault "ibus";
       noaccOSModules.gnome.barebones = false;
     })
 
