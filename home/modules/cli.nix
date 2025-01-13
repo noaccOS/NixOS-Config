@@ -159,6 +159,19 @@ in
           email = mkDefault config.programs.git.extraConfig.user.email;
         };
 
+        settings."--scope" = [
+          {
+            "--when".repositories = [ "~/src/seco" ];
+            user.email = "francesco.noacco@secomind.com";
+            signing = {
+              sign-all = true;
+              backend = "gpg";
+              key = "A83DA1B14BD444A6";
+            };
+
+          }
+        ];
+
         settings.ui.default-command = "log";
       };
 

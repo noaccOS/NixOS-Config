@@ -31,14 +31,7 @@ in
 
     home-manager.users.${user} = {
       programs.starship.settings.kubernetes.disabled = false;
-      programs.jujutsu.settings = {
-        user.email = "francesco.noacco@secomind.com";
-        signing = {
-          sign-all = true;
-          backend = "gpg";
-          key = "A83DA1B14BD444A6";
-        };
-      };
+
       homeModules.gnome.extraExtensions = with pkgs.gnomeExtensions; [
         paperwm
         unblank
