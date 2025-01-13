@@ -134,7 +134,7 @@ in
 
     programs.niri = {
       enable = true;
-      package = inputs.niri.packages.${pkgs.system}.niri-unstable;
+      package = inputs.niri.packages.${pkgs.system}.niri-stable;
       config = monitorSection + kmonad + xwayland + swaync + (readFile ../../../config/niri/config.kdl);
     };
   };
