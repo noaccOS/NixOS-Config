@@ -125,6 +125,7 @@ in
         };
         rulers = [ 100 ];
         smart-tab.supersede-menu = true;
+        scroll-lines = 1;
       };
 
       inherit keys;
