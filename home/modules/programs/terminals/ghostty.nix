@@ -15,6 +15,7 @@ let
     window-theme = ghostty
     font-size = 14
     clipboard-paste-protection = false
+    mouse-scroll-multiplier = 2.5
     shell-integration-features = no-cursor
     cursor-style = bar
     cursor-style-blink = false
@@ -29,10 +30,10 @@ let
     keybind = alt+t=goto_split:bottom
     keybind = alt+n=goto_split:top
     keybind = alt+s=goto_split:right
-    keybind = alt+m=resize_split:left,10
-    keybind = alt+w=resize_split:down,10
-    keybind = alt+v=resize_split:up,10
-    keybind = alt+z=resize_split:right,10
+    keybind = alt+m=resize_split:left,100
+    keybind = alt+w=resize_split:down,100
+    keybind = alt+v=resize_split:up,100
+    keybind = alt+z=resize_split:right,100
     keybind = alt+f=toggle_split_zoom
     keybind = alt+e=equalize_splits
     keybind = alt+s=write_scrollback_file:open
