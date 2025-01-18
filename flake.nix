@@ -19,7 +19,7 @@
       flake = false;
     };
     helix = {
-      url = "github:helix-editor/helix";
+      url = "github:noaccOS/helix/custom";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
