@@ -126,6 +126,8 @@ in
         rulers = [ 100 ];
         smart-tab.supersede-menu = true;
         scroll-lines = 1;
+        persistence.old-files = true;
+        sticky-context.enable = true;
       };
 
       inherit keys;
