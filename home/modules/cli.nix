@@ -189,7 +189,8 @@ in
           }
         ];
 
-        settings.ui.default-command = "log";
+        settings.ui.default-command = "status";
+        settings.ui.diff-editor = ":builtin";
       };
 
       less = {
