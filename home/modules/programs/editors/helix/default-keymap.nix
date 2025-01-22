@@ -3,8 +3,10 @@
     # https://github.com/helix-editor/helix/issues/1488
     # ":" = "repeat_last_insert";
     "C-;" = "repeat_last_motion";
-    "C-b" = "page_cursor_half_up";
-    "C-f" = "page_cursor_half_down";
+    "H" = "jump_backward";
+    "S" = "jump_forward";
+    "N" = "page_cursor_half_up";
+    "T" = "page_cursor_half_down";
   };
   changes = {
     p = "paste_before";
