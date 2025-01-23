@@ -20,8 +20,8 @@ in
     package = inputs.ghostty.packages.${pkgs.system}.default;
     clearDefaultKeybinds = true;
     settings = {
-      theme = "catppuccin-mocha";
       window-theme = "ghostty";
+      window-decoration = "client";
       font-size = 14;
       clipboard-paste-protection = false;
       mouse-scroll-multiplier = 2.5;
