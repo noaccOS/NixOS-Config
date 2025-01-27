@@ -36,9 +36,7 @@ let
 
   keys.normal = defaultKeymap // {
     t = "move_line_down";
-    T = "move_visual_line_down";
     n = "move_line_up";
-    N = "move_visual_line_up";
     s = "move_char_right";
     j = "find_till_char";
     J = "till_prev_char";
@@ -52,9 +50,7 @@ let
   };
   keys.select = defaultKeymap // {
     t = "extend_line_down";
-    T = "extend_visual_line_down";
     n = "extend_line_up";
-    N = "extend_visual_line_up";
     s = "extend_char_right";
     j = "extend_till_char";
     J = "extend_till_prev_char";
@@ -126,7 +122,6 @@ in
         rulers = [ 100 ];
         smart-tab.supersede-menu = true;
         scroll-lines = 1;
-        persistence.old-files = true;
       };
 
       inherit keys;
