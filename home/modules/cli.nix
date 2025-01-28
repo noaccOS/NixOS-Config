@@ -191,6 +191,12 @@ in
 
         settings.ui.default-command = "status";
         settings.ui.diff-editor = ":builtin";
+        settings.ui.diff.tool = [
+          "difft"
+          "--color=always"
+          "$left"
+          "$right"
+        ];
       };
 
       less = {
