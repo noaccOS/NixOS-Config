@@ -62,6 +62,14 @@ let
     g.s = "extend_to_line_end";
     g.l = "extend_to_line_start";
   };
+
+  helix-package =
+    let
+      helix-unwrapped-patched = inputs.helix.packages.${pkgs.system}.helix-unwrapped.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./helix-custom-binds.patch ];
+      });
+    in
+    inputs.helix.packages.${pkgs.system}.helix.passthru.wrapper helix-unwrapped-patched;
 in
 {
   options.homeModules.programs.editors.helix = {
@@ -92,7 +100,7 @@ in
 
   config.programs.helix = {
     enable = cfg.enable;
-    package = inputs.helix.packages.${system}.default;
+    package = helix-package;
     extraPackages = cfgDev.toolPackages ++ optional config.homeModules.gui.enable pkgs.wl-clipboard;
     settings = {
       editor = {
