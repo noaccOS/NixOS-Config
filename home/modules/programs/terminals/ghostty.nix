@@ -50,6 +50,8 @@ in
         "alt+u>t=new_tab"
         "alt+u>q=close_surface"
         "alt+u>r=reload_config"
+        "alt+equal=increase_font_size:5"
+        "alt+minus=decrease_font_size:5"
       ];
     };
   };
