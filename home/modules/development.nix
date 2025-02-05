@@ -110,7 +110,7 @@ in
     }
     (mkIf cfg.enableTools {
       home.sessionVariables = {
-        ERL_AFLAGS = "-kernel shell_history enabled";
+        ERL_AFLAGS = "-kernel shell_history enabled +B c";
       };
 
       programs.gh.enable = true;
