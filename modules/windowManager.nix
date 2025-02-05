@@ -45,6 +45,11 @@ in
     # maybe look into greetd eventually, for now gdm works
     services.xserver.displayManager.gdm.enable = cfg.primary;
 
-    home-manager.users.${user}.homeModules.windowManagers.${cfg.windowManager}.enable = true;
+    home-manager.users.${user} = {
+      homeModules.windowManagers.${cfg.windowManager}.enable = true;
+
+      # TODO: use gsconnect eventually
+      services.kdeconnect.enable = true;
+    };
   };
 }
