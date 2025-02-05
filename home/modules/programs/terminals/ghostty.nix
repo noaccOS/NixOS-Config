@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
   ...
 }:
 let
@@ -17,7 +15,6 @@ in
 
   config.programs.ghostty = {
     enable = cfg.enable;
-    package = inputs.ghostty.packages.${pkgs.system}.default;
     clearDefaultKeybinds = true;
     settings = {
       window-theme = "ghostty";
