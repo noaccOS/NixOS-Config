@@ -222,13 +222,26 @@ let
     };
   };
 
+  mainContainer =
+    if config.homeModules.work.enable then
+      {
+        name = "personal";
+        color = "blue";
+        icon = "fingerprint";
+      }
+    else
+      {
+        name = "work";
+        color = "pink";
+        icon = "dollar";
+      };
+
   containers = {
     containersForce = true;
     containers = {
-      work = {
+      ${mainContainer.name} = {
         id = 1;
-        color = "pink";
-        icon = "dollar";
+        inherit (mainContainer) color icon;
       };
 
       guest = {
