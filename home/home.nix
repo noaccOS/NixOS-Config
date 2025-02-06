@@ -33,6 +33,7 @@ in
     ./modules/development.nix
     ./modules/gnome.nix
     ./modules/personal.nix
+    ./modules/work.nix
     ./modules/programs/browsers/firefox.nix
     ./modules/programs/cli/zellij/program.nix
     ./modules/programs/cli/gitui.nix

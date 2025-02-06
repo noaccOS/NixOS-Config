@@ -29,14 +29,7 @@ in
       extraGroups = [ "wheel" ];
     };
 
-    home-manager.users.${user} = {
-      programs.starship.settings.kubernetes.disabled = false;
-
-      homeModules.gnome.extraExtensions = with pkgs.gnomeExtensions; [
-        paperwm
-        unblank
-      ];
-    };
+    home-manager.users.${user}.homeModules.work.enable = true;
 
     networking.firewall.allowedTCPPorts = [
       4000
