@@ -3,7 +3,6 @@
   lib,
   config,
   inputs,
-  system,
   ...
 }:
 let
@@ -47,6 +46,11 @@ let
     g.h = "goto_first_nonwhitespace";
     g.s = "goto_line_end";
     g.l = "goto_line_start";
+    "C-w" = "move_next_sub_word_start";
+    "C-e" = "move_next_sub_word_end";
+    "C-b" = "move_prev_sub_word_start";
+    "C-t" = "move_parent_node_end";
+    "C-n" = "move_parent_node_start";
   };
   keys.select = defaultKeymap // {
     t = "extend_line_down";
@@ -61,6 +65,11 @@ let
     g.h = "extend_to_first_nonwhitespace";
     g.s = "extend_to_line_end";
     g.l = "extend_to_line_start";
+    "C-w" = "extend_next_sub_word_start";
+    "C-e" = "extend_next_sub_word_end";
+    "C-b" = "extend_prev_sub_word_start";
+    "C-t" = "extend_parent_node_end";
+    "C-n" = "extend_parent_node_start";
   };
 
   helix-package =

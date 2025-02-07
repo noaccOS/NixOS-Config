@@ -5,8 +5,8 @@
     "C-;" = "repeat_last_motion";
     "H" = "jump_backward";
     "S" = "jump_forward";
-    "N" = "page_cursor_half_up";
-    "T" = "page_cursor_half_down";
+    "pageup" = "page_cursor_half_up";
+    "pagedown" = "page_cursor_half_down";
   };
   changes = {
     p = "paste_before";
@@ -37,14 +37,16 @@
     "C-(" = "rotate_selection_contents_backward";
     "C-)" = "rotate_selection_contents_forward";
     "C-C" = "copy_selection_on_prev_line";
-    "C-e" = "expand_selection";
-    "C-E" = "shrink_selection";
+    "C-h" = "expand_selection";
+    "C-H" = "shrink_selection";
     "C-j" = "join_selections";
     "C-J" = "join_selections_space";
     "C-k" = "keep_selections";
     "C-K" = "remove_selections";
-    "C-n" = "select_next_sibling";
-    "C-N" = "select_prev_sibling";
+    "D" = "select_all_siblings";
+    "T" = "select_next_sibling";
+    "N" = "select_prev_sibling";
+    "C-T" = "select_all_children";
     "C-s" = "split_selection_on_newline";
     "C-x" = "shrink_to_line_bounds";
   };
