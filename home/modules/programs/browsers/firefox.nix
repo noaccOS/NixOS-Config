@@ -307,6 +307,7 @@ in
         profiles = {
           default = mkProfile 0;
           clean = mkProfile 1;
+          guest = mkProfile 2;
         };
       };
 
