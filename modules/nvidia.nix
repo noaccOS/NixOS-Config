@@ -24,6 +24,7 @@ in
 
     hardware.nvidia = {
       modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       open = true;
       nvidiaPersistenced = true;
       nvidiaSettings = true;
