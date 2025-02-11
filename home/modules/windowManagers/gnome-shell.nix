@@ -7,7 +7,13 @@
 let
   cfg = config.homeModules.windowManagers.gnome-shell;
 
-  inherit (lib) mkEnableOption mkIf mkDefault;
+  inherit (lib)
+    forEach
+    mkDefault
+    mkEnableOption
+    mkIf
+    optionals
+    ;
 in
 {
   options.homeModules.windowManagers.gnome-shell = {
@@ -42,6 +48,21 @@ in
     home.sessionVariables = {
       QT_WAYLAND_DECORATION = "adwaita";
     };
+
+    gtk.enable = true;
+    gtk.gtk3.bookmarks =
+      let
+        xdg-bookmarks = with config.xdg.userDirs; [
+          documents
+          download
+          music
+          pictures
+          videos
+        ];
+        xdg-bookmark-entries = forEach xdg-bookmarks (bookmark: "file://${bookmark}");
+      in
+      [ "file://${config.home.homeDirectory}/src" ]
+      ++ optionals config.xdg.userDirs.enable xdg-bookmark-entries;
 
     xdg.mimeApps.defaultApplications = {
       # Applications
@@ -115,7 +136,8 @@ in
       "application/x-cbr" = "org.gnome.Papers.desktop";
       "application/x-cbt" = "org.gnome.Papers.desktop";
       "application/x-cbz" = "org.gnome.Papers.desktop";
-      "application/x-cd-image" = "gnome-disk-image-mounter.desktop;gnome-disk-image-writer.desktop;org.gnome.FileRoller.desktop";
+      "application/x-cd-image" =
+        "gnome-disk-image-mounter.desktop;gnome-disk-image-writer.desktop;org.gnome.FileRoller.desktop";
       "application/x-chrome-extension" = "org.gnome.FileRoller.desktop";
       "application/x-compress" = "org.gnome.FileRoller.desktop;org.gnome.Nautilus.desktop";
       "application/x-compressed-tar" = "org.gnome.FileRoller.desktop;org.gnome.Nautilus.desktop";
