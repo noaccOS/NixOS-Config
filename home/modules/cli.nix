@@ -100,6 +100,7 @@ in
 
       git = {
         enable = true;
+        signing.format = "openpgp";
         difftastic.enable = true;
         ignores = [
           "log/"
