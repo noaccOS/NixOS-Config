@@ -161,7 +161,8 @@ in
           (mkIf cfgDev.elixir.enable {
             language-server.lexical.command =
               let
-                lexical = pkgs.lexical.override { elixir = pkgs.elixir_1_17; };
+                beamPackages = pkgs.beam_nox.packagesWith pkgs.erlang_26;
+                lexical = pkgs.lexical.override { elixir = beamPackages.elixir_1_17; };
               in
               "${lexical}/libexec/start_lexical.sh";
             language-server.nextls = {
