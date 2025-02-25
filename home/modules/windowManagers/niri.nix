@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   monitors,
   ...
 }:
@@ -134,7 +133,6 @@ in
 
     programs.niri = {
       enable = true;
-      package = inputs.niri.packages.${pkgs.system}.niri-stable;
       config = monitorSection + kmonad + xwayland + swaync + (readFile ../../../config/niri/config.kdl);
     };
   };

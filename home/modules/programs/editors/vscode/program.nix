@@ -55,7 +55,7 @@ in
       # enableUpdateCheck = false;
       # enableExtensionUpdateCheck = true;
 
-      extensions =
+      profiles.default.extensions =
         with pkgs.vscode-extensions;
         [
           catppuccin.catppuccin-vsc

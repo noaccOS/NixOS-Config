@@ -179,7 +179,7 @@ let
         };
       };
 
-    extensions =
+    extensions.packages =
       let
         ffext = rycee.firefox-addons;
       in
