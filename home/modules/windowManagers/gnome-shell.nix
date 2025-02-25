@@ -26,16 +26,15 @@ in
       with pkgs;
       let
         # make gnome-control-center start on non-gnome desktops
-        gnome-control-center = gnome-gnome-control-center.overrideAttrs (
+        gnome-control-center-custom = pkgs.gnome-control-center.overrideAttrs (
           self: super: {
             preFixup =
               (super.preFixup or "")
               + ''
-                gappsWrapperArgs+=(--set XDG_CURRENT_DESKTOP : "gnome")
+                gappsWrapperArgs+=(--set XDG_CURRENT_DESKTOP "gnome")
               '';
           }
         );
-
       in
       [
         adw-gtk3
@@ -44,7 +43,7 @@ in
         fragments
         gnome-calculator
         gnome-calendar
-        gnome-control-center
+        gnome-control-center-custom
         gnome-disk-utility
         gnome-font-viewer
         gnome-maps
