@@ -22,28 +22,44 @@ in
   config = mkIf cfg.enable {
     homeModules.programs.browsers.firefox.gnomeIntegration = mkDefault true;
 
-    home.packages = with pkgs; [
-      adw-gtk3
-      evolution-data-server-gtk4
-      file-roller
-      fragments
-      gnome-calculator
-      gnome-calendar
-      gnome-disk-utility
-      gnome-font-viewer
-      gnome-maps
-      gnome-online-accounts
-      gnome-online-accounts-gtk
-      gnome-software
-      loupe
-      nautilus
-      nautilus-python
-      papers
-      qadwaitadecorations
-      qadwaitadecorations-qt6
-      seahorse
-      yelp
-    ];
+    home.packages =
+      with pkgs;
+      let
+        # make gnome-control-center start on non-gnome desktops
+        gnome-control-center = gnome-gnome-control-center.overrideAttrs (
+          self: super: {
+            preFixup =
+              (super.preFixup or "")
+              + ''
+                gappsWrapperArgs+=(--set XDG_CURRENT_DESKTOP : "gnome")
+              '';
+          }
+        );
+
+      in
+      [
+        adw-gtk3
+        evolution-data-server-gtk4
+        file-roller
+        fragments
+        gnome-calculator
+        gnome-calendar
+        gnome-control-center
+        gnome-disk-utility
+        gnome-font-viewer
+        gnome-maps
+        gnome-online-accounts
+        gnome-online-accounts-gtk
+        gnome-software
+        loupe
+        nautilus
+        nautilus-python
+        papers
+        qadwaitadecorations
+        qadwaitadecorations-qt6
+        seahorse
+        yelp
+      ];
 
     home.sessionVariables = {
       QT_WAYLAND_DECORATION = "adwaita";
