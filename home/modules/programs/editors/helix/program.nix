@@ -158,6 +158,12 @@ in
         };
         prettierFmt = lang: prettierFmt' lang lang;
         language_config = mkMerge [
+          {
+            language-server.typos = {
+              command = getExe pkgs.typos-lsp;
+              config.diagnosticSeverity = "Info";
+            };
+          }
           (mkIf cfgDev.elixir.enable {
             language-server.lexical.command =
               let
@@ -181,7 +187,7 @@ in
                 (map (lang: {
                   name = lang;
                   value.scope = "source.elixir";
-                  value.language-servers = [ "lexical" ];
+                  value.language-servers = [ "lexical" "typos" ];
                 }))
                 listToAttrs
               ];
@@ -189,12 +195,12 @@ in
           (mkIf cfgDev.nix.enable {
             language-server.nixd.command = getExe pkgs.nixd;
             language.nix = {
-              language-servers = [ "nixd" ];
+              language-servers = [ "nixd" "typos" ];
               formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
             };
           })
           (mkIf cfgDev.markdown.enable {
-            language.markdown.language-servers = [ "markdown-oxide" ];
+            language.markdown.language-servers = [ "markdown-oxide" "typos" ];
           })
           {
             # prettier
