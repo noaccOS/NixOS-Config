@@ -133,6 +133,7 @@ in
 
     programs.niri = {
       enable = true;
+      package = pkgs.niri;
       config = monitorSection + kmonad + xwayland + swaync + (readFile ../../../config/niri/config.kdl);
     };
   };
