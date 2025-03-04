@@ -17,6 +17,7 @@ let
     ;
   inherit (lib)
     forEach
+    getExe
     mkEnableOption
     mkIf
     mkMerge
@@ -28,7 +29,7 @@ let
     ;
 
   cfg = config.homeModules.programs.browsers.firefox;
-  ffcfg = config.programs.firefox;
+  ffcfg = config.programs.librewolf;
   rycee = pkgs.callPackages (inputs.rycee + "/default.nix") { };
 
   betterfox =
@@ -281,7 +282,7 @@ in
 {
   options.homeModules.programs.browsers.firefox = {
     enable = mkEnableOption "firefox";
-    defaultBrowser = mkEnableOption "firefox as the default web browser";
+    defaultBrowser = mkEnableOption "librewolf as the default web browser";
     gnomeIntegration = mkEnableOption "gnome integration for firefox" // {
       default = true;
     };
@@ -291,7 +292,7 @@ in
     };
     package = mkOption {
       type = types.package;
-      default = pkgs.firefox;
+      default = pkgs.librewolf;
     };
     profileSettinsgOverrides = mkOption {
       type = types.attrSet;
@@ -301,7 +302,7 @@ in
 
   config = mkMerge [
     (mkIf cfg.enable {
-      programs.firefox = {
+      programs.librewolf = {
         enable = true;
         package =
           let
@@ -317,29 +318,29 @@ in
         };
       };
 
-      home.file.".mozilla/firefox/firefox-gnome-theme" = mkIf cfg.gnomeIntegration {
+      home.file.".librewolf/firefox-gnome-theme" = mkIf cfg.gnomeIntegration {
         source = inputs.firefox-gnome-theme;
       };
     })
 
     (mkIf (cfg.enable && cfg.defaultBrowser) {
       xdg.mimeApps.defaultApplications = {
-        "application/rdf+xml" = "firefox.desktop";
-        "application/rss+xml" = "firefox.desktop";
-        "application/vnd.mozilla.xul+xml" = "firefox.desktop";
-        "application/xhtml+xml" = "firefox.desktop";
-        "application/xhtml_xml" = "firefox.desktop";
-        "application/x-mimearchive" = "firefox.desktop";
-        "application/xml" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
-        "x-scheme-handler/webcal" = "firefox.desktop";
+        "application/rdf+xml" = "librewolf.desktop";
+        "application/rss+xml" = "librewolf.desktop";
+        "application/vnd.mozilla.xul+xml" = "librewolf.desktop";
+        "application/xhtml+xml" = "librewolf.desktop";
+        "application/xhtml_xml" = "librewolf.desktop";
+        "application/x-mimearchive" = "librewolf.desktop";
+        "application/xml" = "librewolf.desktop";
+        "text/html" = "librewolf.desktop";
+        "x-scheme-handler/about" = "librewolf.desktop";
+        "x-scheme-handler/http" = "librewolf.desktop";
+        "x-scheme-handler/https" = "librewolf.desktop";
+        "x-scheme-handler/unknown" = "librewolf.desktop";
+        "x-scheme-handler/webcal" = "librewolf.desktop";
       };
 
-      home.sessionVariables.DEFAULT_BROWSER = "${ffcfg.finalPackage}/bin/firefox";
+      home.sessionVariables.DEFAULT_BROWSER = getExe ffcfg.finalPackage;
     })
   ];
 }
