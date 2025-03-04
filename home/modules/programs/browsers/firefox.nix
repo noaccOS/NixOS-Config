@@ -255,6 +255,12 @@ let
         color = "turquoise";
         icon = "fence";
       };
+
+      dev = {
+        id = 4;
+        color = "yellow";
+        icon = "chill";
+      };
     };
   };
 
