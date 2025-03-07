@@ -73,11 +73,13 @@ let
     settings = {
       "browser.toolbars.bookmarks.visibility" = "never";
       "signon.rememberSignons" = false;
+      "webgl.disabled" = false;
 
       # librewolf
       "privacy.clearOnShutdown_v2.cache" = false;
       "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
       "privacy.sanitize.sanitizeOnShutdown" = false;
+      "privacy.resistFingerprinting" = false;
     };
     search.order = [
       "Brave"
