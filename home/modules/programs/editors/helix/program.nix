@@ -72,13 +72,9 @@ let
     "C-n" = "extend_parent_node_start";
   };
 
-  helix-package =
-    let
-      helix-unwrapped-patched = inputs.helix.packages.${pkgs.system}.helix-unwrapped.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [ ./helix-custom-binds.patch ];
-      });
-    in
-    inputs.helix.packages.${pkgs.system}.helix.passthru.wrapper helix-unwrapped-patched;
+  helix-package = inputs.helix.packages.${pkgs.system}.helix.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [ ./helix-custom-binds.patch ];
+  });
 in
 {
   options.homeModules.programs.editors.helix = {
@@ -187,7 +183,10 @@ in
                 (map (lang: {
                   name = lang;
                   value.scope = "source.elixir";
-                  value.language-servers = [ "lexical" "typos" ];
+                  value.language-servers = [
+                    "lexical"
+                    "typos"
+                  ];
                 }))
                 listToAttrs
               ];
@@ -195,12 +194,18 @@ in
           (mkIf cfgDev.nix.enable {
             language-server.nixd.command = getExe pkgs.nixd;
             language.nix = {
-              language-servers = [ "nixd" "typos" ];
+              language-servers = [
+                "nixd"
+                "typos"
+              ];
               formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
             };
           })
           (mkIf cfgDev.markdown.enable {
-            language.markdown.language-servers = [ "markdown-oxide" "typos" ];
+            language.markdown.language-servers = [
+              "markdown-oxide"
+              "typos"
+            ];
           })
           {
             # prettier
