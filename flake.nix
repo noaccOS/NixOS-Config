@@ -2,6 +2,10 @@
   description = "NixOS and Home-Manager configuration";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    lix = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # rock5 = {
     #   url = "github:aciceri/rock5b-nixos";
     #   inputs.nixpkgs.follows = "nixpkgs";

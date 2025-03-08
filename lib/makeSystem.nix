@@ -5,6 +5,7 @@
   home-manager,
   anyrun,
   catppuccin,
+  lix,
   niri,
   nix-index-database,
   ...
@@ -47,6 +48,7 @@ nixosSystem rec {
     }
 
     catppuccin.nixosModules.catppuccin
+    lix.nixosModules.default
     nix-index-database.nixosModules.nix-index
     # niri.nixosModules.niri
 
