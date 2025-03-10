@@ -161,12 +161,7 @@ in
             };
           }
           (mkIf cfgDev.elixir.enable {
-            language-server.lexical.command =
-              let
-                beamPackages = pkgs.beam_nox.packagesWith pkgs.erlang_26;
-                lexical = pkgs.lexical.override { elixir = beamPackages.elixir_1_17; };
-              in
-              "${lexical}/libexec/start_lexical.sh";
+            language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
             language-server.nextls = {
               command = getExe pkgs.next-ls;
               args = [ "--stdio" ];
