@@ -74,6 +74,8 @@ let
       "browser.toolbars.bookmarks.visibility" = "never";
       "signon.rememberSignons" = false;
       "webgl.disabled" = false;
+      "browser.translations.neverTranslateLanguages" = "it,ja";
+      "browser.formfill.enable" = false;
 
       # librewolf
       "privacy.clearOnShutdown_v2.cache" = false;
