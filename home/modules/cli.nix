@@ -114,6 +114,7 @@ in
           ".elixir_ls/"
           ".lexical/"
           ".helix"
+          ".typos.toml"
         ];
         extraConfig = {
           credential.helper = "store";
