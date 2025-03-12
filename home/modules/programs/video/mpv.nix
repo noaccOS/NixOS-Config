@@ -51,11 +51,5 @@ in
       thumbfast
       uosc
     ];
-
-    scriptOpts = {
-      uosc = {
-        controls = "controls=menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap,fullscreen";
-      };
-    };
   };
 }
