@@ -70,6 +70,9 @@ in
     typescript.enable = mkEnableOption "Typescript" // {
       default = true;
     };
+    yaml.enable = mkEnableOption "Yaml" // {
+      default = true;
+    };
     zig.enable = mkEnableOption "Zig" // {
       default = true;
     };
@@ -214,6 +217,11 @@ in
           inherit (pkgs)
             typescript-language-server
             bun
+            ;
+        })
+        ++ optionals cfg.yaml.enable (attrValues {
+          inherit (pkgs)
+            yaml-language-server
             ;
         })
         ++ optionals cfg.zig.enable (attrValues {
