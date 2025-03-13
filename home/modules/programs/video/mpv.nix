@@ -41,6 +41,12 @@ in
       "}" = "add speed  .25";
       "[" = "add speed   -1";
       "]" = "add speed    1";
+
+      # override scripts bindings
+      g = "ignore";
+      G = "add sub-scale +0.1";
+      h = "ignore";
+      H = "ignore";
     };
 
     scripts = with pkgs.mpvScripts; [
