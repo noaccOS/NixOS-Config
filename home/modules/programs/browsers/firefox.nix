@@ -86,7 +86,7 @@ let
     search.order = [
       "Brave"
       "Nix Packages"
-      "Google"
+      "google"
     ];
     search.force = true;
     search.engines =
@@ -96,16 +96,16 @@ let
       {
         "Brave" = {
           urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
-          iconUpdateURL = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon.c09fe1a1.ico";
+          icon = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon.c09fe1a1.ico";
           updateInterval = updateDaily;
           definedAliases = [ "@b" ];
         };
-        "Bing".metaData.hidden = true;
-        "Google".metaData.alias = "@g";
+        "bing".metaData.hidden = true;
+        "google".metaData.alias = "@g";
 
         Jisho = {
           urls = [ { template = "https://jisho.org/search/{searchTerms}"; } ];
-          iconUpdateURL = "https://assets.jisho.org/assets/favicon-062c4a0240e1e6d72c38aa524742c2d558ee6234497d91dd6b75a182ea823d65.ico";
+          icon = "https://assets.jisho.org/assets/favicon-062c4a0240e1e6d72c38aa524742c2d558ee6234497d91dd6b75a182ea823d65.ico";
           updateInterval = updateDaily;
           definedAliases = [ "@j" ];
         };
@@ -154,7 +154,7 @@ let
         };
         "NixOS Wiki" = {
           urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
-          iconUpdateURL = "https://nixos.wiki/favicon.png";
+          icon = "https://nixos.wiki/favicon.png";
           updateInterval = updateDaily;
           definedAliases = [ "@nw" ];
         };
