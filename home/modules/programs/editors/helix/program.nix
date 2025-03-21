@@ -159,6 +159,8 @@ in
               command = getExe pkgs.typos-lsp;
               config.diagnosticSeverity = "Info";
             };
+
+            language.jjdescription.language-servers = [ "typos" ];
           }
           (mkIf cfgDev.elixir.enable {
             language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
