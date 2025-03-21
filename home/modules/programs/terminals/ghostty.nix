@@ -42,7 +42,7 @@ in
         "alt+z=resize_split:right,100"
         "alt+f=toggle_split_zoom"
         "alt+e=equalize_splits"
-        "alt+s=write_scrollback_file:open"
+        "alt+o=write_scrollback_file:open"
         "alt+u>n=new_window"
         "alt+u>t=new_tab"
         "alt+u>q=close_surface"
