@@ -15,7 +15,7 @@ home-manager.lib.homeManagerConfiguration {
   modules = [
     ../home/home.nix
 
-    catppuccin.homeManagerModules.catppuccin
+    catppuccin.homeModules.catppuccin
     nix-index-database.hmModules.nix-index
 
     {
