@@ -194,6 +194,7 @@ in
           }
         ];
 
+        settings.ui.conflict-marker-style = "git";
         settings.ui.default-command = "status";
         settings.ui.diff-editor = ":builtin";
         settings.ui.diff.tool = [
