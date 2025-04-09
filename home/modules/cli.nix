@@ -52,7 +52,7 @@ in
       atuin.enable = true;
       atuin.settings = {
         enter_accept = true;
-        filter_mode_shell_up_key_binding = "session";
+        filter_mode_shell_up_key_binding = "directory";
         inline_height = 15;
         search_mode = "skim";
         show_help = false;
