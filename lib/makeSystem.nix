@@ -3,7 +3,6 @@
 {
   nixpkgs,
   home-manager,
-  anyrun,
   catppuccin,
   lix,
   niri,
@@ -21,7 +20,7 @@ name:
   extraModules ? [ ],
 }:
 let
-  inherit (nixpkgs.lib) nixosSystem mkDefault mkIf genAttrs;
+  inherit (nixpkgs.lib) nixosSystem mkIf genAttrs;
   inherit (builtins) elem;
   adjustedMonitors = import ./adjustMonitors.nix nixpkgs.lib monitors;
 in
@@ -96,7 +95,6 @@ nixosSystem rec {
             imports = [
               ../home/home.nix
               catppuccin.homeModules.catppuccin
-              anyrun.homeManagerModules.default
               nix-index-database.hmModules.nix-index
               niri.homeModules.niri
             ];
