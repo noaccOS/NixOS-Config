@@ -112,6 +112,7 @@ in
 
     home.packages = [
       pkgs.playerctl
+      pkgs.brightnessctl
       pkgs.dex
     ];
 
