@@ -164,7 +164,7 @@ in
             language.jjdescription.language-servers = [ "typos" ];
           }
           (mkIf cfgDev.elixir.enable {
-            language-server.lexical.command = "${pkgs.lexical}/libexec/start_lexical.sh";
+            language-server.lexical.command = "lexical";
             language-server.nextls = {
               command = getExe pkgs.next-ls;
               args = [ "--stdio" ];

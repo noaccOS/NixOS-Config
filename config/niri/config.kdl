@@ -21,6 +21,11 @@ input {
     }
 }
 
+cursor {
+    xcursor-theme "Breeze_Catppuccin"
+    xcursor-size 32
+}
+
 layout {
     gaps 32
     always-center-single-column

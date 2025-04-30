@@ -44,24 +44,29 @@ in
     console.earlySetup = true;
 
     environment = {
-      defaultPackages = with pkgs; [
-        libsForQt5.breeze-qt5
-        ungoogled-chromium
-        xorg.xhost
-        xorg.xmodmap
-        pavucontrol
-        mpv
-        pandoc
-        imagemagick
-        wl-clipboard
-      ];
+      defaultPackages =
+        let
+          cursor = pkgs.callPackage ../packages/breeze-catppuccin/package.nix { };
+        in
+        with pkgs;
+        [
+          cursor
+          ungoogled-chromium
+          xorg.xhost
+          xorg.xmodmap
+          pavucontrol
+          mpv
+          pandoc
+          imagemagick
+          wl-clipboard
+        ];
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
       };
 
       variables = {
-        XCURSOR_THEME = "breeze_cursors";
+        XCURSOR_THEME = "Breeze_Catppuccin";
         _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
       };
     };
@@ -79,7 +84,10 @@ in
       enable = true;
       type = cfg.ime;
       ibus.engines = with pkgs.ibus-engines; [ mozc ];
-      fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
       fcitx5.waylandFrontend = true;
     };
 

@@ -1,0 +1,243 @@
+{
+  "global": {
+    "replace": [
+      { "desc": "outline", "fill": "#fff", "replace": "#eff1f5" },
+      { "desc": "body", "fill": "#0d0d0d", "replace": "#11111b" },
+      { "desc": "light blue context", "fill": "#3daee9", "replace": "#04a5e5" },
+      { "desc": "red not allowed", "fill": "#ed1515", "replace": "#d20f39" },
+      { "desc": "movement", "fill": "#46a7ac", "replace": "#7287fd" },
+      { "desc": "other movement", "fill": "#d4497f", "replace": "#df8e1d" },
+      { "desc": "window system", "fill": "#f67400", "replace": "#df8e1d" }
+    ]
+  },
+  "specific": {
+    "alias": {
+      "replace": [{ "desc": "link", "fill": "#18c087", "replace": "#179299" }],
+      "add": [{ "desc": "body", "id": "path48023", "fill": "#11111b" }]
+    },
+    "all-scroll": {
+      "replace": [{ "desc": "circle", "fill": "#d4497f", "replace": "#ea76cb" }]
+    },
+    "fleur": {
+      "replace": [{ "desc": "circle", "fill": "#d4497f", "replace": "#ea76cb" }]
+    },
+    "copy": {
+      "replace": [{ "desc": "plus", "fill": "#11d116", "replace": "#40a02b" }],
+      "add": [{ "desc": "body", "id": "path27139", "fill": "#11111b" }]
+    },
+    "down-arrow": {
+      "add": [{ "desc": "body", "id": "path2428", "fill": "#11111b" }]
+    },
+    "up-arrow": {
+      "add": [{ "desc": "body", "id": "path24884-5", "fill": "#11111b" }]
+    },
+    "left-arrow": {
+      "add": [{ "desc": "body", "id": "path5398", "fill": "#11111b" }]
+    },
+    "right-arrow": {
+      "add": [{ "desc": "body", "id": "path8368", "fill": "#11111b" }]
+    },
+    "text": {
+      "add": [{ "desc": "body", "id": "rect4889", "fill": "#11111b" }]
+    },
+    "bottom_side": {
+      "add": [
+        { "desc": "arrow body", "id": "path53883", "fill": "#11111b" },
+        { "desc": "line body", "id": "path53891", "fill": "#11111b" }
+      ]
+    },
+    "top_side": {
+      "add": [
+        { "desc": "arrow body", "id": "rect5654-9-4-0-5-2", "fill": "#11111b" },
+        { "desc": "line body", "id": "path24884", "fill": "#11111b" }
+      ]
+    },
+    "left_side": {
+      "add": [
+        { "desc": "arrow body", "id": "path57841", "fill": "#11111b" },
+        { "desc": "line body", "id": "path57849", "fill": "#11111b" }
+      ]
+    },
+    "right_side": {
+      "add": [
+        { "desc": "arrow body", "id": "path58841", "fill": "#11111b" },
+        { "desc": "line body", "id": "path58847", "fill": "#11111b" }
+      ]
+    },
+    "bottom_right_corner": {
+      "add": [
+        { "desc": "arrow body", "id": "path86675", "fill": "#11111b" },
+        { "desc": "line body", "id": "path86681", "fill": "#11111b" }
+      ]
+    },
+    "top_right_corner": {
+      "add": [
+        { "desc": "arrow body", "id": "path82687", "fill": "#11111b" },
+        { "desc": "line body", "id": "path82695", "fill": "#11111b" }
+      ]
+    },
+    "bottom_left_corner": {
+      "add": [
+        { "desc": "arrow body", "id": "path85674", "fill": "#11111b" },
+        { "desc": "line body", "id": "path85682", "fill": "#11111b" }
+      ]
+    },
+    "top_left_corner": {
+      "add": [
+        { "desc": "arrow body", "id": "rect5654-9-4-00", "fill": "#11111b" },
+        { "desc": "line body", "id": "path63791", "fill": "#11111b" }
+      ]
+    },
+    "cell": {
+      "add": [{ "desc": "body", "id": "rect6496", "fill": "#11111b" }]
+    },
+    "pencil": {
+      "add": [{ "desc": "body", "id": "path4801-6-4", "fill": "#11111b" }]
+    },
+    "col-resize": {
+      "add": [{ "desc": "body", "id": "path95676", "fill": "#11111b" }]
+    },
+    "right_ptr": {
+      "add": [{ "desc": "body", "id": "path15566", "fill": "#11111b" }]
+    },
+    "dnd-move": {
+      "add": [
+        { "desc": "body", "id": "path4236-1-58-5-6-0", "fill": "#11111b" }
+      ]
+    },
+    "context-menu": {
+      "add": [{ "desc": "body", "id": "path11404", "fill": "#11111b" }]
+    },
+    "openhand": {
+      "add": [{ "desc": "body", "id": "path4236-1-58-5-6", "fill": "#11111b" }]
+    },
+    "draft": {
+      "add": [{ "desc": "body", "id": "path4690", "fill": "#11111b" }]
+    },
+    "color-picker": {
+      "add": [
+        { "desc": "body 1", "id": "path4165", "fill": "#11111b" },
+        { "desc": "body 2", "id": "path4163", "fill": "#11111b" }
+      ]
+    },
+    "crosshair": {
+      "add": [
+        { "desc": "body 1", "id": "stop4913", "fill": "#11111b" },
+        { "desc": "body 2", "id": "stop4915", "fill": "#11111b" }
+      ]
+    },
+    "zoom-in": {
+      "add": [
+        { "desc": "body", "id": "path5340", "fill": "#11111b" },
+        { "desc": "plus", "id": "rect5428", "fill": "#11111b" }
+      ]
+    },
+    "zoom-out": {
+      "add": [
+        { "desc": "body", "id": "path5340-2", "fill": "#11111b" },
+        { "desc": "minus", "id": "rect5432", "fill": "#11111b" }
+      ]
+    },
+    "vertical-text": {
+      "add": [{ "desc": "body", "id": "rect4889-7", "fill": "#11111b" }]
+    },
+    "default": {
+      "add": [{ "desc": "body", "id": "path1442", "fill": "#11111b" }]
+    },
+    "dnd-no-drop": {
+      "add": [
+        { "desc": "body", "id": "path4236-1-58-5-6-0-2", "fill": "#11111b" }
+      ]
+    },
+    "no-drop": {
+      "add": [{ "desc": "body", "id": "path30812", "fill": "#11111b" }]
+    },
+    "row-resize": {
+      "add": [{ "desc": "body", "id": "path91676", "fill": "#11111b" }]
+    },
+    "pointer": {
+      "add": [{ "desc": "body", "id": "path4236-1-58-5", "fill": "#11111b" }]
+    },
+    "help": {
+      "add": [{ "desc": "body", "id": "path15566-2", "fill": "#11111b" }]
+    },
+    "center_ptr": {
+      "add": [{ "desc": "body", "id": "path5484", "fill": "#11111b" }]
+    },
+    "x-cursor": {
+      "add": [
+        { "desc": "body right", "id": "path4340", "fill": "#11111b" },
+        { "desc": "body left", "id": "path4340-1", "fill": "#11111b" }
+      ]
+    },
+    "progress-01": {
+      "add": [{ "desc": "body", "id": "path4202-5", "fill": "#11111b" }]
+    },
+    "progress-02": {
+      "add": [{ "desc": "body", "id": "path74489", "fill": "#11111b" }]
+    },
+    "progress-03": {
+      "add": [{ "desc": "body", "id": "path76267", "fill": "#11111b" }]
+    },
+    "progress-04": {
+      "add": [{ "desc": "body", "id": "path78065", "fill": "#11111b" }]
+    },
+    "progress-05": {
+      "add": [{ "desc": "body", "id": "path78985", "fill": "#11111b" }]
+    },
+    "progress-06": {
+      "add": [{ "desc": "body", "id": "path81729", "fill": "#11111b" }]
+    },
+    "progress-07": {
+      "add": [{ "desc": "body", "id": "path86333", "fill": "#11111b" }]
+    },
+    "progress-08": {
+      "add": [{ "desc": "body", "id": "path87283", "fill": "#11111b" }]
+    },
+    "progress-09": {
+      "add": [{ "desc": "body", "id": "path89179", "fill": "#11111b" }]
+    },
+    "progress-10": {
+      "add": [{ "desc": "body", "id": "path92041", "fill": "#11111b" }]
+    },
+    "progress-11": {
+      "add": [{ "desc": "body", "id": "path94957", "fill": "#11111b" }]
+    },
+    "progress-12": {
+      "add": [{ "desc": "body", "id": "path100705", "fill": "#11111b" }]
+    },
+    "progress-13": {
+      "add": [{ "desc": "body", "id": "path102681", "fill": "#11111b" }]
+    },
+    "progress-14": {
+      "add": [{ "desc": "body", "id": "path104677", "fill": "#11111b" }]
+    },
+    "progress-15": {
+      "add": [{ "desc": "body", "id": "path107689", "fill": "#11111b" }]
+    },
+    "progress-16": {
+      "add": [{ "desc": "body", "id": "path109725", "fill": "#11111b" }]
+    },
+    "progress-17": {
+      "add": [{ "desc": "body", "id": "path111781", "fill": "#11111b" }]
+    },
+    "progress-18": {
+      "add": [{ "desc": "body", "id": "path113857", "fill": "#11111b" }]
+    },
+    "progress-19": {
+      "add": [{ "desc": "body", "id": "path115953", "fill": "#11111b" }]
+    },
+    "progress-20": {
+      "add": [{ "desc": "body", "id": "path118069", "fill": "#11111b" }]
+    },
+    "progress-21": {
+      "add": [{ "desc": "body", "id": "path119149", "fill": "#11111b" }]
+    },
+    "progress-22": {
+      "add": [{ "desc": "body", "id": "path121307", "fill": "#11111b" }]
+    },
+    "progress-23": {
+      "add": [{ "desc": "body", "id": "path123483", "fill": "#11111b" }]
+    }
+  }
+}

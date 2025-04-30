@@ -61,7 +61,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
-      cursor-theme = "breeze_cursors";
+      cursor-theme = "Breeze_Catppuccin";
       document-font-name = "Inter Nerd Font 11";
       enable-hot-corners = false;
       font-name = "Inter Nerd Font 11";
