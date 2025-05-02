@@ -60,6 +60,9 @@ let
     spawn-at-startup "${getExe pkgs.kmonad}" "${cfg.kmonad.config}"
   '';
   swaync = "spawn-at-startup \"${getExe pkgs.swaynotificationcenter}\"\n";
+  wallpaper = ''
+    spawn-at-startup "swaybg" "-i" "${../../../assets/wallpaper.jpg}" 
+  '';
 in
 {
   options.homeModules.windowManagers.niri = {
@@ -111,6 +114,7 @@ in
     };
 
     home.packages = [
+      pkgs.swaybg
       pkgs.playerctl
       pkgs.brightnessctl
       pkgs.dex
@@ -119,7 +123,13 @@ in
     programs.niri = {
       enable = true;
       package = pkgs.niri;
-      config = monitorSection + kmonad + xwayland + swaync + (readFile ../../../config/niri/config.kdl);
+      config =
+        monitorSection
+        + kmonad
+        + xwayland
+        + swaync
+        + wallpaper
+        + (readFile ../../../config/niri/config.kdl);
     };
   };
 }
