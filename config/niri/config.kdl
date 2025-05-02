@@ -22,7 +22,7 @@ input {
 }
 
 layout {
-    gaps 16
+    gaps 32
     always-center-single-column
     empty-workspace-above-first
 
