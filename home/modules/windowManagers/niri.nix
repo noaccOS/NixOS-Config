@@ -61,7 +61,7 @@ let
   '';
   swaync = "spawn-at-startup \"${getExe pkgs.swaynotificationcenter}\"\n";
   wallpaper = ''
-    spawn-at-startup "swaybg" "-i" "${../../../assets/wallpaper.jpg}" 
+    spawn-at-startup "swaybg" "-i" "${../../../assets/wallpaper.jpg}" "-m" "fill" 
   '';
 in
 {
