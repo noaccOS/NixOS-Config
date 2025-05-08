@@ -27,7 +27,7 @@ cursor {
 }
 
 layout {
-    gaps 32
+    gaps 48
     always-center-single-column
     empty-workspace-above-first
 
