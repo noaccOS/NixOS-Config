@@ -44,6 +44,14 @@ in
     home.packages = cfg.fontPackages;
     nixpkgs.config.joypixels.acceptLicense = true;
 
+    home.pointerCursor = {
+      enable = true;
+      name = "Breeze_Catppuccin";
+      package = pkgs.callPackage ../../packages/breeze-catppuccin/package.nix { };
+      x11.enable = true;
+      gtk.enable = true;
+    };
+
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {

@@ -44,29 +44,22 @@ in
     console.earlySetup = true;
 
     environment = {
-      defaultPackages =
-        let
-          cursor = pkgs.callPackage ../packages/breeze-catppuccin/package.nix { };
-        in
-        with pkgs;
-        [
-          cursor
-          ungoogled-chromium
-          xorg.xhost
-          xorg.xmodmap
-          pavucontrol
-          mpv
-          pandoc
-          imagemagick
-          wl-clipboard
-        ];
+      defaultPackages = with pkgs; [
+        ungoogled-chromium
+        xorg.xhost
+        xorg.xmodmap
+        pavucontrol
+        mpv
+        pandoc
+        imagemagick
+        wl-clipboard
+      ];
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
       };
 
       variables = {
-        XCURSOR_THEME = "Breeze_Catppuccin";
         _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
       };
     };
