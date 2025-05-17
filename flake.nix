@@ -187,6 +187,10 @@
       };
 
       templates = {
+        generic = {
+          description = "Generic package + devshell";
+          path = ./templates/generic;
+        };
         rust = {
           description = "Rust project flake with crane and flake-parts";
           path = ./templates/rust;
