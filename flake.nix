@@ -52,6 +52,7 @@
 
     # Theming
     catppuccin.url = "github:catppuccin/nix";
+    breeze-cursors-catppuccin.url = "github:noaccOS/breeze-cursors-catppuccin";
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;

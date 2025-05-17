@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  inputs,
+  system,
   ...
 }:
 let
@@ -47,7 +49,7 @@ in
     home.pointerCursor = {
       enable = true;
       name = "Breeze_Catppuccin";
-      package = pkgs.callPackage ../../packages/breeze-catppuccin/package.nix { };
+      package = inputs.breeze-cursors-catppuccin.packages.${system}.default;
       x11.enable = true;
       gtk.enable = true;
     };
