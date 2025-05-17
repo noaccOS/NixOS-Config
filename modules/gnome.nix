@@ -45,7 +45,7 @@ in
 
     services.gnome.core-os-services.enable = true;
     services.gnome.core-shell.enable = true;
-    services.gnome.core-utilities.enable = true;
+    services.gnome.core-apps.enable = true;
 
     services.gnome.gnome-browser-connector.enable = !cfg.barebones;
     services.gnome.gnome-initial-setup.enable = !cfg.barebones;
