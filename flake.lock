@@ -459,16 +459,22 @@
       }
     },
     "rycee": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1747454607,
-        "narHash": "sha256-E6Z01BGqHtjIKktUtkX7SDET8KRkzM57smUuHnmulYY=",
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1747627410,
+        "narHash": "sha256-iRJOiy0ELTcpv+nV790s5vCEpXbzJ4wkJyBCoksGSEE=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "b4e226b3485a9c3c6f224393975400b38d1e7b67",
+        "rev": "9663730d3789f4e6aaf77226c951f63d25d064e9",
         "type": "gitlab"
       },
       "original": {
+        "dir": "pkgs/firefox-addons",
         "owner": "rycee",
         "repo": "nur-expressions",
         "type": "gitlab"

@@ -28,8 +28,8 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     rycee = {
-      url = "gitlab:rycee/nur-expressions";
-      flake = false;
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
       url = "github:sodiboo/niri-flake";

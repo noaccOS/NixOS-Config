@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  system,
   ...
 }:
 let
@@ -30,7 +31,6 @@ let
 
   cfg = config.homeModules.programs.browsers.firefox;
   ffcfg = config.programs.librewolf;
-  rycee = pkgs.callPackages (inputs.rycee + "/default.nix") { };
 
   betterfox =
     let
@@ -191,7 +191,7 @@ let
 
     extensions.packages =
       let
-        ffext = rycee.firefox-addons;
+        ffext = inputs.rycee.packages.${system};
       in
       [
         ffext.bitwarden
