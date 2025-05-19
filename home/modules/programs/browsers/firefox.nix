@@ -206,6 +206,7 @@ let
         ffext.stylus
         ffext.ublock-origin
         ffext.yomitan
+        ffext.youtube-nonstop
       ]
       ++ optionals cfg.gnomeIntegration [
         ffext.gnome-shell-integration
