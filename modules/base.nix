@@ -36,6 +36,7 @@ in
     xq # jq
     wget
     htop
+    retry
     fd # find
     ripgrep # rg (grep)
     eza # ls
