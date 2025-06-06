@@ -54,9 +54,12 @@ in
 
     noaccOSModules.virtualization.qemu-frontend = mkDefault pkgs.gnome-boxes;
 
-    services.xserver = mkIf (!cfg.barebones) {
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+    services.displayManager = mkIf (!cfg.barebones) {
+      gdm.enable = true;
+    };
+
+    services.desktopManager = mkIf (!cfg.barebones) {
+      gnome.enable = true;
     };
   };
 }
