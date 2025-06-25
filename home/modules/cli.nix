@@ -180,15 +180,8 @@ in
               key = "A83DA1B14BD444A6";
             };
             templates = {
-              draft_commit_description = ''
-                concat(
-                  description,
-                  if(!description.contains("Signed-off-by"), signoff(self.committer())),
-                  surround(
-                    "\nJJ: This commit contains the following changes:\n", "",
-                    indent("JJ:     ", diff.stat(72)),
-                  ),
-                )
+              commit_trailers = ''
+                "Signed-off-by: " ++ committer ++ "\n"
               '';
             };
           }
