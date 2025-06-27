@@ -75,6 +75,7 @@
   };
   space.space = {
     space = "file_picker";
+    A = ":lsp-workspace-command";
     Y = "yank_joined_to_clipboard";
     f = ":format";
     p = "paste_clipboard_before";
