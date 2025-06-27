@@ -190,10 +190,9 @@ in
               ];
           })
           (mkIf cfgDev.nix.enable {
-            language-server.nixd.command = getExe pkgs.nixd;
             language.nix = {
               language-servers = [
-                "nixd"
+                "nil"
                 "typos"
               ];
               formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";

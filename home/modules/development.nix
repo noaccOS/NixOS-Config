@@ -203,7 +203,7 @@ in
         ++ optionals cfg.nix.enable (attrValues {
           inherit (pkgs)
             nixfmt-rfc-style # Formatter
-            nixd # LSP
+            nil # LSP
             ;
         })
         ++ optionals cfg.rust.enable (attrValues {
