@@ -57,7 +57,7 @@ in
           };
         };
         clock = {
-          format = "{:%a, %b %d %R}";
+          format = "{:L%a、%b%d日　%R}";
           format-alt = "{:%Y}";
         };
         backlight = {
