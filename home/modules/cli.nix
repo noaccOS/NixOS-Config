@@ -197,7 +197,7 @@ in
         settings.ui.conflict-marker-style = "git";
         settings.ui.default-command = "status";
         settings.ui.diff-editor = ":builtin";
-        settings.ui.diff.tool = [
+        settings.ui.diff-formatter = [
           "difft"
           "--color=always"
           "$left"
