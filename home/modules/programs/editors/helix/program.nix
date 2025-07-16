@@ -165,11 +165,11 @@ in
           }
           (mkIf cfgDev.elixir.enable {
             language-server.lexical.command = "lexical";
-            language-server.nextls = {
-              command = getExe pkgs.next-ls;
-              args = [ "--stdio" ];
-              config.experimental.completions.enable = true;
-            };
+            # language-server.nextls = {
+            #   command = getExe pkgs.next-ls;
+            #   args = [ "--stdio" ];
+            #   config.experimental.completions.enable = true;
+            # };
             language =
               let
                 languages = [

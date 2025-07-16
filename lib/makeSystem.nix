@@ -95,7 +95,7 @@ nixosSystem rec {
             imports = [
               ../home/home.nix
               catppuccin.homeModules.catppuccin
-              nix-index-database.hmModules.nix-index
+              nix-index-database.homeModules.nix-index
               niri.homeModules.niri
             ];
           }

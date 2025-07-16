@@ -53,6 +53,7 @@ in
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
+    extraLocales = [ "ja_JP.UTF-8/UTF-8" "en_IE.UTF-8/UTF-8" ];
     extraLocaleSettings = {
       LC_TIME = "ja_JP.UTF-8";
       LC_MONETARY = "en_IE.UTF-8";

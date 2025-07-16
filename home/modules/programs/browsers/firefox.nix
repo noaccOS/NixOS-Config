@@ -189,6 +189,7 @@ let
         };
       };
 
+    extensions.force = true;
     extensions.packages =
       let
         ffext = inputs.rycee.packages.${system};
