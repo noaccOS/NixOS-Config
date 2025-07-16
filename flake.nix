@@ -40,16 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Overrides
-    mutter-triple-buffer = {
-      type = "gitlab";
-      owner = "Community%2FUbuntu";
-      repo = "mutter";
-      ref = "triple-buffering-v4-47";
-      host = "gitlab.gnome.org";
-      flake = false;
-    };
-
     # Theming
     catppuccin.url = "github:catppuccin/nix";
     breeze-cursors-catppuccin.url = "github:noaccOS/breeze-cursors-catppuccin";

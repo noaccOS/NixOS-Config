@@ -245,25 +245,6 @@
         "url": "https://git.lix.systems/lix-project/lix/archive/main.tar.gz"
       }
     },
-    "mutter-triple-buffer": {
-      "flake": false,
-      "locked": {
-        "host": "gitlab.gnome.org",
-        "lastModified": 1741153355,
-        "narHash": "sha256-6n5HSbocU8QDwuhBvhRuvkUE4NflUiUKE0QQ5DJEzwI=",
-        "owner": "Community%2FUbuntu",
-        "repo": "mutter",
-        "rev": "4a884e571ea044e8078abc826cc1b1abd55c936c",
-        "type": "gitlab"
-      },
-      "original": {
-        "host": "gitlab.gnome.org",
-        "owner": "Community%2FUbuntu",
-        "ref": "triple-buffering-v4-47",
-        "repo": "mutter",
-        "type": "gitlab"
-      }
-    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -429,7 +410,6 @@
         "helix": "helix",
         "home-manager": "home-manager",
         "lix": "lix",
-        "mutter-triple-buffer": "mutter-triple-buffer",
         "niri": "niri",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
