@@ -58,8 +58,6 @@ in
       profiles.default.extensions =
         with pkgs.vscode-extensions;
         [
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
           kahole.magit
           mkhl.direnv
           elixir-lsp.vscode-elixir-ls
