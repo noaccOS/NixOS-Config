@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', 'monospace', monospace",
+  "editor.fontFamily": "'Iosevka-NoaccOS', 'JetBrainsMono Nerd Font', 'JetBrains Mono', 'monospace', monospace",
   "editor.autoClosingDelete": "never",
   "editor.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -64,7 +64,7 @@
   "workbench.sideBar.location": "right",
   "findJump.dimWhenActive": true,
   "findJump.jumpChars": "hutenosadigpc.r,l'fymkwjvqz;bxHUTENOSADIGPC>R<L\"FYMKWJVQZ:BX",
-  "metaGo.decoration.fontFamily": "'JetBrainsMono Nerd Font','JetBrains Mono','Operator Mono SSm Lig', 'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "metaGo.decoration.fontFamily": "'Iosevka-NoaccOS', 'JetBrainsMono Nerd Font','JetBrains Mono','Operator Mono SSm Lig', 'Fira Code', Menlo, Monaco, 'Courier New', monospace",
   "metaGo.decoration.characters": "h, u, t, e, n, s, a, m, k, w, j, v, q, z",
   "metaGo.decoration.backgroundColor": "#b4befe,#bac2de",
   "metaGo.decoration.color": "#1e1e2e,#1e1e2e",

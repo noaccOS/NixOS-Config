@@ -77,7 +77,7 @@ in
   config.programs.kitty = mkIf cfg.enable {
     enable = true;
     font = {
-      name = "JetBrainsMono Nerd Font";
+      name = "Iosevka-NoaccOS";
       size = 13;
     };
     keybindings = {

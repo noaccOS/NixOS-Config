@@ -17,7 +17,7 @@ in
       enable = cfg.enable;
       settings = {
         main = {
-          font = "JetBrainsMono Nerd Font:size=11";
+          font = "Iosevka-NoaccOS:size=11";
           pad = "20x20";
         };
         colors = {

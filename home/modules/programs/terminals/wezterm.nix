@@ -20,7 +20,7 @@ in
 
       config.color_scheme = 'Catppuccin Mocha'
       config.font = wezterm.font_with_fallback {
-       'JetBrainsMono Nerd Font',
+       'Iosevka-NoaccOS',
        'Noto Sans Mono CJK JP' 
       }
       config.font_size = 13

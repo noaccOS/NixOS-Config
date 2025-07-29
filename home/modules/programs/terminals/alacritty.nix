@@ -12,7 +12,7 @@ with lib;
     enable = cfg.enable;
     settings = {
       font.size = 14;
-      font.normal.family = "JetBrainsMono Nerd Font";
+      font.normal.family = "Iosevka-NoaccOS";
     };
   };
 }

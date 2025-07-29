@@ -26,7 +26,7 @@ with lib;
         level = 1;
       };
       fonts = {
-        family = "JetBrainsMono Nerd Font";
+        family = "Iosevka-NoaccOS";
         size = 18;
         emoji.family = "JoyPixels";
         bold.weight = 700;
