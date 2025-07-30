@@ -19,6 +19,7 @@ in
     settings = {
       window-theme = "ghostty";
       window-decoration = "client";
+      font-family = "Iosevka-NoaccOS";
       font-size = 14;
       clipboard-paste-protection = false;
       mouse-scroll-multiplier = 2.5;
