@@ -85,8 +85,9 @@ in
       in
       with pkgs;
       [
-        iosevka-noaccos
+        atkinson-hyperlegible-next
         inter-nerdfont
+        iosevka-noaccos
         joypixels
         nerd-fonts.jetbrains-mono
         noto-fonts-cjk-sans # Chinese, Japanese, Korean
@@ -121,11 +122,11 @@ in
       defaultFonts = {
         emoji = [ "JoyPixels" ];
         serif = [
-          "Inter Nerd Font"
+          "Atkinson Hyperlegible Next"
           "Noto Sans CJK JP"
         ];
         sansSerif = [
-          "Inter Nerd Font"
+          "Atkinson Hyperlegible Next"
           "Noto Sans CJK JP"
         ];
         monospace = [

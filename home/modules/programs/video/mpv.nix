@@ -23,7 +23,7 @@ in
       speed = 2;
 
       # Subtitles
-      sub-font = "Inter Nerd Font";
+      sub-font = "Atkinson Hyperlegible Next";
       sub-font-size = 36;
       sub-color = "#FFFFFF";
       sub-border-color = "#131313";

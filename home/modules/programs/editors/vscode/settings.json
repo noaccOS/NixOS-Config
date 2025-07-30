@@ -57,7 +57,7 @@
   "security.workspace.trust.emptyWindow": false,
   "catppuccin.accentColor": "lavender",
   "markdown.preferredMdPathExtensionStyle": "includeExtension",
-  "markdown.preview.fontFamily": "'Inter Nerd Font', -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+  "markdown.preview.fontFamily": "'Atkinson Hyperlegible Next', 'Inter Nerd Font', -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
   "keyboard.dispatch": "keyCode",
   "git.openRepositoryInParentFolders": "always",
   "terminal.integrated.tabFocusMode": false,

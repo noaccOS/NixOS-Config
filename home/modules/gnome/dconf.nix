@@ -62,7 +62,7 @@ with lib.hm.gvariant;
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
       cursor-theme = "Breeze_Catppuccin";
-      document-font-name = "Inter Nerd Font 11";
+      document-font-name = "Atkinson Hyperlegible Next 11";
       enable-hot-corners = false;
       font-name = "Inter Nerd Font 11";
       gtk-theme = "adw-gtk3-dark";
