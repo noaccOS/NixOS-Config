@@ -66,6 +66,7 @@ in
 
     fonts = {
       packages = config.home-manager.users.${user}.homeModules.gui.fontPackages;
+      fontDir.enable = true;
       fontconfig = {
         inherit (config.home-manager.users.${user}.fonts.fontconfig) defaultFonts;
       };
