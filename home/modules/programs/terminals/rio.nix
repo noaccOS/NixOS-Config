@@ -26,7 +26,7 @@ with lib;
         level = 1;
       };
       fonts = {
-        family = "Iosevka-NoaccOS";
+        family = "Nosevka NF";
         size = 18;
         emoji.family = "JoyPixels";
         bold.weight = 700;

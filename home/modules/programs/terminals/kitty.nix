@@ -77,7 +77,7 @@ in
   config.programs.kitty = mkIf cfg.enable {
     enable = true;
     font = {
-      name = "Iosevka-NoaccOS";
+      name = "Nosevka NF";
       size = 13;
     };
     keybindings = {

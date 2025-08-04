@@ -67,7 +67,7 @@ with lib.hm.gvariant;
       font-name = "Inter Nerd Font 11";
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "Adwaita";
-      monospace-font-name = "Iosevka-NoaccOS 11";
+      monospace-font-name = "Nosevka NF 11";
       toolkit-accessibility = false;
     };
 

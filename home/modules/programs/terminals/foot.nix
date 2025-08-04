@@ -17,7 +17,7 @@ in
       enable = cfg.enable;
       settings = {
         main = {
-          font = "Iosevka-NoaccOS:size=11";
+          font = "Nosevka NF:size=11";
           pad = "20x20";
         };
         colors = {
