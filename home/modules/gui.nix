@@ -41,7 +41,6 @@ in
     homeModules.programs = {
       browsers.firefox.enable = true;
       browsers.firefox.defaultBrowser = mkDefault true;
-      editors.vscode.enable = true;
       terminals.alacritty.enable = true;
       terminals.ghostty.enable = true;
       video.mpv.enable = true;
@@ -57,6 +56,8 @@ in
       x11.enable = true;
       gtk.enable = true;
     };
+
+    catppuccin.gtk.icon.enable = false;
 
     fonts.fontconfig = {
       enable = true;

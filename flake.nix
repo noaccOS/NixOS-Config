@@ -2,9 +2,14 @@
   description = "NixOS and Home-Manager configuration";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    lix-exe = {
+      url = "git+https://git.lix.systems/lix-project/lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lix = {
       url = "git+https://git.lix.systems/lix-project/nixos-module";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix-exe";
     };
     # rock5 = {
     #   url = "github:aciceri/rock5b-nixos";
