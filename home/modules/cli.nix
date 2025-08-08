@@ -50,6 +50,7 @@ in
 
     programs = {
       atuin.enable = true;
+      atuin.daemon.enable = true;
       atuin.settings = {
         enter_accept = true;
         filter_mode_shell_up_key_binding = "directory";
