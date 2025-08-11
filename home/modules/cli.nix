@@ -11,6 +11,8 @@ let
   inherit (lib)
     concatStringsSep
     mapAttrsToList
+    mkAfter
+    mkBefore
     mkDefault
     mkEnableOption
     mkIf
@@ -53,7 +55,7 @@ in
       atuin.daemon.enable = true;
       atuin.settings = {
         enter_accept = true;
-        filter_mode_shell_up_key_binding = "directory";
+        filter_mode_shell_up_key_binding = "session";
         inline_height = 15;
         search_mode = "skim";
         show_help = false;
@@ -87,6 +89,14 @@ in
 
       fish = {
         enable = true;
+        interactiveShellInit = mkMerge [
+          (mkBefore ''
+            set atuin_session_bak "$ATUIN_SESSION"
+          '')
+          (mkAfter ''
+            test -n "$atuin_session_bak"; and set -gx ATUIN_SESSION "$atuin_session_bak"
+          '')
+        ];
         shellAliases = {
           cat = "bat --style=plain --paging=never";
         };
