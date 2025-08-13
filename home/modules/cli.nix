@@ -89,6 +89,9 @@ in
 
       fish = {
         enable = true;
+        binds = {
+          "ctrl-o".command = "edit_command_buffer";
+        };
         interactiveShellInit = mkMerge [
           (mkBefore ''
             set atuin_session_bak "$ATUIN_SESSION"
