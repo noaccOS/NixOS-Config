@@ -45,7 +45,7 @@ in
     homeModules.programs.shells.nu.enable = true;
     homeModules.development.defaultVisual = "helix";
 
-    home.sessionVariables.LESS = "--quit-if-one-screen --RAW-CONTROL-CHARS --mouse --wheel-lines=3";
+    home.sessionVariables.LESS = "--quit-if-one-screen --RAW-CONTROL-CHARS --wheel-lines=3";
     home.sessionVariables.HWATCH = "--no-title --color --no-help-banner";
 
     xdg.userDirs.enable = true;
@@ -214,7 +214,7 @@ in
 
       less = {
         enable = true;
-        keys =
+        config =
           let
             keys = {
               k = "repeat-search";
