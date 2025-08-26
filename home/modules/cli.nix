@@ -233,14 +233,6 @@ in
 
       starship = {
         enable = true;
-        package = pkgs.starship.overrideAttrs {
-          patches = [
-            (pkgs.fetchpatch2 {
-              url = "https://patch-diff.githubusercontent.com/raw/starship/starship/pull/5772.diff";
-              sha256 = "sha256-ycPjoeRZ22FKNr/kDm7+6dRWrVPSyM5+XNEaYMr524w=";
-            })
-          ];
-        };
         enableFishIntegration = true;
         enableTransience = true;
         settings = mkMerge [
@@ -248,16 +240,6 @@ in
           {
             gcloud.disabled = true;
             nix_shell.heuristic = true;
-            git_branch.disabled = true;
-            git_commit.disabled = true;
-            git_metrics.disabled = true;
-            git_status.disabled = true;
-            jj_status = {
-              symbol = " ";
-              no_description_symbol = "󰏫 ";
-              divergent_symbol = "󰞇 ";
-              format = "on [$symbol$change_id_prefix]($change_id_prefix_style)[$change_id_suffix]($change_id_suffix_style) [$no_description_symbol](yellow)[$divergent_symbol](bold red)";
-            };
           }
         ];
       };
