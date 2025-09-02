@@ -20,13 +20,17 @@ in
 
       WLR_DRM_NO_ATOMIC = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
+
+      # fixme: 580 bug
+      GSK_RENDERER = "ngl";
     };
 
     hardware.nvidia = {
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
       open = true;
-      nvidiaPersistenced = true;
+      # fixme: build failure
+      # nvidiaPersistenced = true;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
