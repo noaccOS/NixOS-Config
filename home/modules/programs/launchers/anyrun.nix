@@ -17,6 +17,7 @@ in
 
   config.programs.anyrun = {
     enable = cfg.enable;
+    package = inputs.anyrun.packages.${pkgs.system}.anyrun;
 
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
