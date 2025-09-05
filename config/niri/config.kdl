@@ -1,10 +1,6 @@
 spawn-at-startup "waybar"
 spawn-at-startup "dex" "-a"
 
-environment {
-    DISPLAY ":0"
-}
-
 input {
     keyboard {
         xkb {

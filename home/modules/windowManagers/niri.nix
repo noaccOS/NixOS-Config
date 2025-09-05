@@ -54,7 +54,6 @@ let
     concatLines
   ];
 
-  xwayland = "spawn-at-startup \"${getExe pkgs.xwayland-satellite}\"\n";
   # TODO: this should be a property of the bar using gsconnect
   kmonad = optionalString cfg.kmonad.enable ''
     spawn-at-startup "${getExe pkgs.kmonad}" "${cfg.kmonad.config}"
@@ -114,10 +113,11 @@ in
     };
 
     home.packages = [
-      pkgs.swaybg
-      pkgs.playerctl
       pkgs.brightnessctl
       pkgs.dex
+      pkgs.playerctl
+      pkgs.swaybg
+      pkgs.xwayland-satellite
     ];
 
     programs.niri = {
@@ -126,7 +126,6 @@ in
       config =
         monitorSection
         + kmonad
-        + xwayland
         + swaync
         + wallpaper
         + (readFile ../../../config/niri/config.kdl);

@@ -17,12 +17,6 @@ in
     environment.sessionVariables = {
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
-
-      WLR_DRM_NO_ATOMIC = "1";
-      WLR_NO_HARDWARE_CURSORS = "1";
-
-      # fixme: 580 bug
-      GSK_RENDERER = "ngl";
     };
 
     hardware.nvidia = {
