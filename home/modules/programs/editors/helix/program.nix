@@ -224,6 +224,7 @@ in
                   "json5"
                   "yaml"
                   "markdown"
+                  "toml"
                 ];
               in
               pipe languages [
