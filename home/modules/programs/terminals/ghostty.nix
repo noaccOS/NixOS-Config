@@ -23,7 +23,7 @@ in
       font-size = 14;
       clipboard-paste-protection = false;
       mouse-scroll-multiplier = 2.5;
-      shell-integration-features = "no-cursor";
+      shell-integration-features = "no-cursor,ssh-env,ssh-terminfo";
       cursor-style = "bar";
       cursor-style-blink = false;
       unfocused-split-opacity = 0.85;
@@ -44,6 +44,7 @@ in
         "alt+f=toggle_split_zoom"
         "alt+e=equalize_splits"
         "alt+o=write_scrollback_file:open"
+        "alt+semicolon=toggle_command_palette"
         "alt+u>n=new_window"
         "alt+u>t=new_tab"
         "alt+u>q=close_surface"
