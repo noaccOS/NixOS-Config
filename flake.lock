@@ -577,11 +577,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1754327167,
-        "narHash": "sha256-oqzM0IL7api2XIoNPjM86WSkpKhpcT0ZHkxCz1lW8qo=",
+        "lastModified": 1759226136,
+        "narHash": "sha256-tw7VSWhD/GssWRztzdtNUL7fYUdxQqd3lf3Jsuxicm0=",
         "owner": "noaccOS",
         "repo": "nosevka",
-        "rev": "823185997385c57bef778353515986f962b6c702",
+        "rev": "fe08f660e3c5b709056ed54e2f308014fdaaf0dc",
         "type": "github"
       },
       "original": {
