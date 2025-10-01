@@ -178,12 +178,6 @@ in
           email = mkDefault config.programs.git.extraConfig.user.email;
         };
 
-        settings.template-aliases = {
-          "signoff(author)" = ''
-            "\n\nSigned-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">\n"
-          '';
-        };
-
         settings."--scope" = [
           {
             "--when".repositories = [ "~/src/seco" ];
@@ -194,9 +188,7 @@ in
               key = "A83DA1B14BD444A6";
             };
             templates = {
-              commit_trailers = ''
-                "Signed-off-by: " ++ committer ++ "\n"
-              '';
+              commit_trailers = "format_signed_off_by_trailer(self)\n";
             };
           }
         ];
