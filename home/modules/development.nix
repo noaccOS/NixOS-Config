@@ -164,9 +164,10 @@ in
             haskell-language-server # LSP
             ;
 
-          inherit (pkgs.haskellPackages)
-            hindent # Indent
-            ;
+          # TODO: uncomment when no longer broken
+          # inherit (pkgs.haskellPackages)
+          #   hindent # Indent
+          #   ;
         })
         ++ optionals cfg.java.enable (attrValues {
           inherit (pkgs)
