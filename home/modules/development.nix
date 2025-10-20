@@ -118,7 +118,7 @@ in
 
       # TODO: use catpuuccin/nix module if it allows using it even if delta.enable = false
       programs.git = {
-        extraConfig.delta.features = "catppuccin-${config.catppuccin.flavor}";
+        settings.delta.features = "catppuccin-${config.catppuccin.flavor}";
         includes = [ { path = "${config.catppuccin.sources.delta}/catppuccin.gitconfig"; } ];
       };
       home.packages = [ pkgs.delta ];

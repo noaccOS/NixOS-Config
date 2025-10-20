@@ -118,7 +118,6 @@ in
       git = {
         enable = true;
         signing.format = "openpgp";
-        difftastic.enable = true;
         ignores = [
           "log/"
           ".direnv/"
@@ -132,7 +131,7 @@ in
           ".helix"
           ".typos.toml"
         ];
-        extraConfig = {
+        settings = {
           credential.helper = "store";
           diff.algorithm = "histogram";
           fetch.prune = true;
@@ -170,12 +169,17 @@ in
         ];
       };
 
+      difftastic = {
+        enable = true;
+        git.enable = true;
+      };
+
       jujutsu = {
         enable = true;
 
         settings.user = {
-          name = config.programs.git.extraConfig.user.name;
-          email = mkDefault config.programs.git.extraConfig.user.email;
+          name = config.programs.git.settings.user.name;
+          email = mkDefault config.programs.git.settings.user.email;
         };
 
         settings."--scope" = [
