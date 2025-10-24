@@ -14,6 +14,8 @@ in
   config.programs.mpv = {
     enable = cfg.enable;
     config = {
+      hwdec = "yes";
+
       # Language
       alang = "jpn,ja,jp,eng,en"; # audio lang
       slang = "eng,en"; # sub   lang
