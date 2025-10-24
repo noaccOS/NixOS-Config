@@ -79,6 +79,7 @@ in
       [ "file://${config.home.homeDirectory}/src" ]
       ++ optionals config.xdg.userDirs.enable xdg-bookmark-entries;
 
+    xdg.mimeApps.enable = true;
     xdg.mimeApps.defaultApplications = {
       # Applications
       "application/bzip2" = "org.gnome.FileRoller.desktop";
