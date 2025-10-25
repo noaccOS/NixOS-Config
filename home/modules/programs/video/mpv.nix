@@ -15,6 +15,7 @@ in
     enable = cfg.enable;
     config = {
       hwdec = "yes";
+      save-position-on-quit = "yes";
 
       # Language
       alang = "jpn,ja,jp,eng,en"; # audio lang
