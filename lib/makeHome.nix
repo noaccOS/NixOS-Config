@@ -13,6 +13,7 @@
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs { inherit system; };
   modules = [
+    ./lix.nix
     ../home/home.nix
 
     catppuccin.homeModules.catppuccin
