@@ -1,8 +1,7 @@
 {
   config,
   lib,
-  inputs,
-  system,
+  pkgs,
   ...
 }:
 let
@@ -19,16 +18,20 @@ in
     enable = cfg.enable;
 
     config = {
-      plugins = with inputs.anyrun.packages.${system}; [
-        applications
-        kidex
-        randr
-        rink
-        shell
-        stdin
-        symbols
-        websearch
-      ];
+      plugins =
+        let
+          plugins = [
+            "applications"
+            "kidex"
+            "randr"
+            "rink"
+            "shell"
+            "stdin"
+            "symbols"
+            "websearch"
+          ];
+        in
+        map (plugin: "${pkgs.anyrun}/lib/lib${plugin}.so") plugins;
     };
   };
 
