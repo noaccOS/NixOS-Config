@@ -22,6 +22,8 @@ in
     ./catppuccin.nix
   ];
 
+  boot.kernel.sysctl."fs.aio-max-nr" = 2097152;
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";

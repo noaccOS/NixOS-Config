@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   user,
@@ -22,9 +21,6 @@ in
       "docker"
       "podman"
     ];
-    boot.kernel.sysctl = {
-      "fs.aio-max-nr" = 1048576;
-      "net.ipv4.ip_unprivileged_port_start" = 80;
-    };
+    boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
   };
 }
