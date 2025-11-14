@@ -23,18 +23,16 @@ in
     type = with types; listOf package;
     description = "Font packages";
     readOnly = true;
-    default =
-      with pkgs;
-      [
-        atkinson-hyperlegible-next
-        inter-nerdfont
-        inputs.nosevka.packages.${system}.complete
-        joypixels
-        nerd-fonts.jetbrains-mono
-        noto-fonts-cjk-sans # Chinese, Japanese, Korean
-        roboto
-        symbola
-      ];
+    default = with pkgs; [
+      atkinson-hyperlegible-next
+      inter-nerdfont
+      inputs.nosevka.packages.${system}.complete
+      joypixels
+      nerd-fonts.jetbrains-mono
+      noto-fonts-cjk-sans # Chinese, Japanese, Korean
+      roboto
+      symbola
+    ];
   };
 
   config = mkIf cfg.enable {
