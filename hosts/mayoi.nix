@@ -45,5 +45,5 @@
     ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [ {device = "/swapfile";} ];
 }
