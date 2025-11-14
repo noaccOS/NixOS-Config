@@ -123,7 +123,7 @@ in
         enable = true;
         extraPackages = with pkgs; [
           libvdpau
-          vaapiVdpau
+          libva-vdpau-driver
           vulkan-validation-layers
           vulkan-extension-layer
         ];

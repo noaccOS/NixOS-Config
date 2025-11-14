@@ -2,7 +2,7 @@
   config,
   lib,
   inputs,
-  pkgs,
+  system,
   ...
 }:
 let
@@ -19,7 +19,7 @@ in
     enable = cfg.enable;
 
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
+      plugins = with inputs.anyrun.packages.${system}; [
         applications
         kidex
         randr

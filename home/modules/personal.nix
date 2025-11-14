@@ -15,7 +15,7 @@ in
   config = mkIf cfg.enable (mkMerge [
     (mkIf config.homeModules.gui.enable {
       home.packages = with pkgs; [
-        tdesktop
+        telegram-desktop
         anki-bin
       ];
     })
