@@ -10,6 +10,7 @@ let
   inherit (builtins) baseNameOf head listToAttrs;
   inherit (lib)
     flip
+    mkDefault
     mkForce
     pipe
     splitString
@@ -98,8 +99,19 @@ in
   security = {
     rtkit.enable = true;
     sudo.enable = false;
-    pam.services.sudo.nodelay = true;
-    pam.services.login.nodelay = true;
+    pam = {
+      services.sudo.nodelay = true;
+      services.login.nodelay = true;
+
+      loginLimits = mkDefault [
+        {
+          domain = "*";
+          type = "soft";
+          item = "nofile";
+          value = "8192";
+        }
+      ];
+    };
     sudo-rs = {
       enable = true;
       execWheelOnly = true;
