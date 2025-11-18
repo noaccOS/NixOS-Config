@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     hardware.graphics.extraPackages = with pkgs; [
-      vaapiIntel
+      intel-vaapi-driver
       intel-media-driver
       intel-compute-runtime
     ];

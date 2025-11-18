@@ -3,7 +3,6 @@
   pkgs,
   lib,
   inputs,
-  system,
   ...
 }:
 let
@@ -192,7 +191,7 @@ let
     extensions.force = true;
     extensions.packages =
       let
-        ffext = inputs.rycee.packages.${system};
+        ffext = inputs.rycee.packages.${pkgs.stdenv.hostPlatform.system};
       in
       [
         ffext.bitwarden

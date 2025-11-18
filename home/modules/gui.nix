@@ -3,11 +3,11 @@
   pkgs,
   lib,
   inputs,
-  system,
   ...
 }:
 let
   cfg = config.homeModules.gui;
+  system = pkgs.stdenv.hostPlatform.system;
 
   inherit (lib)
     mkDefault

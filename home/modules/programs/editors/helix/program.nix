@@ -3,7 +3,6 @@
   lib,
   config,
   inputs,
-  system,
   ...
 }:
 let
@@ -73,7 +72,7 @@ let
     "C-n" = "extend_parent_node_start";
   };
 
-  helix-package = inputs.helix.packages.${system}.helix.overrideAttrs (old: {
+  helix-package = inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.helix.overrideAttrs (old: {
     patches = (old.patches or [ ]) ++ [ ./helix-custom-binds.patch ];
   });
 in
