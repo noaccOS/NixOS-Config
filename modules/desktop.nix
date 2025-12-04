@@ -87,8 +87,6 @@ in
 
     networking.networkmanager.enable = true;
 
-    nixpkgs.config.joypixels.acceptLicense = true;
-
     programs = {
       adb.enable = true;
       java.enable = true;

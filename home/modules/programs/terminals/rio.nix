@@ -28,7 +28,7 @@ with lib;
       fonts = {
         family = "Nosevka NF";
         size = 18;
-        emoji.family = "JoyPixels";
+        emoji.family = "OpenMoji Color";
         bold.weight = 700;
         extras = [
           { family = "Noto Sans Mono CJK JP"; }

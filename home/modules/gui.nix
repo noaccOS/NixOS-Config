@@ -27,7 +27,7 @@ in
       atkinson-hyperlegible-next
       inter-nerdfont
       inputs.nosevka.packages.${system}.complete
-      joypixels
+      openmoji-color
       nerd-fonts.jetbrains-mono
       noto-fonts-cjk-sans # Chinese, Japanese, Korean
       roboto
@@ -45,7 +45,6 @@ in
     };
 
     home.packages = cfg.fontPackages;
-    nixpkgs.config.joypixels.acceptLicense = true;
 
     home.pointerCursor = {
       enable = true;
@@ -60,7 +59,7 @@ in
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        emoji = [ "JoyPixels" ];
+        emoji = [ "OpenMoji Color" ];
         serif = [
           "Atkinson Hyperlegible Next"
           "Noto Sans CJK JP"
