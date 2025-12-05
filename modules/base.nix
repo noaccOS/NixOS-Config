@@ -105,7 +105,7 @@ in
       services.sudo.nodelay = true;
       services.login.nodelay = true;
 
-      loginLimits = mkDefault [
+      loginLimits = [
         {
           domain = "*";
           type = "soft";
