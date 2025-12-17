@@ -129,7 +129,6 @@ in
           ".elixir_ls/"
           ".lexical/"
           ".helix"
-          ".typos.toml"
         ];
         settings = {
           credential.helper = "store";
