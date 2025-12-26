@@ -204,6 +204,15 @@ in
               "typos"
             ];
           })
+          (mkIf cfgDev.typst.enable {
+            language.typst = {
+              language-servers = [
+                "tinymist"
+                "typos"
+              ];
+              formatter.command = getExe pkgs.typstyle;
+            };
+          })
           {
             # prettier
             language =

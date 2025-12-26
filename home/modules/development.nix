@@ -68,6 +68,9 @@ in
     };
     racket.enable = mkEnableOption "Racket";
     typescript.enable = mkEnableOption "Typescript";
+    typst.enable = mkEnableOption "typst" // {
+      default = true;
+    };
     yaml.enable = mkEnableOption "Yaml" // {
       default = true;
     };
@@ -228,6 +231,12 @@ in
           inherit (pkgs)
             typescript-language-server
             bun
+            ;
+        })
+        ++ optionals cfg.typst.enable (attrValues {
+          inherit (pkgs)
+            tinymist
+            typstyle
             ;
         })
         ++ optionals cfg.yaml.enable (attrValues {
