@@ -16,9 +16,15 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelParams = [ "amd_pstate=active" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+
+  boot.kernelParams = [
+    "amd_pstate=active"
+    "clearcpuid=avx"
+    "clearcpuid=avx2"
+    "clearcpuid=sha"
+  ];
 
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -45,5 +51,5 @@
     ];
   };
 
-  swapDevices = [ {device = "/swapfile";} ];
+  swapDevices = [ { device = "/swapfile"; } ];
 }
