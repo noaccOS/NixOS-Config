@@ -67,9 +67,7 @@ in
       default = true;
     };
     racket.enable = mkEnableOption "Racket";
-    typescript.enable = mkEnableOption "Typescript" // {
-      default = true;
-    };
+    typescript.enable = mkEnableOption "Typescript";
     yaml.enable = mkEnableOption "Yaml" // {
       default = true;
     };
