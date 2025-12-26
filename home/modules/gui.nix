@@ -29,7 +29,7 @@ in
       inputs.nosevka.packages.${system}.complete
       openmoji-color
       nerd-fonts.jetbrains-mono
-      noto-fonts-cjk-sans # Chinese, Japanese, Korean
+      noto-fonts-cjk-sans-static # Chinese, Japanese, Korean
       roboto
       symbola
     ];
