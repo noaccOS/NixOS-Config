@@ -5,13 +5,17 @@
 }:
 let
   cfg = config.noaccOSModules.nvidia;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 in
 {
   options.noaccOSModules.nvidia = {
-    enable = lib.mkEnableOption "Nvidia gpu specific options";
+    enable = mkEnableOption "Nvidia gpu specific options";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
 
     environment.sessionVariables = {
@@ -27,6 +31,12 @@ in
       # nvidiaPersistenced = true;
       nvidiaSettings = true;
       powerManagement.enable = true;
+    };
+
+    nix.settings = {
+      extra-substituters = [ "https://cache.flox.dev/?priority=41" ];
+      trusted-public-keys = [ "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=" ];
+
     };
   };
 }

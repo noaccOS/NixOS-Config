@@ -10,15 +10,15 @@ let
   inherit (builtins) baseNameOf head listToAttrs;
   inherit (lib)
     flip
-    mkDefault
     mkForce
     pipe
     splitString
     ;
+
+  userConfig = config.home-manager.users.${user};
 in
 {
   imports = [
-    ./cachix.nix
     ./catppuccin.nix
   ];
 
@@ -72,9 +72,11 @@ in
     settings = {
       keep-outputs = true;
       keep-derivations = true;
-      inherit (config.home-manager.users.${user}.nix.settings)
+      inherit (userConfig.nix.settings)
         commit-lockfile-summary
         experimental-features
+        extra-substituters
+        trusted-public-keys
         ;
     };
 
