@@ -204,7 +204,7 @@ in
         })
         ++ optionals cfg.nix.enable (attrValues {
           inherit (pkgs)
-            nixfmt-rfc-style # Formatter
+            nixfmt # Formatter
             nil # LSP
             ;
         })

@@ -36,7 +36,8 @@ in
   environment.shells = [ pkgs.nushell ];
   environment.systemPackages = with pkgs; [
     helix
-    xq # jq
+    # TODO: restore to xq once gcc15 build is fixed
+    jq # jq
     wget
     htop
     retry

@@ -88,7 +88,6 @@ in
     networking.networkmanager.enable = true;
 
     programs = {
-      adb.enable = true;
       java.enable = true;
       dconf.enable = true;
       xwayland.enable = true;

@@ -195,7 +195,7 @@ in
                 "nil"
                 "typos"
               ];
-              formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+              formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
             };
           })
           (mkIf cfgDev.markdown.enable {
