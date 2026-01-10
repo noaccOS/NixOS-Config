@@ -224,6 +224,12 @@ in
           ];
       };
 
+      nh = {
+        enable = true;
+        clean.enable = true;
+        flake = mkDefault (config.home.homeDirectory + "/src/nixos-config");
+      };
+
       ripgrep.enable = true;
 
       starship = {
