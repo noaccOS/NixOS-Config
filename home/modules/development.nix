@@ -12,6 +12,7 @@ let
 
   inherit (builtins) attrValues;
   inherit (lib)
+    genAttrs
     mkEnableOption
     mkIf
     mkMerge
@@ -19,22 +20,29 @@ let
     optionals
     types
     ;
+
+  notElem = elem: list: !builtins.elem elem list;
+
+  editor = types.enum [
+    "helix"
+    "vscode"
+    "zed"
+  ];
 in
 {
   options.homeModules.development = {
     defaultEditor = mkOption {
-      type = types.enum [
-        "helix"
-        "vscode"
-      ];
+      type = editor;
       default = cfg.defaultVisual;
     };
 
     defaultVisual = mkOption {
-      type = types.enum [
-        "helix"
-        "vscode"
-      ];
+      type = editor;
+    };
+
+    extraEditors = mkOption {
+      type = types.listOf editor;
+      default = [ ];
     };
 
     enableTools = mkEnableOption "LSPs, DAPs and compilers";
@@ -117,12 +125,28 @@ in
           "text/x-tex" = visual;
         };
     }
+    (mkIf (cfg.extraEditors != [ ]) {
+      assertions = [
+        {
+          assertion = notElem cfg.defaultEditor cfg.extraEditors;
+          message = "${cfg.defaultEditor} is already the defaultEditor, it should not be part of extraEditors";
+        }
+        {
+          assertion = notElem cfg.defaultVisual cfg.extraEditors;
+          message = "${cfg.defaultVisual} is already the defaultVisual, it should not be part of extraEditors";
+        }
+      ];
+
+      homeModules.programs.editors = genAttrs cfg.extraEditors (_: {
+        enable = true;
+      });
+    })
     (mkIf cfg.enableTools {
       home.sessionVariables = {
         ERL_AFLAGS = "-kernel shell_history enabled";
       };
 
-      # TODO: use catpuuccin/nix module if it allows using it even if delta.enable = false
+      # TODO: use catpuccin/nix module if it allows using it even if delta.enable = false
       programs.git = {
         settings.delta.features = "catppuccin-${config.catppuccin.flavor}";
         includes = [ { path = "${config.catppuccin.sources.delta}/catppuccin.gitconfig"; } ];

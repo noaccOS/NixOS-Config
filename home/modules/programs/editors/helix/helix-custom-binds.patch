@@ -1,8 +1,8 @@
 diff --git a/helix-term/src/ui/editor.rs b/helix-term/src/ui/editor.rs
-index 6fecd512b5..83b2f0a893 100644
+index b25af107d7..7a70ca85ad 100644
 --- a/helix-term/src/ui/editor.rs
 +++ b/helix-term/src/ui/editor.rs
-@@ -975,7 +975,7 @@
+@@ -959,7 +959,7 @@
                  cxt.editor.count = NonZeroUsize::new(i);
              }
              // special handling for repeat operator
@@ -12,20 +12,20 @@ index 6fecd512b5..83b2f0a893 100644
                      // first execute whatever put us into insert mode
                      self.last_insert.0.execute(cxt);
 diff --git a/helix-term/src/ui/popup.rs b/helix-term/src/ui/popup.rs
-index db77492db8..7c51ac8768 100644
+index 0869d3033f..638ab1027d 100644
 --- a/helix-term/src/ui/popup.rs
 +++ b/helix-term/src/ui/popup.rs
-@@ -276,11 +276,11 @@
-                 let _ = self.contents.handle_event(event, cx);
-                 EventResult::Consumed(Some(close_fn))
-             }
--            ctrl!('d') => {
-+            ctrl!('t') => {
-                 self.scroll_half_page_down();
-                 EventResult::Consumed(None)
-             }
--            ctrl!('u') => {
-+            ctrl!('n') => {
-                 self.scroll_half_page_up();
-                 EventResult::Consumed(None)
-             }
+@@ -290,11 +290,11 @@
+                         let _ = self.contents.handle_event(event, cx);
+                         EventResult::Consumed(Some(close_fn))
+                     }
+-                    key!(PageDown) | ctrl!('d') => {
++                    key!(PageDown) | ctrl!('t') => {
+                         self.scroll_half_page_down();
+                         EventResult::Consumed(None)
+                     }
+-                    key!(PageUp) | ctrl!('u') => {
++                    key!(PageUp) | ctrl!('n') => {
+                         self.scroll_half_page_up();
+                         EventResult::Consumed(None)
+                     }

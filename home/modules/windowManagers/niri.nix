@@ -123,12 +123,7 @@ in
     programs.niri = {
       enable = true;
       package = pkgs.niri;
-      config =
-        monitorSection
-        + kmonad
-        + swaync
-        + wallpaper
-        + (readFile ../../../config/niri/config.kdl);
+      config = monitorSection + kmonad + swaync + wallpaper + (readFile ../../../config/niri/config.kdl);
     };
   };
 }

@@ -28,11 +28,9 @@ in
         # make gnome-control-center start on non-gnome desktops
         gnome-control-center-custom = pkgs.gnome-control-center.overrideAttrs (
           self: super: {
-            preFixup =
-              (super.preFixup or "")
-              + ''
-                gappsWrapperArgs+=(--set XDG_CURRENT_DESKTOP "gnome")
-              '';
+            preFixup = (super.preFixup or "") + ''
+              gappsWrapperArgs+=(--set XDG_CURRENT_DESKTOP "gnome")
+            '';
           }
         );
       in

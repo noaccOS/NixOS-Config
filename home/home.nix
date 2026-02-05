@@ -48,6 +48,7 @@ in
     ./modules/programs/cli/gitui.nix
     ./modules/programs/editors/helix/program.nix
     ./modules/programs/editors/vscode/program.nix
+    ./modules/programs/editors/zed/program.nix
     ./modules/programs/launchers/anyrun.nix
     ./modules/programs/shells/nu/program.nix
     ./modules/programs/terminals/alacritty.nix

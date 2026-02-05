@@ -317,8 +317,7 @@ in
         package =
           let
             nativeMessagingHosts =
-              cfg.extraNativeMessagingHosts
-              ++ optional cfg.gnomeIntegration pkgs.gnome-browser-connector;
+              cfg.extraNativeMessagingHosts ++ optional cfg.gnomeIntegration pkgs.gnome-browser-connector;
           in
           cfg.package.override { inherit nativeMessagingHosts; };
         profiles = {
