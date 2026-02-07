@@ -173,6 +173,7 @@ in
         git.enable = true;
       };
 
+      nix-index.enable = true;
       nix-your-shell.enable = true;
 
       jujutsu = {
@@ -247,6 +248,7 @@ in
         ];
       };
 
+      vivid.enable = true;
       zoxide.enable = true;
     };
     services = {
