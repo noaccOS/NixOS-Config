@@ -17,6 +17,7 @@ in
     enable = cfg.enable;
     clearDefaultKeybinds = true;
     settings = {
+      command = "nu";
       window-theme = "ghostty";
       window-decoration = "client";
       font-family = "Nosevka NF";
