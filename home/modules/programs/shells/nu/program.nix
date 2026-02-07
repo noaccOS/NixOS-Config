@@ -40,13 +40,6 @@ in
           )
         )
       ];
-      extraConfig = mkAfter (
-        (optionalString config.programs.direnv.enable ''
-          $env.config.hooks.env_change.PWD = (
-              $env.config.hooks.env_change.PWD | append (source '${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/direnv/config.nu')
-          )
-        '')
-      );
     };
   };
 }
