@@ -163,7 +163,10 @@ in
     })
     {
       homeModules.development.toolPackages = optionals cfg.enableTools (
-        [ (pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars)) ]
+        [
+          (pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+          pkgs.dprint
+        ]
         ++ optionals cfg.c.enable (attrValues {
           inherit (pkgs)
             clang # Compiler
