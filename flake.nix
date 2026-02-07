@@ -31,6 +31,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    topiary-nu = {
+      url = "github:blindFS/topiary-nushell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Theming
     catppuccin.url = "github:catppuccin/nix";

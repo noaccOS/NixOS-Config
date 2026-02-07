@@ -2,6 +2,8 @@
   pkgs,
   config,
   lib,
+  inputs,
+  system,
   ...
 }:
 let
@@ -58,6 +60,9 @@ in
       default = true;
     };
     nix.enable = mkEnableOption "Nix" // {
+      default = true;
+    };
+    nu.enable = mkEnableOption "Nu" // {
       default = true;
     };
     rust.enable = mkEnableOption "Rust" // {
@@ -207,6 +212,15 @@ in
             nixfmt # Formatter
             nil # LSP
             ;
+        })
+        ++ optionals cfg.nu.enable (attrValues {
+          inherit (pkgs)
+            nushell # LSP
+            # nu-lint # Linter # TODO: https://github.com/NixOS/nixpkgs/pull/481302
+            ;
+
+          # Formatter
+          inherit (inputs.topiary-nu.packages.${system}) topiary-nushell;
         })
         ++ optionals cfg.rust.enable (attrValues {
           inherit (pkgs)

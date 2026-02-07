@@ -369,7 +369,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nosevka": "nosevka",
-        "rycee": "rycee"
+        "rycee": "rycee",
+        "topiary-nu": "topiary-nu"
       }
     },
     "rust-overlay": {
@@ -442,6 +443,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "topiary-nu": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770431540,
+        "narHash": "sha256-iJ6KIqdnae6hSup6d11gv6KCsOzqhD8ZMdQRR3PSCqU=",
+        "owner": "blindFS",
+        "repo": "topiary-nushell",
+        "rev": "98690f7ce6eadc2dd715eb57519c6ec0d408241e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "blindFS",
+        "repo": "topiary-nushell",
         "type": "github"
       }
     },
