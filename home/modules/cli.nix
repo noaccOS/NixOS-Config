@@ -174,6 +174,8 @@ in
         git.enable = true;
       };
 
+      nix-your-shell.enable = true;
+
       jujutsu = {
         enable = true;
 

@@ -95,10 +95,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.fish = {
-    enable = true;
-    promptInit = "${pkgs.nix-your-shell}/bin/nix-your-shell fish | source";
-  };
+  programs.fish.enable = true;
   programs.less.enable = mkForce false;
 
   security = {
