@@ -298,6 +298,7 @@
     },
   },
   {
+    // default menu context without focused search bar
     "context": "menu && !search && !editing && !Editor",
     "bindings": {
       // Window mode
@@ -312,6 +313,7 @@
       // Space mode
       "space space": "file_finder::Toggle",
       "space t": "workspace::ToggleLeftDock",
+      "space o r": ["projects::OpenRecent", { "create_new_window": false }],
       "space shift-s": "project_symbols::Toggle",
 
       // Other
@@ -399,6 +401,7 @@
 
       // Space mode
       "space f": "editor::Format",
+      "space o r": ["projects::OpenRecent", { "create_new_window": false }],
       "space space": "file_finder::Toggle",
       "space k": "editor::Hover",
       "space s": "outline::Toggle",
@@ -876,7 +879,8 @@
     },
   },
   {
-    "context": "KeymapEditor || (!buffer_search_deployed && BufferSearchBar)",
+    // Default context for menus with active search bar
+    "context": "KeymapEditor || ProjectSearchBar || (!buffer_search_deployed && BufferSearchBar)",
     "bindings": {
       "escape": "pane::ActivatePreviousItem",
     }
