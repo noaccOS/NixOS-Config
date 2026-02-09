@@ -58,5 +58,8 @@ in
         $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ^starship module time
       '';
     };
+
+    # It always shows a job under nushell, while not providing much value
+    programs.starship.settings.jobs.disabled = true;
   };
 }
