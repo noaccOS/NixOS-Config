@@ -53,15 +53,10 @@ in
         ];
       };
       configFile.source = ./config.nu;
-      extraConfig =
-        # TODO: remove once available in hm
-        optionalString config.programs.vivid.enable ''
-          $env.LS_COLORS = (^vivid generate ${config.programs.vivid.activeTheme} | str trim)
-        ''
-        + optionalString config.programs.starship.enable ''
-          $env.TRANSIENT_PROMPT_COMMAND = ^starship module character
-          $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ^starship module time
-        '';
+      extraConfig = optionalString config.programs.starship.enable ''
+        $env.TRANSIENT_PROMPT_COMMAND = ^starship module character
+        $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ^starship module time
+      '';
     };
   };
 }

@@ -107,7 +107,6 @@ in
       package = pkgs.zed-editor-fhs;
       extensions = extensions;
       extraPackages = cfgDev.toolPackages;
-      userKeymaps = { };
       mutableUserKeymaps = false;
       userSettings = {
         cursor_blink = false;

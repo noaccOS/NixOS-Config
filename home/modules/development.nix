@@ -288,7 +288,7 @@ in
         ++ optionals cfg.zig.enable (attrValues {
           inherit (pkgs)
             zig # Compiler
-            zls # LSP
+            # zls # LSP TODO: broken
             ;
         })
       );

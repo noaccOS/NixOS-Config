@@ -46,8 +46,8 @@ in
     environment = {
       defaultPackages = with pkgs; [
         ungoogled-chromium
-        xorg.xhost
-        xorg.xmodmap
+        xhost
+        xmodmap
         pavucontrol
         mpv
         pandoc
