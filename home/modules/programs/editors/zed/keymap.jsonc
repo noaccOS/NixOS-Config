@@ -299,7 +299,7 @@
   },
   {
     // default menu context without focused search bar
-    "context": "menu && !search && !editing && !Editor",
+    "context": "(menu && !search && !editing && !Editor) || EmptyPane",
     "bindings": {
       // Window mode
       "space w h": "workspace::ActivatePaneLeft",
@@ -883,6 +883,6 @@
     "context": "KeymapEditor || ProjectSearchBar || (!buffer_search_deployed && BufferSearchBar)",
     "bindings": {
       "escape": "pane::ActivatePreviousItem",
-    }
+    },
   },
 ]

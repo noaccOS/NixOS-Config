@@ -31,7 +31,10 @@ let
     java = [ "java" ];
     latex = [ "latex" ];
     lua = [ "lua" ];
-    markdown = [ "markdown-oxide" ];
+    markdown = [
+      "markdown-oxide"
+      "mermaid"
+    ];
     nu = [
       "nu"
       "nu-lint"
@@ -139,6 +142,10 @@ in
         buffer_line_height = "standard";
         auto_update = false;
         restore_on_startup = "launchpad";
+        vim.cursor_shape = {
+          replace = "hollow";
+          visual = "underline";
+        };
         telemetry = {
           diagnostics = false;
           metrics = false;
