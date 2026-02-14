@@ -150,6 +150,16 @@ in
           diagnostics = false;
           metrics = false;
         };
+        languages =
+          let
+            elixir = {
+              language_servers = [ "lexical" ];
+            };
+          in
+          {
+            Elixir = elixir;
+            HEEX = elixir;
+          };
       };
     };
 
