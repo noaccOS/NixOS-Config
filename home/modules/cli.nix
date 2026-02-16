@@ -129,6 +129,7 @@ in
           ".elixir_ls/"
           ".lexical/"
           ".helix"
+          "target/"
         ];
         settings = {
           credential.helper = "store";
