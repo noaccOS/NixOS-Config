@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      wineWowPackages.staging
+      wineWow64Packages.stagingFull
       winetricks
 
       mangohud
