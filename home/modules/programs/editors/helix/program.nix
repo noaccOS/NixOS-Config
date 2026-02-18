@@ -198,6 +198,16 @@ in
               formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
             };
           })
+          (mkIf cfgDev.nu.enable {
+            language.nu.formatter = {
+              command = "topiary-nushell";
+              args = [
+                "format"
+                "--language"
+                "nu"
+              ];
+            };
+          })
           (mkIf cfgDev.markdown.enable {
             language.markdown.language-servers = [
               "markdown-oxide"
