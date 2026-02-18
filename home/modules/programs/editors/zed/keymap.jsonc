@@ -314,6 +314,9 @@
       "space space": "file_finder::Toggle",
       "space t": "workspace::ToggleLeftDock",
       "space o r": ["projects::OpenRecent", { "create_new_window": false }],
+      "space o d": "workspace::Open",
+      "space o s": ["projects::OpenRemote", { "from_existing_connection": false, "create_new_window": false }],
+
       "space shift-s": "project_symbols::Toggle",
 
       // Other
@@ -402,6 +405,8 @@
       // Space mode
       "space f": "editor::Format",
       "space o r": ["projects::OpenRecent", { "create_new_window": false }],
+      "space o d": "workspace::Open",
+      "space o s": ["projects::OpenRemote", { "from_existing_connection": false, "create_new_window": false }],
       "space space": "file_finder::Toggle",
       "space k": "editor::Hover",
       "space s": "outline::Toggle",
