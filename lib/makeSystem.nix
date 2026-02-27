@@ -2,6 +2,7 @@
 
 {
   nixpkgs,
+  nixpkgs-small,
   home-manager,
   catppuccin,
   niri,
@@ -27,16 +28,20 @@ nixosSystem rec {
   inherit system;
 
   modules = extraModules ++ [
-    {
-      config._module.args = {
-        inherit user;
-        currentSystemName = name;
-        currentDomainName = wan;
-        currentSystem = system;
-        inputs = flake-inputs;
-        monitors = adjustedMonitors;
-      };
-    }
+    (
+      { config, ... }:
+      {
+        config._module.args = {
+          pkgsSmall = import nixpkgs-small (config.nixpkgs.config // { inherit system; });
+          inherit user;
+          currentSystemName = name;
+          currentDomainName = wan;
+          currentSystem = system;
+          inputs = flake-inputs;
+          monitors = adjustedMonitors;
+        };
+      }
+    )
 
     {
       nixpkgs.overlays = overlays;
@@ -84,26 +89,29 @@ nixosSystem rec {
 
     home-manager.nixosModules.home-manager
 
-    {
-      home-manager = {
-        useUserPackages = true;
-        users.${user} = (
-          { ... }:
-          {
-            imports = [
-              ../home/home.nix
-              catppuccin.homeModules.catppuccin
-              nix-index-database.homeModules.nix-index
-              niri.homeModules.niri
-            ];
-          }
-        );
-        extraSpecialArgs = {
-          inherit user system;
-          inputs = flake-inputs;
-          monitors = adjustedMonitors;
+    (
+      { pkgsSmall, ... }:
+      {
+        home-manager = {
+          useUserPackages = true;
+          users.${user} = (
+            { ... }:
+            {
+              imports = [
+                ../home/home.nix
+                catppuccin.homeModules.catppuccin
+                nix-index-database.homeModules.nix-index
+                niri.homeModules.niri
+              ];
+            }
+          );
+          extraSpecialArgs = {
+            inherit user system pkgsSmall;
+            inputs = flake-inputs;
+            monitors = adjustedMonitors;
+          };
         };
-      };
-    }
+      }
+    )
   ];
 }

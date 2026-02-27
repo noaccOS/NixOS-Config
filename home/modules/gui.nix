@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgsSmall,
   lib,
   inputs,
   ...
@@ -23,28 +24,16 @@ in
     type = with types; listOf package;
     description = "Font packages";
     readOnly = true;
-    default =
-      with pkgs;
-      let
-        # TODO: remove once openmoji is fixed in unstable
-        openmoji-color =
-          (import (pkgs.fetchFromGitHub {
-            owner = "nixos";
-            repo = "nixpkgs";
-            rev = "0008eb3def25025997e726dd084a9bbff693e4d7";
-            hash = "sha256-aZR96jpFLDADYiMisT/Fu3JFnpYtEEB34SbRnu5VrLs=";
-          }) { system = pkgs.system; }).openmoji-color;
-      in
-      [
-        atkinson-hyperlegible-next
-        inter-nerdfont
-        inputs.nosevka.packages.${system}.complete
-        openmoji-color
-        nerd-fonts.jetbrains-mono
-        noto-fonts-cjk-sans-static # Chinese, Japanese, Korean
-        roboto
-        symbola
-      ];
+    default = with pkgs; [
+      atkinson-hyperlegible-next
+      inter-nerdfont
+      inputs.nosevka.packages.${system}.complete
+      pkgsSmall.openmoji-color
+      nerd-fonts.jetbrains-mono
+      noto-fonts-cjk-sans-static # Chinese, Japanese, Korean
+      roboto
+      symbola
+    ];
   };
 
   config = mkIf cfg.enable {

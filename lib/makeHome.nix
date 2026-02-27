@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  nixpkgs-small,
   home-manager,
   emacs-overlay,
   catppuccin,
@@ -26,6 +27,7 @@ home-manager.lib.homeManagerConfiguration {
 
   extraSpecialArgs = {
     inherit user inputs system;
+    pkgsSmall = import nixpkgs-small { inherit system; };
     monitors = { };
   };
 }

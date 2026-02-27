@@ -1,7 +1,8 @@
 {
   description = "NixOS and Home-Manager configuration";
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     # rock5 = {
     #   url = "github:aciceri/rock5b-nixos";
     #   inputs.nixpkgs.follows = "nixpkgs";
