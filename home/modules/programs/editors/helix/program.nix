@@ -164,12 +164,6 @@ in
             language.jjdescription.language-servers = [ "typos" ];
           }
           (mkIf cfgDev.elixir.enable {
-            language-server.lexical.command = "lexical";
-            # language-server.nextls = {
-            #   command = getExe pkgs.next-ls;
-            #   args = [ "--stdio" ];
-            #   config.experimental.completions.enable = true;
-            # };
             language =
               let
                 languages = [
@@ -182,7 +176,7 @@ in
                   name = lang;
                   value.scope = "source.elixir";
                   value.language-servers = [
-                    "lexical"
+                    "expert"
                     "typos"
                   ];
                 }))

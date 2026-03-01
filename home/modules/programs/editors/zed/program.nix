@@ -11,7 +11,6 @@ let
 
   inherit (lib)
     flatten
-    flip
     mapAttrsToList
     mkEnableOption
     mkIf
@@ -153,7 +152,7 @@ in
         languages =
           let
             elixir = {
-              language_servers = [ "lexical" ];
+              language_servers = [ "expert" ];
             };
           in
           {

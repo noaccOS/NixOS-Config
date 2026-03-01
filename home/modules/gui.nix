@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgsSmall,
   lib,
   inputs,
   ...
@@ -28,7 +27,7 @@ in
       atkinson-hyperlegible-next
       inter-nerdfont
       inputs.nosevka.packages.${system}.complete
-      pkgsSmall.openmoji-color
+      openmoji-color
       nerd-fonts.jetbrains-mono
       noto-fonts-cjk-sans-static # Chinese, Japanese, Korean
       roboto

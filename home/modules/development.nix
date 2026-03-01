@@ -185,10 +185,14 @@ in
         ++ optionals cfg.elixir.enable (attrValues {
           inherit (pkgs)
             elixir # Compiler
-            lexical # LSP
             elixir-ls
             erlang # Needed for escript
             ;
+
+          inherit (pkgs.beamPackages)
+            expert # LSP
+            ;
+
         })
         ++ optionals cfg.haskell.enable (attrValues {
           inherit (pkgs)
