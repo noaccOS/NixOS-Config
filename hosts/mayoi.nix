@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   modulesPath,
   ...
@@ -16,6 +14,7 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 

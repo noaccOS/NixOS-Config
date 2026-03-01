@@ -10,6 +10,7 @@ let
   cfg = config.noaccOSModules.desktop;
 
   inherit (lib)
+    mkDefault
     mkEnableOption
     mkIf
     mkOption
@@ -30,7 +31,7 @@ in
 
   config = mkIf cfg.enable {
     boot.initrd.systemd.enable = true;
-    boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    boot.kernelPackages = mkDefault pkgs.linuxPackages_xanmod_latest;
     boot.kernelParams = [ "quiet" ];
 
     boot.loader = mkIf (currentSystem == "x86_64-linux") {

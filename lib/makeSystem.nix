@@ -4,6 +4,7 @@
   nixpkgs,
   nixpkgs-small,
   home-manager,
+  cachyos-kernel,
   catppuccin,
   niri,
   nix-index-database,
@@ -44,7 +45,9 @@ nixosSystem rec {
     )
 
     {
-      nixpkgs.overlays = overlays;
+      nixpkgs.overlays = overlays ++ [
+        cachyos-kernel.overlays.pinned
+      ];
       networking.hostName = name;
 
       nix.channel.enable = false;

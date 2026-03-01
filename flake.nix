@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     # rock5 = {
     #   url = "github:aciceri/rock5b-nixos";
     #   inputs.nixpkgs.follows = "nixpkgs";
