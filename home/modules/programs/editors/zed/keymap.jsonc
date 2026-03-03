@@ -381,7 +381,7 @@
       // Goto mode
       "g e": "vim::EndOfDocument",
       "g h": "vim::FirstNonWhitespace",
-      "g l": "vim::EndOfLine",
+      "g l": "go_to_line::Toggle",
       "g s": "vim::EndOfLine", // "g s" default behavior is "space s"
       "g t": "vim::WindowTop",
       "g c": "vim::WindowMiddle",
