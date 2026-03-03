@@ -128,6 +128,7 @@ in
           "result"
           ".elixir_ls/"
           ".lexical/"
+          ".expert/"
           ".helix"
           "target/"
         ];
