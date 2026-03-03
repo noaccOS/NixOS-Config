@@ -235,6 +235,8 @@ in
         flake = mkDefault (config.home.homeDirectory + "/src/nixos-config");
       };
 
+      mergiraf.enable = true;
+
       ripgrep.enable = true;
 
       starship = {
