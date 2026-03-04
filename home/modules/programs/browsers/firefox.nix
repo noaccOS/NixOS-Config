@@ -81,6 +81,7 @@ let
       "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
       "privacy.sanitize.sanitizeOnShutdown" = false;
       "privacy.resistFingerprinting" = false;
+      "permissions.default.desktop-notification" = 2;
     };
     search.order = [
       "Brave"
