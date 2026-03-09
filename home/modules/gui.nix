@@ -46,6 +46,7 @@ in
 
     home.packages = cfg.fontPackages ++ [
       pkgs.anytype
+      pkgs.rnote
     ];
 
     home.pointerCursor = {
