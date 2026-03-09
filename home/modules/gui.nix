@@ -44,7 +44,9 @@ in
       video.mpv.enable = true;
     };
 
-    home.packages = cfg.fontPackages;
+    home.packages = cfg.fontPackages ++ [
+      pkgs.anytype
+    ];
 
     home.pointerCursor = {
       enable = true;
