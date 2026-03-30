@@ -149,6 +149,7 @@ in
           diagnostics = false;
           metrics = false;
         };
+        terminal.shell.program = "nu";
         languages =
           let
             elixir = {
