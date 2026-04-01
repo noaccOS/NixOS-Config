@@ -159,6 +159,14 @@ in
           {
             Elixir = elixir;
             HEEX = elixir;
+            Nu.formatter.external = {
+              command = "topiary-nu";
+              arguments = [
+                "format"
+                "--language"
+                "nu"
+              ];
+            };
           };
       };
     };
