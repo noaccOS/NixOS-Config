@@ -232,9 +232,6 @@ in
         ++ optionals cfg.markdown.enable (attrValues {
           inherit (pkgs)
             markdown-oxide # LSP
-            ;
-
-          inherit (pkgs.nodePackages_latest)
             prettier # Formatter
             ;
         })

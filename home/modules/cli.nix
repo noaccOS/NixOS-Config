@@ -50,6 +50,7 @@ in
     home.sessionVariables.HWATCH = "--no-title --color --no-help-banner";
 
     xdg.userDirs.enable = true;
+    xdg.userDirs.setSessionVariables = true;
 
     programs = {
       atuin.enable = true;
@@ -236,6 +237,8 @@ in
       };
 
       mergiraf.enable = true;
+      mergiraf.enableGitIntegration = true;
+      mergiraf.enableJujutsuIntegration = true;
 
       ripgrep.enable = true;
 

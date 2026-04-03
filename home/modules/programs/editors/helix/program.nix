@@ -147,7 +147,7 @@ in
         mkMerge = foldl' recursiveUpdate { };
         prettierFmt' = hxlang: prettierlang: {
           name = hxlang;
-          formatter.command = getExe pkgs.nodePackages_latest.prettier;
+          formatter.command = getExe pkgs.prettier;
           formatter.args = [
             "--parser"
             prettierlang
