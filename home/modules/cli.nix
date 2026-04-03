@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  inputs,
+  system,
   ...
 }:
 let
@@ -54,6 +56,10 @@ in
 
     programs = {
       atuin.enable = true;
+      atuin.package = inputs.atuin.packages.${system}.atuin.overrideAttrs {
+        pname = "atuin";
+        version = "18.13.7";
+      };
       atuin.daemon.enable = true;
       atuin.settings = {
         enter_accept = true;
