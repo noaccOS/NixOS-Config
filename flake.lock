@@ -343,15 +343,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1776287132,
-        "narHash": "sha256-QpBf9SIBDWnEpgPjFushqAW0TDtzQV8xepVDTUwp0s8=",
-        "owner": "cmspam",
+        "lastModified": 1776675588,
+        "narHash": "sha256-wibbqCuK+W+bLoUUgbIx9vDqf3UJ22XTWfwORhs8k5k=",
+        "owner": "noaccOS",
         "repo": "mt7927-nixos",
-        "rev": "4d77293131b2e81b6fcd6a4a3d1bbd6e16289e85",
+        "rev": "27070e59810a09588a7b4b7e68c2423188b8c746",
         "type": "github"
       },
       "original": {
-        "owner": "cmspam",
+        "owner": "noaccOS",
+        "ref": "push-nstmptpzyqls",
         "repo": "mt7927-nixos",
         "type": "github"
       }

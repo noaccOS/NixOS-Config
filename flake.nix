@@ -27,7 +27,7 @@
     };
     atuin.url = "github:atuinsh/atuin";
     mt7927 = {
-      url = "github:cmspam/mt7927-nixos";
+      url = "github:noaccOS/mt7927-nixos/push-nstmptpzyqls";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {

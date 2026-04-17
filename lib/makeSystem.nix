@@ -28,6 +28,7 @@ let
 in
 nixosSystem rec {
   inherit system;
+  specialArgs = { inherit mt7927; };
 
   modules = extraModules ++ [
     (
