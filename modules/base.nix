@@ -51,6 +51,8 @@ in
     ffmpeg_7-full
     xh
     hwatch
+    usbutils
+    file
   ];
 
   home-manager.users.${user}.homeModules.cli.enable = true;
