@@ -79,5 +79,6 @@ in
     };
 
     gtk.gtk4.theme = config.gtk.theme;
+    homeModules.development.extraEditors = [ "zed" ];
   };
 }

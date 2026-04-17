@@ -4,10 +4,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    # rock5 = {
-    #   url = "github:aciceri/rock5b-nixos";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +25,7 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    atuin.url = "github:atuinsh/atuin";
     mt7927 = {
       url = "github:noaccOS/mt7927-nixos/push-nstmptpzyqls";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -132,18 +133,17 @@
           extraModules = [ nixos-hardware.nixosModules.framework-13-7040-amd ];
         };
 
-        # hitagi = makeSystem "hitagi" {
-        #   inherit nixpkgs home-manager emacs-overlay;
-        #   system = "aarch64-linux";
-        #   wan = "noaccos.ovh";
-        #   extraModules = [
-        #     rock5.nixosModules.kernel
-        #     rock5.nixosModules.fan-control
-        #   ];
-        #   localModules = [
-        #     "server"
-        #   ];
-        # };
+        hitagi = makeSystem "hitagi" {
+          system = "aarch64-linux";
+          wan = "noaccos.ovh";
+          extraModules = [
+            nixos-hardware.nixosModules.rock-5b
+          ];
+          localModules = [
+            "sbc"
+            "server"
+          ];
+        };
 
         kaiki = makeSystem "kaiki" {
           user = "francesco";

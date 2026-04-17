@@ -6,6 +6,7 @@
   home-manager,
   cachyos-kernel,
   catppuccin,
+  disko,
   mt7927,
   niri,
   nix-index-database,
@@ -47,15 +48,18 @@ nixosSystem rec {
     )
 
     {
+      nixpkgs.hostPlatform = system;
       nixpkgs.overlays = overlays ++ [
         cachyos-kernel.overlays.pinned
       ];
+
       networking.hostName = name;
 
       nix.channel.enable = false;
     }
 
     catppuccin.nixosModules.catppuccin
+    disko.nixosModules.disko
     mt7927.nixosModules.default
     nix-index-database.nixosModules.nix-index
 
@@ -79,6 +83,7 @@ nixosSystem rec {
         ../modules/nvidia.nix
         ../modules/personal.nix
         ../modules/plasma.nix
+        ../modules/sbc.nix
         ../modules/server.nix
         ../modules/virtualization.nix
         ../modules/windowManager.nix

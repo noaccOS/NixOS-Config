@@ -45,7 +45,6 @@ in
     homeModules.programs.cli.gitui.enable = true;
     homeModules.programs.shells.nu.enable = true;
     homeModules.development.defaultVisual = "helix";
-    homeModules.development.extraEditors = [ "zed" ];
 
     home.sessionVariables.LESS = "--quit-if-one-screen --RAW-CONTROL-CHARS --wheel-lines=3";
     home.sessionVariables.HWATCH = "--no-title --color --no-help-banner";

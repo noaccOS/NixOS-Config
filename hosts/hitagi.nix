@@ -6,8 +6,12 @@
   pkgs,
   ...
 }:
+let
+  inherit (lib) mkForce;
+in
 {
   boot.loader.grub.enable = false;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
   boot.initrd.availableKernelModules = lib.mkForce [
@@ -43,22 +47,43 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/NIXOS_ROOTFS";
-    fsType = "ext4";
-    options = [
-      "defaults"
-      "noatime"
-    ];
-  };
-  fileSystems."/data" = {
-    device = "/dev/disk/by-label/DATA";
-    fsType = "ext4";
-    options = [
-      "defaults"
-      "noatime"
-    ];
-  };
   swapDevices = [ ];
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+
+  disko = {
+    imageBuilder.extraPostVM = config.hardware.rockchip.diskoExtraPostVM;
+    memSize = 4096;
+    devices.disk.main = {
+      type = "disk";
+      imageSize = "8G";
+      content = {
+        type = "gpt";
+        partitions = {
+          ESP = {
+            type = "EF00";
+            # Firmware backoff
+            start = "16M";
+            size = "500M";
+            content = {
+              type = "filesystem";
+              format = "vfat";
+              mountpoint = "/boot";
+              mountOptions = [ "umask=0022" ];
+            };
+          };
+          root = {
+            size = "100%";
+            content = {
+              type = "filesystem";
+              format = "btrfs";
+              mountpoint = "/";
+              mountOptions = [
+                "noatime"
+              ];
+            };
+          };
+        };
+      };
+    };
+  };
 }
