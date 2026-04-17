@@ -319,6 +319,43 @@
         "type": "github"
       }
     },
+    "mediatek-mt7927-dkms": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776258948,
+        "narHash": "sha256-vkz5v9Wz1G8e0s0kRmNGQGTrULH3K3kvQ1i1mBlJxIU=",
+        "owner": "jetm",
+        "repo": "mediatek-mt7927-dkms",
+        "rev": "fb2060c3a605c9641ff834ee356d46917e8417a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jetm",
+        "repo": "mediatek-mt7927-dkms",
+        "type": "github"
+      }
+    },
+    "mt7927": {
+      "inputs": {
+        "mediatek-mt7927-dkms": "mediatek-mt7927-dkms",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776287132,
+        "narHash": "sha256-QpBf9SIBDWnEpgPjFushqAW0TDtzQV8xepVDTUwp0s8=",
+        "owner": "cmspam",
+        "repo": "mt7927-nixos",
+        "rev": "4d77293131b2e81b6fcd6a4a3d1bbd6e16289e85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cmspam",
+        "repo": "mt7927-nixos",
+        "type": "github"
+      }
+    },
     "nerd-fonts-font-patcher": {
       "flake": false,
       "locked": {
@@ -596,6 +633,7 @@
         "firefox-gnome-theme": "firefox-gnome-theme",
         "helix": "helix",
         "home-manager": "home-manager",
+        "mt7927": "mt7927",
         "niri": "niri",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",

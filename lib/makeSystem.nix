@@ -6,6 +6,7 @@
   home-manager,
   cachyos-kernel,
   catppuccin,
+  mt7927,
   niri,
   nix-index-database,
   ...
@@ -54,6 +55,7 @@ nixosSystem rec {
     }
 
     catppuccin.nixosModules.catppuccin
+    mt7927.nixosModules.default
     nix-index-database.nixosModules.nix-index
 
     ./lix.nix
@@ -72,13 +74,14 @@ nixosSystem rec {
         ../modules/intel.nix
         ../modules/kmonad.nix
         ../modules/logitech.nix
+        ../modules/mt7927.nix
         ../modules/nvidia.nix
         ../modules/personal.nix
         ../modules/plasma.nix
         ../modules/server.nix
-        ../modules/work.nix
         ../modules/virtualization.nix
         ../modules/windowManager.nix
+        ../modules/work.nix
       ];
 
       noaccOSModules = genAttrs localModules (_: {

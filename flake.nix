@@ -26,6 +26,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     atuin.url = "github:atuinsh/atuin";
+    mt7927 = {
+      url = "github:cmspam/mt7927-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,16 +67,17 @@
       nixosConfigurations = {
         mayoi = makeSystem "mayoi" {
           localModules = [
+            "canon"
             "desktop"
-            "docker"
-            "personal"
-            "gaming"
             "development"
+            "docker"
+            "gaming"
+            "logitech"
+            "mt7927"
             "nvidia"
+            "personal"
             "virtualization"
             "windowManager"
-            "logitech"
-            "canon"
           ];
           monitors = {
             "DP-1" = {
@@ -114,6 +119,7 @@
             "docker"
             "gnome"
             "development"
+            "mt7927"
             "kmonad"
             "virtualization"
             "windowManager"
