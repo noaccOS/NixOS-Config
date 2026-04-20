@@ -25,7 +25,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    atuin.url = "github:atuinsh/atuin";
     mt7927 = {
       url = "github:noaccOS/mt7927-nixos/push-nstmptpzyqls";
       inputs.nixpkgs.follows = "nixpkgs";
