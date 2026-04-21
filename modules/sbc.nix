@@ -1,7 +1,8 @@
 {
-  lib,
   config,
   inputs,
+  lib,
+  pkgs,
   ...
 }:
 let
@@ -14,6 +15,11 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.growPartition = true;
+
+    environment.systemPackages = with pkgs; [
+      e2fsprogs
+      iwd
+    ];
 
     disko = {
       imageBuilder =
