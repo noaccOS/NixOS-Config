@@ -55,7 +55,7 @@ in
     memSize = 4096;
     devices.disk.main = {
       type = "disk";
-      imageSize = "8G";
+      imageSize = "16G";
       content = {
         type = "gpt";
         partitions = {
