@@ -21,6 +21,8 @@ in
       iwd
     ];
 
+    networking.wireless.iwd.enable = true;
+
     disko = {
       imageBuilder =
         let
