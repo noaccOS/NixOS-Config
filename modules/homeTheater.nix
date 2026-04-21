@@ -31,6 +31,7 @@ in
 
     # auto-login and launch kodi
     services.getty.autologinUser = "kodi";
+    services.regreet.enable = true;
     services.greetd = {
       enable = true;
       settings = {
