@@ -42,6 +42,7 @@ in
     ./modules/cli.nix
     ./modules/gui.nix
     ./modules/development.nix
+    ./modules/homeTheater.nix
     ./modules/gnome.nix
     ./modules/personal.nix
     ./modules/work.nix

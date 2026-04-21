@@ -140,6 +140,7 @@
             nixos-hardware.nixosModules.rock-5b
           ];
           localModules = [
+            "homeTheater"
             "sbc"
             "server"
           ];
