@@ -8,7 +8,7 @@ let
   cfg = config.homeModules.homeTheater;
   inherit (lib) mkEnableOption;
 
-  kodi = pkgs.kodi-gbm;
+  kodi = pkgs.kodi-wayland;
 in
 {
   options.homeModules.homeTheater.enable = mkEnableOption "Home Theater with Kodi";

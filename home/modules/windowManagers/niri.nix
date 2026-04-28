@@ -54,6 +54,7 @@ let
     concatLines
   ];
 
+  base-config = readFile ../../../config/niri/config.kdl;
   # TODO: this should be a property of the bar using gsconnect
   kmonad = optionalString cfg.kmonad.enable ''
     spawn-at-startup "${getExe pkgs.kmonad}" "${cfg.kmonad.config}"
@@ -61,6 +62,15 @@ let
   swaync = "spawn-at-startup \"${getExe pkgs.swaynotificationcenter}\"\n";
   wallpaper = ''
     spawn-at-startup "swaybg" "-i" "${../../../assets/wallpaper.jpg}" "-m" "fill" 
+  '';
+
+  niri-config = ''
+    ${cfg.extraConfigPre}
+    ${monitorSection}
+    ${kmonad}
+    ${swaync}
+    ${wallpaper}
+    ${base-config}
   '';
 in
 {
@@ -80,6 +90,11 @@ in
       type = types.submodule kmonadSubmodule;
       description = "TEMPORARY: move this option to the bar";
       default = { };
+    };
+    extraConfigPre = mkOption {
+      type = types.lines;
+      description = "extra niri configuration";
+      default = "";
     };
   };
   config = mkIf cfg.enable {
@@ -123,7 +138,7 @@ in
     programs.niri = {
       enable = true;
       package = pkgs.niri;
-      config = monitorSection + kmonad + swaync + wallpaper + (readFile ../../../config/niri/config.kdl);
+      config = niri-config;
     };
   };
 }

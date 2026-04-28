@@ -15,13 +15,16 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.growPartition = true;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     environment.systemPackages = with pkgs; [
       e2fsprogs
-      iwd
     ];
 
-    networking.wireless.iwd.enable = true;
+    environment.pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
 
     disko = {
       imageBuilder =

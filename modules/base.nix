@@ -55,6 +55,9 @@ in
     file
   ];
 
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
+
   home-manager.users.${user}.homeModules.cli.enable = true;
 
   i18n = {

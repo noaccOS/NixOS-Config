@@ -47,7 +47,6 @@ in
       services.kmonad.enable = true;
 
       users.users.${user}.extraGroups = [
-        "input"
         "uinput" # Created by kmonad nixos-module
       ];
     }

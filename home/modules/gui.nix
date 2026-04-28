@@ -18,7 +18,7 @@ let
     ;
 in
 {
-  options.homeModules.gui.enable = mkEnableOption "gui programs";
+  options.homeModules.gui.enable = mkEnableOption "gui components";
   options.homeModules.gui.fontPackages = mkOption {
     type = with types; listOf package;
     description = "Font packages";
@@ -44,18 +44,7 @@ in
       video.mpv.enable = true;
     };
 
-    home.packages = cfg.fontPackages ++ [
-      pkgs.anytype
-      pkgs.rnote
-    ];
-
-    home.pointerCursor = {
-      enable = true;
-      name = "Breeze_Catppuccin";
-      package = inputs.breeze-cursors-catppuccin.packages.${system}.default;
-      x11.enable = true;
-      gtk.enable = true;
-    };
+    home.packages = cfg.fontPackages;
 
     catppuccin.gtk.icon.enable = false;
 
@@ -79,6 +68,5 @@ in
     };
 
     gtk.gtk4.theme = config.gtk.theme;
-    homeModules.development.extraEditors = [ "zed" ];
   };
 }

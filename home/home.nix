@@ -41,6 +41,7 @@ in
   imports = [
     ./modules/cli.nix
     ./modules/gui.nix
+    ./modules/desktop.nix
     ./modules/development.nix
     ./modules/homeTheater.nix
     ./modules/gnome.nix

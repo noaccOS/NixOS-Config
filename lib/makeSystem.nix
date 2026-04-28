@@ -76,6 +76,7 @@ nixosSystem rec {
         ../modules/docker.nix
         ../modules/gaming.nix
         ../modules/gnome.nix
+        ../modules/gui.nix
         ../modules/homeTheater.nix
         ../modules/intel.nix
         ../modules/kmonad.nix

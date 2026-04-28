@@ -5,8 +5,13 @@
   ...
 }:
 let
+  inherit (lib) getExe';
+
   cfg = config.noaccOSModules.homeTheater;
   kodiCfg = config.home-manager.users.${user}.programs.kodi;
+  kodiBin = getExe' kodiCfg.package "kodi";
+  niriCfg = config.home-manager.users.${user}.programs.niri;
+  niriBin = getExe' niriCfg.package "niri-session";
 in
 {
   options.noaccOSModules.homeTheater = {
@@ -14,30 +19,29 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # use alsa; which supports hdmi passthrough
-    services.pulseaudio.enable = false;
-    services.pipewire.enable = false;
+    home-manager.users.${user}.homeModules = {
+      homeTheater.enable = true;
+      windowManagers.niri.extraConfigPre = ''
+        spawn-at-startup "${kodiBin}"
+      '';
+    };
 
-    home-manager.users.${user}.homeModules.homeTheater.enable = true;
+    noaccOSModules.desktop.enable = true;
 
-    users.users.kodi = {
-      initialPassword = "password";
-      extraGroups = [
-        # allow kodi access to keyboards
-        "input"
-      ];
-      isNormalUser = true;
+    # Temporarily use niri
+    noaccOSModules.windowManager = {
+      enable = true;
+      primary = false;
     };
 
     # auto-login and launch kodi
-    services.getty.autologinUser = "kodi";
-    services.regreet.enable = true;
+    programs.regreet.enable = true;
     services.greetd = {
       enable = true;
       settings = {
         initial_session = {
-          command = "${kodiCfg.package}/bin/kodi-standalone";
-          user = "kodi";
+          inherit user;
+          command = niriBin;
         };
       };
     };
