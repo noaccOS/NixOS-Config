@@ -8,6 +8,7 @@ let
   cfg = config.homeModules.windowManagers.gnome-shell;
 
   inherit (lib)
+    getExe
     forEach
     mkDefault
     mkEnableOption
@@ -26,13 +27,10 @@ in
       with pkgs;
       let
         # make gnome-control-center start on non-gnome desktops
-        gnome-control-center-custom = pkgs.gnome-control-center.overrideAttrs (
-          self: super: {
-            preFixup = (super.preFixup or "") + ''
-              gappsWrapperArgs+=(--set XDG_CURRENT_DESKTOP "gnome")
-            '';
-          }
-        );
+        gnome-control-center-custom = pkgs.writeShellScriptBin "gnome-control-center" ''
+          export XDG_CURRENT_DESKTOP=gnome
+          exec -a "$0" "${getExe pkgs.gnome-control-center}" "$@"
+        '';
       in
       [
         adw-gtk3
