@@ -27,8 +27,7 @@ in
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
       open = true;
-      # fixme: build failure
-      # nvidiaPersistenced = true;
+      nvidiaPersistenced = true;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };

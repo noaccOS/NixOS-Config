@@ -201,10 +201,9 @@ in
             haskell-language-server # LSP
             ;
 
-          # TODO: uncomment when no longer broken
-          # inherit (pkgs.haskellPackages)
-          #   hindent # Indent
-          #   ;
+          inherit (pkgs.haskellPackages)
+            hindent # Indent
+            ;
         })
         ++ optionals cfg.java.enable (attrValues {
           inherit (pkgs)
@@ -244,7 +243,7 @@ in
         ++ optionals cfg.nu.enable (attrValues {
           inherit (pkgs)
             nushell # LSP
-            # nu-lint # Linter # TODO: https://github.com/NixOS/nixpkgs/pull/481302
+            nu-lint # Linter
             ;
 
           # Formatter
@@ -289,7 +288,7 @@ in
         ++ optionals cfg.zig.enable (attrValues {
           inherit (pkgs)
             zig # Compiler
-            # zls # LSP TODO: broken
+            zls # LSP
             ;
         })
       );

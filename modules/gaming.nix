@@ -20,7 +20,8 @@ in
       mangohud
 
       prismlauncher
-      lutris
+      # fixme: broken openldap checks
+      # lutris
       heroic
     ];
 

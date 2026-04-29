@@ -37,7 +37,7 @@ in
   environment.systemPackages = with pkgs; [
     helix
     # TODO: restore to xq once gcc15 build is fixed
-    jq # jq
+    xq # jq
     wget
     htop
     retry
