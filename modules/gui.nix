@@ -2,7 +2,6 @@
   pkgs,
   lib,
   user,
-  currentSystem,
   config,
   ...
 }:
@@ -10,7 +9,6 @@ let
   cfg = config.noaccOSModules.gui;
 
   inherit (lib)
-    mkDefault
     mkEnableOption
     mkIf
     mkOption
@@ -83,13 +81,6 @@ in
     };
 
     hardware = {
-      bluetooth = {
-        enable = true;
-        package = pkgs.bluez-experimental;
-        settings.General.Experimental = true;
-        settings.General.FastConnectable = true;
-        settings.General.MultiProfile = "multiple";
-      };
       nitrokey.enable = true;
       graphics = {
         enable = true;

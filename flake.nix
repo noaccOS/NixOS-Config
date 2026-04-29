@@ -78,6 +78,7 @@
             "personal"
             "virtualization"
             "windowManager"
+            "wireless"
           ];
           monitors = {
             "DP-1" = {
@@ -123,6 +124,7 @@
             "kmonad"
             "virtualization"
             "windowManager"
+            "wireless"
           ];
 
           monitors."eDP-1".mode = {

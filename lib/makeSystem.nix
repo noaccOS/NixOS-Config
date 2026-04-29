@@ -89,6 +89,7 @@ nixosSystem rec {
         ../modules/server.nix
         ../modules/virtualization.nix
         ../modules/windowManager.nix
+        ../modules/wireless.nix
         ../modules/work.nix
       ];
 

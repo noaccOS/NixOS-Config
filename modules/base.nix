@@ -74,6 +74,11 @@ in
     };
   };
 
+  networking = {
+    networkmanager.enable = false;
+    wireless.enable = false;
+  };
+
   nix = {
     settings = {
       keep-outputs = true;
