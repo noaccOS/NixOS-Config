@@ -33,9 +33,8 @@ in
     };
 
     nix.settings = {
-      extra-substituters = [ "https://cache.flox.dev/?priority=41" ];
-      trusted-public-keys = [ "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=" ];
-
+      extra-substituters = [ "https://cache.nixos-cuda.org/?priority=41" ];
+      trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
     };
   };
 }
