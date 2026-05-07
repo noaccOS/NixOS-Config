@@ -120,7 +120,6 @@
             "docker"
             "gnome"
             "development"
-            "mt7927"
             "kmonad"
             "virtualization"
             "windowManager"
