@@ -63,8 +63,9 @@ in
     ./modules/programs/terminals/wezterm.nix
     ./modules/programs/video/mpv.nix
     ./modules/windowManagers/bars/waybar.nix
-    ./modules/windowManagers/niri.nix
+    ./modules/windowManagers/dms/program.nix
     ./modules/windowManagers/gnome-shell.nix
+    ./modules/windowManagers/niri.nix
   ];
 
   home.stateVersion = "25.11";

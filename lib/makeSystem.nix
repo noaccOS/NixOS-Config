@@ -7,6 +7,7 @@
   cachyos-kernel,
   catppuccin,
   disko,
+  dms,
   mt7927,
   niri,
   nix-index-database,
@@ -115,6 +116,8 @@ nixosSystem rec {
               imports = [
                 ../home/home.nix
                 catppuccin.homeModules.catppuccin
+                dms.homeModules.dank-material-shell
+                dms.homeModules.niri
                 nix-index-database.homeModules.nix-index
                 niri.homeModules.niri
               ];

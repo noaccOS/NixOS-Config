@@ -114,40 +114,16 @@ in
     ];
   };
   config = mkIf cfg.enable {
+    homeModules.windowManagers.dms.enable = true;
     homeModules.windowManagers.gnome-shell.enable = true;
-    homeModules.programs.launchers.anyrun.enable = true;
-    homeModules.windowManagers.bars.waybar.enable = true;
 
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
     ];
 
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        general = {
-          disable_loading_bar = true;
-          grace = 5;
-          hide_cursor = true;
-          no_fade_in = false;
-        };
-
-        background = [
-          {
-            path = "screenshot";
-            blur_passes = 3;
-            blur_size = 5;
-          }
-        ];
-      };
-    };
-
     home.packages = [
-      pkgs.brightnessctl
       pkgs.dex
-      pkgs.playerctl
-      pkgs.swaybg
       pkgs.xwayland-satellite
     ];
 
@@ -231,7 +207,7 @@ in
           "Mod+E".action.spawn = cfg.terminal;
           "Mod+U".action.spawn = cfg.application-launcher;
           "Mod+J".action.spawn = cfg.lockscreen;
-          "Mod+Shift.J".action.quit = { };
+          "Mod+Shift+J".action.quit = { };
 
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;

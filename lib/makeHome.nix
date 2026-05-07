@@ -4,6 +4,7 @@
   home-manager,
   emacs-overlay,
   catppuccin,
+  dms,
   nix-index-database,
   ...
 }@inputs:
@@ -18,6 +19,8 @@ home-manager.lib.homeManagerConfiguration {
     ../home/home.nix
 
     catppuccin.homeModules.catppuccin
+    dms.homeModules.dank-material-shell
+    dms.homeModules.niri
     nix-index-database.hmModules.nix-index
 
     {
