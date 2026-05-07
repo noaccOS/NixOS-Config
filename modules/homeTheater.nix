@@ -8,8 +8,6 @@ let
   inherit (lib) getExe';
 
   cfg = config.noaccOSModules.homeTheater;
-  kodiCfg = config.home-manager.users.${user}.programs.kodi;
-  kodiBin = getExe' kodiCfg.package "kodi";
   niriCfg = config.home-manager.users.${user}.programs.niri;
   niriBin = getExe' niriCfg.package "niri-session";
 in
@@ -19,12 +17,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${user}.homeModules = {
-      homeTheater.enable = true;
-      windowManagers.niri.extraConfigPre = ''
-        spawn-at-startup "${kodiBin}"
-      '';
-    };
+    home-manager.users.${user}.homeModules.homeTheater.enable = true;
 
     noaccOSModules.desktop.enable = true;
 
