@@ -9,6 +9,7 @@ let
   inherit (lib) getExe mkEnableOption mkIf;
 
   kodi = pkgs.kodi-wayland;
+  kodi-bin = getExe kodi;
 in
 {
   options.homeModules.homeTheater.enable = mkEnableOption "Home Theater with Kodi";
@@ -20,7 +21,7 @@ in
     };
 
     programs.niri.settings.spawn-at-startup = [
-      { argv = getExe kodi; }
+      { argv = [ kodi-bin ]; }
     ];
 
   };
