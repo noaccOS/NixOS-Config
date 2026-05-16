@@ -55,7 +55,7 @@ in
     memSize = 4096;
     devices.disk.main = {
       type = "disk";
-      imageSize = "16G";
+      imageSize = "32G";
       content = {
         type = "gpt";
         partitions = {
@@ -63,7 +63,7 @@ in
             type = "EF00";
             # Firmware backoff
             start = "16M";
-            size = "500M";
+            size = "1G";
             content = {
               type = "filesystem";
               format = "vfat";
