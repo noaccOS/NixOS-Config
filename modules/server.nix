@@ -50,6 +50,11 @@ in
           };
         };
       };
+
+      caddy = {
+        enable = true;
+      };
+
     };
 
     noaccOSModules.docker.enable = true;
