@@ -8,6 +8,17 @@
 }:
 let
   cfg = config.noaccOSModules.server;
+
+  webPorts = [
+    80
+    443
+  ];
+  blockyPorts = [
+    53
+    4000
+  ];
+  allowedTCPPorts = webPorts ++ blockyPorts;
+  allowedUDPPorts = webPorts ++ blockyPorts;
 in
 {
   options.noaccOSModules.server = {
@@ -16,26 +27,7 @@ in
 
   config = lib.mkIf cfg.enable {
     networking.firewall = {
-      allowedTCPPorts = [
-        80
-        443
-      ] # NGINX
-      ++ [
-        53
-        4000
-      ] # Blocky
-      ++ [ 8096 ] # Jellyfin
-      ++ [ 5201 ]; # iperf
-      allowedUDPPorts = [
-        80
-        443
-      ] # NGINX
-      ++ [
-        53
-        4000
-      ] # Blocky
-      ++ [ 8096 ] # Jellyfin
-      ++ [ 5201 ]; # iperf
+      inherit allowedTCPPorts allowedUDPPorts;
     };
 
     services = {
