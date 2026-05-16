@@ -1,7 +1,5 @@
 {
-  pkgs,
   config,
-  user,
   currentDomainName,
   lib,
   ...
@@ -48,7 +46,7 @@ in
             "8.8.4.4"
           ];
           customDNS.mapping = {
-            "noaccos.ovh" = "192.168.1.9";
+            ${currentDomainName} = "192.168.1.9";
           };
         };
       };

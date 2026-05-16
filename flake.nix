@@ -139,7 +139,6 @@
 
         hitagi = makeSystem "hitagi" {
           system = "aarch64-linux";
-          wan = "noaccos.ovh";
           extraModules = [
             nixos-hardware.nixosModules.rock-5b
           ];
