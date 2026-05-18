@@ -33,7 +33,7 @@ let
   dms = inputs.dms.packages.${system}.default.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''
       # Line 1 == Inactive width
-      # Line 2 == Heigth
+      # Line 2 == Height
       substituteInPlace $out/share/quickshell/dms/Modules/DankBar/Widgets/WorkspaceSwitcher.qml \
         --replace 'Math.max(root.widgetHeight * 0.7, root.appIconSize * 1.2)' 'widgetHeight * 0.25' \
         --replace '(SettingsData.showWorkspaceApps ? Math.max(widgetHeight * 0.7, root.appIconSize + Theme.spacingXS * 2) : widgetHeight * 0.5)' '(isActive ? (SettingsData.showWorkspaceApps ? Math.max(widgetHeight * 0.7, root.appIconSize + Theme.spacingXS * 2) : widgetHeight * 0.37) : (SettingsData.showWorkspaceApps ? Math.max(widgetHeight * 0.7, root.appIconSize + Theme.spacingXS * 2) : widgetHeight * 0.25))'
@@ -625,6 +625,11 @@ in
       };
       session = {
         wallpaperPath = ../../../../assets/wallpaper.jpg;
+        pinnedApps = [
+          "librewolf"
+          "com.mitchellh.ghostty"
+          "org.gnome.Nautilus"
+        ];
       };
     };
 
