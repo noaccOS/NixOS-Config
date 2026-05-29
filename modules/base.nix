@@ -192,5 +192,9 @@ in
     };
   };
 
+  security.pki.certificateFiles = [
+    ../config/certs/hitagi.crt
+  ];
+
   system.stateVersion = "25.11";
 }
