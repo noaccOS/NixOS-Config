@@ -382,6 +382,7 @@
       "shift-k": "vim::HelixSelectPrevious",
 
       // Goto mode
+      "g a": "pane::AlternateFile",
       "g e": "vim::EndOfDocument",
       "g h": "vim::FirstNonWhitespace",
       "g l": "go_to_line::Toggle",
