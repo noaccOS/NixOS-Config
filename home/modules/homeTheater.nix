@@ -20,9 +20,11 @@ in
       package = kodi;
     };
 
-    programs.niri.settings.spawn-at-startup = [
-      { argv = [ kodi-bin ]; }
-    ];
-
+    programs.niri.settings = {
+      hotkey-overlay.skip-at-startup = true;
+      spawn-at-startup = [
+        { argv = [ kodi-bin ]; }
+      ];
+    };
   };
 }
