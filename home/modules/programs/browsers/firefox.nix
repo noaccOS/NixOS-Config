@@ -67,10 +67,15 @@ let
     };
 
   defaultProfileSettings = {
-    search.default = "Brave";
-    search.privateDefault = "Brave";
+    search.default = "Ecosia";
+    search.privateDefault = "Ecosia";
     settings = {
       "browser.toolbars.bookmarks.visibility" = "never";
+      "browser.urlbar.showSearchSuggestionsFirst" = true;
+      "browser.urlbar.suggest.searches" = true;
+      "browser.search.suggest.enabled" = true;
+      "browser.search.suggest.enabled.private" = true;
+
       "signon.rememberSignons" = false;
       "webgl.disabled" = false;
       "browser.translations.neverTranslateLanguages" = "it,ja";
@@ -84,7 +89,7 @@ let
       "permissions.default.desktop-notification" = 2;
     };
     search.order = [
-      "Brave"
+      "Ecosia"
       "Nix Packages"
       "google"
     ];
@@ -94,6 +99,11 @@ let
         updateDaily = 86400000;
       in
       {
+        "Ecosia" = {
+          urls = [ { template = "https://www.ecosia.org/search?q={searchTerms}"; } ];
+          icon = "https://www.ecosia.org/static/icons/favicon.ico";
+          updateInterval = updateDaily;
+        };
         "Brave" = {
           urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
           icon = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon.c09fe1a1.ico";
