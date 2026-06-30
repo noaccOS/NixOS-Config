@@ -345,8 +345,7 @@ in
           "Mod+Shift+D".action.switch-focus-between-floating-and-tiling = { };
 
           "Mod+O".action.screenshot = { };
-          "Ctrl+Print".action.screenshot-screen = { };
-          "Alt+Print".action.screenshot-window = { };
+          "Mod+Shift+O".action.screenshot-window = { };
         };
 
       };
