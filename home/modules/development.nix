@@ -183,13 +183,10 @@ in
             ;
         })
         ++ optionals cfg.elixir.enable (attrValues {
-          inherit (pkgs)
+          inherit (pkgs.beamPackages)
             elixir # Compiler
             elixir-ls
             erlang # Needed for escript
-            ;
-
-          inherit (pkgs.beamPackages)
             expert # LSP
             ;
 
