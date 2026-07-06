@@ -19,6 +19,7 @@ let
     forEach
     getExe
     mkEnableOption
+    mkForce
     mkIf
     mkMerge
     mkOption
@@ -67,13 +68,13 @@ let
     };
 
   defaultProfileSettings = {
-    search.default = "Ecosia";
-    search.privateDefault = "Ecosia";
+    search.default = "ecosia";
+    search.privateDefault = "ecosia";
     settings = {
       "browser.toolbars.bookmarks.visibility" = "never";
       "browser.urlbar.showSearchSuggestionsFirst" = true;
       "browser.urlbar.suggest.searches" = true;
-      "browser.search.suggest.enabled" = true;
+      "browser.search.suggest.enabled" = mkForce true;
       "browser.search.suggest.enabled.private" = true;
 
       "signon.rememberSignons" = false;
@@ -89,7 +90,7 @@ let
       "permissions.default.desktop-notification" = 2;
     };
     search.order = [
-      "Ecosia"
+      "ecosia"
       "Nix Packages"
       "google"
     ];
@@ -99,7 +100,7 @@ let
         updateDaily = 86400000;
       in
       {
-        "Ecosia" = {
+        "ecosia" = {
           urls = [ { template = "https://www.ecosia.org/search?q={searchTerms}"; } ];
           icon = "https://www.ecosia.org/static/icons/favicon.ico";
           updateInterval = updateDaily;
