@@ -35,7 +35,7 @@ in
         ungoogled-chromium
         xhost
         xmodmap
-        pavucontrol
+        pwvucontrol
         mpv
         pandoc
         imagemagick
