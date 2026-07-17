@@ -35,7 +35,6 @@ in
           gst-plugins-bad
           gst-plugins-good
           gst-plugins-ugly
-          gst-vaapi
         ]
       );
     };

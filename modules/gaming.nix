@@ -36,10 +36,6 @@ in
     };
 
     services = {
-      input-remapper = {
-        enable = true;
-        enableUdevRules = true;
-      };
       joycond.enable = true;
     };
   };

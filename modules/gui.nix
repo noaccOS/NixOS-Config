@@ -95,7 +95,6 @@ in
 
     services = {
       blueman.enable = true;
-      deluge.enable = true;
       libinput.touchpad.disableWhileTyping = true;
 
       pipewire = {
