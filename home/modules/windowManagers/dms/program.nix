@@ -353,6 +353,7 @@ in
         fadeToLockEnabled = true;
         fadeToLockGracePeriod = 5;
         filePickerUsageHistory = { };
+        firstDayOfWeek = 1;
         focusedWindowCompactMode = false;
         fontFamily = "Inter Nerd Font";
         fontScale = 1;
