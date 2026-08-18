@@ -229,11 +229,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753121425,
-        "narHash": "sha256-TVcTNvOeWWk1DXljFxVRp+E0tzG1LhrVjOGGoMHuXio=",
+        "lastModified": 1788450739,
+        "narHash": "sha256-glZLQlzIn1fXH6PazR2iUmTo7kzzyYSshrWhLS9TqCU=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "644e0fc48951a860279da645ba77fe4a6e814c5e",
+        "rev": "31729ca8cbdb4fa927b34e5f4353e6a83f39e993",
         "type": "github"
       },
       "original": {
@@ -324,13 +324,13 @@
     "nerd-fonts-font-patcher": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-N6esOpNQ2kIKs48+mF5I8Z6C0sS6bMGPcQACEGzz4ak=",
+        "narHash": "sha256-iGM4eqXnDgI04ihtys0zOGd7i+OxfN1YASyg4yVnKAo=",
         "type": "file",
-        "url": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FontPatcher.zip"
+        "url": "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/FontPatcher.zip"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FontPatcher.zip"
+        "url": "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/FontPatcher.zip"
       }
     },
     "niri": {
@@ -461,11 +461,11 @@
     },
     "nixpkgs-small": {
       "locked": {
-        "lastModified": 1789316821,
-        "narHash": "sha256-sKVKur5p773vpcuVOQ0moBUfTzdjrkzORFHN7pTWfhg=",
+        "lastModified": 1789349923,
+        "narHash": "sha256-dQpjYY7PZgPt8235G0LXkPr+8NgoIQy49Nt3MMYOM1M=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "231dbe51694763527c3e565929ff5a4384ba7f65",
+        "rev": "88aca2668455cf2c5ff64814329249b27598685b",
         "type": "github"
       },
       "original": {
@@ -572,11 +572,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1766918895,
-        "narHash": "sha256-iywjToN+FkiXxKiaNOG+SG0tHKc0xTFu8zmG1ulUISY=",
+        "lastModified": 1789808688,
+        "narHash": "sha256-Vk/gU61t5oYwsqy+StRm/A3V7aGd4y2Ln+wR7NZtHHA=",
         "owner": "noaccOS",
         "repo": "nosevka",
-        "rev": "efe0f422ada00f1bdc20a62aeacfcf993a72a0f4",
+        "rev": "5d8503086f1c8fc3cce230e7ff25f8a2bc93f01b",
         "type": "github"
       },
       "original": {

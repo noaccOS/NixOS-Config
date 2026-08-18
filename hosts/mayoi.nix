@@ -28,7 +28,7 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/f69d81f1-99da-4808-9661-11705afa6417";
+    device = "/dev/disk/by-uuid/7104ef43-c712-4896-9b83-2b90e0cb82be";
     fsType = "btrfs";
     options = [
       "defaults"

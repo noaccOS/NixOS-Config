@@ -14,6 +14,7 @@ let
     ;
   cfg = config.noaccOSModules.windowManager;
   hmCfg = config.home-manager.users.${user};
+  optionalNullable = condition: value: if condition then value else null;
 in
 {
   options.noaccOSModules.windowManager = {
@@ -43,6 +44,7 @@ in
     ];
 
     # maybe look into greetd eventually, for now gdm works
+    services.displayManager.defaultSession = optionalNullable cfg.primary cfg.windowManager;
     services.displayManager.gdm.enable = cfg.primary;
 
     home-manager.users.${user} = {
