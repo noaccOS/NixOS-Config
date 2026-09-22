@@ -116,7 +116,6 @@ in
         ui_font_family = "Atkinson Hyperlegible Next";
         ui_font_size = 16;
         buffer_font_size = 16;
-        disable_ai = true;
         tab_bar = {
           show = false;
         };
