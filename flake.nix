@@ -84,14 +84,14 @@
             "wireless"
           ];
           monitors = {
-            "DP-1" = {
+            "DP-6" = {
               mode = {
                 x = 3440;
                 y = 1440;
                 hz = 100;
               };
             };
-            "HDMI-A-1" = {
+            "HDMI-A-4" = {
               mode = {
                 x = 1920;
                 y = 1080;
