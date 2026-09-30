@@ -72,9 +72,11 @@ let
     "C-n" = "extend_parent_node_start";
   };
 
-  helix-package = inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.helix.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [ ./helix-custom-binds.patch ];
+  helix-unwrapped = pkgs.helix-unwrapped.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [ ./helix-custom-binds-stable.patch ];
   });
+
+  helix-package = pkgs.helix.override { inherit helix-unwrapped; };
 in
 {
   options.homeModules.programs.editors.helix = {
