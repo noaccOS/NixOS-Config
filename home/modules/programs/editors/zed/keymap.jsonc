@@ -9,7 +9,6 @@
       "h": "vim::Left",
       "backspace": "vim::WrappingLeft",
       "down": "vim::Down",
-      "ctrl-t": "vim::Down",
       "t": "vim::Down",
       "ctrl-m": "vim::NextLineStart",
       "+": "vim::NextLineStart",
@@ -54,7 +53,7 @@
       "#": "vim::MoveToPrevious",
       "k": "vim::MoveToNextMatch",
       "shift-n": "vim::MoveToPreviousMatch",
-      "%": "vim::Matching",
+      "%": ["vim::Matching", { "match_quotes": true }],
       "f": ["vim::PushFindForward", { "before": false, "multiline": false }],
       "j": ["vim::PushFindForward", { "before": true, "multiline": false }],
       "shift-f": ["vim::PushFindBackward", { "after": false, "multiline": false }],
@@ -67,6 +66,7 @@
       "ctrl-o": "pane::GoBack",
       "ctrl-i": "pane::GoForward",
       "ctrl-]": "editor::GoToDefinition",
+      "ctrl-t": "pane::GoToOlderTag",
       "escape": "vim::SwitchToNormalMode",
       "ctrl-[": "vim::SwitchToNormalMode",
       "v": "vim::ToggleVisual",
@@ -180,7 +180,6 @@
       "ctrl-w g shift-d": "editor::GoToTypeDefinitionSplit",
       "ctrl-w space": "editor::OpenExcerptsSplit",
       "ctrl-w g space": "editor::OpenExcerptsSplit",
-      "ctrl-6": "pane::AlternateFile",
       "ctrl-^": "pane::AlternateFile",
       ":": "vim::Repeat",
     },
@@ -203,7 +202,9 @@
       "ctrl-x": "vim::Decrement",
       "shift-j": "vim::JoinLines",
       "i": "vim::InsertBefore",
-      "a": "vim::InsertAfter",
+      "a": "vim::HelixAppend",
+      "o": "vim::InsertLineBelow",
+      "shift-o": "vim::InsertLineAbove",
       "p": "vim::Paste",
       "u": "vim::Undo",
       "r": "vim::PushReplace",
@@ -261,6 +262,7 @@
     "context": "(vim_mode == normal || vim_mode == helix_normal) && !menu",
     "bindings": {
       "escape": "editor::Cancel",
+      "shift-d": "vim::DeleteToEndOfLine",
       "shift-j": "vim::JoinLines",
       "shift-y": "vim::YankLine",
       "shift-i": "vim::InsertFirstNonWhitespace",
@@ -270,8 +272,8 @@
       "~": "vim::ChangeCase",
       "ctrl-a": "vim::Increment",
       "ctrl-x": "vim::Decrement",
-      "p": "vim::Paste",
-      "shift-p": ["vim::Paste", { "before": true }],
+      "p": ["vim::Paste", { "before": true }],
+      "shift-p": "vim::Paste",
       "u": "vim::Undo",
       "shift-u": "vim::UndoLastLine",
       "r": "vim::PushReplace",
@@ -282,6 +284,47 @@
       "ctrl-pageup": "pane::ActivatePreviousItem",
     },
   },
+  {
+    "context": "VimControl && vim_mode == helix_normal && !menu && !BufferSearchBar",
+    "bindings": {
+      "t": ["vim::Down", { "display_lines": true }],
+      "down": ["vim::Down", { "display_lines": true }],
+      "n": ["vim::Up", { "display_lines": true }],
+      "up": ["vim::Up", { "display_lines": true }],
+      "g t": "vim::Down",
+      "g down": "vim::Down",
+      "g n": "vim::Up",
+      "g up": "vim::Up",
+      "escape": "vim::SwitchToHelixNormalMode",
+      "i": "vim::HelixInsert",
+      "a": "vim::HelixAppend",
+      "shift-a": "vim::HelixInsertEndOfLine",
+      "ctrl-[": "editor::Cancel",
+    },
+  },
+
+  // Vim/Helix consume Escape before menu::Cancel can dismiss notifications. macOS (Ctrl-C) and Linux
+  // (Ctrl-Escape) have alternatives, but Windows does not, so try menu::Cancel first on Windows and
+  // let Escape fall through when no notification is shown.
+  {
+    "context": "Editor && mode == full && VimControl && vim_mode == normal && !menu && os == windows",
+    "bindings": {
+      "escape": "menu::Cancel",
+    },
+  },
+  {
+    "context": "Editor && mode == full && VimControl && vim_mode == helix_normal && !menu && !BufferSearchBar && os == windows",
+    "bindings": {
+      "escape": "menu::Cancel",
+    },
+  },
+  {
+    "context": "vim_mode == helix_select && !menu && !BufferSearchBar",
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode",
+    },
+  },
+
   {
     "context": "VimControl && vim_mode == helix_normal && !menu",
     "bindings": {
@@ -341,6 +384,9 @@
       "shift-j": ["vim::PushFindBackward", { "after": true, "multiline": true }],
       "shift-f": ["vim::PushFindBackward", { "after": false, "multiline": true }],
       "alt-.": "vim::RepeatFind",
+      "alt-h": "editor::MoveToStartOfLargerSyntaxNode",
+      "alt-s": "editor::MoveToEndOfLargerSyntaxNode",
+      "shift-g": "vim::HelixGotoLine",
 
       // Changes
       "shift-r": "editor::Paste",
@@ -355,6 +401,7 @@
       ">": "vim::Indent",
       "<": "vim::Outdent",
       "=": "vim::AutoIndent",
+      "d": "vim::HelixDelete",
       "alt-d": "editor::Delete", // Delete selection, without yanking
       "c": "vim::HelixSubstitute",
       "alt-c": "vim::HelixSubstituteNoYank",
@@ -370,19 +417,25 @@
       "alt-shift-c": "vim::HelixDuplicateAbove",
       "%": "editor::SelectAll",
       "x": "vim::HelixSelectLine",
+      "*": "buffer_search::UseSelectionForFind",
       "shift-x": "editor::SelectLine",
-      "ctrl-c": "editor::ToggleComments",
+      "_": "vim::HelixTrimSelections",
+      "ctrl-c": ["editor::ToggleComments", { "advance_downwards": false, "comment_empty_lines": false }],
       "ctrl-h": "editor::SelectLargerSyntaxNode",
       "ctrl-shift-h": "editor::SelectSmallerSyntaxNode",
       "ctrl-t": "editor::SelectPreviousSyntaxNode",
       "alt-n": "editor::SelectNextSyntaxNode",
       "ctrl-j": "editor::JoinLines",
 
+      // Search
       "k": "vim::HelixSelectNext",
       "shift-k": "vim::HelixSelectPrevious",
 
+      // Macros — Helix swaps Vim's q/Q: Q records, q replays
+      "q": "vim::ReplayLastRecording",
+      "shift-q": "vim::ToggleRecord",
+
       // Goto mode
-      "g a": "pane::AlternateFile",
       "g e": "vim::EndOfDocument",
       "g h": "vim::FirstNonWhitespace",
       "g l": "go_to_line::Toggle",
@@ -391,12 +444,17 @@
       "g c": "vim::WindowMiddle",
       "g b": "vim::WindowBottom",
       "g r": "editor::FindAllReferences", // zed specific
+      "g i": "editor::GoToImplementation",
+      "g a": "pane::AlternateFile",
       "g n": "pane::ActivateNextItem",
+      "g p": "pane::ActivatePreviousItem",
       "g space": "vim::HelixJumpToWord",
       "shift-s": "pane::ActivateNextItem",
-      "g p": "pane::ActivatePreviousItem",
       "shift-h": "pane::ActivatePreviousItem",
       "g .": "vim::HelixGotoLastModification", // go to last modification
+      "g o": "editor::ToggleSelectedDiffHunks", // Zed specific
+      "g shift-o": "git::ToggleStaged", // Zed specific
+      "g shift-r": "git::Restore", // Zed specific
 
       // Window mode
       "space w h": "workspace::ActivatePaneLeft",
@@ -408,6 +466,7 @@
       "space w d": "pane::SplitDown",
 
       // Space mode
+      "space b": "tab_switcher::ToggleAll",
       "space f": "editor::Format",
       "space o r": ["projects::OpenRecent", { "create_new_window": false }],
       "space o d": "workspace::Open",
@@ -426,16 +485,38 @@
       "space h": "editor::SelectAllMatches",
       "space p": "editor::Paste",
       "space y": "editor::Copy",
+      "space c": ["editor::ToggleComments", { "advance_downwards": false, "comment_empty_lines": false }],
+      "space /": "pane::DeploySearch",
+
+      // View mode
+      "z c": "editor::ScrollCursorCenter",
+
+      // Debug mode (Helix space G)
+      "space shift-g l": "debugger::Start",
+      "space shift-g r": "debugger::Restart",
+      "space shift-g b": "editor::ToggleBreakpoint",
+      "space shift-g c": "debugger::Continue",
+      "space shift-g h": "debugger::Pause",
+      "space shift-g i": "debugger::StepInto",
+      "space shift-g o": "debugger::StepOut",
+      "space shift-g n": "debugger::StepOver",
+      "space shift-g t": "debugger::Stop",
+      "space shift-g ctrl-l": "editor::EditLogBreakpoint",
 
       // Other
       ";": "command_palette::Toggle",
       "m": "vim::PushHelixMatch",
       "]": ["vim::PushHelixNext", { "around": true }],
       "[": ["vim::PushHelixPrevious", { "around": true }],
+      "ctrl-s": "editor::SaveLocation",
       "g q": "vim::PushRewrap",
-      "g w": "vim::PushRewrap",
-      // "tab": "pane::ActivateNextItem",
-      // "shift-tab": "pane::ActivatePrevItem",
+    },
+  },
+  {
+    "context": "Editor && (vim_mode == helix_normal || vim_mode == helix_select) && showing_code_actions",
+    "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious",
     },
   },
   {
@@ -536,6 +617,18 @@
     },
   },
   {
+    // Helix textobject keys that differ from vim's: `mim`/`mam` select the
+    // closest surrounding pair, and `t`/`c`/`x` follow Helix's meanings
+    // (type, comment, xml element) instead of vim's (tag, class, unbound).
+    "context": "(vim_operator == a || vim_operator == i || vim_operator == helix_next || vim_operator == helix_previous) && helix_mode",
+    "bindings": {
+      "m": "vim::AnyPair",
+      "t": "vim::Class",
+      "c": "vim::Comment",
+      "x": "vim::Tag",
+    },
+  },
+  {
     "context": "vim_operator == helix_m",
     "bindings": {
       "m": ["vim::Matching", { "match_quotes": true }],
@@ -577,6 +670,7 @@
       "x": "editor::SelectLargerSyntaxNode",
       "d": "editor::GoToPreviousDiagnostic",
       "c": "editor::GoToPreviousHunk",
+      "g": "editor::GoToPreviousHunk",
       "space": "vim::InsertEmptyLineAbove",
     },
   },
@@ -594,7 +688,6 @@
     "bindings": {
       "d": "vim::CurrentLine",
       "s": "vim::PushDeleteSurrounds",
-
       "v": "vim::PushForcedMotion", // "d v"
       "o": "editor::ToggleSelectedDiffHunks", // "d o"
       "shift-o": "git::ToggleStaged",
@@ -749,10 +842,84 @@
     },
   },
   {
+    "context": "VimControl && !menu || !Editor && !Terminal",
+    "bindings": {
+      // window related commands (ctrl-w X)
+      "ctrl-w": null,
+      "ctrl-w left": "workspace::ActivatePaneLeft",
+      "ctrl-w right": "workspace::ActivatePaneRight",
+      "ctrl-w up": "workspace::ActivatePaneUp",
+      "ctrl-w down": "workspace::ActivatePaneDown",
+      "ctrl-w ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-w ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-w ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-w ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w shift-left": "workspace::SwapPaneLeft",
+      "ctrl-w shift-right": "workspace::SwapPaneRight",
+      "ctrl-w shift-up": "workspace::SwapPaneUp",
+      "ctrl-w shift-down": "workspace::SwapPaneDown",
+      "ctrl-w x": "workspace::SwapPaneAdjacent",
+      "ctrl-w ctrl-x": "workspace::SwapPaneAdjacent",
+      "ctrl-w shift-h": "workspace::MovePaneLeft",
+      "ctrl-w shift-l": "workspace::MovePaneRight",
+      "ctrl-w shift-k": "workspace::MovePaneUp",
+      "ctrl-w shift-j": "workspace::MovePaneDown",
+      "ctrl-w >": "vim::ResizePaneRight",
+      "ctrl-w <": "vim::ResizePaneLeft",
+      "ctrl-w -": "vim::ResizePaneDown",
+      "ctrl-w +": "vim::ResizePaneUp",
+      "ctrl-w _": "vim::MaximizePane",
+      "ctrl-w =": "vim::ResetPaneSizes",
+      "ctrl-w g t": "pane::ActivateNextItem",
+      "ctrl-w ctrl-g t": "pane::ActivateNextItem",
+      "ctrl-w g shift-t": "pane::ActivatePreviousItem",
+      "ctrl-w ctrl-g shift-t": "pane::ActivatePreviousItem",
+      "ctrl-w w": "workspace::ActivateNextPane",
+      "ctrl-w ctrl-w": "workspace::ActivateNextPane",
+      "ctrl-w p": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-p": "workspace::ActivatePreviousPane",
+      "ctrl-w shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-v": "pane::SplitVertical",
+      "ctrl-w v": "pane::SplitVertical",
+      "ctrl-w shift-s": "pane::SplitHorizontal",
+      "ctrl-w ctrl-s": "pane::SplitHorizontal",
+      "ctrl-w s": "pane::SplitHorizontal",
+      "ctrl-w ctrl-c": "pane::CloseActiveItem",
+      "ctrl-w c": "pane::CloseActiveItem",
+      "ctrl-w ctrl-q": "pane::CloseActiveItem",
+      "ctrl-w q": "pane::CloseActiveItem",
+      "ctrl-w ctrl-a": "pane::CloseAllItems",
+      "ctrl-w a": "pane::CloseAllItems",
+      "ctrl-w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal",
+      "ctrl-w n": "workspace::NewFileSplitHorizontal",
+      "g t": "vim::GoToTab",
+      "g shift-t": "vim::GoToPreviousTab",
+    },
+  },
+  {
     "context": "!Editor && !Terminal",
     "bindings": {
       ";": "command_palette::Toggle",
       "g /": "pane::DeploySearch",
+      "] b": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePreviousItem",
+      "] shift-b": "pane::ActivateLastItem",
+      "[ shift-b": ["pane::ActivateItem", 0],
+      "space f": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space shift-s": "project_symbols::Toggle",
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w l": "workspace::ActivatePaneRight",
+      "space w q": "pane::CloseActiveItem",
     },
   },
   {
@@ -786,7 +953,7 @@
       "[ d": "project_panel::SelectPrevDiagnostic",
       "}": "project_panel::SelectNextDirectory",
       "{": "project_panel::SelectPrevDirectory",
-      "shift-g": "menu::SelectLast",
+      "g e": "menu::SelectLast",
       "g g": "menu::SelectFirst",
       "-": "project_panel::SelectParent",
       "ctrl-u": "project_panel::ScrollUp",
@@ -809,21 +976,83 @@
   {
     "context": "OutlinePanel && not_editing",
     "bindings": {
-      "j": "menu::SelectNext",
-      "k": "menu::SelectPrevious",
-      "shift-g": "menu::SelectLast",
+      "h": "outline_panel::CollapseSelectedEntry",
+      "t": "menu::SelectNext",
+      "n": "menu::SelectPrevious",
+      "down": "vim::MenuSelectNext",
+      "up": "vim::MenuSelectPrevious",
+      "l": "outline_panel::ExpandSelectedEntry",
+      "g e": "menu::SelectLast",
+      "g g": "menu::SelectFirst",
+      "-": "outline_panel::SelectParent",
+      "enter": "editor::ToggleFocus",
+      "/": "menu::Cancel",
+      "ctrl-t": "outline_panel::ScrollUp",
+      "ctrl-n": "outline_panel::ScrollDown",
+      "z t": "outline_panel::ScrollCursorTop",
+      "z z": "outline_panel::ScrollCursorCenter",
+      "z c": "outline_panel::ScrollCursorCenter",
+      "z b": "outline_panel::ScrollCursorBottom",
+      "0": ["vim::Number", 0],
+      "1": ["vim::Number", 1],
+      "2": ["vim::Number", 2],
+      "3": ["vim::Number", 3],
+      "4": ["vim::Number", 4],
+      "5": ["vim::Number", 5],
+      "6": ["vim::Number", 6],
+      "7": ["vim::Number", 7],
+      "8": ["vim::Number", 8],
+      "9": ["vim::Number", 9],
+    },
+  },
+  {
+    "context": "OutlinePanel && editing",
+    "bindings": {
+      "enter": "menu::Cancel",
+    },
+  },
+  {
+    "context": "GitGraph",
+    "bindings": {
+      "tab": "git_graph::FocusNextTabStop",
+      "shift-tab": "git_graph::FocusPreviousTabStop",
+    },
+  },
+  {
+    "context": "GitGraphSearchBar > Editor",
+    "bindings": {
+      "tab": "git_graph::FocusNextTabStop",
+      "shift-tab": "git_graph::FocusPreviousTabStop",
+    },
+  },
+  {
+    "context": "GitGraph && !GitGraphSearchBar",
+    "bindings": {
+      "j": "vim::MenuSelectNext",
+      "k": "vim::MenuSelectPrevious",
+      "ctrl-d": "git_graph::ScrollDown",
+      "ctrl-u": "git_graph::ScrollUp",
+      "g e": "menu::SelectLast",
       "g g": "menu::SelectFirst",
     },
   },
   {
-    "context": "GitPanel && ChangesList",
+    "context": "GitPanel && (ChangesList || HistoryList) && !GitBranchSelector && !GitRepositorySelector",
     "use_key_equivalents": true,
     "bindings": {
-      "k": "menu::SelectPrevious",
-      "j": "menu::SelectNext",
-      "g g": "menu::SelectFirst",
-      "shift-g": "menu::SelectLast",
+      "t": "menu::SelectNext",
+      "n": "menu::SelectPrevious",
       "g f": "menu::Confirm",
+    },
+  },
+  {
+    "context": "GitPanel && ChangesList && !GitBranchSelector && !GitRepositorySelector",
+    "use_key_equivalents": true,
+    "bindings": {
+      "h": "git_panel::CollapseSelectedEntry",
+      "s": "git_panel::ExpandSelectedEntry",
+      "g g": "menu::SelectFirst",
+      "g e": "menu::SelectLast",
       "i": "git_panel::FocusEditor",
       "x": "git::ToggleStaged",
       "shift-x": "git::StageAll",
@@ -849,8 +1078,8 @@
       "ctrl-h": "editor::Backspace",
       "ctrl-u": "editor::DeleteToBeginningOfLine",
       "ctrl-w": "editor::DeleteToPreviousWordStart",
-      "ctrl-p": "menu::SelectPrevious",
-      "ctrl-n": "menu::SelectNext",
+      "ctrl-n": "menu::SelectPrevious",
+      "ctrl-t": "menu::SelectNext",
     },
   },
   {
@@ -861,7 +1090,14 @@
     },
   },
   {
-    "context": "Editor && edit_prediction",
+    "context": "CommitEditor > Editor && VimControl && !menu",
+    "bindings": {
+      "tab": "git_panel::FocusChanges",
+      "shift-tab": "git_panel::FocusChanges",
+    },
+  },
+  {
+    "context": "Editor && edit_prediction && edit_prediction_mode == eager && !showing_completions",
     "bindings": {
       // This is identical to the binding in the base keymap, but the vim bindings above to
       // "vim::Tab" shadow it, so it needs to be bound again.
@@ -875,15 +1111,6 @@
     },
   },
   {
-    "context": "os != macos && Editor && edit_prediction_conflict",
-    "bindings": {
-      // alt-l is provided as an alternative to tab/alt-tab. and will be displayed in the UI. This
-      // is because alt-tab may not be available, as it is often used for window switching on Linux
-      // and Windows.
-      "alt-l": "editor::AcceptEditPrediction",
-    },
-  },
-  {
     "context": "SettingsWindow > NavigationMenu && !search",
     "bindings": {
       "l": "settings_editor::ExpandNavEntry",
@@ -891,14 +1118,96 @@
       "k": "settings_editor::FocusPreviousNavEntry",
       "j": "settings_editor::FocusNextNavEntry",
       "g g": "settings_editor::FocusFirstNavEntry",
-      "shift-g": "settings_editor::FocusLastNavEntry",
+      "g e": "settings_editor::FocusLastNavEntry",
     },
   },
   {
-    // Default context for menus with active search bar
-    "context": "KeymapEditor || ProjectSearchBar || (!buffer_search_deployed && BufferSearchBar)",
+    "context": "MarkdownPreview",
     "bindings": {
-      "escape": "pane::ActivatePreviousItem",
+      "ctrl-u": "markdown::ScrollPageUp",
+      "ctrl-d": "markdown::ScrollPageDown",
+      "ctrl-y": "markdown::ScrollUp",
+      "ctrl-e": "markdown::ScrollDown",
+      "g g": "markdown::ScrollToTop",
+      "g e": "markdown::ScrollToBottom",
+      "/": "buffer_search::Deploy",
+    },
+  },
+  {
+    "context": "FileHistoryView",
+    "bindings": {
+      "t": "menu::SelectNext",
+      "n": "menu::SelectPrevious",
+      "g g": "menu::SelectFirst",
+      "g e": "menu::SelectLast",
+    },
+  },
+  {
+    "context": "NotebookEditor > Editor && VimControl && vim_mode == normal",
+    "bindings": {
+      "j": "notebook::NotebookMoveDown",
+      "k": "notebook::NotebookMoveUp",
+      "escape": "notebook::EnterCommandMode",
+    },
+  },
+  {
+    "context": "NotebookEditor && notebook_mode == command",
+    "bindings": {
+      "t": "menu::SelectNext",
+      "n": "menu::SelectPrevious",
+      "g g": "menu::SelectFirst",
+      "g e": "menu::SelectLast",
+      "i": "notebook::EnterEditMode",
+      "a": "notebook::EnterEditMode",
+      "enter": "notebook::EnterEditMode",
+      "shift-enter": "notebook::RunAndAdvance",
+      "ctrl-enter": "notebook::Run",
+    },
+  },
+  {
+    "context": "ThreadsSidebar && !Editor",
+    "bindings": {
+      "t": "menu::SelectNext",
+      "n": "menu::SelectPrevious",
+      "h": "menu::SelectParent",
+      "s": "menu::SelectChild",
+      "g g": "menu::SelectFirst",
+      "g e": "menu::SelectLast",
+      "/": "agents_sidebar::FocusSidebarFilter",
+      "d d": "agent::RemoveSelectedThread",
+      "o": "agents_sidebar::NewThreadInGroup",
+      "shift-o": "agents_sidebar::NewThreadInGroup",
+      "] p": "multi_workspace::NextProject",
+      "[ p": "multi_workspace::PreviousProject",
+      "z a": "editor::ToggleFold",
+      "z c": "menu::SelectParent",
+      "z o": "menu::SelectChild",
+      "z shift-m": "editor::FoldAll",
+      "z shift-r": "editor::UnfoldAll",
+    },
+  },
+  {
+    "context": "ThreadsSidebar > Editor && VimControl && vim_mode == normal",
+    "bindings": {
+      "j": "editor::MoveDown",
+      "k": "editor::MoveUp",
+      "/": "vim::SwitchToInsertMode",
+      "escape": "menu::Cancel",
+      "enter": "editor::Newline",
+    },
+  },
+  {
+    "context": "SkillCreator",
+    "bindings": {
+      "tab": "skill_creator::FocusNextField",
+      "shift-tab": "skill_creator::FocusPreviousField",
+    },
+  },
+  {
+    "context": "SkillCreator > Editor",
+    "bindings": {
+      "tab": "skill_creator::FocusNextField",
+      "shift-tab": "skill_creator::FocusPreviousField",
     },
   },
 ]
