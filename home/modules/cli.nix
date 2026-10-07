@@ -237,7 +237,6 @@ in
       };
 
       mergiraf.enable = true;
-      mergiraf.package = pkgsSmall.mergiraf;
       mergiraf.enableGitIntegration = true;
       mergiraf.enableJujutsuIntegration = true;
 
