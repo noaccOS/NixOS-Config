@@ -234,6 +234,7 @@ in
           inherit (pkgs)
             nixfmt # Formatter
             nil # LSP
+            nixd # LSP
             ;
         })
         ++ optionals cfg.nu.enable (attrValues {

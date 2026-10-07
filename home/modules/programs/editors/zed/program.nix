@@ -149,6 +149,20 @@ in
           metrics = false;
         };
         terminal.shell.program = "nu";
+        lsp = {
+          rust-analyzer = {
+            binary.allow_path_lookup = true;
+          };
+          nix = {
+            binary.allow_path_lookup = true;
+          };
+          expert = {
+            binary.allow_path_lookup = true;
+          };
+          nu = {
+            binary.allow_path_lookup = true;
+          };
+        };
         languages =
           let
             elixir = {
