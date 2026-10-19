@@ -170,6 +170,30 @@ in
             };
             clip-to-geometry = true;
           }
+          {
+            matches = [ { app-id = "org.kde.kdeconnect.daemon"; } ];
+            open-floating = true;
+            open-fullscreen = true;
+
+            default-floating-position = {
+              x = 0;
+              y = 0;
+              relative-to = "top-left";
+            };
+
+            default-column-width.proportion = 1.;
+            default-window-height.proportion = 1.;
+            tiled-state = true;
+            focus-ring.enable = false;
+            border.enable = false;
+            shadow.enable = false;
+            draw-border-with-background = false;
+
+            # TODO: add this when supported
+            # background-effect = {
+            #   blur = false;
+            # };
+          }
         ];
         prefer-no-csd = true;
         screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
