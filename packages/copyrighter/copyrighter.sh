@@ -39,7 +39,7 @@ run () {
   local base_ref="$1"
   local base_dir="$2"
   local holder="$3"
-  
+
   git stash --all
 
   for commit in $(commit_list "$base_ref"); do
