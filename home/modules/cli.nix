@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.homeModules.cli;
-  inherit (builtins) fromTOML readFile;
+  inherit (builtins) readFile;
 
   inherit (lib)
     concatStringsSep
@@ -246,11 +246,22 @@ in
         enable = true;
         enableFishIntegration = true;
         enableTransience = true;
+        package = pkgsSmall.starship;
         settings = mkMerge [
           (fromTOML (readFile ../../config/starship-nerd.toml))
           {
             gcloud.disabled = true;
             nix_shell.heuristic = true;
+          }
+          {
+            format = "$username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$vcs$docker_context$package$bun$c$cmake$cobol$cpp$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$fortran$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$maven$mojo$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$xmake$zig$buf$guix_shell$nix_shell$conda$pixi$meson$spack$memory_usage$aws$gcloud$openstack$azure$direnv$env_var$mise$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$netns$os$shell$character";
+            vcs = {
+              order = [
+                "jj"
+                "git"
+                "hg"
+              ];
+            };
           }
         ];
       };
