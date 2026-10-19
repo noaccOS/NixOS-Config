@@ -4,7 +4,7 @@
   nixpkgs,
   nixpkgs-small,
   home-manager,
-  cachyos-kernel,
+  # cachyos-kernel,
   catppuccin,
   disko,
   dms,
@@ -51,7 +51,7 @@ nixosSystem rec {
     {
       nixpkgs.hostPlatform = system;
       nixpkgs.overlays = overlays ++ [
-        cachyos-kernel.overlays.pinned
+        # cachyos-kernel.overlays.pinned
       ];
 
       networking.hostName = name;
