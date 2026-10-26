@@ -28,8 +28,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    boot.initrd.systemd.enable = true;
-
     environment = {
       defaultPackages = with pkgs; [
         ungoogled-chromium

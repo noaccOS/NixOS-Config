@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgsSmall,
   ...
 }:
 let
@@ -246,7 +245,6 @@ in
         enable = true;
         enableFishIntegration = true;
         enableTransience = true;
-        package = pkgsSmall.starship;
         settings = mkMerge [
           (fromTOML (readFile ../../config/starship-nerd.toml))
           {
