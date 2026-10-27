@@ -74,6 +74,10 @@ let
   other-extensions = [ ];
 
   extensions = language-extensions ++ default-language-extensions ++ other-extensions;
+
+  gcloud = pkgs.google-cloud-sdk.withExtraComponents [
+    pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+  ];
 in
 {
   options.homeModules.programs.editors.zed = {
@@ -108,7 +112,7 @@ in
 
       package = pkgs.zed-editor-fhs;
       extensions = extensions;
-      extraPackages = cfgDev.toolPackages;
+      extraPackages = cfgDev.toolPackages ++ [ gcloud ];
       mutableUserKeymaps = false;
       userSettings = {
         cursor_blink = false;
