@@ -14,8 +14,8 @@ in
   config = lib.mkIf cfg.enable {
     hardware.mediatek-mt7927 = {
       enable = true;
-      enableWifi = true;
-      enableBluetooth = true;
+      enableWifi = false;
+      enableBluetooth = false;
       disableAspm = true;
     };
   };

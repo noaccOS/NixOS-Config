@@ -20,6 +20,7 @@ in
   config = mkIf cfg.enable {
     programs.nushell = {
       enable = true;
+      loadSessionVariables = true;
       settings = {
         buffer_editor = mkNushellInline "$env.VISUAL | split row ' '";
         show_banner = false;
