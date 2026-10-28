@@ -187,6 +187,10 @@
           description = "Generic package + devshell";
           path = ./templates/generic;
         };
+        generic-devshell = {
+          description = "Generic devshell";
+          path = ./templates/generic-devshell;
+        };
         rust = {
           description = "Rust project flake with crane and flake-parts";
           path = ./templates/rust;
