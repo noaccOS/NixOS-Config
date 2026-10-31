@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = config.homeModules.programs.terminals.alacritty;
+  cfg = config.homeModules.programs.terminals.ghostty;
 
   inherit (lib) mkEnableOption;
 in
