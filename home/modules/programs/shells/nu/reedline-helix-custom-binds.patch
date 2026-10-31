@@ -1,0 +1,66 @@
+--- a/src/edit_mode/helix/mod.rs
++++ b/src/edit_mode/helix/mod.rs
+@@ -348,11 +348,11 @@
+         Pending::Replace => exec(count, Verb::OnSelection(Op::Replace(ch)), None),
+         Pending::Goto => {
+             let target = match ch {
+-                'h' => MotionTarget::LineEdge(Direction::Backward),
+-                'l' => MotionTarget::LineEdge(Direction::Forward),
++                'l' => MotionTarget::LineEdge(Direction::Backward),
++                's' => MotionTarget::LineEdge(Direction::Forward),
+                 'g' => MotionTarget::BufferEdge(Direction::Backward),
+                 'e' => MotionTarget::BufferEdge(Direction::Forward),
+-                's' => MotionTarget::LineStartNonBlank,
++                'h' => MotionTarget::LineStartNonBlank,
+                 _ => return Outcome::Reject,
+             };
+             exec(count, Verb::CollapsingMotion(target), None)
+@@ -388,11 +388,11 @@
+                 direction: Direction::Backward,
+                 stop: FindStop::On,
+             }),
+-            't' => Outcome::Absorb(Pending::Find {
++            'j' => Outcome::Absorb(Pending::Find {
+                 direction: Direction::Forward,
+                 stop: FindStop::Before,
+             }),
+-            'T' => Outcome::Absorb(Pending::Find {
++            'J' => Outcome::Absorb(Pending::Find {
+                 direction: Direction::Backward,
+                 stop: FindStop::Before,
+             }),
+@@ -435,7 +435,7 @@
+                 Verb::SelectingMotion(word(WordKind::LongWord, WordEdge::End, Direction::Forward)),
+                 None,
+             ),
+-            'l' => exec(
++            's' => exec(
+                 count,
+                 Verb::CollapsingMotion(MotionTarget::Grapheme(Direction::Forward)),
+                 None,
+@@ -445,8 +445,8 @@
+                 Verb::CollapsingMotion(MotionTarget::Grapheme(Direction::Backward)),
+                 None,
+             ),
+-            'j' => exec(count, Verb::LineOrHistory(Direction::Forward), None),
+-            'k' => exec(count, Verb::LineOrHistory(Direction::Backward), None),
++            't' => exec(count, Verb::LineOrHistory(Direction::Forward), None),
++            'n' => exec(count, Verb::LineOrHistory(Direction::Backward), None),
+             'x' => exec(count, Verb::SelectLine, None),
+             '%' => exec(count, Verb::SelectAll, None),
+             '~' => exec(count, Verb::OnSelection(Op::Switchcase), None),
+@@ -498,12 +498,12 @@
+             ),
+             'u' => exec(count, Verb::Undo, None),
+             'U' => exec(count, Verb::Redo, None),
+-            'p' => exec(
++            'P' => exec(
+                 count,
+                 Verb::Paste(Direction::Forward),
+                 Some(HelixMode::Normal),
+             ),
+-            'P' => exec(
++            'p' => exec(
+                 count,
+                 Verb::Paste(Direction::Backward),
+                 Some(HelixMode::Normal),
