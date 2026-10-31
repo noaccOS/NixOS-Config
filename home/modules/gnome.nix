@@ -62,7 +62,6 @@ in
             gsconnect
             kimpanel
             native-window-placement
-            quick-settings-tweaker
             user-themes
           ]
           ++ cfg.extraExtensions
