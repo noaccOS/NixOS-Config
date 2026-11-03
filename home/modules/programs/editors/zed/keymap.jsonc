@@ -23,6 +23,20 @@
     },
   },
   {
+    "context": "Editor",
+    "bindings": {
+      "alt-y": "editor::Copy",
+      "alt-p": "editor::Paste",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-y": "terminal::Copy",
+      "alt-p": "terminal::Paste",
+    },
+  },
+  {
     "context": "VimControl && !menu",
     "bindings": {
       "space": null, // Disable the default action vim::WrappingRight
