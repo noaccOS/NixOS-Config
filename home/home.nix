@@ -26,6 +26,7 @@ in
       "nosevka.cachix.org-1:vYPyn+9Z3qSZTKVagTtJ/4G8Mm4hivLYJo/APLVvUh8="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
     ];
   };
   nixpkgs.config.allowUnfree = true;

@@ -15,7 +15,7 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -33,7 +33,10 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/68A4-BBBE";
     fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
   fileSystems."/home" = {
@@ -48,8 +51,13 @@
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/9c50037a-c4d0-4c5e-9c8d-90f5d5ee7ec8";
     fsType = "ext4";
-    options = ["defaults" "noatime"];
+    options = [
+      "defaults"
+      "noatime"
+    ];
   };
 
   swapDevices = [ { device = "/swapfile"; } ];
+
+  nix.settings.extra-substituters = [ "https://cache.lantian.pub/lantian" ];
 }
