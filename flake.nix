@@ -46,6 +46,14 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kodi-scaletempo2 = {
+      url = "github:noaccOS/xbmc/scaletempo2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    playbackspeed-defaults = {
+      url = "github:noaccOS/kodi-default-speed-plugin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     topiary-nu = {
       url = "github:blindFS/topiary-nushell";
       inputs.nixpkgs.follows = "nixpkgs";
