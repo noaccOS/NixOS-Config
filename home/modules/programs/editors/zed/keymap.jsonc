@@ -167,6 +167,7 @@
 
       // Space mode
       "space space": "file_finder::Toggle",
+      "space '": "workspace::ReopenLastPicker",
       "space t": "workspace::ToggleLeftDock",
       "space o r": ["projects::OpenRecent", { "create_new_window": false }],
       "space o d": "workspace::Open",
@@ -267,6 +268,7 @@
         { "from_existing_connection": false, "create_new_window": false },
       ],
       "space space": "file_finder::Toggle",
+      "space '": "workspace::ReopenLastPicker",
       "space t": "workspace::ToggleLeftDock",
 
       // View mode
