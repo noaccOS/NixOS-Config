@@ -9,7 +9,7 @@ in
 {
   home.username = user;
   home.homeDirectory = mkForce "/home/${user}";
-  xdg.configHome = "/home/${user}/.config/";
+  xdg.configHome = "/home/${user}/.config";
   xdg.enable = true;
   nix.settings = {
     commit-lockfile-summary = "chore(nix): update inputs";
