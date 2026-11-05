@@ -45,6 +45,7 @@ in
     ./modules/development.nix
     ./modules/homeTheater.nix
     ./modules/gnome.nix
+    ./modules/kmonad.nix
     ./modules/personal.nix
     ./modules/work.nix
     ./modules/programs/browsers/firefox.nix

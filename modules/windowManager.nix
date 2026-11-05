@@ -38,6 +38,7 @@ in
   config = mkIf cfg.enable {
     noaccOSModules.gnome.enable = true;
     noaccOSModules.gnome.barebones = mkDefault true;
+    noaccOSModules.kmonad.dms.enable = mkDefault true;
 
     services.displayManager.sessionPackages = [
       hmCfg.homeModules.windowManagers.${cfg.windowManager}.package

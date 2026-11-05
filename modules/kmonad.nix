@@ -12,7 +12,6 @@ let
     mkIf
     mkMerge
     mkOption
-    typeOf
     types
     ;
   cfg = config.noaccOSModules.kmonad;
@@ -20,14 +19,14 @@ in
 {
   options.noaccOSModules.kmonad = {
     enable = mkEnableOption "KMonad utilities";
-    serviceType = mkOption {
-      description = "The type of service to enable";
-      type = types.enum [
-        "nixos"
-        "gnome"
-      ];
-      default = if config.noaccOSModules.gnome.enable then "gnome" else "nixos";
+    systemd.enable = mkOption {
+      description = "Run KMonad as a NixOS service";
+      type = types.bool;
+      default = !(cfg.gnome.enable || cfg.dms.enable);
+      defaultText = "!(gnome.enable || dms.enable)";
     };
+    gnome.enable = mkEnableOption "the KMonad toggle GNOME extension";
+    dms.enable = mkEnableOption "the KMonad toggle DMS plugin";
     configuration = mkOption {
       description = "Keyboard configuration";
       type = types.path;
@@ -49,21 +48,22 @@ in
       users.users.${user}.extraGroups = [
         "uinput" # Created by kmonad nixos-module
       ];
-    }
-    (mkIf (cfg.serviceType == "nixos") {
-      services.kmonad.keyboards.keyboard = cfg.serviceConfiguration;
-    })
-    (mkIf (cfg.serviceType == "gnome") {
-      home-manager.users.${user}.homeModules = {
-        gnome.kmonad = {
-          enable = true;
-          config = cfg.configuration;
-        };
-        windowManagers.niri.kmonad = {
-          enable = true;
-          config = cfg.configuration;
-        };
+
+      home-manager.users.${user}.homeModules.kmonad = {
+        enable = true;
+        inherit (cfg) gnome dms;
+        config = cfg.configuration;
       };
+
+      assertions = [
+        {
+          assertion = !(cfg.systemd.enable && (cfg.gnome.enable || cfg.dms.enable));
+          message = "noaccOSModules.kmonad: the NixOS service grabs the keyboard, so it can't be combined with the GNOME or DMS toggles.";
+        }
+      ];
+    }
+    (mkIf cfg.systemd.enable {
+      services.kmonad.keyboards.keyboard = cfg.serviceConfiguration;
     })
   ]);
 }

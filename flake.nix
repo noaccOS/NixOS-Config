@@ -20,6 +20,11 @@
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms-kmonad-toggle = {
+      url = "github:noaccOS/dms-kmonad-toggle";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dms.follows = "dms";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     rycee = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";

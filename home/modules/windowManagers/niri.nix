@@ -18,25 +18,6 @@ let
     types
     ;
 
-  kmonadSubmodule = {
-    options = {
-      enable = mkEnableOption "Run kmonad when niri starts";
-
-      config = mkOption {
-        type = types.path;
-        description = "KMonad configuration";
-      };
-    };
-  };
-
-  # TODO: this should be a property of the bar using gsconnect
-  kmonad = {
-    argv = [
-      "${getExe pkgs.kmonad}"
-      "${cfg.kmonad.config}"
-    ];
-  };
-
   niri-cmd = types.either types.str (types.listOf types.str);
   mkNiriCmdOption =
     default:
@@ -57,11 +38,6 @@ in
       type = types.package;
       readOnly = true;
       default = config.programs.niri.package;
-    };
-    kmonad = mkOption {
-      type = types.submodule kmonadSubmodule;
-      description = "TEMPORARY: move this option to the bar";
-      default = { };
     };
     terminal = mkNiriCmdOption "ghostty";
     application-launcher = mkNiriCmdOption "anyrun";
@@ -210,22 +186,14 @@ in
           };
         }) monitors;
 
-        spawn-at-startup =
-          let
-            dex = {
-              argv = [
-                "dex"
-                "-a"
-              ];
-            };
-          in
-          if cfg.kmonad.enable then
-            [
-              dex
-              kmonad
-            ]
-          else
-            [ dex ];
+        spawn-at-startup = [
+          {
+            argv = [
+              "dex"
+              "-a"
+            ];
+          }
+        ];
 
         binds = {
           "Mod+E".action.spawn = cfg.terminal;

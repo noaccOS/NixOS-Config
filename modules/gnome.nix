@@ -40,6 +40,7 @@ in
     };
 
     home-manager.users.${user}.homeModules.gnome.enable = !cfg.barebones;
+    noaccOSModules.kmonad.gnome.enable = mkDefault (!cfg.barebones);
     programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
 
     services.gnome.core-os-services.enable = true;

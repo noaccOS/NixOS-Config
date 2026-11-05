@@ -9,6 +9,8 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
+    mkOption
+    types
     ;
 
   dms-ipc = subcommand: action: [
@@ -30,6 +32,11 @@ in
 {
   options.homeModules.windowManagers.dms = {
     enable = mkEnableOption "dank material shell";
+    pluginTiles = mkOption {
+      type = types.listOf types.attrs;
+      default = [ ];
+      description = "Control Center tiles provided by plugins";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -295,6 +302,9 @@ in
             id = "darkMode";
             w = 4;
           }
+        ]
+        ++ cfg.pluginTiles
+        ++ [
           {
             enabled = true;
             h = 1;
