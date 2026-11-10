@@ -52,15 +52,18 @@ in
     xdg.userDirs.setSessionVariables = true;
 
     programs = {
-      atuin.enable = true;
-      atuin.settings = {
-        enter_accept = true;
-        filter_mode_shell_up_key_binding = "session";
-        inline_height = 15;
-        search_mode = "skim";
-        show_help = false;
-        show_tabs = false;
-        style = "full";
+      atuin = {
+        enable = true;
+        daemon.enable = true;
+        settings = {
+          enter_accept = true;
+          filter_mode_shell_up_key_binding = "session";
+          inline_height = 15;
+          search_mode = "daemon-fuzzy";
+          show_help = false;
+          show_tabs = false;
+          style = "full";
+        };
       };
       bat.enable = true;
       bottom.enable = true;
