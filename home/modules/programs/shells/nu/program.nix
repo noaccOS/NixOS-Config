@@ -7,8 +7,11 @@
 let
   cfg = config.homeModules.programs.shells.nu;
   inherit (lib)
+    getExe
     mkEnableOption
     mkIf
+    mkMerge
+    mkOrder
     optionalString
     ;
 
@@ -22,6 +25,16 @@ let
     '';
     doCheck = false;
   });
+
+  # fails the build once atuin binds the helix modes itself, so the workaround gets dropped
+  atuin-helix-modes = pkgs.runCommand "atuin-helix-modes.nu" { } ''
+    if ${getExe config.programs.atuin.package} init nu | grep -q helix_; then
+      echo "atuin now binds the nushell helix modes (atuinsh/atuin#4019 landed)." >&2
+      echo "Drop atuin-helix-modes from home/modules/programs/shells/nu/program.nix" >&2
+      exit 1
+    fi
+    cp ${./atuin-helix-modes.nu} $out
+  '';
 
   normal = "helix_normal";
   select = "helix_select";
@@ -131,14 +144,20 @@ in
         ];
       };
       configFile.source = ./config.nu;
-      extraConfig = optionalString config.programs.starship.enable ''
-        $env.TRANSIENT_PROMPT_COMMAND = ^starship module character
-        $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ^starship module time
-        # helix mode shows the vi indicators after starship's character; the cursor shape already
-        # tells the mode apart
-        $env.PROMPT_INDICATOR_VI_INSERT = ""
-        $env.PROMPT_INDICATOR_VI_NORMAL = ""
-      '';
+      extraConfig = mkMerge [
+        (optionalString config.programs.starship.enable ''
+          $env.TRANSIENT_PROMPT_COMMAND = ^starship module character
+          $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ^starship module time
+          # helix mode shows the vi indicators after starship's character; the cursor shape already
+          # tells the mode apart
+          $env.PROMPT_INDICATOR_VI_INSERT = ""
+          $env.PROMPT_INDICATOR_VI_NORMAL = ""
+        '')
+        # must come after atuin's own init (mkOrder 2000), which appends its keybindings
+        (mkIf (config.programs.atuin.enable && config.programs.atuin.enableNushellIntegration) (
+          mkOrder 2100 "source ${atuin-helix-modes}"
+        ))
+      ];
     };
 
     # It always shows a job under nushell, while not providing much value
