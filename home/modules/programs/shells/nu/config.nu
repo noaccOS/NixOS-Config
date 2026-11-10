@@ -17,7 +17,7 @@ let zoxide_completer = {|spans|
 }
 
 let external_completer = {|place|
-  let spans = place.command
+  let spans = $place.command
   let expanded_alias = scope aliases
     | where name == $spans.0
     | get -o 0.expansion
