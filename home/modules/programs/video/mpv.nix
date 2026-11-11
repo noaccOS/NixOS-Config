@@ -10,9 +10,22 @@ in
 {
   options.homeModules.programs.video.mpv = {
     enable = lib.mkEnableOption "mpv";
+    unwrappedPackage = lib.mkPackageOption pkgs "mpv-unwrapped" { };
   };
   config.programs.mpv = {
     enable = cfg.enable;
+    # programs.mpv.scripts can't be combined with a custom package, so wrap it here
+    package = pkgs.mpv.override {
+      mpv-unwrapped = cfg.unwrappedPackage;
+      scripts = with pkgs.mpvScripts; [
+        mpvacious
+        smart-copy-paste-2
+        smartskip
+        sponsorblock
+        thumbfast
+        uosc
+      ];
+    };
     config = {
       hwdec = "yes";
       save-position-on-quit = "yes";
@@ -51,14 +64,5 @@ in
       h = "ignore";
       H = "ignore";
     };
-
-    scripts = with pkgs.mpvScripts; [
-      mpvacious
-      smart-copy-paste-2
-      smartskip
-      sponsorblock
-      thumbfast
-      uosc
-    ];
   };
 }
