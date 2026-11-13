@@ -58,19 +58,19 @@ in
 
     services.caddy.virtualHosts =
       let
-        subdomains = concatMapAttrs (service: port: {
-          "${service}.localhost".extraConfig = "redir http://localhost/${service}";
-          "${service}.${currentDomainName}".extraConfig = "redir http://localhost/${service}";
-        }) services;
+        subdomains = concatMapAttrs (
+          service: port:
+          let
+            proxy = "reverse_proxy http://localhost:${toString port}";
+          in
+          {
+            "${service}.localhost".extraConfig = proxy;
+            "${service}.${currentDomainName}".extraConfig = proxy;
+          }
+        ) services;
+        # the services don't know about any url base, so send subpaths to their subdomain
         subpathsConfig = pipe services [
-          (mapAttrsToList (
-            service: port: ''
-              redir /${service} /${service}/
-              handle /${service}/* {
-                reverse_proxy http://localhost:${toString port}
-              }
-            ''
-          ))
+          (mapAttrsToList (service: port: "redir /${service}* http://${service}.{host}/"))
           concatLines
         ];
         subpaths = {
@@ -107,7 +107,7 @@ in
         flood.enable = true;
         extraSettings = {
           # caddy forwards the original Host header
-          rpc-host-whitelist = "localhost,${currentDomainName}";
+          rpc-host-whitelist = "localhost,*.localhost,${currentDomainName},*.${currentDomainName}";
           sequential_download = true;
         };
       };
