@@ -22,6 +22,7 @@ in
   };
   config = mkIf cfg.enable {
     homeModules.programs.browsers.firefox.gnomeIntegration = mkDefault true;
+    homeModules.programs.torrent.transmission.enable = mkDefault true;
 
     home.packages =
       with pkgs;
@@ -36,7 +37,6 @@ in
         adw-gtk3
         evolution-data-server-gtk4
         file-roller
-        fragments
         gnome-calculator
         gnome-calendar
         gnome-control-center-custom
@@ -133,7 +133,7 @@ in
       "application/x-ar" = "org.gnome.FileRoller.desktop";
       "application/x-archive" = "org.gnome.FileRoller.desktop";
       "application/x-arj" = "org.gnome.FileRoller.desktop";
-      "application/x-bittorrent" = "de.haeckerfelix.Fragments.desktop";
+      "application/x-bittorrent" = "transmission-gtk.desktop";
       "application/x-brotli" = "org.gnome.FileRoller.desktop";
       "application/x-bzdvi" = "org.gnome.Papers.desktop";
       "application/x-bzip" = "org.gnome.FileRoller.desktop;org.gnome.Nautilus.desktop";
@@ -416,7 +416,7 @@ in
       "x-scheme-handler/icy" = "mpv.desktop";
       "x-scheme-handler/icyx" = "mpv.desktop";
       "x-scheme-handler/info" = "yelp.desktop";
-      "x-scheme-handler/magnet" = "de.haeckerfelix.Fragments.desktop";
+      "x-scheme-handler/magnet" = "transmission-gtk.desktop";
       "x-scheme-handler/mailto" = "org.gnome.Geary.desktop";
       "x-scheme-handler/man" = "yelp.desktop";
       "x-scheme-handler/maps" = "org.gnome.Maps.desktop";

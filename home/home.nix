@@ -62,6 +62,7 @@ in
     ./modules/programs/terminals/kitty.nix
     ./modules/programs/terminals/rio.nix
     ./modules/programs/terminals/wezterm.nix
+    ./modules/programs/torrent/transmission.nix
     ./modules/programs/video/mpv.nix
     ./modules/windowManagers/bars/waybar.nix
     ./modules/windowManagers/dms/program.nix

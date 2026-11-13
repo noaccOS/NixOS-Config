@@ -2,6 +2,7 @@
   config,
   currentDomainName,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -24,7 +25,7 @@ let
   services = {
     prowrlarr = config.services.prowlarr.settings.server.port;
     sonarr = config.services.sonarr.settings.server.port;
-    deluge = config.services.deluge.web.port;
+    transmission = config.services.transmission.settings.rpc-port;
     jellyfin = 8096;
   };
 in
@@ -80,11 +81,14 @@ in
       in
       subpaths // subdomains;
 
-    services.deluge = {
+    services.transmission = {
       enable = true;
-      web = {
-        enable = true;
-        openFirewall = true;
+      package = pkgs.transmission_4;
+      openRPCPort = true;
+      settings = {
+        # caddy forwards the original Host header
+        rpc-host-whitelist = "localhost,${currentDomainName}";
+        sequential_download = true;
       };
     };
 
