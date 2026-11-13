@@ -34,6 +34,10 @@
       url = "github:noaccOS/mt7927-nixos/push-nstmptpzyqls";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixarr = {
+      url = "github:nix-media-server/nixarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -10,6 +10,7 @@
   dms,
   mt7927,
   niri,
+  nixarr,
   nix-index-database,
   ...
 }@flake-inputs:
@@ -62,6 +63,7 @@ nixosSystem rec {
     catppuccin.nixosModules.catppuccin
     disko.nixosModules.disko
     mt7927.nixosModules.default
+    nixarr.nixosModules.default
     nix-index-database.nixosModules.nix-index
 
     ./lix.nix

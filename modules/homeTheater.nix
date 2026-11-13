@@ -2,7 +2,6 @@
   config,
   currentDomainName,
   lib,
-  pkgs,
   user,
   ...
 }:
@@ -23,10 +22,10 @@ let
   niriBin = getExe' niriCfg.package "niri-session";
 
   services = {
-    prowrlarr = config.services.prowlarr.settings.server.port;
-    sonarr = config.services.sonarr.settings.server.port;
-    transmission = config.services.transmission.settings.rpc-port;
-    jellyfin = 8096;
+    prowlarr = config.nixarr.prowlarr.port;
+    sonarr = config.nixarr.sonarr.port;
+    transmission = config.nixarr.transmission.uiPort;
+    jellyfin = config.nixarr.jellyfin.port;
   };
 in
 {
@@ -81,30 +80,41 @@ in
       in
       subpaths // subdomains;
 
-    services.transmission = {
+    nixarr = {
       enable = true;
-      package = pkgs.transmission_4;
-      openRPCPort = true;
-      settings = {
-        # caddy forwards the original Host header
-        rpc-host-whitelist = "localhost,${currentDomainName}";
-        sequential_download = true;
+      mediaUsers = [ user ];
+
+      jellyfin = {
+        enable = true;
+        openFirewall = true;
+      };
+
+      prowlarr = {
+        enable = true;
+        openFirewall = true;
+        settings-sync.enable-nixarr-apps = true;
+      };
+
+      sonarr = {
+        enable = true;
+        openFirewall = true;
+        settings-sync.transmission.enable = true;
+      };
+
+      transmission = {
+        enable = true;
+        openFirewall = true;
+        flood.enable = true;
+        extraSettings = {
+          # caddy forwards the original Host header
+          rpc-host-whitelist = "localhost,${currentDomainName}";
+          sequential_download = true;
+        };
       };
     };
 
-    services.jellyfin = {
-      enable = true;
-      openFirewall = true;
-    };
-
-    services.prowlarr = {
-      enable = true;
-      openFirewall = true;
-    };
-
-    services.sonarr = {
-      enable = true;
-      openFirewall = true;
-    };
+    # required by nixarr's prowlarr settings-sync
+    services.prowlarr.settings.auth.required = "DisabledForLocalAddresses";
+    services.sonarr.settings.auth.required = "DisabledForLocalAddresses";
   };
 }
