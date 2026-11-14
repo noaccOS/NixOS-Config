@@ -336,11 +336,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794597831,
-        "narHash": "sha256-F0+6X53cNL1USt/99g7jLTFfNm73lTD/ho5yYFUYwZQ=",
+        "lastModified": 1794655803,
+        "narHash": "sha256-729LptptFt8NUfHOWUpQ8yxGKi2NrhOTHNlbZTYbaqg=",
         "owner": "noaccOS",
         "repo": "xbmc",
-        "rev": "327e2db65cad9cc50bd99fa07ab6338a7e89d4e8",
+        "rev": "4bd86825d22292d786cbfa70a2ddc6464346d3b1",
         "type": "github"
       },
       "original": {
