@@ -40,7 +40,7 @@ ffmpeg.overrideAttrs (oldAttrs: {
   postConfigure = (oldAttrs.postConfigure or "") + ''
 
     for hwaccel in H264 HEVC; do
-      grep -q "^#define CONFIG_''${hwaccel}_V4L2REQUEST_HWACCEL 1" config.h \
+      grep -q "^#define CONFIG_''${hwaccel}_V4L2REQUEST_HWACCEL 1" config_components.h \
         || { echo "''${hwaccel} v4l2request hwaccel was not enabled"; exit 1; }
     done
   '';
