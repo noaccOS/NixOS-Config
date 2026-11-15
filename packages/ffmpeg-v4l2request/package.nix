@@ -36,7 +36,9 @@ ffmpeg.overrideAttrs (oldAttrs: {
   ];
 
   # configure silently drops hwaccels whose dependencies (eg. kernel headers) are missing
+  # (nixpkgs' postConfigure has no trailing newline)
   postConfigure = (oldAttrs.postConfigure or "") + ''
+
     for hwaccel in H264 HEVC; do
       grep -q "^#define CONFIG_''${hwaccel}_V4L2REQUEST_HWACCEL 1" config.h \
         || { echo "''${hwaccel} v4l2request hwaccel was not enabled"; exit 1; }
