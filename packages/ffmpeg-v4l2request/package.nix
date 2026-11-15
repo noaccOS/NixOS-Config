@@ -4,14 +4,16 @@
 {
   lib,
   ffmpeg,
-  fetchpatch,
+  fetchurl,
   udev,
 }:
 let
   libreelecRev = "01a57f984b2b798795d1698d3a4aa2c9de43db7e";
+  # fetchurl, not fetchpatch: its normalization regroups hunks by file, which breaks these
+  # multi-commit series (later commits edit files created by earlier ones)
   libreelecPatch =
     path: hash:
-    fetchpatch {
+    fetchurl {
       url = "https://raw.githubusercontent.com/LibreELEC/LibreELEC.tv/${libreelecRev}/packages/multimedia/ffmpeg/patches/${path}";
       inherit hash;
     };
@@ -21,9 +23,9 @@ ffmpeg.overrideAttrs (oldAttrs: {
 
   patches = (oldAttrs.patches or [ ]) ++ [
     # Kwiboo's hwaccels for MPEG-2, H.264, HEVC, VP8, VP9 and AV1
-    (libreelecPatch "v4l2-request/0001-v4l2-request.patch" "sha256-CSiuHATFxhpp5OscaCUlj6/dRi7wfCBPFHi7IkfnX/I=")
+    (libreelecPatch "v4l2-request/0001-v4l2-request.patch" "sha256-r9BMICwnCBw1XY00tYpSxBQd4mQzAH4n7W4NIJPRDTw=")
     # HEVC short-term RPS control, required by the RK3588 rkvdec (VDPU381) driver
-    (libreelecPatch "detlev/0001-hevc-Add-support-for-sps_st_rps-control.patch" "sha256-to/5CuhnMffBwg4Mw4CNvV7YU7eazCu6J2ib4J+PasU=")
+    (libreelecPatch "detlev/0001-hevc-Add-support-for-sps_st_rps-control.patch" "sha256-UsHlickIuULy247ZZZJM0kAU2GMuFl95AbyioKkxgMA=")
   ];
 
   buildInputs = oldAttrs.buildInputs ++ [ udev ];
