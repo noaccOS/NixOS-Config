@@ -2,6 +2,7 @@
   config,
   currentDomainName,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -10,6 +11,8 @@ let
   inherit (lib)
     concatLines
     concatMapAttrs
+    escapeShellArg
+    getExe
     getExe'
     mapAttrs'
     mapAttrsToList
@@ -58,19 +61,20 @@ in
 
     services.caddy.virtualHosts =
       let
-        subdomains = concatMapAttrs (
-          service: port:
-          let
-            proxy = "reverse_proxy http://localhost:${toString port}";
-          in
-          {
-            "${service}.localhost".extraConfig = proxy;
-            "${service}.${currentDomainName}".extraConfig = proxy;
-          }
-        ) services;
-        # the services don't know about any url base, so send subpaths to their subdomain
+        subdomains = concatMapAttrs (service: port: {
+          "${service}.localhost".extraConfig = "redir http://localhost/${service}";
+          "${service}.${currentDomainName}".extraConfig = "redir http://${currentDomainName}/${service}";
+        }) services;
+        # the services are configured with /<service> as their url base, so the path is kept as is
         subpathsConfig = pipe services [
-          (mapAttrsToList (service: port: "redir /${service}* http://${service}.{host}/"))
+          (mapAttrsToList (
+            service: port: ''
+              redir /${service} /${service}/
+              handle /${service}/* {
+                reverse_proxy http://localhost:${toString port}
+              }
+            ''
+          ))
           concatLines
         ];
         subpaths = {
@@ -107,7 +111,7 @@ in
         flood.enable = true;
         extraSettings = {
           # caddy forwards the original Host header
-          rpc-host-whitelist = "localhost,*.localhost,${currentDomainName},*.${currentDomainName}";
+          rpc-host-whitelist = "localhost,${currentDomainName}";
           sequential_download = true;
         };
       };
@@ -116,5 +120,28 @@ in
     # required by nixarr's prowlarr settings-sync
     services.prowlarr.settings.auth.required = "DisabledForLocalAddresses";
     services.sonarr.settings.auth.required = "DisabledForLocalAddresses";
+
+    # url bases for the subpaths. nixarr's settings-sync picks up server.urlBase for the arrs, and
+    # transmission already serves everything under /transmission/
+    services.prowlarr.settings.server.urlBase = "/prowlarr";
+    services.sonarr.settings.server.urlBase = "/sonarr";
+    # jellyfin only reads its base url from network.xml, which it otherwise manages itself
+    systemd.services.jellyfin.preStart = ''
+      networkXml=${escapeShellArg "${config.services.jellyfin.configDir}/network.xml"}
+      if [[ -e $networkXml ]]; then
+        ${getExe pkgs.xmlstarlet} ed --inplace \
+          --delete /NetworkConfiguration/BaseUrl \
+          --subnode /NetworkConfiguration --type elem --name BaseUrl --value /jellyfin \
+          "$networkXml"
+      else
+        mkdir -p "$(dirname "$networkXml")"
+        cat > "$networkXml" <<EOF
+      <?xml version="1.0" encoding="utf-8"?>
+      <NetworkConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <BaseUrl>/jellyfin</BaseUrl>
+      </NetworkConfiguration>
+      EOF
+      fi
+    '';
   };
 }
