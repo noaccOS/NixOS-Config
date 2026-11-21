@@ -330,7 +330,7 @@ in
         customPowerActionPowerOff = "";
         customPowerActionReboot = "";
         customPowerActionSuspend = "";
-        customThemeFile = "/nix/store/wjkgk913g74gl5574wqyqm7krrzsp7yz-catpuccin-theme.json";
+        customThemeFile = ./catpuccin-theme.json;
         dankLauncherV2BorderColor = "primary";
         dankLauncherV2BorderEnabled = true;
         dankLauncherV2BorderThickness = 2;
