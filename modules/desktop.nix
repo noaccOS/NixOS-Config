@@ -36,6 +36,15 @@ in
     home-manager.users.${user}.homeModules.desktop.enable = true;
     noaccOSModules.gui.enable = true;
 
+    nix.firewall =
+      let
+        anytype-ports = [ "31007-31012" ];
+      in
+      {
+        allowedTCPPorts = anytype-ports;
+        allowedUDPPorts = anytype-ports;
+      };
+
     programs = {
       dconf.enable = true;
       xwayland.enable = true;
