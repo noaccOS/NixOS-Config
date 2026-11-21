@@ -48,7 +48,7 @@ in
     };
 
     # auto-login and launch kodi
-    programs.regreet.enable = true;
+    services.displayManager.regreet.enable = true;
     services.greetd = {
       enable = true;
       settings = {
